@@ -1,0 +1,296 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+REV_DOMAINS = %w(
+  10
+)
+DOMAIN = "aws.nw.rubykaigi.org"
+SHORTHAND_DOMAIN = "c.nw.rubykaigi.org"
+REGIONS = %w(
+  ap-northeast-1
+)
+
+template "nw.rubykaigi.org-public" do
+end
+
+template "nw.rubykaigi.org-private" do
+end
+
+template "nw.rubykaigi.org-common" do
+  rrset "nw.rubykaigi.org.", "CAA" do
+    ttl 300
+    resource_records(
+      *%w(
+        letsencrypt.org
+        amazon.com
+        amazontrust.com
+        awstrust.com
+        amazonaws.com
+      ).map do |cn|
+        "0 issue \"#{cn}\""
+      end,
+      *%w(
+        letsencrypt.org
+        amazon.com
+        amazontrust.com
+        awstrust.com
+        amazonaws.com
+      ).map do |cn|
+        "0 issuewild \"#{cn}\""
+      end,
+    )
+  end
+
+  %w(
+  _4e22401ff8eb098e68eeffbd8515e53b.s.nw.rubykaigi.org. _faa24107c45e5a39a202bb0d6b6ac4d2.ltfvzjuylp.acm-validations.aws.
+  ).each_slice(2) do |(name,target)|
+    rrset name, "CNAME" do
+      ttl 60
+      resource_records target
+    end
+  end
+
+  rrset "bastion.nw.rubykaigi.org.", "A" do
+    ttl 60
+    resource_records "52.69.210.31"
+  end
+
+  rrset "*.s.nw.rubykaigi.org.", "CNAME" do
+    ttl 60
+    resource_records "rproxy-2072842150.ap-northeast-1.elb.amazonaws.com."
+  end
+end
+
+
+
+##
+require 'aws-sdk-ec2'
+def fetch_instances()
+  REGIONS.map do |region|
+    ec2 = Aws::EC2::Resource.new(region: region)
+
+    vpcs = ec2.vpcs.map do |vpc|
+      tag = vpc.tags.find { |_| _.key == 'Name' }
+      next unless tag
+
+      vpc_name = tag.value
+      vpc_domain = "#{DOMAIN}"
+
+      instances = vpc.instances.map do |instance|
+        name_tag = instance.tags.find { |_| _.key == "Name" }
+        alias_tag = instance.tags.find { |_| _.key == "Alias" }
+
+        name_from_ip = instance.private_dns_name.split('.').first
+        raise if name_from_ip.empty?
+
+        if name_tag && !name_tag.value.empty?
+          next if name_tag.value.size > 62
+          name = name_tag.value.gsub(?_,?-)
+          next unless /\A[A-Za-z0-9-]+\z/ === name
+        else
+          name = name_from_ip
+        end
+
+        alias_name = alias_tag && alias_tag.value.gsub(?_,?-)
+
+        alias_name_from_ip = unless name_from_ip == name
+                               name_from_ip
+                             end
+
+        [
+          name,
+          name: name,
+          alias: alias_name,
+          alias_from_ip: alias_name_from_ip,
+          ip: instance.private_ip_address,
+          fqdn: "#{name}.#{vpc_domain}.",
+          short_fqdn: "#{name}.#{SHORTHAND_DOMAIN}",
+          alias_fqdn: (alias_name && !alias_name.empty?) ? "#{alias_name}.#{vpc_domain}." : nil,
+          alias_fqdn_from_ip: alias_name_from_ip && "#{alias_name_from_ip}.#{vpc_domain}.",
+          alias_fqdn_from_instance_id: "#{instance.instance_id}.#{vpc_domain}.",
+          ptr_fqdn: "#{instance.private_ip_address.split(?.).reverse.join(?.)}.in-addr.arpa.",
+        ]
+      end.compact.to_h
+
+      [vpc_name, name: vpc_name, instances: instances, id: vpc.id]
+    end.compact.to_h
+
+    [region, vpcs]
+  end.to_h
+end
+
+region_vpc_instances = fetch_instances()
+
+template "nw.rubykaigi.org-aws_instances" do
+  region_vpc_instances.each do |region, vpcs|
+    instances_by_alias = Hash.new {|h, k| h[k] = [] }
+
+    vpcs.each do |short_name, vpc_obj|
+      vpc_obj[:instances].each do |name, instance|
+        rrset instance[:fqdn], "A" do
+          ttl 60
+          resource_records instance[:ip]
+        end
+
+        rrset instance[:short_fqdn], "CNAME" do
+          ttl 60
+          resource_records instance[:fqdn]
+        end
+
+        if instance[:alias]
+          instances_by_alias[instance[:alias_fqdn]] << instance
+        end
+
+        if instance[:alias_fqdn_from_ip]
+          rrset instance[:alias_fqdn_from_ip], "CNAME" do
+            ttl 60
+            resource_records instance[:fqdn]
+          end
+        end
+
+        rrset instance[:alias_fqdn_from_instance_id], "CNAME" do
+          ttl 60
+          resource_records instance[:fqdn]
+        end
+      end
+    end
+
+    instances_by_alias.each do |alias_fqdn, instances|
+      if instances.size == 1
+        rrset alias_fqdn, "CNAME" do
+          ttl 60
+          resource_records instances.first[:fqdn]
+        end
+      else
+        rrset alias_fqdn, "A" do
+          ttl 60
+          resource_records(*instances.map {|i| i[:ip] })
+        end
+      end
+    end
+  end
+end
+
+###
+
+host_lines = File.read(File.join(__dir__, '..', 'hosts.txt'))
+
+hosts_data = host_lines.lines.
+  map { |l| dc, network, cidr, ip, name, iface, mac = l.chomp.split(?\t, 7);{dc: dc, network: network, cidr: cidr, ip: ip, name: name, mac: (mac && !mac.empty? && mac != '#N/A') ? mac : nil, iface: (iface && !iface.empty?) ? iface : nil} }.
+  reject { |_| _[:ip].nil? || _[:ip].empty? }.
+  group_by { |_| [_[:dc], _[:name]] }.
+  map { |_, ips| [ips[0].merge(primary: true), ips[1..-1]].flatten }.
+  flatten
+
+
+
+template "nw.rubykaigi.org-onpremises" do
+  hosts_data.each do |host|
+    host[:primary_fqdn] = primary_fqdn = "#{host.fetch(:name)}.#{host.fetch(:dc)}.nw.rubykaigi.org."
+    host[:iface_fqdn] = iface_fqdn = host[:iface] ? "#{host.fetch(:iface)}.#{host.fetch(:name)}.#{host.fetch(:dc)}.nw.rubykaigi.org." : nil
+    short_fqdn = "#{host.fetch(:name)}.#{SHORTHAND_DOMAIN}."
+    net_fqdn = "#{host.fetch(:network)}.#{host.fetch(:name)}.nw.rubykaigi.org."
+    host[:canonical_fqdn] = canonical_fqdn = iface_fqdn || net_fqdn || primary_fqdn
+    p host
+    p({primary: primary_fqdn, iface: iface_fqdn, short: short_fqdn, net: net_fqdn})
+    p :___
+
+    if iface_fqdn
+      rrset iface_fqdn, "A" do
+        ttl 60
+        resource_records host.fetch(:ip)
+      end
+    end
+
+    if net_fqdn
+      if canonical_fqdn != net_fqdn
+        rrset net_fqdn, "CNAME" do
+          ttl 60
+          resource_records canonical_fqdn
+        end
+      else
+        rrset net_fqdn, "A" do
+          ttl 60
+          resource_records host.fetch(:ip)
+        end
+      end
+    end
+
+    if host[:primary]
+      if primary_fqdn != canonical_fqdn
+        rrset primary_fqdn, "CNAME" do
+          ttl 60
+          resource_records canonical_fqdn
+        end
+      else
+        rrset primary_fqdn, "A" do
+          ttl 60
+          resource_records host.fetch(:ip)
+        end
+      end
+      rrset short_fqdn, "CNAME" do
+        ttl 60
+        resource_records primary_fqdn
+      end
+    end
+  end
+
+  rrset "CISCO-CAPWAP-CONTROLLER.venue.nw.rubykaigi.org.", "CNAME" do
+    ttl 60
+    resource_records 'sys.wlc-001.venue.nw.rubykaigi.org.'
+  end
+end
+
+###
+
+hosted_zone "nw.rubykaigi.org." do
+  include_template 'nw.rubykaigi.org-common'
+  include_template 'nw.rubykaigi.org-public'
+end
+
+hosted_zone "nw.rubykaigi.org.", "Z1132LRNZWJBVZ" do
+  region_vpc_instances.each do |region, vpcs|
+    vpcs.each do |short_name, _|
+      vpc region, _[:id]
+    end
+  end
+
+  include_template 'nw.rubykaigi.org-common'
+  include_template 'nw.rubykaigi.org-private'
+  include_template 'nw.rubykaigi.org-aws_instances'
+  include_template 'nw.rubykaigi.org-onpremises'
+end
+
+
+REV_DOMAINS.each do |network|
+  rev_domain = "#{network.split(?.).reverse.join(?.)}.in-addr.arpa."
+  hosted_zone rev_domain do
+    hosts_data.each do |host|
+      next unless host.fetch(:ip).start_with?("#{network}.")
+      rrset "#{host.fetch(:ip).split(?.).reverse.join(?.)}.in-addr.arpa.", "PTR" do
+        ttl 60
+        resource_records host.fetch(:canonical_fqdn)
+      end
+    end
+
+    region_vpc_instances.each do |region, vpcs|
+      vpcs.each do |short_name, _|
+        vpc region, _[:id]
+      end
+    end
+
+    region_vpc_instances.each do |region, vpcs|
+      vpcs.each do |short_name, vpc_obj|
+        vpc_obj[:instances].each do |name, instance|
+          next unless instance[:ip].start_with?("#{network}.")
+
+          rrset instance[:ptr_fqdn], "PTR" do
+            ttl 60
+            resource_records instance[:fqdn]
+          end
+        end
+      end
+    end
+  end
+end
+
+

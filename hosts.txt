@@ -1,0 +1,35 @@
+venue	lo	10.33.0.0/24	10.33.0.1	gw-01	lo
+venue	lo	10.33.0.0/24	10.33.0.2	gw-02	lo
+venue	lo	10.33.0.0/24	10.33.0.11	rt-01	lo
+					
+venue	ring	10.33.20.0/24	10.33.20.1	gw-01	gi1-0
+venue	ring	10.33.20.0/24	10.33.20.2	gw-02	gi1-0
+venue	ring	10.33.20.0/24	10.33.20.3	rt-01	v-ring
+
+venue	air	10.33.2.0/24	10.33.2.1	rt-01	v-air
+venue	air	10.33.2.0/24	10.33.2.2	wlc-01	sys
+					
+venue	mgmt	10.33.100.0/24	10.33.100.1	rt-01	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.3	gw-03	gi1-1-0
+venue	mgmt	10.33.100.0/24	10.33.100.10	wlc-01	svc
+venue	mgmt	10.33.100.0/24	10.33.100.22	sw-e2c-01	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.24	sw-e4c-01	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.25	sw-e5b-01	v-mgmt
+					
+venue	mgmt	10.33.100.0/24	10.33.100.121	es-haa-01	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.122	es-haa-02	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.123	es-hab-01	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.124	es-ex2-01	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.141	es-hac-01	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.142	es-bck-01	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.151	es-had-01	v-mgmt
+venue	mgmt	10.33.100.0/24	10.33.100.152	es-gya-01	v-mgmt
+				 	
+					
+venue	life	10.33.1.0/24	10.33.1.1	rt-01	v-life
+venue	usr	10.33.64.0/20	10.33.64.1	rt-01	v-usr
+					
+ptp	ptp	10.33.22.0/30	10.33.22.1	vpn-001	vti-venue
+ptp	ptp	10.33.22.0/30	10.33.22.2	gw-01	tun10
+ptp	ptp	10.33.22.0/30	10.33.22.5	vpn-001	vti-venue2
+ptp	ptp	10.33.22.0/30	10.33.22.6	gw-02	tun10
