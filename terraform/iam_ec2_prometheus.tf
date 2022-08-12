@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "ec2_prometheus-ec2_sd" {
-  role = "${aws_iam_role.ec2_prometheus.id}"
+  role = aws_iam_role.ec2_prometheus.id
   name = "ec2-sd"
   policy = <<EOF
 {
@@ -37,5 +37,5 @@ EOF
 
 resource "aws_iam_instance_profile" "ec2_prometheus" {
   name = "Ec2Prometheus"
-  role = "${aws_iam_role.ec2_prometheus.name}"
+  role = aws_iam_role.ec2_prometheus.name
 }

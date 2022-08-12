@@ -1,5 +1,5 @@
 resource "aws_security_group" "default" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name = "default"
   description = "default VPC security group"
 
@@ -15,7 +15,7 @@ resource "aws_security_group" "default" {
     protocol = "tcp"
     from_port = 22
     to_port = 22
-    security_groups = ["${aws_security_group.bastion.id}"]
+    security_groups = [aws_security_group.bastion.id]
   }
 
   ingress {
@@ -23,7 +23,7 @@ resource "aws_security_group" "default" {
     protocol = "tcp"
     from_port = 9099
     to_port = 9100
-    security_groups = ["${aws_security_group.prometheus.id}"]
+    security_groups = [aws_security_group.prometheus.id]
   }
 
 
@@ -37,7 +37,7 @@ resource "aws_security_group" "default" {
 }
 
 resource "aws_security_group" "bastion" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name = "bastion"
   description = "bastion"
 
@@ -51,7 +51,7 @@ resource "aws_security_group" "bastion" {
 }
 
 resource "aws_security_group" "dns_cache" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name = "dns-cache"
   description = "dns-cache"
 
@@ -60,19 +60,19 @@ resource "aws_security_group" "dns_cache" {
     from_port = 53
     to_port = 53
     cidr_blocks = ["10.33.0.0/16"]
-    security_groups = ["${aws_security_group.default.id}"]
+    security_groups = [aws_security_group.default.id]
   }
   ingress {
     protocol = "udp"
     from_port = 53
     to_port = 53
     cidr_blocks = ["10.33.0.0/16"]
-    security_groups = ["${aws_security_group.default.id}"]
+    security_groups = [aws_security_group.default.id]
   }
 }
 
 resource "aws_security_group" "dhcp" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name = "dhcp"
   description = "dhcp"
 
@@ -93,7 +93,7 @@ resource "aws_security_group" "dhcp" {
 }
 
 resource "aws_security_group" "vpn_router" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name = "vpn-router"
   description = "vpn-router"
 
@@ -101,7 +101,7 @@ resource "aws_security_group" "vpn_router" {
     protocol = -1
     from_port = 0
     to_port = 0
-    security_groups = ["${aws_security_group.default.id}"]
+    security_groups = [aws_security_group.default.id]
   }
   ingress {
     protocol = "udp"
@@ -134,7 +134,7 @@ resource "aws_security_group" "vpn_router" {
 }
 
 resource "aws_security_group" "syslog" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name = "syslog"
   description = "syslog"
 
@@ -159,7 +159,7 @@ resource "aws_security_group" "syslog" {
 
 
 resource "aws_security_group" "elb_http" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name = "elb-http"
   description = "elb-http"
 
@@ -181,7 +181,7 @@ resource "aws_security_group" "elb_http" {
 }
 
 resource "aws_security_group" "front_http" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name = "front-http"
   description = "front-http"
 
@@ -189,19 +189,19 @@ resource "aws_security_group" "front_http" {
     protocol = "tcp"
     from_port = 80
     to_port = 80
-    security_groups = ["${aws_security_group.elb_http.id}"]
+    security_groups = [aws_security_group.elb_http.id]
   }
 
   ingress {
     protocol = "tcp"
     from_port = 443
     to_port = 443
-    security_groups = ["${aws_security_group.elb_http.id}"]
+    security_groups = [aws_security_group.elb_http.id]
   }
 }
 
 resource "aws_security_group" "prometheus" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name = "prometheus"
   description = "prometheus"
 
@@ -210,7 +210,7 @@ resource "aws_security_group" "prometheus" {
     protocol = "tcp"
     from_port = 9090
     to_port = 9090
-    security_groups = ["${aws_security_group.front_http.id}"]
+    security_groups = [aws_security_group.front_http.id]
   }
 
   ingress {
@@ -218,7 +218,7 @@ resource "aws_security_group" "prometheus" {
     protocol = "tcp"
     from_port = 9093
     to_port = 9093
-    security_groups = ["${aws_security_group.front_http.id}"]
+    security_groups = [aws_security_group.front_http.id]
   }
 
   ingress {
@@ -226,6 +226,6 @@ resource "aws_security_group" "prometheus" {
     protocol = "tcp"
     from_port = 5446
     to_port = 5446
-    security_groups = ["${aws_security_group.front_http.id}"]
+    security_groups = [aws_security_group.front_http.id]
   }
 }
