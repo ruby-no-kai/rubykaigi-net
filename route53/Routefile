@@ -1,4 +1,0 @@
-# vim: ft=ruby
-require_relative '../cnw/misc/ensure-aws-account.rb'
-
-require 'nw.rubykaigi.org.route'
