@@ -1,7 +1,0 @@
-vpn-001.aws.nw.rubykaigi.org:
-  properties:
-    run_list:
-      - site.rb
-      - site/entry_ec2.rb
-      - hosts/vpn-001.rb
-      - site/entry_ec2_role.rb

@@ -1,6 +1,0 @@
-source 'https://rubygems.org'
-
-gem 'hocho'
-gem 'hocho-ec2', path: "~/git/github.com/sorah/hocho-ec2"
-gem 'itamae-secrets'
-
