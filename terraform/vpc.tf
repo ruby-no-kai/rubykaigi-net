@@ -81,9 +81,35 @@ resource "aws_subnet" "d_private" {
   }
 }
 
+resource "aws_subnet" "c_onpremises" {
+  availability_zone               = "ap-northeast-1c"
+  vpc_id                          = aws_vpc.main.id
+  cidr_block                      = "10.33.160.0/23"
+  assign_ipv6_address_on_creation = false
+  map_public_ip_on_launch         = false
+
+  tags = {
+    Name = "rk-c-onpremises"
+    Tier = "onpremises"
+  }
+}
+resource "aws_subnet" "d_onpremises" {
+  availability_zone               = "ap-northeast-1d"
+  vpc_id                          = aws_vpc.main.id
+  cidr_block                      = "10.33.162.0/23"
+  assign_ipv6_address_on_creation = false
+  map_public_ip_on_launch         = false
+
+  tags = {
+    Name = "rk-d-onpremises"
+    Tier = "onpremises"
+  }
+}
+
 locals {
-  public_subnet_ids  = [aws_subnet.c_public.id, aws_subnet.d_public.id]
-  private_subnet_ids = [aws_subnet.c_private.id, aws_subnet.d_private.id]
+  public_subnet_ids     = toset([aws_subnet.c_public.id, aws_subnet.d_public.id])
+  private_subnet_ids    = toset([aws_subnet.c_private.id, aws_subnet.d_private.id])
+  onpremises_subnet_ids = toset([aws_subnet.c_onpremises.id, aws_subnet.d_onpremises.id])
 }
 
 resource "aws_route_table" "public_rtb" {
@@ -118,16 +144,35 @@ resource "aws_route" "private_v6_default" {
   egress_only_gateway_id      = aws_egress_only_internet_gateway.eigw.id
 }
 
+resource "aws_route_table" "onpremises_rtb" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "rk-onpremises"
+    Tier = "onpremises"
+  }
+}
 
+resource "aws_route_table_association" "public" {
+  for_each       = local.public_subnet_ids
+  subnet_id      = each.value
+  route_table_id = aws_route_table.public_rtb.id
+}
 resource "aws_route_table_association" "private" {
-  count          = length(local.private_subnet_ids)
-  subnet_id      = element(local.private_subnet_ids, count.index)
+  for_each       = local.private_subnet_ids
+  subnet_id      = each.value
   route_table_id = aws_route_table.private_rtb.id
 }
-resource "aws_route_table_association" "public" {
-  count          = length(local.public_subnet_ids)
-  subnet_id      = element(local.public_subnet_ids, count.index)
-  route_table_id = aws_route_table.public_rtb.id
+resource "aws_route_table_association" "onpremises" {
+  for_each       = local.onpremises_subnet_ids
+  subnet_id      = each.value
+  route_table_id = aws_route_table.onpremises_rtb.id
+}
+
+resource "aws_vpn_gateway" "main" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "main"
+  }
 }
 
 #resource "aws_eip" "nat" {
