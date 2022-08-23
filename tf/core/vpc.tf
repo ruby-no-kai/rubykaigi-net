@@ -175,6 +175,19 @@ resource "aws_vpn_gateway" "main" {
   }
 }
 
+resource "aws_vpn_gateway_route_propagation" "main-public" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.public_rtb.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-private" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.private_rtb.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-onpremises" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.onpremises_rtb.id
+}
+
 resource "aws_eip" "nat" {
   vpc = true
   tags = {
