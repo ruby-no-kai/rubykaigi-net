@@ -61,3 +61,33 @@ data "aws_subnet" "main-private-d" {
     values = ["private"]
   }
 }
+
+data "aws_subnet" "main-onpremises-c" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.main.id]
+  }
+  filter {
+    name   = "availability-zone"
+    values = ["ap-northeast-1c"]
+  }
+  filter {
+    name   = "tag:Tier"
+    values = ["onpremises"]
+  }
+}
+
+data "aws_subnet" "main-onpremises-d" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.main.id]
+  }
+  filter {
+    name   = "availability-zone"
+    values = ["ap-northeast-1d"]
+  }
+  filter {
+    name   = "tag:Tier"
+    values = ["onpremises"]
+  }
+}
