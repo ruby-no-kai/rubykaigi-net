@@ -175,18 +175,18 @@ resource "aws_vpn_gateway" "main" {
   }
 }
 
-#resource "aws_eip" "nat" {
-#  vpc = true
-#  tags = {
-#    Name = "nat"
-#  }
-#}
-#resource "aws_nat_gateway" "nat" {
-#  allocation_id = aws_eip.nat.id
-#  subnet_id     = aws_subnet.d_public.id
-#}
-#resource "aws_route" "private_nat" {
-#  route_table_id = aws_route_table.private_rtb.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id = aws_nat_gateway.nat.id
-#}
+resource "aws_eip" "nat" {
+  vpc = true
+  tags = {
+    Name = "nat"
+  }
+}
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.c_public.id
+}
+resource "aws_route" "private_nat" {
+  route_table_id         = aws_route_table.private_rtb.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat.id
+}
