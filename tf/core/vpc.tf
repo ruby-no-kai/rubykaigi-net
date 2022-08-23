@@ -38,6 +38,9 @@ resource "aws_subnet" "c_public" {
   tags = {
     Name = "rk-c-public"
     Tier = "public"
+
+    "kubernetes.io/role/elb"     = "1"
+    "kubernetes.io/cluster/rk22" = "shared"
   }
 }
 resource "aws_subnet" "d_public" {
@@ -51,6 +54,9 @@ resource "aws_subnet" "d_public" {
   tags = {
     Name = "rk-d-public"
     Tier = "public"
+
+    "kubernetes.io/role/elb"     = "1"
+    "kubernetes.io/cluster/rk22" = "shared"
   }
 }
 
@@ -65,6 +71,9 @@ resource "aws_subnet" "c_private" {
   tags = {
     Name = "rk-c-private"
     Tier = "private"
+
+    "kubernetes.io/role/internal-elb" = "1"
+    "kubernetes.io/cluster/rk22"      = "shared"
   }
 }
 resource "aws_subnet" "d_private" {
@@ -78,6 +87,9 @@ resource "aws_subnet" "d_private" {
   tags = {
     Name = "rk-d-private"
     Tier = "private"
+
+    "kubernetes.io/role/internal-elb" = "1"
+    "kubernetes.io/cluster/rk22"      = "shared"
   }
 }
 
