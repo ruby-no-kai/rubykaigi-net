@@ -1,2 +1,3 @@
 /gen/ linguist-generated=true
 /gen/**/*.yml linguist-generated=true
+/.github/workflows/*.yml linguist-generated=true
