@@ -1,0 +1,93 @@
+{
+   "apiVersion": "apps/v1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "rubykaigi.org/app": "dex"
+      },
+      "name": "dex",
+      "namespace": "default"
+   },
+   "spec": {
+      "replicas": 2,
+      "selector": {
+         "matchLabels": {
+            "rubykaigi.org/app": "dex"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "rubykaigi.org/app": "dex"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/usr/local/bin/dex",
+                     "serve",
+                     "/etc/dex/cfg/config.yml"
+                  ],
+                  "env": [
+                     {
+                        "name": "GITHUB_CLIENT_ID",
+                        "valueFrom": {
+                           "secretKeyRef": {
+                              "key": "client-id",
+                              "name": "dex-github-client"
+                           }
+                        }
+                     },
+                     {
+                        "name": "GITHUB_CLIENT_SECRET",
+                        "valueFrom": {
+                           "secretKeyRef": {
+                              "key": "client-secret",
+                              "name": "dex-github-client"
+                           }
+                        }
+                     }
+                  ],
+                  "image": "ghcr.io/dexidp/dex:v2.30.0",
+                  "name": "app",
+                  "ports": [
+                     {
+                        "containerPort": 8080,
+                        "name": "http"
+                     }
+                  ],
+                  "readinessProbe": {
+                     "httpGet": {
+                        "path": "/healthz",
+                        "port": 8080,
+                        "scheme": "HTTP"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/dex/cfg",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "serviceAccountName": "dex",
+            "volumes": [
+               {
+                  "configMap": {
+                     "items": [
+                        {
+                           "key": "config.yml",
+                           "path": "config.yml"
+                        }
+                     ],
+                     "name": "dex"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}
