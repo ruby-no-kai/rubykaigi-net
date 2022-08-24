@@ -38,6 +38,9 @@ resource "aws_subnet" "c_public" {
   tags = {
     Name = "rk-c-public"
     Tier = "public"
+
+    "kubernetes.io/role/elb"     = "1"
+    "kubernetes.io/cluster/rk22" = "shared"
   }
 }
 resource "aws_subnet" "d_public" {
@@ -51,6 +54,9 @@ resource "aws_subnet" "d_public" {
   tags = {
     Name = "rk-d-public"
     Tier = "public"
+
+    "kubernetes.io/role/elb"     = "1"
+    "kubernetes.io/cluster/rk22" = "shared"
   }
 }
 
@@ -65,6 +71,9 @@ resource "aws_subnet" "c_private" {
   tags = {
     Name = "rk-c-private"
     Tier = "private"
+
+    "kubernetes.io/role/internal-elb" = "1"
+    "kubernetes.io/cluster/rk22"      = "shared"
   }
 }
 resource "aws_subnet" "d_private" {
@@ -78,6 +87,9 @@ resource "aws_subnet" "d_private" {
   tags = {
     Name = "rk-d-private"
     Tier = "private"
+
+    "kubernetes.io/role/internal-elb" = "1"
+    "kubernetes.io/cluster/rk22"      = "shared"
   }
 }
 
@@ -175,18 +187,31 @@ resource "aws_vpn_gateway" "main" {
   }
 }
 
-#resource "aws_eip" "nat" {
-#  vpc = true
-#  tags = {
-#    Name = "nat"
-#  }
-#}
-#resource "aws_nat_gateway" "nat" {
-#  allocation_id = aws_eip.nat.id
-#  subnet_id     = aws_subnet.d_public.id
-#}
-#resource "aws_route" "private_nat" {
-#  route_table_id = aws_route_table.private_rtb.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id = aws_nat_gateway.nat.id
-#}
+resource "aws_vpn_gateway_route_propagation" "main-public" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.public_rtb.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-private" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.private_rtb.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-onpremises" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.onpremises_rtb.id
+}
+
+resource "aws_eip" "nat" {
+  vpc = true
+  tags = {
+    Name = "nat"
+  }
+}
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.c_public.id
+}
+resource "aws_route" "private_nat" {
+  route_table_id         = aws_route_table.private_rtb.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat.id
+}
