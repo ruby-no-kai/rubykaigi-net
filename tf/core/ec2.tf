@@ -15,7 +15,3 @@ data "aws_iam_policy_document" "trust-ec2" {
     }
   }
 }
-
-data "aws_iam_policy" "ssm" {
-  arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-}
