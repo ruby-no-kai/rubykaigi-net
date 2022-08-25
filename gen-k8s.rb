@@ -1,12 +1,13 @@
 #!/usr/bin/env ruby
 require 'fileutils'
 require 'json'
+require 'tmpdir'
 
 Dir.chdir(__dir__)
-FileUtils.remove_entry_secure './gen/k8s'
+tmpdir = Dir.mktmpdir
 
 Dir["./k8s/**/*.jsonnet"].each do |src|
-  dst = src.sub(/\.jsonnet$/, '.yml').sub(/^\.\/k8s\//, './gen/k8s/')
+  dst = File.join(tmpdir, src.sub(/\.jsonnet$/, '.yml'))
   p [src => dst]
   FileUtils.mkdir_p File.dirname(dst)
 
@@ -26,8 +27,10 @@ Dir["./k8s/**/*.jsonnet"].each do |src|
 end
 
 Dir["./k8s/**/*.yml"].each do |src|
-  dst = src.sub(/^\.\/k8s\//, './gen/k8s')
+  dst = File.join(tmpdir, src.sub(/^\.\/k8s\//, './gen/k8s'))
   p [src => dst]
   FileUtils.mkdir_p File.dirname(dst)
   FileUtils.cp src, dst
 end
+
+system('rsync', '-av','--delete', File.join(tmpdir, 'k8s/'), './gen/k8s')
