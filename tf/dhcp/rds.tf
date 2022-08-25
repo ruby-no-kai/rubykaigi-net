@@ -66,3 +66,13 @@ resource "aws_security_group_rule" "kea-db_bastion" {
   protocol                 = "tcp"
   source_security_group_id = data.aws_security_group.bastion.id
 }
+
+resource "aws_route53_record" "kea1-db-apne1-rubykaigi-net" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.id
+  name    = "kea1.db.apne1.rubykaigi.net."
+  type    = "CNAME"
+  ttl     = 5
+  records = [
+    "${aws_rds_cluster.kea.endpoint}.",
+  ]
+}

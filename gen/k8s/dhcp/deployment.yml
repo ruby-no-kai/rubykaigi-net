@@ -1,0 +1,115 @@
+{
+   "apiVersion": "apps/v1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "rubykaigi.org/app": "kea4"
+      },
+      "name": "kea4",
+      "namespace": "default"
+   },
+   "spec": {
+      "replicas": 2,
+      "selector": {
+         "matchLabels": {
+            "rubykaigi.org/app": "kea4"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "rubykaigi.org/app": "kea4"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/bin/bash",
+                     "-e",
+                     "/app/run.sh"
+                  ],
+                  "env": [
+                     {
+                        "name": "LEASE_DATABASE_USER",
+                        "valueFrom": {
+                           "secretKeyRef": {
+                              "key": "username",
+                              "name": "kea-mysql"
+                           }
+                        }
+                     },
+                     {
+                        "name": "LEASE_DATABASE_PASSWORD",
+                        "valueFrom": {
+                           "secretKeyRef": {
+                              "key": "password",
+                              "name": "kea-mysql"
+                           }
+                        }
+                     },
+                     {
+                        "name": "HOSTS_DATABASE_USER",
+                        "valueFrom": {
+                           "secretKeyRef": {
+                              "key": "username",
+                              "name": "kea-mysql"
+                           }
+                        }
+                     },
+                     {
+                        "name": "HOSTS_DATABASE_PASSWORD",
+                        "valueFrom": {
+                           "secretKeyRef": {
+                              "key": "password",
+                              "name": "kea-mysql"
+                           }
+                        }
+                     }
+                  ],
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:3a75adcc7c6b86e3c9f7289bb77814e453daca23",
+                  "name": "app",
+                  "ports": [
+                     {
+                        "containerPort": 67,
+                        "name": "dhcp",
+                        "protocol": "UDP"
+                     },
+                     {
+                        "containerPort": 9547,
+                        "name": "prom"
+                     }
+                  ],
+                  "readinessProbe": {
+                     "httpGet": {
+                        "path": "/metrics",
+                        "port": 9547,
+                        "scheme": "HTTP"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "volumes": [
+               {
+                  "configMap": {
+                     "items": [
+                        {
+                           "key": "kea-dhcp4.json",
+                           "path": "kea-dhcp4.json"
+                        }
+                     ],
+                     "name": "kea-config"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}
