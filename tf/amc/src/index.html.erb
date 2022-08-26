@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AMC</title>
+    <link rel="stylesheet" href="/public/index.css?v=<%= cachebuster %>" type="text/css" />
+    <meta name="viewport" content="initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+
+    <meta name="amc-user" content="<%= ERB::Util.h(JSON.generate(user)) %>">
+    <meta name="amc-release" content="<%= ERB::Util.h(JSON.generate({r: revision_file, fn: request.function_arn, v: request.function_version})) %>">
+  </head>
+
+  <body class='amc-app amc-loading'>
+    <main>
+      <header>
+        <img height=310 width=310 src='https://img.sorah.jp/ba-01-09.png?v=<%= cachebuster %>' alt=''>
+      </header>
+      <div class='amc-while-loading'>
+        <p aria-label='Loading'>😴</p>
+      </div>
+      <div class='amc-wait-load'>
+        <nav class='actions'>
+          <div class="actions-creds">
+            <form action='#'>
+              <fieldset>
+                <button type='submit'>Obtain credentials</button>
+              </fieldset>
+            </form>
+          </div>
+
+          <div class="actions-signin">
+            <form action='#'>
+              <fieldset>
+                <button type='submit'>Console Sign In</button>
+              </fieldset>
+            </form>
+          </div>
+        </nav>
+
+        <section id='results'>
+          <div class='spinner d-none'>
+            <p aria-label='Processing request'>👊</p>
+          </div>
+
+          <div class='creds-response d-none'>
+            <div class='creds-response-type-export creds-response-text'>
+              <h4>Shell Export</h4>
+              <div class='creds-response-copy'><a href='#'>Copy</a></div>
+              <code><pre></pre></code>
+            </div>
+            <div class='creds-response-type-envchain creds-response-text'>
+              <h4>Envchain</h4>
+              <div class='creds-response-copy'><a href='#'>Copy</a></div>
+              <code><pre></pre></code>
+              <p><small>The above snippet expires in 3 minutes. <a href="" class='creds-response-url' target=_blank>Verify content?</a></small></p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src='/public/index.js?v=<%= cachebuster %>'></script>
+  </body>
+</html>
+

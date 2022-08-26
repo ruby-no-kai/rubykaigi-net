@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+gem 'jwt'
+gem 'aws-sdk-core'
+gem 'aws-sdk-secretsmanager'
+gem 'rexml'
+gem 'faraday'

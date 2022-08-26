@@ -7,6 +7,7 @@ locals {
     client_secret              = "rQHgwpnOwsUTpvp6QDttq2KNs53HMbtPp5k4Go307Ds"
     issuer                     = "https://idp.rubykaigi.net"
     on_unauthenticated_request = "authenticate"
+    scope                      = "openid email profile"
     session_timeout            = 12 * 3600
   }
 }
