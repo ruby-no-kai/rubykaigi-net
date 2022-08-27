@@ -51,6 +51,7 @@ data "aws_iam_policy_document" "nocadmin" {
       "ecr:*",
       "ecs:*",
       "eks:*",
+      "elasticloadbalancing:*",
       "globalaccelerator:*",
       "ivs:*",
       "kms:*",
