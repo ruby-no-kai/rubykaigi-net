@@ -1,0 +1,16 @@
+[package]
+name = "healthz"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.62"
+axum = "0.5.15"
+log = "0.4.17"
+reqwest = { version =  "0.11.11", default_features = false, features = ["json"]}
+serde = "1.0.144"
+serde_json = "1.0.85"
+tokio = { version =  "1.20.1", features = ["net", "macros", "rt-multi-thread"]}
+tracing-subscriber = "0.3.15"
