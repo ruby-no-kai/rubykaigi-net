@@ -28,5 +28,6 @@ echo "SERVER_ID=${SERVER_ID}"
 
 kea-ctrl-agent -c /app/kea-ctrl-agent.json &
 stork-agent &
+/app/healthzd &
 
 kea-dhcp4 -c /work/kea-dhcp4.json

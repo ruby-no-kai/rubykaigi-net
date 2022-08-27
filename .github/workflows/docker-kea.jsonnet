@@ -20,6 +20,26 @@
             sudo docker run --rm --privileged multiarch/qemu-user-static --reset --persistent yes --credential yes
           |||,
         },
+
+
+        {
+          uses: 'actions-rs/toolchain@v1',
+          with: {
+            profile: 'minimal',
+            toolchain: 'stable',
+            target: 'aarch64-unknown-linux-gnu',
+          },
+        },
+        {
+          uses: 'actions-rs/cargo@v1',
+          with: {
+            'use-cross': true,
+            command: 'build',
+            args: '--release --locked --manifest-path docker/kea/healthz/Cargo.toml --target aarch64-unknown-linux-gnu',
+          },
+        },
+
+
         {
           uses: 'docker/setup-buildx-action@v2',
           with: { install: true },

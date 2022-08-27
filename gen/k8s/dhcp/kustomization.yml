@@ -3,6 +3,7 @@
    "kind": "Kustomization",
    "resources": [
       "./deployment.yml",
-      "./configmap.yml"
+      "./configmap.yml",
+      "./service.yml"
    ]
 }

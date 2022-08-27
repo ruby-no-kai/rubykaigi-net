@@ -1,4 +1,4 @@
-local commit = '3a75adcc7c6b86e3c9f7289bb77814e453daca23';
+local commit = '12f63cd20f61b39c75738ddd36d9b508e6bdd891';
 {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
@@ -28,6 +28,7 @@ local commit = '3a75adcc7c6b86e3c9f7289bb77814e453daca23';
             ports: [
               { name: 'dhcp', containerPort: 67, protocol: 'UDP' },
               { name: 'prom', containerPort: 9547 },
+              { name: 'healthz', containerPort: 10067 },
             ],
             env: [
               { name: 'LEASE_DATABASE_USER', valueFrom: { secretKeyRef: { name: 'kea-mysql', key: 'username' } } },
@@ -39,7 +40,12 @@ local commit = '3a75adcc7c6b86e3c9f7289bb77814e453daca23';
             volumeMounts: [
               { name: 'config', mountPath: '/config' },
             ],
-            readinessProbe: { httpGet: { path: '/metrics', port: 9547, scheme: 'HTTP' } },
+            readinessProbe: { httpGet: { path: '/healthz', port: 10067, scheme: 'HTTP' } },
+            livenessProbe: {
+              httpGet: { path: '/healthz', port: 10067, scheme: 'HTTP' },
+              failureThreshold: 2,
+              periodSeconds: 3,
+            },
           },
         ],
         volumes: [

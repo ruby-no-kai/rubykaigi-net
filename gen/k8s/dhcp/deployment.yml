@@ -67,7 +67,16 @@
                         }
                      }
                   ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:3a75adcc7c6b86e3c9f7289bb77814e453daca23",
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:12f63cd20f61b39c75738ddd36d9b508e6bdd891",
+                  "livenessProbe": {
+                     "failureThreshold": 2,
+                     "httpGet": {
+                        "path": "/healthz",
+                        "port": 10067,
+                        "scheme": "HTTP"
+                     },
+                     "periodSeconds": 3
+                  },
                   "name": "app",
                   "ports": [
                      {
@@ -78,12 +87,16 @@
                      {
                         "containerPort": 9547,
                         "name": "prom"
+                     },
+                     {
+                        "containerPort": 10067,
+                        "name": "healthz"
                      }
                   ],
                   "readinessProbe": {
                      "httpGet": {
-                        "path": "/metrics",
-                        "port": 9547,
+                        "path": "/healthz",
+                        "port": 10067,
                         "scheme": "HTTP"
                      }
                   },
