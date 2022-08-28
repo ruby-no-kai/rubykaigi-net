@@ -58,6 +58,7 @@ data "aws_iam_policy_document" "nocadmin" {
       "lambda:*",
       "logs:*",
       "medialive:*",
+      "rds:*",
       "route53:*",
       "ssm:*",
       "transcribe:*",
