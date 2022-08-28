@@ -9,3 +9,7 @@ module "iam" {
 data "aws_iam_role" "FederatedAdmin" {
   name = "FederatedAdmin"
 }
+
+data "aws_iam_role" "NocAdmin" {
+  name = "NocAdmin"
+}

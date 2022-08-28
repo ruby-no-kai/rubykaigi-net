@@ -25,6 +25,11 @@ module "cluster" {
       username = data.aws_iam_role.FederatedAdmin.name
       rolearn  = data.aws_iam_role.FederatedAdmin.arn
       groups   = ["system:masters"]
+    },
+    {
+      username = data.aws_iam_role.NocAdmin.name
+      rolearn  = data.aws_iam_role.NocAdmin.arn
+      groups   = ["system:masters"]
     }
   ]
 

@@ -28,9 +28,15 @@ data "aws_iam_policy_document" "NocAdmin-trust" {
   }
 }
 
-resource "aws_iam_role_policy" "nocadmin" {
-  role   = aws_iam_role.NocAdmin.name
-  policy = data.aws_iam_policy_document.nocadmin.json
+resource "aws_iam_policy" "nocadmin-base" {
+  name        = "NocAdminBase"
+  description = "attached to NocAdmin and used for boundary"
+  policy      = data.aws_iam_policy_document.nocadmin.json
+}
+
+resource "aws_iam_role_policy_attachment" "nocadmin-base" {
+  role       = aws_iam_role.NocAdmin.name
+  policy_arn = aws_iam_policy.nocadmin-base.arn
 }
 
 data "aws_iam_policy_document" "nocadmin" {
@@ -54,7 +60,7 @@ data "aws_iam_policy_document" "nocadmin" {
       "elasticloadbalancing:*",
       "globalaccelerator:*",
       "ivs:*",
-      "kms:*",
+      "kms:*", # XXX: too excessive
       "lambda:*",
       "logs:*",
       "medialive:*",
@@ -63,8 +69,23 @@ data "aws_iam_policy_document" "nocadmin" {
       "ssm:*",
       "transcribe:*",
 
+      # k8s load-balancer-controller
+      "cognito-idp:*",
+      "waf-regional:*",
+      "wafv2:*",
+      "shield:*",
+
       "s3:ListMyBuckets",
       "s3:GetBucketLocation",
+
+      # IAMReadOnlyAccess
+      "iam:GenerateCredentialReport",
+      "iam:GenerateServiceLastAccessedDetails",
+      "iam:Get*",
+      "iam:List*",
+      "iam:SimulateCustomPolicy",
+      "iam:SimulatePrincipalPolicy",
+      "iam:CreateServiceLinkedRole",
     ]
     resources = ["*"]
   }
@@ -81,7 +102,29 @@ data "aws_iam_policy_document" "nocadmin" {
   }
 }
 
-resource "aws_iam_role_policy_attachment" "nocadmin-iam-ro" {
-  role       = aws_iam_role.NocAdmin.name
-  policy_arn = "arn:aws:iam::aws:policy/IAMReadOnlyAccess"
+resource "aws_iam_role_policy" "nocadmin-iam-with-boundary" {
+  role   = aws_iam_role.NocAdmin.name
+  policy = data.aws_iam_policy_document.nocadmin-iam-with-boundary.json
+}
+
+data "aws_iam_policy_document" "nocadmin-iam-with-boundary" {
+  statement {
+    actions = [
+      "iam:AttachRolePolicy",
+      "iam:CreateRole",
+      "iam:DeleteRolePolicy",
+      "iam:DetachRolePolicy",
+      "iam:PutRolePolicy",
+    ]
+
+    resources = ["*"]
+
+    condition {
+      test     = "ArnEquals"
+      variable = "iam:PermissionsBoundary"
+
+      # Cannot use aws_iam_policy.Development.arn because of cyclic
+      values = [aws_iam_policy.nocadmin-base.arn]
+    }
+  }
 }

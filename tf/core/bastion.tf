@@ -1,7 +1,8 @@
 resource "aws_iam_role" "bastion" {
-  name               = "NwBastion"
-  description        = "rubykaigi-nw aws_iam_role.bastion"
-  assume_role_policy = data.aws_iam_policy_document.trust-ec2.json
+  name                 = "NwBastion"
+  description          = "rubykaigi-nw aws_iam_role.bastion"
+  assume_role_policy   = data.aws_iam_policy_document.trust-ec2.json
+  permissions_boundary = aws_iam_policy.nocadmin-base.arn
 }
 
 resource "aws_iam_instance_profile" "bastion" {

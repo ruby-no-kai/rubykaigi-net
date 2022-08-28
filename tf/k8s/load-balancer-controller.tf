@@ -21,10 +21,15 @@ resource "helm_release" "load-balancer-controller" {
   }
 }
 
+data "aws_iam_policy" "nocadmin-base" {
+  name = "NocAdminBase"
+}
+
 resource "aws_iam_role" "load-balancer-controller" {
-  name               = "NwLoadBalancerController"
-  description        = "cookpad-nw k8s/aws_iam_role.load-balancer-controller"
-  assume_role_policy = data.aws_iam_policy_document.load-balancer-controller-trust.json
+  name                 = "NwLoadBalancerController"
+  description          = "cookpad-nw k8s/aws_iam_role.load-balancer-controller"
+  assume_role_policy   = data.aws_iam_policy_document.load-balancer-controller-trust.json
+  permissions_boundary = data.aws_iam_policy.nocadmin-base.arn
 }
 
 data "aws_iam_policy_document" "load-balancer-controller-trust" {
