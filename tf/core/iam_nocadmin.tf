@@ -123,7 +123,6 @@ data "aws_iam_policy_document" "nocadmin-iam-with-boundary" {
       test     = "ArnEquals"
       variable = "iam:PermissionsBoundary"
 
-      # Cannot use aws_iam_policy.Development.arn because of cyclic
       values = [aws_iam_policy.nocadmin-base.arn]
     }
   }
