@@ -110,6 +110,30 @@ resource "aws_iam_role_policy" "nocadmin-iam-with-boundary" {
 data "aws_iam_policy_document" "nocadmin-iam-with-boundary" {
   statement {
     actions = [
+      "iam:CreateInstanceProfile",
+      "iam:CreateOpenIDConnectProvider",
+      "iam:CreatePolicy",
+      "iam:CreatePolicyVersion",
+      "iam:CreateServiceLinkedRole",
+      "iam:CreateServiceSpecificCredential",
+      "iam:DeleteInstanceProfile",
+      "iam:DeletePolicyVersion",
+      "iam:GenerateOrganizationsAccessReport",
+      "iam:GenerateServiceLastAccessedDetails",
+      "iam:PassRole",
+      "iam:RemoveRoleFromInstanceProfile",
+      "iam:SetDefaultPolicyVersion",
+      "iam:SetSecurityTokenServicePreferences",
+      "iam:Simulate*",
+      "iam:Tag*",
+      "iam:Untag*",
+    ]
+
+    resources = ["*"]
+  }
+
+  statement {
+    actions = [
       "iam:AttachRolePolicy",
       "iam:CreateRole",
       "iam:DeleteRolePolicy",
