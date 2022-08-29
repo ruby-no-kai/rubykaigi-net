@@ -1,6 +1,6 @@
 module "cluster" {
   # https://github.com/cookpad/terraform-aws-eks/pull/325
-  source = "github.com/sorah/terraform-aws-eks//modules/cluster?ref=5868115d4cc178a6ca7396251c13df4f608555fd"
+  source = "github.com/cookpad/terraform-aws-eks//modules/cluster?ref=5868115d4cc178a6ca7396251c13df4f608555fd"
   #source = "cookpad/eks/aws//modules/cluster"
 
   name = "rk22"
