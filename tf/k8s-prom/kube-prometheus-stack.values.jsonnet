@@ -20,7 +20,7 @@ local volumeClaimTemplate(size) = {
       storageSpec: {
         volumeClaimTemplate: volumeClaimTemplate('100Gi'),
       },
-      retention: '1m',
+      retention: '720h',
     },
   },
   alertmanager: {
@@ -30,7 +30,7 @@ local volumeClaimTemplate(size) = {
       storage: {
         volumeClaimTemplate: volumeClaimTemplate('10Gi'),
       },
-      retention: '1m',
+      retention: '720h',
     },
   },
   grafana: {
