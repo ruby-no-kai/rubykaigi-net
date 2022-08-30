@@ -31,3 +31,8 @@ vim itamae/data.rb
 
 - While I and A nodes eliminate netplan, Z node is still enabled for eth0 and wlan0. Configure `/etc/netplan/*.yml` as much as you like to connect to Wi-Fi using NetworkManager. Note that sd-networkd still has to be kept enabled for managing wg0, vxlan0, and br0
 - All nodes will disable cloud-init network configuration module.
+
+## MTU
+
+- Since we're doing IPv6+UDP+Wireguard+UDP+VXLAN(+MAC)+IPv6+ESP+IPv6 in the worst scenario, total overhead would be around 200 octets.
+- Wireguard packet is capable for IP fragment (its MTU should be set greater than 1500)

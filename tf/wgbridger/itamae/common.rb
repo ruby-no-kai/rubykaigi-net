@@ -39,7 +39,7 @@ Name=wg0
 Address=#{me}/32
 
 [Link]
-MTUBytes=1380
+MTUBytes=9000
 
 #{
 node.fetch(:wgbridger).fetch(:nodes).each_value.reject { |n| n[:inner] == me }.map { |n|
