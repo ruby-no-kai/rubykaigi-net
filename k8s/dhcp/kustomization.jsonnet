@@ -5,5 +5,6 @@
     './deployment.yml',
     './configmap.yml',
     './service.yml',
+    './monitoring.yml',
   ],
 }
