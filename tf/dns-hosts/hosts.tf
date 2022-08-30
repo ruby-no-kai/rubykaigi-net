@@ -86,6 +86,28 @@ resource "aws_route53_record" "host_5_22_33_10_in-addr_arpa_PTR" {
   ]
 }
 
+resource "aws_route53_record" "host_tun19-0_br-01_hnd_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "tun19-0.br-01.hnd.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.22.13",
+  ]
+}
+
+resource "aws_route53_record" "host_13_22_33_10_in-addr_arpa_PTR" {
+  zone_id = data.aws_route53_zone.ptr-10.zone_id
+
+  name = "13.22.33.10.in-addr.arpa"
+  type = "PTR"
+  ttl  = 60
+  records = [
+    "tun19-0.br-01.hnd.rubykaigi.net.",
+  ]
+}
+
 resource "aws_route53_record" "host_gi3-0_br-01_hnd_rubykaigi_net_A" {
   for_each = local.rubykaigi_net_zones
   zone_id  = each.value
@@ -612,6 +634,83 @@ resource "aws_route53_record" "host_254_79_33_10_in-addr_arpa_PTR" {
   ]
 }
 
+resource "aws_route53_record" "host_gw-01_tmp_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "gw-01.tmp.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.19",
+  ]
+}
+
+resource "aws_route53_record" "host_19_0_33_10_in-addr_arpa_PTR" {
+  zone_id = data.aws_route53_zone.ptr-10.zone_id
+
+  name = "19.0.33.10.in-addr.arpa"
+  type = "PTR"
+  ttl  = 60
+  records = [
+    "gw-01.tmp.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_tmp_gw-01_tmp_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "tmp.gw-01.tmp.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.19",
+  ]
+}
+
+resource "aws_route53_record" "host_lo_gw-01_tmp_rubykaigi_net_CNAME" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "lo.gw-01.tmp.rubykaigi.net"
+  type = "CNAME"
+  ttl  = 60
+  records = [
+    "tmp.gw-01.tmp.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_tun19-0_gw-01_tmp_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "tun19-0.gw-01.tmp.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.22.14",
+  ]
+}
+
+resource "aws_route53_record" "host_ptp_gw-01_tmp_rubykaigi_net_CNAME" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "ptp.gw-01.tmp.rubykaigi.net"
+  type = "CNAME"
+  ttl  = 60
+  records = [
+    "tun19-0.gw-01.tmp.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_14_22_33_10_in-addr_arpa_PTR" {
+  zone_id = data.aws_route53_zone.ptr-10.zone_id
+
+  name = "14.22.33.10.in-addr.arpa"
+  type = "PTR"
+  ttl  = 60
+  records = [
+    "tun19-0.gw-01.tmp.rubykaigi.net.",
+  ]
+}
+
 resource "aws_route53_record" "host_wlc-01_venue_rubykaigi_net_A" {
   zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
 
@@ -619,14 +718,14 @@ resource "aws_route53_record" "host_wlc-01_venue_rubykaigi_net_A" {
   type = "A"
   ttl  = 60
   records = [
-    "10.33.100.10",
+    "10.33.100.2",
   ]
 }
 
-resource "aws_route53_record" "host_10_100_33_10_in-addr_arpa_PTR" {
+resource "aws_route53_record" "host_2_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
-  name = "10.100.33.10.in-addr.arpa"
+  name = "2.100.33.10.in-addr.arpa"
   type = "PTR"
   ttl  = 60
   records = [
@@ -641,7 +740,7 @@ resource "aws_route53_record" "host_svc_wlc-01_venue_rubykaigi_net_A" {
   type = "A"
   ttl  = 60
   records = [
-    "10.33.100.10",
+    "10.33.100.2",
   ]
 }
 
@@ -686,127 +785,6 @@ resource "aws_route53_record" "host_2_2_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sys.wlc-01.venue.rubykaigi.net.",
-  ]
-}
-
-resource "aws_route53_record" "host_sw-e2c-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-e2c-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.10",
-  ]
-}
-
-resource "aws_route53_record" "host_v-mgmt_sw-e2c-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "v-mgmt.sw-e2c-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.10",
-  ]
-}
-
-resource "aws_route53_record" "host_mgmt_sw-e2c-01_venue_rubykaigi_net_CNAME" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "mgmt.sw-e2c-01.venue.rubykaigi.net"
-  type = "CNAME"
-  ttl  = 60
-  records = [
-    "v-mgmt.sw-e2c-01.venue.rubykaigi.net.",
-  ]
-}
-
-resource "aws_route53_record" "host_sw-e4c-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-e4c-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.24",
-  ]
-}
-
-resource "aws_route53_record" "host_24_100_33_10_in-addr_arpa_PTR" {
-  zone_id = data.aws_route53_zone.ptr-10.zone_id
-
-  name = "24.100.33.10.in-addr.arpa"
-  type = "PTR"
-  ttl  = 60
-  records = [
-    "sw-e4c-01.venue.rubykaigi.net.",
-  ]
-}
-
-resource "aws_route53_record" "host_v-mgmt_sw-e4c-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "v-mgmt.sw-e4c-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.24",
-  ]
-}
-
-resource "aws_route53_record" "host_mgmt_sw-e4c-01_venue_rubykaigi_net_CNAME" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "mgmt.sw-e4c-01.venue.rubykaigi.net"
-  type = "CNAME"
-  ttl  = 60
-  records = [
-    "v-mgmt.sw-e4c-01.venue.rubykaigi.net.",
-  ]
-}
-
-resource "aws_route53_record" "host_sw-e5b-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-e5b-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.25",
-  ]
-}
-
-resource "aws_route53_record" "host_25_100_33_10_in-addr_arpa_PTR" {
-  zone_id = data.aws_route53_zone.ptr-10.zone_id
-
-  name = "25.100.33.10.in-addr.arpa"
-  type = "PTR"
-  ttl  = 60
-  records = [
-    "sw-e5b-01.venue.rubykaigi.net.",
-  ]
-}
-
-resource "aws_route53_record" "host_v-mgmt_sw-e5b-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "v-mgmt.sw-e5b-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.25",
-  ]
-}
-
-resource "aws_route53_record" "host_mgmt_sw-e5b-01_venue_rubykaigi_net_CNAME" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "mgmt.sw-e5b-01.venue.rubykaigi.net"
-  type = "CNAME"
-  ttl  = 60
-  records = [
-    "v-mgmt.sw-e5b-01.venue.rubykaigi.net.",
   ]
 }
 
@@ -1206,10 +1184,10 @@ resource "aws_route53_record" "host_mgmt_sw-con-01_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_dxvif_apne1_rubykaigi_net_A" {
+resource "aws_route53_record" "host_dxvif-a_apne1_rubykaigi_net_A" {
   zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
 
-  name = "dxvif.apne1.rubykaigi.net"
+  name = "dxvif-a.apne1.rubykaigi.net"
   type = "A"
   ttl  = 60
   records = [
@@ -1224,14 +1202,14 @@ resource "aws_route53_record" "host_2_22_33_10_in-addr_arpa_PTR" {
   type = "PTR"
   ttl  = 60
   records = [
-    "dxvif.apne1.rubykaigi.net.",
+    "dxvif-a.apne1.rubykaigi.net.",
   ]
 }
 
-resource "aws_route53_record" "host_dxvif-fgoavd8q_dxvif_apne1_rubykaigi_net_A" {
+resource "aws_route53_record" "host_dxvif-fgoavd8q_dxvif-a_apne1_rubykaigi_net_A" {
   zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
 
-  name = "dxvif-fgoavd8q.dxvif.apne1.rubykaigi.net"
+  name = "dxvif-fgoavd8q.dxvif-a.apne1.rubykaigi.net"
   type = "A"
   ttl  = 60
   records = [
@@ -1239,21 +1217,21 @@ resource "aws_route53_record" "host_dxvif-fgoavd8q_dxvif_apne1_rubykaigi_net_A" 
   ]
 }
 
-resource "aws_route53_record" "host_ptp_dxvif_apne1_rubykaigi_net_CNAME" {
+resource "aws_route53_record" "host_ptp_dxvif-a_apne1_rubykaigi_net_CNAME" {
   zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
 
-  name = "ptp.dxvif.apne1.rubykaigi.net"
+  name = "ptp.dxvif-a.apne1.rubykaigi.net"
   type = "CNAME"
   ttl  = 60
   records = [
-    "dxvif-fgoavd8q.dxvif.apne1.rubykaigi.net.",
+    "dxvif-fgoavd8q.dxvif-a.apne1.rubykaigi.net.",
   ]
 }
 
-resource "aws_route53_record" "host_dxvif-fglt2p46_dxvif_apne1_rubykaigi_net_A" {
+resource "aws_route53_record" "host_dxvif-b_apne1_rubykaigi_net_A" {
   zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
 
-  name = "dxvif-fglt2p46.dxvif.apne1.rubykaigi.net"
+  name = "dxvif-b.apne1.rubykaigi.net"
   type = "A"
   ttl  = 60
   records = [
@@ -1268,7 +1246,29 @@ resource "aws_route53_record" "host_6_22_33_10_in-addr_arpa_PTR" {
   type = "PTR"
   ttl  = 60
   records = [
-    "dxvif-fglt2p46.dxvif.apne1.rubykaigi.net.",
+    "dxvif-b.apne1.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_dxvif-fglt2p46_dxvif-b_apne1_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "dxvif-fglt2p46.dxvif-b.apne1.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.22.6",
+  ]
+}
+
+resource "aws_route53_record" "host_ptp_dxvif-b_apne1_rubykaigi_net_CNAME" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "ptp.dxvif-b.apne1.rubykaigi.net"
+  type = "CNAME"
+  ttl  = 60
+  records = [
+    "dxvif-fglt2p46.dxvif-b.apne1.rubykaigi.net.",
   ]
 }
 
