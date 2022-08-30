@@ -3,6 +3,9 @@ terraform {
     external = {
       source = "hashicorp/external"
     }
+    local = {
+      source = "hashicorp/local"
+    }
     aws = {
       source = "hashicorp/aws"
     }
