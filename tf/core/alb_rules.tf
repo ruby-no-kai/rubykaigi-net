@@ -322,3 +322,46 @@ resource "aws_lb_listener_rule" "common-grafana" {
     target_group_arn = aws_lb_target_group.common-grafana.arn
   }
 }
+
+###
+
+data "aws_lb_target_group" "common-wlc" {
+  name = "rknw-common-wlc"
+}
+
+resource "aws_lb_listener_rule" "common-wlc" {
+  listener_arn = aws_lb_listener.common-https.arn
+  priority     = 107
+  condition {
+    host_header {
+      values = ["wlc.rubykaigi.net"]
+    }
+  }
+  action {
+    type = "authenticate-oidc"
+    authenticate_oidc {
+      authorization_endpoint     = local.alb_oidc.authorization_endpoint
+      token_endpoint             = local.alb_oidc.token_endpoint
+      user_info_endpoint         = local.alb_oidc.user_info_endpoint
+      client_id                  = local.alb_oidc.client_id
+      client_secret              = local.alb_oidc.client_secret
+      issuer                     = local.alb_oidc.issuer
+      scope                      = local.alb_oidc.scope
+      on_unauthenticated_request = local.alb_oidc.on_unauthenticated_request
+      session_timeout            = local.alb_oidc.session_timeout
+    }
+  }
+  action {
+    type             = "forward"
+    target_group_arn = data.aws_lb_target_group.common-wlc.arn
+  }
+}
+
+resource "aws_route53_record" "wlc_rubykaigi_net" {
+  for_each = local.rubykaigi_net_zones
+  name     = "wlc.rubykaigi.net."
+  zone_id  = each.value
+  type     = "CNAME"
+  ttl      = 60
+  records  = ["ops-lb.rubykaigi.net."]
+}
