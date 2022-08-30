@@ -1,0 +1,81 @@
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-cisco-wlc"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "cisco_wlc",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+    },
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "mgmt.wlc-01.venue.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-if-mib"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "if_mib",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+    },
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "mgmt.wlc-01.venue.rubykaigi.net",
+          "lo.br-01.hnd.rubykaigi.net",
+          "lo.br-01.itm.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-nec-ix"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "nec_ix",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+    },
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "lo.br-01.hnd.rubykaigi.net",
+          "lo.br-01.itm.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
