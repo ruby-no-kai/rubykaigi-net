@@ -1,14 +1,3 @@
-resource "aws_route53_record" "host_br-01_hnd_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "br-01.hnd.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.0.1",
-  ]
-}
-
 resource "aws_route53_record" "host_1_0_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -17,6 +6,28 @@ resource "aws_route53_record" "host_1_0_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "br-01.hnd.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_br-01_hnd_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "br-01.hnd.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.1",
+  ]
+}
+
+resource "aws_route53_record" "host_br-01_hnd_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "br-01.hnd.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.1",
   ]
 }
 
@@ -321,17 +332,6 @@ resource "aws_route53_record" "host_bb_br-01_hnd_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_br-01_itm_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "br-01.itm.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.0.2",
-  ]
-}
-
 resource "aws_route53_record" "host_2_0_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -340,6 +340,28 @@ resource "aws_route53_record" "host_2_0_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "br-01.itm.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_br-01_itm_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "br-01.itm.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.2",
+  ]
+}
+
+resource "aws_route53_record" "host_br-01_itm_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "br-01.itm.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.2",
   ]
 }
 
@@ -600,17 +622,6 @@ resource "aws_route53_record" "host_bb_br-01_itm_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_tun-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "tun-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.0.11",
-  ]
-}
-
 resource "aws_route53_record" "host_11_0_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -619,6 +630,28 @@ resource "aws_route53_record" "host_11_0_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "tun-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_tun-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "tun-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.11",
+  ]
+}
+
+resource "aws_route53_record" "host_tun-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "tun-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.11",
   ]
 }
 
@@ -809,17 +842,6 @@ resource "aws_route53_record" "host_50_22_33_10_in-addr_arpa_PTR" {
   ]
 }
 
-resource "aws_route53_record" "host_tun-02_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "tun-02.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.0.12",
-  ]
-}
-
 resource "aws_route53_record" "host_12_0_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -828,6 +850,28 @@ resource "aws_route53_record" "host_12_0_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "tun-02.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_tun-02_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "tun-02.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.12",
+  ]
+}
+
+resource "aws_route53_record" "host_tun-02_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "tun-02.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.12",
   ]
 }
 
@@ -1018,17 +1062,6 @@ resource "aws_route53_record" "host_82_22_33_10_in-addr_arpa_PTR" {
   ]
 }
 
-resource "aws_route53_record" "host_gw-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "gw-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.0.21",
-  ]
-}
-
 resource "aws_route53_record" "host_21_0_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1037,6 +1070,28 @@ resource "aws_route53_record" "host_21_0_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "gw-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_gw-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "gw-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.21",
+  ]
+}
+
+resource "aws_route53_record" "host_gw-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "gw-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.21",
   ]
 }
 
@@ -1097,17 +1152,6 @@ resource "aws_route53_record" "host_nat_gw-01_venue_rubykaigi_net_A" {
   ]
 }
 
-resource "aws_route53_record" "host_gw-02_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "gw-02.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.0.22",
-  ]
-}
-
 resource "aws_route53_record" "host_22_0_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1116,6 +1160,28 @@ resource "aws_route53_record" "host_22_0_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "gw-02.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_gw-02_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "gw-02.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.22",
+  ]
+}
+
+resource "aws_route53_record" "host_gw-02_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "gw-02.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.22",
   ]
 }
 
@@ -1176,17 +1242,6 @@ resource "aws_route53_record" "host_nat_gw-02_venue_rubykaigi_net_A" {
   ]
 }
 
-resource "aws_route53_record" "host_csw-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "csw-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.0.31",
-  ]
-}
-
 resource "aws_route53_record" "host_31_0_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1195,6 +1250,28 @@ resource "aws_route53_record" "host_31_0_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "csw-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_csw-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "csw-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.31",
+  ]
+}
+
+resource "aws_route53_record" "host_csw-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "csw-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.31",
   ]
 }
 
@@ -1374,17 +1451,6 @@ resource "aws_route53_record" "host_254_79_33_10_in-addr_arpa_PTR" {
   ]
 }
 
-resource "aws_route53_record" "host_gw-01_tmp_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "gw-01.tmp.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.0.19",
-  ]
-}
-
 resource "aws_route53_record" "host_19_0_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1393,6 +1459,28 @@ resource "aws_route53_record" "host_19_0_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "gw-01.tmp.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_gw-01_tmp_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "gw-01.tmp.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.19",
+  ]
+}
+
+resource "aws_route53_record" "host_gw-01_tmp_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "gw-01.tmp.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.0.19",
   ]
 }
 
@@ -1440,17 +1528,6 @@ resource "aws_route53_record" "host_14_22_33_10_in-addr_arpa_PTR" {
   ]
 }
 
-resource "aws_route53_record" "host_wlc-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "wlc-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.2",
-  ]
-}
-
 resource "aws_route53_record" "host_2_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1459,6 +1536,28 @@ resource "aws_route53_record" "host_2_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "wlc-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_wlc-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "wlc-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.2",
+  ]
+}
+
+resource "aws_route53_record" "host_wlc-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "wlc-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.2",
   ]
 }
 
@@ -1517,17 +1616,6 @@ resource "aws_route53_record" "host_2_2_33_10_in-addr_arpa_PTR" {
   ]
 }
 
-resource "aws_route53_record" "host_sw-tra-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-tra-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.110",
-  ]
-}
-
 resource "aws_route53_record" "host_110_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1536,6 +1624,28 @@ resource "aws_route53_record" "host_110_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sw-tra-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-tra-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-tra-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.110",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-tra-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-tra-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.110",
   ]
 }
 
@@ -1561,17 +1671,6 @@ resource "aws_route53_record" "host_mgmt_sw-tra-01_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_sw-tra-02_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-tra-02.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.111",
-  ]
-}
-
 resource "aws_route53_record" "host_111_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1580,6 +1679,28 @@ resource "aws_route53_record" "host_111_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sw-tra-02.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-tra-02_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-tra-02.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.111",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-tra-02_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-tra-02.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.111",
   ]
 }
 
@@ -1605,17 +1726,6 @@ resource "aws_route53_record" "host_mgmt_sw-tra-02_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_sw-foa-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-foa-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.115",
-  ]
-}
-
 resource "aws_route53_record" "host_115_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1624,6 +1734,28 @@ resource "aws_route53_record" "host_115_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sw-foa-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-foa-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-foa-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.115",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-foa-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-foa-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.115",
   ]
 }
 
@@ -1649,17 +1781,6 @@ resource "aws_route53_record" "host_mgmt_sw-foa-01_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_sw-trb-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-trb-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.120",
-  ]
-}
-
 resource "aws_route53_record" "host_120_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1668,6 +1789,28 @@ resource "aws_route53_record" "host_120_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sw-trb-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-trb-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-trb-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.120",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-trb-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-trb-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.120",
   ]
 }
 
@@ -1693,17 +1836,6 @@ resource "aws_route53_record" "host_mgmt_sw-trb-01_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_sw-trb-02_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-trb-02.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.121",
-  ]
-}
-
 resource "aws_route53_record" "host_121_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1712,6 +1844,28 @@ resource "aws_route53_record" "host_121_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sw-trb-02.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-trb-02_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-trb-02.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.121",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-trb-02_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-trb-02.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.121",
   ]
 }
 
@@ -1737,17 +1891,6 @@ resource "aws_route53_record" "host_mgmt_sw-trb-02_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_sw-fob-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-fob-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.125",
-  ]
-}
-
 resource "aws_route53_record" "host_125_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1756,6 +1899,28 @@ resource "aws_route53_record" "host_125_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sw-fob-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-fob-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-fob-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.125",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-fob-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-fob-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.125",
   ]
 }
 
@@ -1781,17 +1946,6 @@ resource "aws_route53_record" "host_mgmt_sw-fob-01_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_sw-org-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-org-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.130",
-  ]
-}
-
 resource "aws_route53_record" "host_130_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1800,6 +1954,28 @@ resource "aws_route53_record" "host_130_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sw-org-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-org-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-org-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.130",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-org-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-org-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.130",
   ]
 }
 
@@ -1825,17 +2001,6 @@ resource "aws_route53_record" "host_mgmt_sw-org-01_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_sw-exp-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-exp-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.140",
-  ]
-}
-
 resource "aws_route53_record" "host_140_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1844,6 +2009,28 @@ resource "aws_route53_record" "host_140_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sw-exp-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-exp-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-exp-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.140",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-exp-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-exp-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.140",
   ]
 }
 
@@ -1869,17 +2056,6 @@ resource "aws_route53_record" "host_mgmt_sw-exp-01_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_sw-con-01_venue_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "sw-con-01.venue.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.100.150",
-  ]
-}
-
 resource "aws_route53_record" "host_150_100_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1888,6 +2064,28 @@ resource "aws_route53_record" "host_150_100_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "sw-con-01.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-con-01_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-con-01.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.150",
+  ]
+}
+
+resource "aws_route53_record" "host_sw-con-01_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "sw-con-01.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.100.150",
   ]
 }
 
@@ -1913,17 +2111,6 @@ resource "aws_route53_record" "host_mgmt_sw-con-01_venue_rubykaigi_net_CNAME" {
   ]
 }
 
-resource "aws_route53_record" "host_dxvif-a_apne1_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "dxvif-a.apne1.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.22.2",
-  ]
-}
-
 resource "aws_route53_record" "host_2_22_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1932,6 +2119,28 @@ resource "aws_route53_record" "host_2_22_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "dxvif-a.apne1.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_dxvif-a_apne1_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "dxvif-a.apne1.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.22.2",
+  ]
+}
+
+resource "aws_route53_record" "host_dxvif-a_apne1_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "dxvif-a.apne1.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.22.2",
   ]
 }
 
@@ -1946,17 +2155,6 @@ resource "aws_route53_record" "host_dxvif-fgoavd8q_dxvif-a_apne1_rubykaigi_net_A
   ]
 }
 
-resource "aws_route53_record" "host_dxvif-b_apne1_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "dxvif-b.apne1.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.22.6",
-  ]
-}
-
 resource "aws_route53_record" "host_6_22_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -1965,6 +2163,28 @@ resource "aws_route53_record" "host_6_22_33_10_in-addr_arpa_PTR" {
   ttl  = 60
   records = [
     "dxvif-b.apne1.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_dxvif-b_apne1_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "dxvif-b.apne1.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.22.6",
+  ]
+}
+
+resource "aws_route53_record" "host_dxvif-b_apne1_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "dxvif-b.apne1.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.22.6",
   ]
 }
 
@@ -1979,17 +2199,6 @@ resource "aws_route53_record" "host_dxvif-fglt2p46_dxvif-b_apne1_rubykaigi_net_A
   ]
 }
 
-resource "aws_route53_record" "host_vpn_apne1_rubykaigi_net_A" {
-  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
-
-  name = "vpn.apne1.rubykaigi.net"
-  type = "A"
-  ttl  = 60
-  records = [
-    "10.33.22.10",
-  ]
-}
-
 resource "aws_route53_record" "host_10_22_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 
@@ -2001,6 +2210,28 @@ resource "aws_route53_record" "host_10_22_33_10_in-addr_arpa_PTR" {
   ]
 }
 
+resource "aws_route53_record" "host_vpn_apne1_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "vpn.apne1.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.22.10",
+  ]
+}
+
+resource "aws_route53_record" "host_vpn_apne1_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "vpn.apne1.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.22.10",
+  ]
+}
+
 resource "aws_route53_record" "host_a_vpn_apne1_rubykaigi_net_A" {
   zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
 
@@ -2009,6 +2240,539 @@ resource "aws_route53_record" "host_a_vpn_apne1_rubykaigi_net_A" {
   ttl  = 60
   records = [
     "10.33.22.10",
+  ]
+}
+
+resource "aws_route53_record" "host_br-01_hnd_dualstack_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "br-01.hnd.dualstack.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:1718::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun8_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun8.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:1718::a",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi0_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi0.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:3738::a",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi1_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi1.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:4142::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun100_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun100.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:4546::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun101_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun101.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:4950::a",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi10_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi10.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:6970::a",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi11_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi11.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:7374::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun110_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun110.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:7778::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun111_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun111.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:8182::a",
+  ]
+}
+
+resource "aws_route53_record" "host_gi3-0_br-01_hnd_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "gi3-0.br-01.hnd.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:0df0:8500:ca2a::b",
+  ]
+}
+
+resource "aws_route53_record" "host_br-01_itm_dualstack_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "br-01.itm.dualstack.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:1718::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun8_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun8.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:1718::b",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi0_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi0.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:2122::a",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi1_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi1.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:2526::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun100_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun100.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:2930::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun101_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun101.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:3334::a",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi10_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi10.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:5354::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun11_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun11.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:5758::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun110_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun110.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:6162::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tun111_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun111.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:6566::a",
+  ]
+}
+
+resource "aws_route53_record" "host_gi3-0_br-01_itm_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "gi3-0.br-01.itm.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:0df0:8500:ca2b::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun-01_venue_dualstack_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun-01.venue.dualstack.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:2122::b",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi10_tun-01_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi10.tun-01.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:2122::b",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi11_tun-01_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi11.tun-01.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:2526::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun110_tun-01_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun110.tun-01.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:2930::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun111_tun-01_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun111.tun-01.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:3334::b",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi0_tun-01_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi0.tun-01.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:3738::b",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi1_tun-01_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi1.tun-01.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:4142::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun100_tun-01_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun100.tun-01.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:4546::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun101_tun-01_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun101.tun-01.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:4950::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun-02_venue_dualstack_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun-02.venue.dualstack.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:5354::b",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi10_tun-02_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi10.tun-02.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:5354::b",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi11_tun-02_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi11.tun-02.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:5758::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun110_tun-02_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun110.tun-02.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:6162::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun111_tun-02_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun111.tun-02.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:6566::b",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi0_tun-02_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi0.tun-02.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:6970::b",
+  ]
+}
+
+resource "aws_route53_record" "host_bvi1_tun-02_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "bvi1.tun-02.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:7374::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun100_tun-02_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun100.tun-02.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:7778::b",
+  ]
+}
+
+resource "aws_route53_record" "host_tun101_tun-02_venue_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tun101.tun-02.venue.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:df0:8500:ca22:8182::b",
+  ]
+}
+
+resource "aws_route53_record" "host_mahiru-kmc_transit_dualstack_rubykaigi_net_A" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "mahiru-kmc.transit.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "192.50.220.152",
   ]
 }
 
@@ -2051,6 +2815,19 @@ resource "aws_route53_record" "host_bb_mahiru-kmc_transit_rubykaigi_net_CNAME" {
   ]
 }
 
+resource "aws_route53_record" "host_yume-kmc_transit_dualstack_rubykaigi_net_A" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "yume-kmc.transit.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "192.50.220.154",
+  ]
+}
+
 resource "aws_route53_record" "host_yume-kmc_transit_rubykaigi_net_A" {
   for_each = local.rubykaigi_net_zones
   zone_id  = each.value
@@ -2087,5 +2864,57 @@ resource "aws_route53_record" "host_bb_yume-kmc_transit_rubykaigi_net_CNAME" {
   ttl  = 60
   records = [
     "tba.yume-kmc.transit.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_mahiru-kmc_transit_dualstack_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "mahiru-kmc.transit.dualstack.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:0df0:8500:ca2a::a",
+  ]
+}
+
+resource "aws_route53_record" "host_enx_mahiru-kmc_transit_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "enx.mahiru-kmc.transit.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:0df0:8500:ca2a::a",
+  ]
+}
+
+resource "aws_route53_record" "host_yume-kmc_transit_dualstack_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "yume-kmc.transit.dualstack.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:0df0:8500:ca2b::a",
+  ]
+}
+
+resource "aws_route53_record" "host_tba_yume-kmc_transit_rubykaigi_net_AAAA" {
+  for_each = local.rubykaigi_net_zones
+  zone_id  = each.value
+
+
+  name = "tba.yume-kmc.transit.rubykaigi.net"
+  type = "AAAA"
+  ttl  = 60
+  records = [
+    "2001:0df0:8500:ca2b::a",
   ]
 }

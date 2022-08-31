@@ -17,6 +17,7 @@ hosts.each do |host_ips|
     v6 = host.ip.include?(?:)
     ip = IPAddr.new(host.ip)
     fqdn = "#{host.name}.#{host.dc}.rubykaigi.net."
+    fqdn6 = "#{host.name}.#{host.dc}.dualstack.rubykaigi.net."
 
     zone = case
     when IPAddr.new('10.0.0.0/8').include?(ip)
@@ -26,19 +27,25 @@ hosts.each do |host_ips|
     end
 
     if host.primary
-      rrsets.push(RRSet.new(zone, fqdn, v6 ? 'AAAA' : 'A', [host.ip]))
-      rrsets.push(RRSet.new(zone,  "#{ip.reverse}.", 'PTR', [fqdn]))
+      # v6 may not be able for management, so...
+      if v6
+        rrsets.push(RRSet.new(zone, fqdn6, 'AAAA', [host.ip]))
+      else
+        rrsets.push(RRSet.new(zone,  "#{ip.reverse}.", 'PTR', [fqdn]))
+        rrsets.push(RRSet.new(zone, fqdn6, 'A', [host.ip]))
+        rrsets.push(RRSet.new(zone, fqdn, 'A', [host.ip]))
+      end
     end
 
     iface_fqdn = "#{host.iface}.#{fqdn}"
     rrsets.push(RRSet.new(zone, iface_fqdn, v6 ? 'AAAA' : 'A', [host.ip]))
-    rrsets.push(RRSet.new(zone, "#{host.network}.#{fqdn}", 'CNAME', [iface_fqdn])) if host.network != 'ptp' && !host.network.empty?
+    rrsets.push(RRSet.new(zone, "#{host.network}.#{fqdn}", 'CNAME', [iface_fqdn])) if host.network != 'ptp' && host.network != host.iface && !host.network.empty?
     rrsets.push(RRSet.new(zone, "#{ip.reverse}.", 'PTR', [iface_fqdn]))
   end
 end
 
 parts = []
-rrsets.uniq(&:name).each do |rr|
+rrsets.uniq { |rr|  [rr.type, rr.name] }.each do |rr|
   zone = case
          when rr.type != 'PTR' && rr.zone == :public
            "  for_each = local.rubykaigi_net_zones\n  zone_id  = each.value\n"
