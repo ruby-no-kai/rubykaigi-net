@@ -1,17 +1,16 @@
 hnd	lo	10.33.0.0/24	10.33.0.1	br-01	lo
 itm	lo	10.33.0.0/24	10.33.0.2	br-01	lo
-venue	lo	10.33.0.0/24	10.33.0.11	gw-01	lo
-venue	lo	10.33.0.0/24	10.33.0.12	gw-02	lo
-venue	lo	10.33.0.0/24	10.33.0.21	csw-01	lo
+venue	lo	10.33.0.0/24	10.33.0.11	tun-01	lo
+venue	lo	10.33.0.0/24	10.33.0.12	tun-02	lo
+venue	lo	10.33.0.0/24	10.33.0.21	gw-01	lo
+venue	lo	10.33.0.0/24	10.33.0.22	gw-02	lo
+venue	lo	10.33.0.0/24	10.33.0.31	csw-01	lo
 tmp	lo	10.33.0.0/24	10.33.0.19	gw-01	tmp
-					
 venue	ring	10.33.20.0/24	10.33.20.1	gw-01	gi1-0
 venue	ring	10.33.20.0/24	10.33.20.2	gw-02	gi1-0
 venue	ring	10.33.20.0/24	10.33.20.3	csw-01	v-ring
-					
 venue	mgmt	10.33.100.0/24	10.33.100.1	csw-01	v-mgmt
 venue	mgmt	10.33.100.0/24	10.33.100.2	wlc-01	svc
-					
 venue	mgmt	10.33.100.0/24	10.33.100.110	sw-tra-01	v-mgmt
 venue	mgmt	10.33.100.0/24	10.33.100.111	sw-tra-02	v-mgmt
 venue	mgmt	10.33.100.0/24	10.33.100.115	sw-foa-01	v-mgmt
@@ -21,20 +20,20 @@ venue	mgmt	10.33.100.0/24	10.33.100.125	sw-fob-01	v-mgmt
 venue	mgmt	10.33.100.0/24	10.33.100.130	sw-org-01	v-mgmt
 venue	mgmt	10.33.100.0/24	10.33.100.140	sw-exp-01	v-mgmt
 venue	mgmt	10.33.100.0/24	10.33.100.150	 sw-con-01	v-mgmt
-venue	air	10.33.2.0/24	10.33.2.1	csw-01	v-air
+venue	air	10.33.2.0/24	10.33.2.254	csw-01	v-air
 venue	air	10.33.2.0/24	10.33.2.2	wlc-01	sys
-					
 venue	life	10.33.1.0/24	10.33.1.254	csw-01	v-life
 venue	usr	10.33.64.0/20	10.33.79.254	csw-01	v-usr
-					
 hnd	ptp	10.33.22.0/30	10.33.22.1	br-01	gi0-2
 apne1	ptp	10.33.22.0/30	10.33.22.2	dxvif-a	dxvif-fgoavd8q
 hnd	ptp	10.33.22.0/30	10.33.22.5	br-01	gi1-2
 apne1	ptp	10.33.22.0/30	10.33.22.6	dxvif-b	dxvif-fglt2p46
 itm	ptp	10.33.22.0/30	10.33.22.9	br-01	tbd
 apne1	ptp	10.33.22.0/30	10.33.22.10	vpn	a
-hnd	ptp	10.33.22.0/30	10.33.22.13	br-01	tun19-0
-tmp	ptp	10.33.22.0/30	10.33.22.14	gw-01	tun19-0
+hnd	ptp	10.33.22.0/30	10.33.22.13	br-01	tun19
+tmp	ptp	10.33.22.0/30	10.33.22.14	gw-01	tun19
+hnd	ptp	10.33.22.0/30	10.33.22.17	br-01	tun0
+itm	ptp	10.33.22.0/30	10.33.22.18	br-01	tun0
 transit	bb	192.50.220.152/29	192.50.220.152	mahiru-kmc	enx
 hnd	bb	192.50.220.152/29	192.50.220.153	br-01	gi3-0
 transit	bb	192.50.220.152/29	192.50.220.154	yume-kmc	tba
@@ -43,3 +42,9 @@ venue	bb	192.50.220.152/29	192.50.220.156	gw-01	tba
 venue	bb	192.50.220.152/29	192.50.220.157	gw-02	tba
 venue	nat	192.50.220.152/29	192.50.220.158	gw-01	nat
 venue	nat	192.50.220.152/29	192.50.220.159	gw-02	nat
+transit	bb	192.50.220.152/29	2001:0df0:8500:ca2a::a	mahiru-kmc	enx
+hnd	bb	192.50.220.152/29	2001:0df0:8500:ca2a::b	br-01	gi3-0
+transit	bb	192.50.220.152/29	2001:0df0:8500:ca2b::a	yume-kmc	tba
+itm	bb	192.50.220.152/29	2001:0df0:8500:ca2b::b	br-01	gi3-0
+hnd	ptp		2001:df0:8500:ca22:1718::a	br-01	tun0
+itm	ptp		2001:df0:8500:ca22:1718::b	br-01	tun0
