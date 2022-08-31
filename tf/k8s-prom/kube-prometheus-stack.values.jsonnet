@@ -20,6 +20,11 @@ local volumeClaimTemplate(size) = {
       storageSpec: {
         volumeClaimTemplate: volumeClaimTemplate('100Gi'),
       },
+
+      scrapeInterval: '20s',
+      scrapeTimeout: '15s',
+      evaluationInterval: '20s',
+
       retention: '720h',
     },
   },

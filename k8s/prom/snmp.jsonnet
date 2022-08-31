@@ -35,7 +35,8 @@ local targetsByModule = std.foldl(function(result, t) result + {
       },
     },
     spec: {
-      interval: '60s',
+      interval: '20s',
+      scrapeTimeout: '19s',
       module: module,
       prober: {
         url: 'snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116',
