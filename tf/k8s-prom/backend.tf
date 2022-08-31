@@ -3,6 +3,7 @@ terraform {
     bucket = "rk-infra"
     region = "ap-northeast-1"
     key    = "terraform/nw-k8s-prom.tfstate"
+    dynamodb_table = "rk-terraform"
   }
 }
 
