@@ -127,6 +127,7 @@ data "aws_iam_policy_document" "nocadmin-iam-with-boundary" {
       "iam:SetSecurityTokenServicePreferences",
       "iam:Simulate*",
       "iam:Tag*",
+      "iam:UpdateAssumeRolePolicy",
       "iam:Untag*",
     ]
 
