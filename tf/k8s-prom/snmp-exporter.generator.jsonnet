@@ -8,7 +8,7 @@ local common = {
 {
   modules: {
     // Default IF-MIB interfaces table with ifIndex.
-    if_mib: common + {
+    if_mib: common {
       walk: [
         'sysUpTime',
         'interfaces',
@@ -47,16 +47,16 @@ local common = {
     },
 
     // Cisco Wireless LAN Controller
-    cisco_wlc: common + {
+    cisco_wlc: common {
       walk: [
         'interfaces',
         'ifXTable',
-        '1.3.6.1.4.1.14179.2.1.1.1.38',   // bsnDot11EssNumberofMobileStations
-        '1.3.6.1.4.1.14179.2.2.2.1.2',    // bsnAPIfType
-        '1.3.6.1.4.1.14179.2.2.2.1.4',    // bsnAPIfPhyChannelNumber
-        '1.3.6.1.4.1.14179.2.2.2.1.15',   // bsnApIfNoOfUsers
-        '1.3.6.1.4.1.14179.2.2.6.1',      // bsnAPIfDot11CountersTable
-        '1.3.6.1.4.1.14179.2.2.13.1.3',   // bsnAPIfLoadChannelUtilization
+        '1.3.6.1.4.1.14179.2.1.1.1.38',  // bsnDot11EssNumberofMobileStations
+        '1.3.6.1.4.1.14179.2.2.2.1.2',  // bsnAPIfType
+        '1.3.6.1.4.1.14179.2.2.2.1.4',  // bsnAPIfPhyChannelNumber
+        '1.3.6.1.4.1.14179.2.2.2.1.15',  // bsnApIfNoOfUsers
+        '1.3.6.1.4.1.14179.2.2.6.1',  // bsnAPIfDot11CountersTable
+        '1.3.6.1.4.1.14179.2.2.13.1.3',  // bsnAPIfLoadChannelUtilization
         '1.3.6.1.4.1.14179.2.2.15.1.21',  // bsnAPIfDBNoisePower
       ],
       lookups: [
@@ -73,12 +73,12 @@ local common = {
         {
           source_indexes: ['cLApSysMacAddress'],
           lookup: 'cLApName',
-          drop_source_indexes: true
+          drop_source_indexes: true,
         },
         {
           source_indexes: ['bsnAPDot3MacAddress', 'bsnAPIfSlotId'],
           lookup: 'bsnAPIfType',
-          drop_source_indexes: false
+          drop_source_indexes: false,
         },
       ],
       overrides: {
@@ -99,7 +99,7 @@ local common = {
     // https://jpn.nec.com/univerge/ix/Manual/MIB/PICO-SMI-MIB.txt
     // https://jpn.nec.com/univerge/ix/Manual/MIB/PICO-SMI-ID-MIB.txt
     // https://jpn.nec.com/univerge/ix/Manual/MIB/PICO-IPSEC-FLOW-MONITOR-MIB.txt
-    nec_ix: common + {
+    nec_ix: common {
       walk: [
         'picoSystem',
         'picoIpSecFlowMonitorMIB',

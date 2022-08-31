@@ -39,9 +39,9 @@ local volumeClaimTemplate(size) = {
             group_interval: '12s',
             repeat_interval: '1h',
             receiver: 'slack-default',
-          }
+          },
         ],
-        receiver: "null",
+        receiver: 'null',
       },
       receivers: [
         {
@@ -52,9 +52,9 @@ local volumeClaimTemplate(size) = {
           slack_configs: [
             {
               send_resolved: true,
-              title_link: "https://grafana.rubykaigi.net/alerting/list?view=state&dataSource=Prometheus&queryString=alertname%3D{{ .GroupLabels.alertname | urlquery }}",
-              title: "{{ .GroupLabels.alertname }}{{ with .GroupLabels.job }} - {{ . }}{{ end }}",
-              text: "{{ range .Alerts }}*{{ .Status }}* {{ with .Labels.instance }}{{ . }} - {{ end }}{{ .Annotations.summary }}\n{{ end }}",
+              title_link: 'https://grafana.rubykaigi.net/alerting/list?view=state&dataSource=Prometheus&queryString=alertname%3D{{ .GroupLabels.alertname | urlquery }}',
+              title: '{{ .GroupLabels.alertname }}{{ with .GroupLabels.job }} - {{ . }}{{ end }}',
+              text: '{{ range .Alerts }}*{{ .Status }}* {{ with .Labels.instance }}{{ . }} - {{ end }}{{ .Annotations.summary }}\n{{ end }}',
             },
           ],
         },
@@ -65,7 +65,7 @@ local volumeClaimTemplate(size) = {
         volumeClaimTemplate: volumeClaimTemplate('10Gi'),
       },
       secrets: [
-        'alertmanager-slack-webhook'
+        'alertmanager-slack-webhook',
       ],
       retention: '720h',
     },
@@ -82,5 +82,5 @@ local volumeClaimTemplate(size) = {
     },
   },
   kubeControllerManager: { enabled: false },
-  kubeScheduler: {enabled: false },
+  kubeScheduler: { enabled: false },
 }

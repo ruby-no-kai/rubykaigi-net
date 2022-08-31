@@ -21,7 +21,7 @@
           jsonData: {
             implementation: 'prometheus',
           },
-        }
+        },
       ],
     },
   },

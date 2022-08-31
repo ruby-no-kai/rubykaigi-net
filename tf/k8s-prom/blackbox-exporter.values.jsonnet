@@ -4,6 +4,6 @@
       icmp: {
         prober: 'icmp',
       },
-    }
+    },
   },
 }

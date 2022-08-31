@@ -16,11 +16,12 @@ local targets = [
     modules: ['if_mib'],
     hosts: [
     ],
-  }
+  },
 ];
 
 local targetsByModule = std.foldl(function(result, t) result + {
-  [module]+: t.hosts for module in t.modules
+  [module]+: t.hosts
+  for module in t.modules
 }, targets, {});
 
 [
