@@ -52,6 +52,7 @@ data "aws_iam_policy_document" "nocadmin" {
       "cloudwatch:*",
       "codebuild:*",
       "directconnect:*",
+      "dynamodb:*",
       "ec2-instance-connect:*",
       "ec2:*",
       "ecr:*",
