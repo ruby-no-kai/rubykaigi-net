@@ -32,19 +32,82 @@ itm	ptp	10.33.22.0/30	10.33.22.9	br-01	tbd
 apne1	ptp	10.33.22.0/30	10.33.22.10	vpn	a
 hnd	ptp	10.33.22.0/30	10.33.22.13	br-01	tun19
 tmp	ptp	10.33.22.0/30	10.33.22.14	gw-01	tun19
-hnd	ptp	10.33.22.0/30	10.33.22.17	br-01	tun0
-itm	ptp	10.33.22.0/30	10.33.22.18	br-01	tun0
+hnd	ptp	10.33.22.0/30	10.33.22.17	br-01	tun8
+itm	ptp	10.33.22.0/30	10.33.22.18	br-01	tun8
+itm	ptp		10.33.22.21	br-01	bvi0
+venue	ptp		10.33.22.22	tun-01	bvi10
+itm	ptp		10.33.22.25	br-01	bvi1
+venue	ptp		10.33.22.26	tun-01	bvi11
+itm	ptp		10.33.22.29	br-01	tun100
+venue	ptp		10.33.22.30	tun-01	tun110
+itm	ptp		10.33.22.33	br-01	tun101
+venue	ptp		10.33.22.34	tun-01	tun111
+hnd	ptp		10.33.22.37	br-01	bvi0
+venue	ptp		10.33.22.38	tun-01	bvi0
+hnd	ptp		10.33.22.41	br-01	bvi1
+venue	ptp		10.33.22.42	tun-01	bvi1
+hnd	ptp		10.33.22.45	br-01	tun100
+venue	ptp		10.33.22.46	tun-01	tun100
+hnd	ptp		10.33.22.49	br-01	tun101
+venue	ptp		10.33.22.50	tun-01	tun101
+itm	ptp		10.33.22.53	br-01	bvi10
+venue	ptp		10.33.22.54	tun-02	bvi10
+itm	ptp		10.33.22.57	br-01	tun11
+venue	ptp		10.33.22.58	tun-02	bvi11
+itm	ptp		10.33.22.61	br-01	tun110
+venue	ptp		10.33.22.62	tun-02	tun110
+itm	ptp		10.33.22.65	br-01	tun111
+venue	ptp		10.33.22.66	tun-02	tun111
+hnd	ptp		10.33.22.69	br-01	bvi10
+venue	ptp		10.33.22.70	tun-02	bvi0
+hnd	ptp		10.33.22.73	br-01	bvi11
+venue	ptp		10.33.22.74	tun-02	bvi1
+hnd	ptp		10.33.22.77	br-01	tun110
+venue	ptp		10.33.22.78	tun-02	tun100
+hnd	ptp		10.33.22.81	br-01	tun111
+venue	ptp		10.33.22.82	tun-02	tun101
+hnd	ptp		2001:df0:8500:ca22:1718::a	br-01	tun8
+itm	ptp		2001:df0:8500:ca22:1718::b	br-01	tun8
+itm	ptp		2001:df0:8500:ca22:2122::a	br-01	bvi0
+venue	ptp		2001:df0:8500:ca22:2122::b	tun-01	bvi10
+itm	ptp		2001:df0:8500:ca22:2526::a	br-01	bvi1
+venue	ptp		2001:df0:8500:ca22:2526::b	tun-01	bvi11
+itm	ptp		2001:df0:8500:ca22:2930::a	br-01	tun100
+venue	ptp		2001:df0:8500:ca22:2930::b	tun-01	tun110
+itm	ptp		2001:df0:8500:ca22:3334::a	br-01	tun101
+venue	ptp		2001:df0:8500:ca22:3334::b	tun-01	tun111
+hnd	ptp		2001:df0:8500:ca22:3738::a	br-01	bvi0
+venue	ptp		2001:df0:8500:ca22:3738::b	tun-01	bvi0
+hnd	ptp		2001:df0:8500:ca22:4142::a	br-01	bvi1
+venue	ptp		2001:df0:8500:ca22:4142::b	tun-01	bvi1
+hnd	ptp		2001:df0:8500:ca22:4546::a	br-01	tun100
+venue	ptp		2001:df0:8500:ca22:4546::b	tun-01	tun100
+hnd	ptp		2001:df0:8500:ca22:4950::a	br-01	tun101
+venue	ptp		2001:df0:8500:ca22:4950::b	tun-01	tun101
+itm	ptp		2001:df0:8500:ca22:5354::a	br-01	bvi10
+venue	ptp		2001:df0:8500:ca22:5354::b	tun-02	bvi10
+itm	ptp		2001:df0:8500:ca22:5758::a	br-01	tun11
+venue	ptp		2001:df0:8500:ca22:5758::b	tun-02	bvi11
+itm	ptp		2001:df0:8500:ca22:6162::a	br-01	tun110
+venue	ptp		2001:df0:8500:ca22:6162::b	tun-02	tun110
+itm	ptp		2001:df0:8500:ca22:6566::a	br-01	tun111
+venue	ptp		2001:df0:8500:ca22:6566::b	tun-02	tun111
+hnd	ptp		2001:df0:8500:ca22:6970::a	br-01	bvi10
+venue	ptp		2001:df0:8500:ca22:6970::b	tun-02	bvi0
+hnd	ptp		2001:df0:8500:ca22:7374::a	br-01	bvi11
+venue	ptp		2001:df0:8500:ca22:7374::b	tun-02	bvi1
+hnd	ptp		2001:df0:8500:ca22:7778::a	br-01	tun110
+venue	ptp		2001:df0:8500:ca22:7778::b	tun-02	tun100
+hnd	ptp		2001:df0:8500:ca22:8182::a	br-01	tun111
+venue	ptp		2001:df0:8500:ca22:8182::b	tun-02	tun101
 transit	bb	192.50.220.152/29	192.50.220.152	mahiru-kmc	enx
 hnd	bb	192.50.220.152/29	192.50.220.153	br-01	gi3-0
 transit	bb	192.50.220.152/29	192.50.220.154	yume-kmc	tba
 itm	bb	192.50.220.152/29	192.50.220.155	br-01	gi3-0
-venue	bb	192.50.220.152/29	192.50.220.156	gw-01	tba
-venue	bb	192.50.220.152/29	192.50.220.157	gw-02	tba
 venue	nat	192.50.220.152/29	192.50.220.158	gw-01	nat
 venue	nat	192.50.220.152/29	192.50.220.159	gw-02	nat
 transit	bb	192.50.220.152/29	2001:0df0:8500:ca2a::a	mahiru-kmc	enx
 hnd	bb	192.50.220.152/29	2001:0df0:8500:ca2a::b	br-01	gi3-0
 transit	bb	192.50.220.152/29	2001:0df0:8500:ca2b::a	yume-kmc	tba
 itm	bb	192.50.220.152/29	2001:0df0:8500:ca2b::b	br-01	gi3-0
-hnd	ptp		2001:df0:8500:ca22:1718::a	br-01	tun0
-itm	ptp		2001:df0:8500:ca22:1718::b	br-01	tun0
+
