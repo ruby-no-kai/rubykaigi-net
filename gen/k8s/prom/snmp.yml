@@ -8,12 +8,13 @@
     "name": "snmp-cisco-wlc"
   },
   "spec": {
-    "interval": "60s",
+    "interval": "20s",
     "module": "cisco_wlc",
     "prober": {
       "path": "/snmp",
       "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
     },
+    "scrapeTimeout": "19s",
     "targets": {
       "staticConfig": {
         "static": [
@@ -34,12 +35,13 @@
     "name": "snmp-if-mib"
   },
   "spec": {
-    "interval": "60s",
+    "interval": "20s",
     "module": "if_mib",
     "prober": {
       "path": "/snmp",
       "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
     },
+    "scrapeTimeout": "19s",
     "targets": {
       "staticConfig": {
         "static": [
@@ -62,12 +64,13 @@
     "name": "snmp-nec-ix"
   },
   "spec": {
-    "interval": "60s",
+    "interval": "20s",
     "module": "nec_ix",
     "prober": {
       "path": "/snmp",
       "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
     },
+    "scrapeTimeout": "19s",
     "targets": {
       "staticConfig": {
         "static": [
