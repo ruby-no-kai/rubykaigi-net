@@ -1,5 +1,6 @@
 locals {
   cluster_config = data.terraform_remote_state.k8s.outputs.cluster_config
+  cluster_oidc_config = data.terraform_remote_state.k8s.outputs.cluster_oidc_config
 }
 
 provider "kubernetes" {
