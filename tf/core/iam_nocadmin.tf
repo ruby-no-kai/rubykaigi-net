@@ -76,7 +76,7 @@ data "aws_iam_policy_document" "nocadmin" {
       "wafv2:*",
       "shield:*",
 
-      "s3:ListMyBuckets",
+      "s3:ListAllMyBuckets",
       "s3:GetBucketLocation",
 
       # IAMReadOnlyAccess
@@ -99,6 +99,8 @@ data "aws_iam_policy_document" "nocadmin" {
       "arn:aws:s3:::rk-infra/*",
       "arn:aws:s3:::rk-aws-logs",
       "arn:aws:s3:::rk-aws-logs/*",
+      "arn:aws:s3:::rk-syslog",
+      "arn:aws:s3:::rk-syslog/*",
     ]
   }
 }
