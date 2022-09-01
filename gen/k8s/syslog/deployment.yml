@@ -32,7 +32,7 @@
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {
-                        "path": "/healthz",
+                        "path": "/api/plugins.json",
                         "port": 10068,
                         "scheme": "HTTP"
                      },
@@ -56,7 +56,7 @@
                   ],
                   "readinessProbe": {
                      "httpGet": {
-                        "path": "/healthz",
+                        "path": "/api/plugins.json",
                         "port": 10068,
                         "scheme": "HTTP"
                      }

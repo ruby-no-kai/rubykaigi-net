@@ -38,9 +38,11 @@ local commit = 'cdc426084da714bdcb75dd3db51574b49e079744';
             volumeMounts: [
               { name: 'config', mountPath: '/config' },
             ],
-            readinessProbe: { httpGet: { path: '/healthz', port: 10068, scheme: 'HTTP' } },
+            readinessProbe: {
+              httpGet: { path: '/api/plugins.json', port: 10068, scheme: 'HTTP' },
+            },
             livenessProbe: {
-              httpGet: { path: '/healthz', port: 10068, scheme: 'HTTP' },
+              httpGet: { path: '/api/plugins.json', port: 10068, scheme: 'HTTP' },
               failureThreshold: 2,
               periodSeconds: 3,
             },
