@@ -2,6 +2,7 @@ resource "aws_iam_role" "GhaDockerPush" {
   name                 = "GhaDockerPush"
   assume_role_policy   = data.aws_iam_policy_document.GhaDockerPush-trust.json
   max_session_duration = 3600 * 4
+  permissions_boundary = aws_iam_policy.nocadmin-base.arn
 }
 
 data "aws_iam_policy_document" "GhaDockerPush-trust" {
@@ -64,6 +65,7 @@ data "aws_iam_policy_document" "GhaDockerPush" {
     ]
     resources = [
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/kea",
+      "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/fluentd",
     ]
   }
 }
