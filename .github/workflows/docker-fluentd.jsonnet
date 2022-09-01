@@ -4,7 +4,7 @@
     push: {
       branches: ['master', 'test'],
       paths: [
-        'docker/syslog/**',
+        'docker/fluentd/**',
         '.github/workflows/docker-fluentd.jsonnet',
       ],
     },
