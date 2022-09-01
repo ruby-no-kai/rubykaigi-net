@@ -530,10 +530,10 @@ resource "aws_route53_record" "host_53_22_33_10_in-addr_arpa_PTR" {
   ]
 }
 
-resource "aws_route53_record" "host_tun11_br-01_itm_rubykaigi_net_A" {
+resource "aws_route53_record" "host_bvi11_br-01_itm_rubykaigi_net_A" {
   zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
 
-  name = "tun11.br-01.itm.rubykaigi.net"
+  name = "bvi11.br-01.itm.rubykaigi.net"
   type = "A"
   ttl  = 60
   records = [
@@ -548,7 +548,7 @@ resource "aws_route53_record" "host_57_22_33_10_in-addr_arpa_PTR" {
   type = "PTR"
   ttl  = 60
   records = [
-    "tun11.br-01.itm.rubykaigi.net.",
+    "bvi11.br-01.itm.rubykaigi.net.",
   ]
 }
 
@@ -2477,12 +2477,12 @@ resource "aws_route53_record" "host_bvi10_br-01_itm_rubykaigi_net_AAAA" {
   ]
 }
 
-resource "aws_route53_record" "host_tun11_br-01_itm_rubykaigi_net_AAAA" {
+resource "aws_route53_record" "host_bvi11_br-01_itm_rubykaigi_net_AAAA" {
   for_each = local.rubykaigi_net_zones
   zone_id  = each.value
 
 
-  name = "tun11.br-01.itm.rubykaigi.net"
+  name = "bvi11.br-01.itm.rubykaigi.net"
   type = "AAAA"
   ttl  = 60
   records = [

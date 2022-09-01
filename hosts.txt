@@ -52,7 +52,7 @@ hnd	ptp		10.33.22.49	br-01	tun101
 venue	ptp		10.33.22.50	tun-01	tun101
 itm	ptp		10.33.22.53	br-01	bvi10
 venue	ptp		10.33.22.54	tun-02	bvi10
-itm	ptp		10.33.22.57	br-01	tun11
+itm	ptp		10.33.22.57	br-01	bvi11
 venue	ptp		10.33.22.58	tun-02	bvi11
 itm	ptp		10.33.22.61	br-01	tun110
 venue	ptp		10.33.22.62	tun-02	tun110
@@ -86,7 +86,7 @@ hnd	ptp		2001:df0:8500:ca22:4950::a	br-01	tun101
 venue	ptp		2001:df0:8500:ca22:4950::b	tun-01	tun101
 itm	ptp		2001:df0:8500:ca22:5354::a	br-01	bvi10
 venue	ptp		2001:df0:8500:ca22:5354::b	tun-02	bvi10
-itm	ptp		2001:df0:8500:ca22:5758::a	br-01	tun11
+itm	ptp		2001:df0:8500:ca22:5758::a	br-01	bvi11
 venue	ptp		2001:df0:8500:ca22:5758::b	tun-02	bvi11
 itm	ptp		2001:df0:8500:ca22:6162::a	br-01	tun110
 venue	ptp		2001:df0:8500:ca22:6162::b	tun-02	tun110
