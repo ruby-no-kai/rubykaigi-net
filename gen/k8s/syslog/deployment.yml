@@ -1,0 +1,88 @@
+{
+   "apiVersion": "apps/v1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "rubykaigi.org/app": "syslog-fluentd"
+      },
+      "name": "fluentd"
+   },
+   "spec": {
+      "replicas": 2,
+      "selector": {
+         "matchLabels": {
+            "rubykaigi.org/app": "syslog-fluentd"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "rubykaigi.org/app": "syslog-fluentd"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "args": [
+                     "--config",
+                     "/config/fluent.conf"
+                  ],
+                  "env": [ ],
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/fluentd:cdc426084da714bdcb75dd3db51574b49e079744",
+                  "livenessProbe": {
+                     "failureThreshold": 2,
+                     "httpGet": {
+                        "path": "/healthz",
+                        "port": 10068,
+                        "scheme": "HTTP"
+                     },
+                     "periodSeconds": 3
+                  },
+                  "name": "fluentd",
+                  "ports": [
+                     {
+                        "containerPort": 5140,
+                        "name": "syslog",
+                        "protocol": "UDP"
+                     },
+                     {
+                        "containerPort": 24231,
+                        "name": "prom"
+                     },
+                     {
+                        "containerPort": 10068,
+                        "name": "healthz"
+                     }
+                  ],
+                  "readinessProbe": {
+                     "httpGet": {
+                        "path": "/healthz",
+                        "port": 10068,
+                        "scheme": "HTTP"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "securityContext": {
+               "fsGroup": 9999,
+               "runAsUser": 9999
+            },
+            "serviceAccountName": "syslog",
+            "volumes": [
+               {
+                  "configMap": {
+                     "name": "fluentd-config"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}

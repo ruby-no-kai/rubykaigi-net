@@ -1,0 +1,10 @@
+{
+   "apiVersion": "v1",
+   "data": {
+      "fluent.conf": "<source>\n  @id in-syslog\n  @type syslog\n\n  bind 0.0.0.0\n  port 5140\n\n  <parse>\n    @type none\n  </parse>\n\n  source_hostname_key source_host\n  source_address_key source_addr\n  facility_key facility\n  severity_key severity\n\n  tag syslog\n</source>\n\n<source>\n  @id in-forward\n  @type forward\n</source>\n\n<source>\n  @id in-prometheus\n  @type prometheus\n\n  bind 0.0.0.0\n  port 24231\n  metrics_path /metrics\n</source>\n\n<source>\n  @id in-prometheus_monitor\n  @type prometheus_monitor\n\n  interval 10\n</source>\n\n<source>\n  @id in-prometheus_output_monitor\n  @type prometheus_output_monitor\n\n  interval 10\n</source>\n\n<source>\n  @id in-http_healthcheck\n  @type http_healthcheck\n\n  bind 0.0.0.0\n  port 10068\n</source>\n\n<filter **>\n  @id flt-prometheus\n  @type prometheus\n\n  <metric>\n    name fluentd_input_records_total\n    type counter\n    desc The total number of incoming records\n    <labels>\n      tag ${tag}\n    </labels>\n  </metric>\n</filter>\n\n# <match **>\n#   @type stdout\n# </match>\n\n<match syslog.**>\n  @id out-s3\n  @type s3\n\n  s3_region ap-northeast-1\n  s3_bucket rk-syslog\n  s3_object_key_format %{path}_%{uuid_flush}.%{file_extension}\n  path syslog/year=%Y/month=%m/day=%d/%Y%m%d-%H%M%S\n\n  check_apikey_on_start false\n  check_object false\n  check_bucket false\n\n  <buffer tag,time>\n    @type file\n    path /var/tmp/fluent/s3\n    timekey 60\n    timekey_wait 30\n    timekey_use_utc true\n    chunk_limit_size 1m\n  </buffer>\n\n  <format>\n    @type json\n  </format>\n\n  <inject>\n    time_key fluentd_time\n    time_type unixtime\n    tag_key tag\n  </inject>\n</match>\n"
+   },
+   "kind": "ConfigMap",
+   "metadata": {
+      "name": "fluentd-config"
+   }
+}

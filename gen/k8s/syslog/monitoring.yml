@@ -1,0 +1,23 @@
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "PodMonitor",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "fluentd"
+  },
+  "spec": {
+    "podMetricsEndpoints": [
+      {
+        "port": "prom"
+      }
+    ],
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "syslog-fluentd"
+      }
+    }
+  }
+}
+---
