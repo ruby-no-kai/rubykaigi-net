@@ -1,0 +1,10 @@
+{
+   "apiVersion": "v1",
+   "data": {
+      "unbound.conf": "server:\n  do-daemonize: no\n  chroot: \"\"\n  username: \"\"\n  logfile: \"\"\n  verbosity: 1\n  extended-statistics: yes\n\n  interface: 0.0.0.0\n  port: 10053\n  do-ip4: yes\n  do-ip6: yes\n  access-control: 10.33.0.0/16 allow\n\n  root-hints: /usr/share/dns/root.hints\n  trust-anchor-file: /var/lib/unbound/root.key\n\n  so-rcvbuf: 4m\n  so-sndbuf: 4m\n\nremote-control:\n  control-enable: yes\n  control-interface: /run/unbound.ctl\n"
+   },
+   "kind": "ConfigMap",
+   "metadata": {
+      "name": "unbound-config"
+   }
+}
