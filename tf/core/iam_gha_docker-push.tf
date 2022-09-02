@@ -66,6 +66,7 @@ data "aws_iam_policy_document" "GhaDockerPush" {
     resources = [
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/kea",
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/fluentd",
+      "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/unbound",
     ]
   }
 }
