@@ -117,11 +117,36 @@ resource "aws_subnet" "d_onpremises" {
     Tier = "onpremises"
   }
 }
+resource "aws_subnet" "c_onpremises_link" {
+  availability_zone               = "ap-northeast-1c"
+  vpc_id                          = aws_vpc.main.id
+  cidr_block                      = "10.33.164.0/27"
+  assign_ipv6_address_on_creation = false
+  map_public_ip_on_launch         = false
+
+  tags = {
+    Name = "rk-c-onpremises-link"
+    Tier = "onpremises-link"
+  }
+}
+resource "aws_subnet" "d_onpremises_link" {
+  availability_zone               = "ap-northeast-1d"
+  vpc_id                          = aws_vpc.main.id
+  cidr_block                      = "10.33.164.32/27"
+  assign_ipv6_address_on_creation = false
+  map_public_ip_on_launch         = false
+
+  tags = {
+    Name = "rk-d-onpremises-link"
+    Tier = "onpremises-link"
+  }
+}
 
 locals {
-  public_subnet_ids     = toset([aws_subnet.c_public.id, aws_subnet.d_public.id])
-  private_subnet_ids    = toset([aws_subnet.c_private.id, aws_subnet.d_private.id])
-  onpremises_subnet_ids = toset([aws_subnet.c_onpremises.id, aws_subnet.d_onpremises.id])
+  public_subnet_ids          = toset([aws_subnet.c_public.id, aws_subnet.d_public.id])
+  private_subnet_ids         = toset([aws_subnet.c_private.id, aws_subnet.d_private.id])
+  onpremises_subnet_ids      = toset([aws_subnet.c_onpremises.id, aws_subnet.d_onpremises.id])
+  onpremises_link_subnet_ids = toset([aws_subnet.c_onpremises_link.id, aws_subnet.d_onpremises_link.id])
 }
 
 resource "aws_route_table" "public_rtb" {
@@ -163,6 +188,28 @@ resource "aws_route_table" "onpremises_rtb" {
     Tier = "onpremises"
   }
 }
+resource "aws_route_table" "onpremises-c_rtb" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "rk-onpremises-c"
+    Tier = "onpremises"
+  }
+}
+resource "aws_route_table" "onpremises-d_rtb" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "rk-onpremises-d"
+    Tier = "onpremises"
+  }
+}
+
+resource "aws_route_table" "onpremises-link_rtb" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "rk-onpremises-link"
+    Tier = "onpremises-link"
+  }
+}
 
 resource "aws_route_table_association" "public" {
   for_each       = local.public_subnet_ids
@@ -174,10 +221,18 @@ resource "aws_route_table_association" "private" {
   subnet_id      = each.value
   route_table_id = aws_route_table.private_rtb.id
 }
-resource "aws_route_table_association" "onpremises" {
-  for_each       = local.onpremises_subnet_ids
+resource "aws_route_table_association" "onpremises-c" {
+  subnet_id      = aws_subnet.c_onpremises.id
+  route_table_id = aws_route_table.onpremises-c_rtb.id
+}
+resource "aws_route_table_association" "onpremises-d" {
+  subnet_id      = aws_subnet.d_onpremises.id
+  route_table_id = aws_route_table.onpremises-d_rtb.id
+}
+resource "aws_route_table_association" "onpremises-link" {
+  for_each       = local.onpremises_link_subnet_ids
   subnet_id      = each.value
-  route_table_id = aws_route_table.onpremises_rtb.id
+  route_table_id = aws_route_table.onpremises-link_rtb.id
 }
 
 resource "aws_vpn_gateway" "main" {
@@ -195,9 +250,9 @@ resource "aws_vpn_gateway_route_propagation" "main-private" {
   vpn_gateway_id = aws_vpn_gateway.main.id
   route_table_id = aws_route_table.private_rtb.id
 }
-resource "aws_vpn_gateway_route_propagation" "main-onpremises" {
+resource "aws_vpn_gateway_route_propagation" "main-onpremises-link" {
   vpn_gateway_id = aws_vpn_gateway.main.id
-  route_table_id = aws_route_table.onpremises_rtb.id
+  route_table_id = aws_route_table.onpremises-link_rtb.id
 }
 
 resource "aws_eip" "nat" {
@@ -214,4 +269,23 @@ resource "aws_route" "private_nat" {
   route_table_id         = aws_route_table.private_rtb.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat.id
+}
+
+resource "aws_nat_gateway" "onpremises-c" {
+  subnet_id         = aws_subnet.c_onpremises_link.id
+  connectivity_type = "private"
+}
+resource "aws_nat_gateway" "onpremises-d" {
+  subnet_id         = aws_subnet.d_onpremises_link.id
+  connectivity_type = "private"
+}
+resource "aws_route" "onpremises_c_nat" {
+  route_table_id         = aws_route_table.onpremises-c_rtb.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
+}
+resource "aws_route" "onpremises_d_nat" {
+  route_table_id         = aws_route_table.onpremises-d_rtb.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
 }
