@@ -66,6 +66,9 @@ resource "aws_instance" "bastion" {
   tags = {
     Name = "bastion"
   }
+  lifecycle {
+    ignore_changes = [ami]
+  }
 }
 
 resource "aws_eip_association" "bastion" {
