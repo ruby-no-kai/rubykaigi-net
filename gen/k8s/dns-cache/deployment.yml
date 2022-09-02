@@ -29,7 +29,7 @@
                      "-dd"
                   ],
                   "env": [ ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:1e0447bdd6ddc2243f18c4f4e1e56af42f55c697",
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:68c205fb465740cafb045d628de1d64702cdb9b9",
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {
