@@ -9,7 +9,7 @@
       "namespace": "default"
    },
    "spec": {
-      "replicas": 2,
+      "replicas": 3,
       "selector": {
          "matchLabels": {
             "rubykaigi.org/app": "kea4"

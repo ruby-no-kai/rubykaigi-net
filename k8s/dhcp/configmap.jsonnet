@@ -89,6 +89,10 @@ local config = {
 
     subnet4: [
       import './config/subnet_air.libsonnet',
+      import './config/subnet_life.libsonnet',
+      import './config/subnet_usr.libsonnet',
+      import './config/subnet_cast.libsonnet',
+      import './config/subnet_mgmt.libsonnet',
     ],
   },
 };
