@@ -12,8 +12,8 @@ resource "aws_security_group_rule" "k8s-node_healthz" {
   security_group_id = data.terraform_remote_state.k8s.outputs.node_security_group
   description       = "dns-cache-healthz"
   type              = "ingress"
-  from_port         = 9176
-  to_port           = 9176
+  from_port         = 9167
+  to_port           = 9167
   protocol          = "tcp"
   cidr_blocks       = ["10.33.0.0/16"] # XXX: NLB node
 }
