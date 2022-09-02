@@ -31,6 +31,7 @@ local commit = '68c205fb465740cafb045d628de1d64702cdb9b9';
             args: ['-c', '/etc/unbound/unbound.conf', '-dd'],
             ports: [
               { name: 'dns', containerPort: 10053, protocol: 'UDP' },
+              { name: 'dns-tcp', containerPort: 10053, protocol: 'TCP' },
               { name: 'prom', containerPort: 9167 },
             ],
             env: [

@@ -47,6 +47,11 @@
                         "protocol": "UDP"
                      },
                      {
+                        "containerPort": 10053,
+                        "name": "dns-tcp",
+                        "protocol": "TCP"
+                     },
+                     {
                         "containerPort": 9167,
                         "name": "prom"
                      }
