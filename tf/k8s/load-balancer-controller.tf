@@ -77,7 +77,7 @@ resource "kubernetes_service_account" "load-balancer-controller" {
   automount_service_account_token = true
 }
 
-resource "kubernetes_labels" "example" {
+resource "kubernetes_labels" "pod-readiness-gate-inject" {
   api_version = "v1"
   kind        = "Namespace"
   metadata {
