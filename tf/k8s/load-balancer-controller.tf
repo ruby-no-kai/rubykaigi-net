@@ -77,6 +77,18 @@ resource "kubernetes_service_account" "load-balancer-controller" {
   automount_service_account_token = true
 }
 
+resource "kubernetes_labels" "example" {
+  api_version = "v1"
+  kind        = "Namespace"
+  metadata {
+    name = "default"
+  }
+  labels = {
+    # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/pod_readiness_gate/
+    "elbv2.k8s.aws/pod-readiness-gate-inject" = "enabled"
+  }
+}
+
 # module.cluster.oidc_config.url
 # module.cluster.oidc_config.arn
 # module.cluster.oidc_config.condition
