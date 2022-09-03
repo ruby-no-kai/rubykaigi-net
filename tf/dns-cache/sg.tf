@@ -25,5 +25,5 @@ resource "aws_security_group_rule" "k8s-node_healthz" {
   from_port         = local.dns_cache_healthz_target_port
   to_port           = local.dns_cache_healthz_target_port
   protocol          = "tcp"
-  cidr_blocks       = ["10.33.0.0/16"] # XXX: NLB node
+  cidr_blocks       = [for s in local.nlb_subnets : s.cidr_block]
 }

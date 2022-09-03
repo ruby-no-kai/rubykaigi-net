@@ -2,10 +2,7 @@ resource "aws_lb" "nlb" {
   name               = "dns-cache-${substr(uuid(), 0, 10)}"
   internal           = true
   load_balancer_type = "network"
-  subnets            = [
-    data.aws_subnet.main-private-c.id,
-    data.aws_subnet.main-private-d.id,
-  ]
+  subnets            = [for s in local.nlb_subnets : s.id]
 
   lifecycle {
     create_before_destroy = true
