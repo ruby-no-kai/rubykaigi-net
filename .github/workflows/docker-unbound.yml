@@ -47,7 +47,7 @@
          ],
          "paths": [
             "docker/unbound/**",
-            ".github/workflows/docker-unbound.jsonnet"
+            ".github/workflows/docker-unbound.yml"
          ]
       }
    }

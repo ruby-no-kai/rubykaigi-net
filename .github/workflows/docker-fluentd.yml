@@ -47,7 +47,7 @@
          ],
          "paths": [
             "docker/fluentd/**",
-            ".github/workflows/docker-fluentd.jsonnet"
+            ".github/workflows/docker-fluentd.yml"
          ]
       }
    }
