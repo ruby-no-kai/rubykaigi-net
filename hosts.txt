@@ -5,7 +5,7 @@ venue	lo	10.33.0.0/24	10.33.0.12	tun-02	lo
 venue	lo	10.33.0.0/24	10.33.0.21	gw-01	lo
 venue	lo	10.33.0.0/24	10.33.0.22	gw-02	lo
 venue	lo	10.33.0.0/24	10.33.0.31	csw-01	lo
-tmp	lo	10.33.0.0/24	10.33.0.19	gw-01	tmp
+itm2	lo	10.33.0.0/24	10.33.0.19	pipe-01	tmp
 venue	mgmt	10.33.100.0/24	10.33.100.1	csw-01	vlan-1000
 venue	mgmt	10.33.100.0/24	2001:0df0:8500:cab0::a	csw-01	vlan-1000
 venue	mgmt	10.33.100.0/24	10.33.100.2	wlc-01	svc
@@ -34,7 +34,7 @@ apne1	ptp	10.33.22.0/30	10.33.22.6	dxvif-b	dxvif-fglt2p46
 itm	ptp	10.33.22.0/30	10.33.22.9	br-01	tbd
 apne1	ptp	10.33.22.0/30	10.33.22.10	vpn	a
 hnd	ptp	10.33.22.0/30	10.33.22.13	br-01	tun19
-tmp	ptp	10.33.22.0/30	10.33.22.14	gw-01	tun19
+itm2	ptp	10.33.22.0/30	10.33.22.14	pipe-01	tun19
 hnd	ptp	10.33.22.0/30	10.33.22.17	br-01	tun8
 itm	ptp	10.33.22.0/30	10.33.22.18	br-01	tun8
 itm	ptp		10.33.22.21	br-01	bvi0
@@ -81,6 +81,8 @@ venue	ptp		10.33.22.101	tun-01	gi1-2
 venue	ptp		10.33.22.102	gw-01	gi0-2
 venue	ptp		10.33.22.105	tun-02	gi1-2
 venue	ptp		10.33.22.106	gw-02	gi0-2
+itm2	ptp		10.33.22.109	pipe-01	bvi0
+hnd	ptp		10.33.22.110	br-01	bvi15
 hnd	ptp		2001:df0:8500:ca22:1718::a	br-01	tun8
 itm	ptp		2001:df0:8500:ca22:1718::b	br-01	tun8
 itm	ptp		2001:df0:8500:ca22:2122::a	br-01	bvi0
@@ -130,7 +132,7 @@ venue	ptp		2001:df0:8500:ca22:a5a6::b	gw-02	gi0-2
 transit	bb	192.50.220.152/29	192.50.220.152	mahiru-kmc	enx
 hnd	bb	192.50.220.152/29	192.50.220.153	br-01	gi3-0
 transit	bb	192.50.220.152/29	192.50.220.154	yume-kmc	tba
-itm	bb	192.50.220.152/29	192.50.220.155	br-01	gi3-0
+itm	bb	192.50.220.152/29	192.50.220.155	br-01	gi1-1
 apne1	bb	192.50.220.152/29	192.50.220.156	nat-0a31cfd416018b27c	outer
 apne1	bb	192.50.220.152/29	192.50.220.157	nat-038c99fc6c04e2fcc	outer
 venue	bb	192.50.220.160/29	192.50.220.160	gw-01	lo1
@@ -138,6 +140,6 @@ venue	bb	192.50.220.160/29	192.50.220.161	gw-01	nat
 venue	bb	192.50.220.160/29	192.50.220.164	gw-02	lo1
 venue	bb	192.50.220.160/29	192.50.220.165	gw-02	nat
 transit	bb	192.50.220.152/29	2001:0df0:8500:ca2a::a	mahiru-kmc	enx
-hnd	bb	192.50.220.152/29	2001:0df0:8500:ca2a::b	br-01	gi3-0
+hnd	bb	192.50.220.152/29	2001:0df0:8500:ca2a::b	br-01	gi1-1
 transit	bb	192.50.220.152/29	2001:0df0:8500:ca2b::a	yume-kmc	tba
 itm	bb	192.50.220.152/29	2001:0df0:8500:ca2b::b	br-01	gi3-0
