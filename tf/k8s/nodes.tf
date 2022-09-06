@@ -40,4 +40,5 @@ module "node_onpremises" {
   bottlerocket    = true
   instance_family = "burstable"
   instance_size   = "small"
+  min_size        = 2
 }
