@@ -24,6 +24,16 @@ local commit = '68c205fb465740cafb045d628de1d64702cdb9b9';
         tolerations: [
           { key: 'dedicated', value: 'onpremises', effect: 'NoSchedule' },
         ],
+        topologySpreadConstraints: [
+          {
+            maxSkew: 1,
+            topologyKey: 'topology.kubernetes.io/zone',
+            whenUnsatisfiable: 'ScheduleAnyway',
+            labelSelector: {
+              matchLabels: { 'rubykaigi.org/app': 'unbound' },
+            },
+          },
+        ],
         containers: [
           {
             name: 'unbound',
