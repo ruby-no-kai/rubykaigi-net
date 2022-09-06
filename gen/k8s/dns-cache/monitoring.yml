@@ -21,3 +21,183 @@
   }
 }
 ---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "PodMonitor",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "unbound-resolv"
+  },
+  "spec": {
+    "podMetricsEndpoints": [
+      {
+        "metricRelabelings": [
+          {
+            "replacement": "udp",
+            "targetLabel": "transport_protocol"
+          },
+          {
+            "replacement": "google.com",
+            "targetLabel": "query_name"
+          }
+        ],
+        "params": {
+          "module": [
+            "dns_udp_rubykaigi.org"
+          ]
+        },
+        "port": "dns",
+        "relabelings": [
+          {
+            "sourceLabels": [
+              "__address__"
+            ],
+            "targetLabel": "__param_target"
+          },
+          {
+            "sourceLabels": [
+              "__param_target"
+            ],
+            "targetLabel": "instance"
+          },
+          {
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "targetLabel": "__address__"
+          },
+          {
+            "replacement": "/probe",
+            "targetLabel": "__metrics_path__"
+          }
+        ]
+      },
+      {
+        "metricRelabelings": [
+          {
+            "replacement": "tcp",
+            "targetLabel": "transport_protocol"
+          },
+          {
+            "replacement": "google.com",
+            "targetLabel": "query_name"
+          }
+        ],
+        "params": {
+          "module": [
+            "dns_tcp_rubykaigi.org"
+          ]
+        },
+        "port": "dns",
+        "relabelings": [
+          {
+            "sourceLabels": [
+              "__address__"
+            ],
+            "targetLabel": "__param_target"
+          },
+          {
+            "sourceLabels": [
+              "__param_target"
+            ],
+            "targetLabel": "instance"
+          },
+          {
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "targetLabel": "__address__"
+          },
+          {
+            "replacement": "/probe",
+            "targetLabel": "__metrics_path__"
+          }
+        ]
+      },
+      {
+        "metricRelabelings": [
+          {
+            "replacement": "udp",
+            "targetLabel": "transport_protocol"
+          },
+          {
+            "replacement": "rubykaigi.org",
+            "targetLabel": "query_name"
+          }
+        ],
+        "params": {
+          "module": [
+            "dns_udp_rubykaigi.org"
+          ]
+        },
+        "port": "dns",
+        "relabelings": [
+          {
+            "sourceLabels": [
+              "__address__"
+            ],
+            "targetLabel": "__param_target"
+          },
+          {
+            "sourceLabels": [
+              "__param_target"
+            ],
+            "targetLabel": "instance"
+          },
+          {
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "targetLabel": "__address__"
+          },
+          {
+            "replacement": "/probe",
+            "targetLabel": "__metrics_path__"
+          }
+        ]
+      },
+      {
+        "metricRelabelings": [
+          {
+            "replacement": "tcp",
+            "targetLabel": "transport_protocol"
+          },
+          {
+            "replacement": "rubykaigi.org",
+            "targetLabel": "query_name"
+          }
+        ],
+        "params": {
+          "module": [
+            "dns_tcp_rubykaigi.org"
+          ]
+        },
+        "port": "dns",
+        "relabelings": [
+          {
+            "sourceLabels": [
+              "__address__"
+            ],
+            "targetLabel": "__param_target"
+          },
+          {
+            "sourceLabels": [
+              "__param_target"
+            ],
+            "targetLabel": "instance"
+          },
+          {
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "targetLabel": "__address__"
+          },
+          {
+            "replacement": "/probe",
+            "targetLabel": "__metrics_path__"
+          }
+        ]
+      }
+    ],
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "unbound"
+      }
+    }
+  }
+}
+---
