@@ -5,33 +5,6 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-hi-cisco-wlc"
-  },
-  "spec": {
-    "interval": "20s",
-    "module": "cisco_wlc",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
-    },
-    "scrapeTimeout": "19s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "wlc-01.venue.rubykaigi.net"
-        ]
-      }
-    }
-  }
-}
----
-{
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
-  "metadata": {
-    "labels": {
-      "release": "kube-prometheus-stack"
-    },
     "name": "snmp-hi-if-mib"
   },
   "spec": {
@@ -45,7 +18,6 @@
     "targets": {
       "staticConfig": {
         "static": [
-          "wlc-01.venue.rubykaigi.net",
           "br-01.hnd.rubykaigi.net",
           "br-01.itm.rubykaigi.net",
           "tun-01.venue.rubykaigi.net",
@@ -106,6 +78,33 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
+    "name": "snmp-lo-cisco-wlc"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "cisco_wlc",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+    },
+    "scrapeTimeout": "59s",
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "wlc-01.venue.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
     "name": "snmp-lo-if-mib"
   },
   "spec": {
@@ -120,6 +119,33 @@
       "staticConfig": {
         "static": [
           "csw-01.venue.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-lo-if-mib2"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "if_mib2",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+    },
+    "scrapeTimeout": "59s",
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "wlc-01.venue.rubykaigi.net"
         ]
       }
     }

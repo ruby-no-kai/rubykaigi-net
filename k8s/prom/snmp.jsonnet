@@ -1,11 +1,5 @@
 local targets = [
   {
-    modules: ['if_mib', 'cisco_wlc'],
-    hosts: [
-      'wlc-01.venue.rubykaigi.net',
-    ],
-  },
-  {
     modules: ['if_mib', 'nec_ix'],
     hosts: [
       'br-01.hnd.rubykaigi.net',
@@ -33,6 +27,12 @@ local targets = [
 ];
 
 local targets_lo = [
+  {
+    modules: ['if_mib2', 'cisco_wlc'],
+    hosts: [
+      'wlc-01.venue.rubykaigi.net',
+    ],
+  },
   {
     modules: ['if_mib'],
     hosts: [

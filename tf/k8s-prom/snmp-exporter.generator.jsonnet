@@ -46,6 +46,12 @@ local common = {
       },
     },
 
+    if_mib2: self.if_mib {
+      auth+: {
+        community: 'public2',
+      },
+    },
+
     // Cisco Wireless LAN Controller
     cisco_wlc: common {
       auth+: {
