@@ -87,11 +87,11 @@ local common = {
           lookup: 'cLApName',
           drop_source_indexes: true,
         },
-        {
-          source_indexes: ['bsnAPDot3MacAddress', 'bsnAPIfSlotId'],
-          lookup: 'bsnAPIfType',
-          drop_source_indexes: false,
-        },
+        // {
+        //   source_indexes: ['bsnAPDot3MacAddress', 'bsnAPIfSlotId'],
+        //   lookup: 'bsnAPIfType',
+        //   drop_source_indexes: false,
+        // },
       ],
       overrides: {
         bsnAPName: {
