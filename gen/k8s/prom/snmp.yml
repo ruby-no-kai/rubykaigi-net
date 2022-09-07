@@ -5,7 +5,7 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-cisco-wlc"
+    "name": "snmp-hi-cisco-wlc"
   },
   "spec": {
     "interval": "20s",
@@ -18,7 +18,7 @@
     "targets": {
       "staticConfig": {
         "static": [
-          "mgmt.wlc-01.venue.rubykaigi.net"
+          "wlc-01.venue.rubykaigi.net"
         ]
       }
     }
@@ -32,7 +32,7 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-if-mib"
+    "name": "snmp-hi-if-mib"
   },
   "spec": {
     "interval": "20s",
@@ -45,9 +45,22 @@
     "targets": {
       "staticConfig": {
         "static": [
-          "mgmt.wlc-01.venue.rubykaigi.net",
-          "lo.br-01.hnd.rubykaigi.net",
-          "lo.br-01.itm.rubykaigi.net"
+          "wlc-01.venue.rubykaigi.net",
+          "br-01.hnd.rubykaigi.net",
+          "br-01.itm.rubykaigi.net",
+          "tun-01.venue.rubykaigi.net",
+          "tun-02.venue.rubykaigi.net",
+          "gw-01.venue.rubykaigi.net",
+          "gw-02.venue.rubykaigi.net",
+          "sw-tra-01.venue.rubykaigi.net",
+          "sw-tra-02.venue.rubykaigi.net",
+          "sw-foa-01.venue.rubykaigi.net",
+          "sw-trb-01.venue.rubykaigi.net",
+          "sw-trb-02.venue.rubykaigi.net",
+          "sw-fob-01.venue.rubykaigi.net",
+          "sw-org-01.venue.rubykaigi.net",
+          "sw-exp-01.venue.rubykaigi.net",
+          "sw-con-01.venue.rubykaigi.net"
         ]
       }
     }
@@ -61,7 +74,7 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-nec-ix"
+    "name": "snmp-hi-nec-ix"
   },
   "spec": {
     "interval": "20s",
@@ -74,8 +87,39 @@
     "targets": {
       "staticConfig": {
         "static": [
-          "lo.br-01.hnd.rubykaigi.net",
-          "lo.br-01.itm.rubykaigi.net"
+          "br-01.hnd.rubykaigi.net",
+          "br-01.itm.rubykaigi.net",
+          "tun-01.venue.rubykaigi.net",
+          "tun-02.venue.rubykaigi.net",
+          "gw-01.venue.rubykaigi.net",
+          "gw-02.venue.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-lo-if-mib"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "if_mib",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+    },
+    "scrapeTimeout": "59s",
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "csw-01.venue.rubykaigi.net"
         ]
       }
     }

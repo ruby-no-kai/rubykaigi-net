@@ -2,52 +2,80 @@ local targets = [
   {
     modules: ['if_mib', 'cisco_wlc'],
     hosts: [
-      'mgmt.wlc-01.venue.rubykaigi.net',
+      'management.wlc-01.venue.rubykaigi.net',
     ],
   },
   {
     modules: ['if_mib', 'nec_ix'],
     hosts: [
-      'lo.br-01.hnd.rubykaigi.net',
-      'lo.br-01.itm.rubykaigi.net',
+      'br-01.hnd.rubykaigi.net',
+      'br-01.itm.rubykaigi.net',
+      'tun-01.venue.rubykaigi.net',
+      'tun-02.venue.rubykaigi.net',
+      'gw-01.venue.rubykaigi.net',
+      'gw-02.venue.rubykaigi.net',
     ],
   },
   {
     modules: ['if_mib'],
     hosts: [
+      'sw-tra-01.venue.rubykaigi.net',
+      'sw-tra-02.venue.rubykaigi.net',
+      'sw-foa-01.venue.rubykaigi.net',
+      'sw-trb-01.venue.rubykaigi.net',
+      'sw-trb-02.venue.rubykaigi.net',
+      'sw-fob-01.venue.rubykaigi.net',
+      'sw-org-01.venue.rubykaigi.net',
+      'sw-exp-01.venue.rubykaigi.net',
+      'sw-con-01.venue.rubykaigi.net',
     ],
   },
 ];
 
-local targetsByModule = std.foldl(function(result, t) result + {
-  [module]+: t.hosts
-  for module in t.modules
-}, targets, {});
-
-[
+local targets_lo = [
   {
-    apiVersion: 'monitoring.coreos.com/v1',
-    kind: 'Probe',
-    metadata: {
-      name: std.format('snmp-%s', std.strReplace(module, '_', '-')),
-      labels: {
-        release: 'kube-prometheus-stack',
-      },
-    },
-    spec: {
-      interval: '20s',
-      scrapeTimeout: '19s',
-      module: module,
-      prober: {
-        url: 'snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116',
-        path: '/snmp',
-      },
-      targets: {
-        staticConfig: {
-          static: targetsByModule[module],
+    modules: ['if_mib'],
+    hosts: [
+      'csw-01.venue.rubykaigi.net',
+    ],
+  },
+
+];
+
+local probes(name, targets, interval) =
+  local targetsByModule = std.foldl(function(result, t) result + {
+    [module]+: t.hosts
+    for module in t.modules
+  }, targets, {});
+  [
+    {
+      apiVersion: 'monitoring.coreos.com/v1',
+      kind: 'Probe',
+      metadata: {
+        name: 'snmp-%s-%s' % [name, std.strReplace(module, '_', '-')],
+        labels: {
+          release: 'kube-prometheus-stack',
         },
       },
-    },
-  }
-  for module in std.objectFields(targetsByModule)
-]
+      spec: {
+        interval: std.format('%ds', interval),
+        scrapeTimeout: std.format('%ds', interval - 1),
+        module: module,
+        prober: {
+          url: 'snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116',
+          path: '/snmp',
+        },
+        targets: {
+          staticConfig: {
+            static: targetsByModule[module],
+          },
+        },
+      },
+    }
+    for module in std.objectFields(targetsByModule)
+  ];
+
+std.flattenArrays([
+  probes('hi', targets, 20),
+  probes('lo', targets_lo, 60),
+])
