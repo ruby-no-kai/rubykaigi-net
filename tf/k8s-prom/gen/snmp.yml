@@ -10,7 +10,10 @@ cisco_wlc:
   - 1.3.6.1.4.1.14179.2.2.15.1.21
   - 1.3.6.1.4.1.14179.2.2.2.1.15
   - 1.3.6.1.4.1.14179.2.2.2.1.2
+  - 1.3.6.1.4.1.14179.2.2.2.1.3
   - 1.3.6.1.4.1.14179.2.2.2.1.4
+  - 1.3.6.1.4.1.14179.2.2.2.1.5
+  - 1.3.6.1.4.1.14179.2.2.2.1.6
   - 1.3.6.1.4.1.14179.2.2.6.1
   metrics:
   - name: ifNumber
@@ -766,6 +769,34 @@ cisco_wlc:
       1: dot11b
       2: dot11a
       4: uwb
+  - name: bsnAPIfPhyChannelAssignment
+    oid: 1.3.6.1.4.1.14179.2.2.2.1.3
+    type: gauge
+    help: If this value is true, then bsnAPDot11CurrentChannel in bsnAPIfDot11PhyDSSSTable
+      is assigned by dynamic algorithm and is read-only. - 1.3.6.1.4.1.14179.2.2.2.1.3
+    indexes:
+    - labelname: bsnAPDot3MacAddress
+      type: PhysAddress48
+      fixed_size: 6
+    - labelname: bsnAPIfSlotId
+      type: gauge
+    lookups:
+    - labels:
+      - bsnAPDot3MacAddress
+      labelname: bsnAPName
+      oid: 1.3.6.1.4.1.14179.2.2.1.1.3
+      type: DisplayString
+    - labels:
+      - bsnAPDot3MacAddress
+      - bsnAPIfSlotId
+      labelname: bsnAPIfType
+      oid: 1.3.6.1.4.1.14179.2.2.2.1.2
+      type: EnumAsInfo
+    - labels: []
+      labelname: bsnAPDot3MacAddress
+    enum_values:
+      1: automatic
+      2: customized
   - name: bsnAPIfPhyChannelNumber
     oid: 1.3.6.1.4.1.14179.2.2.2.1.4
     type: gauge
@@ -841,6 +872,58 @@ cisco_wlc:
       161: ch161
       165: ch165
       169: ch169
+  - name: bsnAPIfPhyTxPowerControl
+    oid: 1.3.6.1.4.1.14179.2.2.2.1.5
+    type: gauge
+    help: If this value is true, then bsnAPIfPhyTxPowerLevel is assigned by dynamic
+      algorithm and is read-only. - 1.3.6.1.4.1.14179.2.2.2.1.5
+    indexes:
+    - labelname: bsnAPDot3MacAddress
+      type: PhysAddress48
+      fixed_size: 6
+    - labelname: bsnAPIfSlotId
+      type: gauge
+    lookups:
+    - labels:
+      - bsnAPDot3MacAddress
+      labelname: bsnAPName
+      oid: 1.3.6.1.4.1.14179.2.2.1.1.3
+      type: DisplayString
+    - labels:
+      - bsnAPDot3MacAddress
+      - bsnAPIfSlotId
+      labelname: bsnAPIfType
+      oid: 1.3.6.1.4.1.14179.2.2.2.1.2
+      type: EnumAsInfo
+    - labels: []
+      labelname: bsnAPDot3MacAddress
+    enum_values:
+      1: automatic
+      2: customized
+  - name: bsnAPIfPhyTxPowerLevel
+    oid: 1.3.6.1.4.1.14179.2.2.2.1.6
+    type: gauge
+    help: The TxPowerLevel currently being used to transmit data - 1.3.6.1.4.1.14179.2.2.2.1.6
+    indexes:
+    - labelname: bsnAPDot3MacAddress
+      type: PhysAddress48
+      fixed_size: 6
+    - labelname: bsnAPIfSlotId
+      type: gauge
+    lookups:
+    - labels:
+      - bsnAPDot3MacAddress
+      labelname: bsnAPName
+      oid: 1.3.6.1.4.1.14179.2.2.1.1.3
+      type: DisplayString
+    - labels:
+      - bsnAPDot3MacAddress
+      - bsnAPIfSlotId
+      labelname: bsnAPIfType
+      oid: 1.3.6.1.4.1.14179.2.2.2.1.2
+      type: EnumAsInfo
+    - labels: []
+      labelname: bsnAPDot3MacAddress
   - name: bsnAPIfDot11TransmittedFragmentCount
     oid: 1.3.6.1.4.1.14179.2.2.6.1.1
     type: counter
@@ -1197,7 +1280,7 @@ cisco_wlc:
       labelname: bsnAPDot3MacAddress
   version: 2
   auth:
-    community: public
+    community: public2
 if_mib:
   walk:
   - 1.3.6.1.2.1.2

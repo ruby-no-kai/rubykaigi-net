@@ -48,12 +48,18 @@ local common = {
 
     // Cisco Wireless LAN Controller
     cisco_wlc: common {
+      auth+: {
+        community: 'public2',
+      },
       walk: [
         'interfaces',
         'ifXTable',
         '1.3.6.1.4.1.14179.2.1.1.1.38',  // bsnDot11EssNumberofMobileStations
         '1.3.6.1.4.1.14179.2.2.2.1.2',  // bsnAPIfType
+        '1.3.6.1.4.1.14179.2.2.2.1.3', // bsnAPIfPhyChannelAssignment
         '1.3.6.1.4.1.14179.2.2.2.1.4',  // bsnAPIfPhyChannelNumber
+        '1.3.6.1.4.1.14179.2.2.2.1.5', // bsnAPIfPhyTxPowerControl
+        '1.3.6.1.4.1.14179.2.2.2.1.6',  // power level
         '1.3.6.1.4.1.14179.2.2.2.1.15',  // bsnApIfNoOfUsers
         '1.3.6.1.4.1.14179.2.2.6.1',  // bsnAPIfDot11CountersTable
         '1.3.6.1.4.1.14179.2.2.13.1.3',  // bsnAPIfLoadChannelUtilization
