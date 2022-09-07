@@ -2,7 +2,7 @@ local targets = [
   {
     modules: ['if_mib', 'cisco_wlc'],
     hosts: [
-      'management.wlc-01.venue.rubykaigi.net',
+      'wlc-01.venue.rubykaigi.net',
     ],
   },
   {
