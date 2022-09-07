@@ -39,6 +39,15 @@ resource "aws_security_group_rule" "bastion_ssh9922" {
   ipv6_cidr_blocks  = ["::/0"]
 }
 
+resource "aws_security_group_rule" "bastion_iperf3" {
+  security_group_id = aws_security_group.bastion.id
+  type              = "ingress"
+  from_port         = 5201
+  to_port           = 5201
+  protocol          = "tcp"
+  cidr_blocks       = ["10.0.0.0/8"]
+}
+
 resource "aws_eip" "bastion" {
   vpc = true
 }

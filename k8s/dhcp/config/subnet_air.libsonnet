@@ -5,7 +5,7 @@ local domainName = 'air.venue.rubykaigi.net';
   subnet: '10.33.2.0/24',
   pools: [
     {
-      pool: '10.33.2.220 - 10.33.2.250',
+      pool: '10.33.2.200 - 10.33.2.250',
     },
   ],
   'option-data': [
