@@ -185,6 +185,28 @@
             "labels": {
               "severity": "critical"
             }
+          },
+          {
+            "alert": "IXSystemUtilization",
+            "annotations": {
+              "summary": "System utilization >70% for 10m"
+            },
+            "expr": "picoSchedRtUtl1Min > 70",
+            "for": "10m",
+            "labels": {
+              "severity": "warning"
+            }
+          },
+          {
+            "alert": "IXSystemUtilization",
+            "annotations": {
+              "summary": "System utilization >80% for 5m"
+            },
+            "expr": "picoSchedRtUtl1Min > 80",
+            "for": "5m",
+            "labels": {
+              "severity": "critical"
+            }
           }
         ]
       }
