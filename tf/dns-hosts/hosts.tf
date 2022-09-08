@@ -2664,6 +2664,61 @@ resource "aws_route53_record" "host_mgmt_sw-con-01_venue_rubykaigi_net_CNAME" {
   ]
 }
 
+resource "aws_route53_record" "host_10_1_33_10_in-addr_arpa_PTR" {
+  zone_id = data.aws_route53_zone.ptr-10.zone_id
+
+  name = "10.1.33.10.in-addr.arpa"
+  type = "PTR"
+  ttl  = 60
+  records = [
+    "printer.venue.rubykaigi.net.",
+  ]
+}
+
+resource "aws_route53_record" "host_printer_venue_dualstack_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "printer.venue.dualstack.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.1.10",
+  ]
+}
+
+resource "aws_route53_record" "host_printer_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "printer.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.1.10",
+  ]
+}
+
+resource "aws_route53_record" "host_eth_printer_venue_rubykaigi_net_A" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "eth.printer.venue.rubykaigi.net"
+  type = "A"
+  ttl  = 60
+  records = [
+    "10.33.1.10",
+  ]
+}
+
+resource "aws_route53_record" "host_life_printer_venue_rubykaigi_net_CNAME" {
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+
+  name = "life.printer.venue.rubykaigi.net"
+  type = "CNAME"
+  ttl  = 60
+  records = [
+    "eth.printer.venue.rubykaigi.net.",
+  ]
+}
+
 resource "aws_route53_record" "host_2_22_33_10_in-addr_arpa_PTR" {
   zone_id = data.aws_route53_zone.ptr-10.zone_id
 

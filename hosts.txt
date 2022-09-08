@@ -22,6 +22,7 @@ venue	mgmt	10.33.100.0/24	10.33.100.130	sw-org-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.140	sw-exp-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.150	 sw-con-01	vlan1000
 venue	life	10.33.1.0/24	10.33.1.254	csw-01	vlan-300
+venue	life	10.33.1.0/24	10.33.1.10	printer	eth
 venue	cast	10.33.21.0/24	10.33.21.254	csw-01	vlan-410
 venue	usr	10.33.64.0/20	10.33.79.254	csw-01	vlan-400
 venue	life	10.33.1.0/24	2001:0df0:8500:caa0::a	csw-01	vlan-300

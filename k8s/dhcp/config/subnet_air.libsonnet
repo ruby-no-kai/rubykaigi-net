@@ -23,4 +23,7 @@ local domainName = 'air.venue.rubykaigi.net';
       data: std.join(', ', [domainName]),
     },
   ],
+  reservations: [
+    { 'hw-address': '58:38:79:67:d1:29', hostname: 'printer', 'ip-address': '10.33.1.10' },
+  ],
 }
