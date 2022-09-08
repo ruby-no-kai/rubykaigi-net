@@ -166,6 +166,41 @@ local u = import './util.libsonnet';
           'WriteThroughput',
         ]
       ),
+    ]) +
+
+    u.product([
+      [
+        {
+          aws_namespace: 'AWS/DX',
+          aws_dimensions: ['ConnectionId'],
+          aws_statistics: ['Average', 'Minimum', 'Maximum'],
+        },
+      ],
+      std.map(
+        function(metric) { aws_metric_name: metric },
+        [
+          'ConnectionState',
+        ]
+      ),
+    ]) +
+
+    u.product([
+      [
+        {
+          aws_namespace: 'AWS/DX',
+          aws_dimensions: ['ConnectionId', 'VirtualInterfaceId'],
+          aws_statistics: ['Sum', 'Average', 'Minimum', 'Maximum'],
+        },
+      ],
+      std.map(
+        function(metric) { aws_metric_name: metric },
+        [
+          'VirtualInterfaceBpsEgress',
+          'VirtualInterfaceBpsIngress',
+          'VirtualInterfacePpsEgress',
+          'VirtualInterfacePpsIngress',
+        ]
+      ),
     ])
 
   ),
