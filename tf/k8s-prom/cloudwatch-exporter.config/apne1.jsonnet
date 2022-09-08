@@ -201,6 +201,77 @@ local u = import './util.libsonnet';
           'VirtualInterfacePpsIngress',
         ]
       ),
+    ]) +
+
+
+    u.product([
+      [
+        {
+          aws_namespace: 'AWS/MediaLive',
+          aws_dimensions: ['ChannelId', 'Pipeline'],
+          aws_statistics: ['Sum', 'Average', 'Minimum', 'Maximum'],
+        },
+      ],
+      std.map(
+        function(metric) { aws_metric_name: metric },
+        [
+          'ActiveAlerts',
+          'FillMsec',
+          'InputTimecodesPresent',
+          'InputVideoFrameRate',
+          'NetworkIn',
+          'NetworkOut',
+          'PipelinesLocked',
+          'PrimaryInputActive',
+        ]
+      ),
+    ]) +
+    u.product([
+      [
+        {
+          aws_namespace: 'AWS/MediaLive',
+          aws_dimensions: ['ChannelId', 'OutputGroupName', 'Pipeline'],
+          aws_statistics: ['Sum', 'Average', 'Minimum', 'Maximum'],
+        },
+      ],
+      std.map(
+        function(metric) { aws_metric_name: metric },
+        [
+          'ActiveOutputs',
+        ]
+      ),
+    ]) +
+    u.product([
+      [
+        {
+          aws_namespace: 'AWS/MediaLive',
+          aws_dimensions: ['AudioDescriptionName', 'ChannelId', 'Pipeline'],
+          aws_statistics: ['Sum', 'Average', 'Minimum', 'Maximum'],
+        },
+      ],
+      std.map(
+        function(metric) { aws_metric_name: metric },
+        [
+          'OutputAudioLevelDbfs',
+          'OutputAudioLevelLkfs',
+        ]
+      ),
+    ]) +
+    u.product([
+      [
+        {
+          aws_namespace: 'AWS/MediaLive',
+          aws_dimensions: ['ActiveInputFailoverLabel', 'ChannelId', 'Pipeline'],
+          aws_statistics: ['Sum', 'Average', 'Minimum', 'Maximum'],
+        },
+      ],
+      std.map(
+        function(metric) { aws_metric_name: metric },
+        [
+          'InputTimecodesPresent',
+          'InputVideoFrameRate',
+        ]
+      ),
     ])
 
   ),
