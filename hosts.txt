@@ -6,6 +6,9 @@ venue	lo	10.33.0.0/24	10.33.0.21	gw-01	lo
 venue	lo	10.33.0.0/24	10.33.0.22	gw-02	lo
 venue	lo	10.33.0.0/24	10.33.0.31	csw-01	lo
 itm2	lo	10.33.0.0/24	10.33.0.19	pipe-01	tmp
+venue	air	10.33.2.0/24	10.33.2.2	wlc-01	management
+venue	air	10.33.2.0/24	10.33.2.254	csw-01	vlan-200
+venue	air	10.33.2.0/24	2001:0df0:8500:cab1::a	csw-01	vlan-200
 venue	mgmt	10.33.100.0/24	10.33.100.1	csw-01	vlan-1000
 venue	mgmt	10.33.100.0/24	2001:0df0:8500:cab0::a	csw-01	vlan-1000
 venue	mgmt	10.33.100.0/24	10.33.100.2	wlc-01	svc
@@ -18,9 +21,6 @@ venue	mgmt	10.33.100.0/24	10.33.100.125	sw-fob-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.130	sw-org-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.140	sw-exp-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.150	 sw-con-01	vlan1000
-venue	air	10.33.2.0/24	10.33.2.2	wlc-01	management
-venue	air	10.33.2.0/24	10.33.2.254	csw-01	vlan-200
-venue	air	10.33.2.0/24	2001:0df0:8500:cab1::a	csw-01	vlan-200
 venue	life	10.33.1.0/24	10.33.1.254	csw-01	vlan-300
 venue	cast	10.33.21.0/24	10.33.21.254	csw-01	vlan-410
 venue	usr	10.33.64.0/20	10.33.79.254	csw-01	vlan-400
