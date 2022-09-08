@@ -12,6 +12,7 @@ RUN git init && \
 WORKDIR /build/generator
 
 RUN make mibs
+RUN mv mibs/cisco_v2/* mibs/
 RUN make generator
 RUN download-mibs
 

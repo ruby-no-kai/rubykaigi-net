@@ -60,6 +60,7 @@ local common = {
       walk: [
         'interfaces',
         'ifXTable',
+        '1.3.6.1.4.1.9.9.618.1.8',  // clsSysInfo
         '1.3.6.1.4.1.14179.2.1.1.1.38',  // bsnDot11EssNumberofMobileStations
         '1.3.6.1.4.1.14179.2.2.2.1.2',  // bsnAPIfType
         '1.3.6.1.4.1.14179.2.2.2.1.3', // bsnAPIfPhyChannelAssignment
