@@ -5,7 +5,7 @@
       rules: [
         {
           alert: 'CloudwatchDown',
-          expr: 'up{job=~"^cloudwatch(_.+)?$"} == 0',
+          expr: 'up{job=~"^cloudwatch(-.+)?$"} == 0',
           'for': '6m',
           labels: {
             severity: 'critical',

@@ -4,6 +4,9 @@
     kind: 'PrometheusRule',
     metadata: {
       name: 'common-rules',
+      labels: {
+        release: 'kube-prometheus-stack',
+      },
     },
     spec: std.foldl(
       function(a, b) a + b,

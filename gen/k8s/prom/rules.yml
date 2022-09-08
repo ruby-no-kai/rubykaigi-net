@@ -2,6 +2,9 @@
   "apiVersion": "monitoring.coreos.com/v1",
   "kind": "PrometheusRule",
   "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
     "name": "common-rules"
   },
   "spec": {
@@ -150,7 +153,7 @@
             "annotations": {
               "summary": "{{$labels.instance}} (job={{$labels.job}}): CloudWatch Exporter Down 6m+"
             },
-            "expr": "up{job=~\"^cloudwatch(_.+)?$\"} == 0",
+            "expr": "up{job=~\"^cloudwatch(-.+)?$\"} == 0",
             "for": "6m",
             "labels": {
               "severity": "critical"
