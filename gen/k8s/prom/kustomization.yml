@@ -3,6 +3,7 @@
    "kind": "Kustomization",
    "resources": [
       "./blackbox.yml",
-      "./snmp.yml"
+      "./snmp.yml",
+      "./rules.yml"
    ]
 }

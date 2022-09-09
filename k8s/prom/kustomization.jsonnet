@@ -4,5 +4,6 @@
   resources: [
     './blackbox.yml',
     './snmp.yml',
+    './rules.yml',
   ],
 }

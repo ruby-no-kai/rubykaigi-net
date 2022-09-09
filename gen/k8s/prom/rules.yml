@@ -1,0 +1,226 @@
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "PrometheusRule",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "common-rules"
+  },
+  "spec": {
+    "groups": [
+      {
+        "name": "ec2_cpucredits",
+        "rules": [
+          {
+            "alert": "AwsEc2CpuCredits50",
+            "annotations": {
+              "summary": "{{$labels.instance_id}}: CPU credits balance < 50 ({{$value}})"
+            },
+            "expr": "aws_ec2_cpucredit_balance_maximum offset 6m < 50",
+            "for": "5m",
+            "labels": {
+              "severity": "critical"
+            }
+          },
+          {
+            "alert": "AwsEc2CpuSurplusCharged",
+            "annotations": {
+              "summary": "{{$labels.instance_id}}: CPU surplus credits charged 15m+"
+            },
+            "expr": "aws_ec2_cpusurplus_credits_charged_minimum offset 6m > 0",
+            "for": "15m",
+            "labels": {
+              "severity": "critical"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ec2_statuscheck",
+        "rules": [
+          {
+            "alert": "AwsEc2ImpairedSystem",
+            "annotations": {
+              "summary": "{{$labels.instance_id}}: System Impaired"
+            },
+            "expr": "aws_ec2_status_check_failed_maximum offset 6m < 1",
+            "labels": {
+              "severity": "critical"
+            }
+          },
+          {
+            "alert": "AwsEc2ImpairedInstance",
+            "annotations": {
+              "summary": "{{$labels.instance_id}}: Instance Impaired"
+            },
+            "expr": "aws_ec2_status_check_failed_instance_maximum offset 6m < 1",
+            "labels": {
+              "severity": "critical"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ebs_burstcredits",
+        "rules": [
+          {
+            "alert": "AwsEbsBurstCredits40",
+            "annotations": {
+              "summary": "{{$labels.volume_id}}: EBS burst credits balance < 40 ({{$value}})"
+            },
+            "expr": "aws_ebs_burst_balance_maximum offset 6m < 40",
+            "for": "6m",
+            "labels": {
+              "severity": "critical"
+            }
+          }
+        ]
+      },
+      {
+        "name": "alb_5xx",
+        "rules": [
+          {
+            "alert": "AwsAlbTarget5xx",
+            "annotations": {
+              "summary": "{{$labels.load_balancer}} (target={{$labels.target_group}}): Target 5xx > 0; 5m+ ({{$value}})"
+            },
+            "expr": "sum by(load_balancer,target_group) (aws_applicationelb_httpcode_target_5_xx_count_sum{target_group=~\".+\"} offset 2m) > 0",
+            "for": "4m",
+            "labels": {
+              "severity": "critical"
+            }
+          },
+          {
+            "alert": "AwsAlb5xx",
+            "annotations": {
+              "summary": "{{$labels.load_balancer}}: ELB 5xx > 0; 5m+ ({{$value}})"
+            },
+            "expr": "sum by(load_balancer) (aws_applicationelb_httpcode_elb_5_xx_count_sum offset 2m) > 0",
+            "for": "4m",
+            "labels": {
+              "severity": "critical"
+            }
+          }
+        ]
+      },
+      {
+        "name": "awsnat_errors",
+        "rules": [
+          {
+            "alert": "AwsNatPortAllocErrorsWarn",
+            "annotations": {
+              "summary": "{{$labels.nat_gateway_id}}: Port allocation had failed ({{$value}})"
+            },
+            "expr": "aws_natgateway_error_port_allocation_sum offset 6m > 0",
+            "labels": {
+              "severity": "warn"
+            }
+          },
+          {
+            "alert": "AwsNatPortAllocErrors",
+            "annotations": {
+              "summary": "{{$labels.nat_gateway_id}}: Port allocation is failing 15m+ ({{$value}})"
+            },
+            "expr": "aws_natgateway_error_port_allocation_sum offset 6m > 0",
+            "for": "15m",
+            "labels": {
+              "severity": "critical"
+            }
+          }
+        ]
+      },
+      {
+        "name": "rds_memory",
+        "rules": [
+          {
+            "alert": "AwsRdsFreeableMemory200M",
+            "annotations": {
+              "summary": "{{$labels.dbinstance_identifier}}: RDS Freeable Memory < 200MB ({{$value}})"
+            },
+            "expr": "aws_rds_freeable_memory_sum offset 6m < 200000000",
+            "labels": {
+              "severity": "warn"
+            }
+          }
+        ]
+      },
+      {
+        "name": "cloudwatch_down",
+        "rules": [
+          {
+            "alert": "CloudwatchDown",
+            "annotations": {
+              "summary": "{{$labels.instance}} (job={{$labels.job}}): CloudWatch Exporter Down 6m+"
+            },
+            "expr": "up{job=~\"^cloudwatch(-.+)?$\"} == 0",
+            "for": "6m",
+            "labels": {
+              "severity": "critical"
+            }
+          },
+          {
+            "alert": "CloudwatchScrapeError",
+            "annotations": {
+              "summary": "{{$labels.instance}} (job={{$labels.job}}): CloudWatch Scrape Error 6m+"
+            },
+            "expr": "cloudwatch_exporter_scrape_error > 0",
+            "for": "6m",
+            "labels": {
+              "severity": "critical"
+            }
+          }
+        ]
+      },
+      {
+        "name": "snmp",
+        "rules": [
+          {
+            "alert": "SnmpTargetDown",
+            "annotations": {
+              "summary": "{{$labels.instance}}: SNMP Target Down"
+            },
+            "expr": "up{job=~\"^.*/snmp-.*$\"} == 0",
+            "for": "1m",
+            "labels": {
+              "severity": "critical"
+            }
+          },
+          {
+            "alert": "SnmpRebootDetected",
+            "annotations": {
+              "summary": "Rebooted within 5m"
+            },
+            "expr": "resets(sysUpTime[5m]) > 0",
+            "labels": {
+              "severity": "warning"
+            }
+          },
+          {
+            "alert": "IXSystemUtilization",
+            "annotations": {
+              "summary": "System utilization >70% for 10m"
+            },
+            "expr": "picoSchedRtUtl1Min > 70",
+            "for": "10m",
+            "labels": {
+              "severity": "warning"
+            }
+          },
+          {
+            "alert": "IXSystemUtilization",
+            "annotations": {
+              "summary": "System utilization >80% for 5m"
+            },
+            "expr": "picoSchedRtUtl1Min > 80",
+            "for": "5m",
+            "labels": {
+              "severity": "critical"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+---
