@@ -10,7 +10,7 @@ hosts = host_lines.lines.
   map { |_, ips| ips[0].primary = true; ips }
 
 
-RRSet = Struct.new(:zone, :name, :type, :records)
+RRSet = Struct.new(:zone, :name, :type, :records, :primary)
 rrsets = []
 hosts.each do |host_ips|
   host_ips.each do |host|
@@ -31,11 +31,11 @@ hosts.each do |host_ips|
     if host.primary
       # v6 may not be able for management, so...
       if v6
-        rrsets.push(RRSet.new(zone, fqdn6, 'AAAA', [host.ip]))
+        rrsets.push(RRSet.new(zone, fqdn6, 'AAAA', [host.ip, true]))
       else
         rrsets.push(RRSet.new(zone,  "#{rev}.", 'PTR', [fqdn]))
         rrsets.push(RRSet.new(zone, fqdn6, 'A', [host.ip]))
-        rrsets.push(RRSet.new(zone, fqdn, 'A', [host.ip]))
+        rrsets.push(RRSet.new(zone, fqdn, 'A', [host.ip], true))
       end
     end
 
@@ -75,4 +75,10 @@ rrsets.uniq { |rr|  [rr.type, rr.name] }.each do |rr|
   EOF
 end
 
+
+deadman = rrsets.select(&:primary).uniq { |rr|  [rr.type, rr.name] }.map do |rr|
+  "#{rr.name} #{rr.records[0]}"
+end
+
 File.write "tf/dns-hosts/hosts.tf", parts.join(?\n)
+File.write "deadman.conf", deadman.join(?\n)
