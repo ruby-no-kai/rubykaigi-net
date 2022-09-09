@@ -187,6 +187,16 @@
             }
           },
           {
+            "alert": "SnmpRebootDetected",
+            "annotations": {
+              "summary": "Rebooted within 5m"
+            },
+            "expr": "resets(sysUpTime[5m]) > 0",
+            "labels": {
+              "severity": "warning"
+            }
+          },
+          {
             "alert": "IXSystemUtilization",
             "annotations": {
               "summary": "System utilization >70% for 10m"

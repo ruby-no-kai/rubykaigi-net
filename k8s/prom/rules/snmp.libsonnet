@@ -15,6 +15,16 @@
           },
         },
         {
+          alert: 'SnmpRebootDetected',
+          expr: 'resets(sysUpTime[5m]) > 0',
+          labels: {
+            severity: 'warning',
+          },
+          annotations: {
+            summary: 'Rebooted within 5m',
+          },
+        },
+        {
           alert: 'IXSystemUtilization',
           expr: 'picoSchedRtUtl1Min > 70',
           'for': '10m',
