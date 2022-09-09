@@ -101,6 +101,10 @@ data "aws_iam_policy_document" "nocadmin" {
       "arn:aws:s3:::rk-aws-logs/*",
       "arn:aws:s3:::rk-syslog",
       "arn:aws:s3:::rk-syslog/*",
+      "arn:aws:s3:::rk-takeout-app",
+      "arn:aws:s3:::rk-takeout-app/*",
+      "arn:aws:s3:::am-i-not-at-rubykaigi",
+      "arn:aws:s3:::am-i-not-at-rubykaigi/*",
     ]
   }
 }
