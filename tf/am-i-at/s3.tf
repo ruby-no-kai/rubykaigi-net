@@ -51,7 +51,7 @@ resource "aws_s3_object" "rk-am-i-not-at-check" {
   key           = "check"
   content       = "{\"ok\": true}\n"
   content_type  = "application/json"
-  cache_control = "max-age=86400"
+  cache_control = "max-age=3600"
 }
 
 resource "aws_s3_bucket_cors_configuration" "rk-am-i-not-at" {
