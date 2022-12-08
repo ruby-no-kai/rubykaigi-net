@@ -255,37 +255,37 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-link" {
   route_table_id = aws_route_table.onpremises-link_rtb.id
 }
 
-resource "aws_eip" "nat" {
-  vpc = true
-  tags = {
-    Name = "nat"
-  }
-}
-resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat.id
-  subnet_id     = aws_subnet.c_public.id
-}
-resource "aws_route" "private_nat" {
-  route_table_id         = aws_route_table.private_rtb.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat.id
-}
+#resource "aws_eip" "nat" {
+#  vpc = true
+#  tags = {
+#    Name = "nat"
+#  }
+#}
+#resource "aws_nat_gateway" "nat" {
+#  allocation_id = aws_eip.nat.id
+#  subnet_id     = aws_subnet.c_public.id
+#}
+#resource "aws_route" "private_nat" {
+#  route_table_id         = aws_route_table.private_rtb.id
+#  destination_cidr_block = "0.0.0.0/0"
+#  nat_gateway_id         = aws_nat_gateway.nat.id
+#}
 
-resource "aws_nat_gateway" "onpremises-c" {
-  subnet_id         = aws_subnet.c_onpremises_link.id
-  connectivity_type = "private"
-}
-resource "aws_nat_gateway" "onpremises-d" {
-  subnet_id         = aws_subnet.d_onpremises_link.id
-  connectivity_type = "private"
-}
-resource "aws_route" "onpremises_c_nat" {
-  route_table_id         = aws_route_table.onpremises-c_rtb.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
-}
-resource "aws_route" "onpremises_d_nat" {
-  route_table_id         = aws_route_table.onpremises-d_rtb.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
-}
+#resource "aws_nat_gateway" "onpremises-c" {
+#  subnet_id         = aws_subnet.c_onpremises_link.id
+#  connectivity_type = "private"
+#}
+#resource "aws_nat_gateway" "onpremises-d" {
+#  subnet_id         = aws_subnet.d_onpremises_link.id
+#  connectivity_type = "private"
+#}
+#resource "aws_route" "onpremises_c_nat" {
+#  route_table_id         = aws_route_table.onpremises-c_rtb.id
+#  destination_cidr_block = "0.0.0.0/0"
+#  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
+#}
+#resource "aws_route" "onpremises_d_nat" {
+#  route_table_id         = aws_route_table.onpremises-d_rtb.id
+#  destination_cidr_block = "0.0.0.0/0"
+#  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
+#}

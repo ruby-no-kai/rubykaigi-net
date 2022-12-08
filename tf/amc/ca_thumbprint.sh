@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # verify the target is legit
-curl -Ss https://${1}:443
+curl -Ssf -o /dev/null https://${1}:443
 
 thumbprint="$(echo | openssl s_client -servername $1 -showcerts -connect ${1}:443 2> /dev/null \
      | sed -n -e '/BEGIN/h' -e '/BEGIN/,/END/H' -e '$x' -e '$p' | tail +2 \

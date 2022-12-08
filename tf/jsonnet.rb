@@ -22,12 +22,12 @@ query = JSON.load($stdin)
 
 Tempfile.open do |output|
   if path = query['path']
-    exit $? unless system('jsonnet', path, out: output)
+    exit $?.to_i unless system('jsonnet', path, out: output)
   else
     Tempfile.open do |input|
       input.write(query.fetch('input'))
 
-      exit $? unless system('jsonnet', '-', in: input.tap(&:rewind), out: output)
+      exit $?.to_i unless system('jsonnet', '-', in: input.tap(&:rewind), out: output)
     end
   end
 
