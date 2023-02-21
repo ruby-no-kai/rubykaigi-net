@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+
+gem 'aws-sdk-sqs'
+gem 'aws-sdk-dynamodb'
+gem 'aws-sdk-secretsmanager'
+
+gem 'apigatewayv2_rack'
+gem 'sinatra'
+
+gem 'faraday'
+gem 'faraday-retry'
+gem 'faraday-multipart'
