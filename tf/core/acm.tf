@@ -7,6 +7,16 @@ resource "aws_acm_certificate" "rubykaigi-net" {
   }
 }
 
+resource "aws_acm_certificate" "rubykaigi-net_use1" {
+  provider                  = aws.use1
+  domain_name               = "*.rubykaigi.net"
+  subject_alternative_names = ["*.rubykaigi.net", "rubykaigi.net"]
+  validation_method         = "DNS"
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_route53_record" "acm_rubykaigi-net" {
   for_each = {
     for dvo in aws_acm_certificate.rubykaigi-net.domain_validation_options : dvo.domain_name => {
