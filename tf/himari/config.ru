@@ -7,6 +7,7 @@ require 'omniauth-github'
 require 'rack'
 require 'rack/session/cookie'
 require 'faraday'
+require 'base64'
 USER_AGENT = 'RubyKaigi-StaffIdP 1.0 (+https://rubykaigi.org)'
 
 require 'aws-sdk-secretsmanager'
@@ -44,7 +45,7 @@ use(Rack::Session::Cookie,
   key: '__Host-himari-sess',
   path: '/',
   secure: true,
-  expire_after: 50400,
+  expire_after: 3600 * 9,
   secret: secret.fetch('SECRET_KEY_BASE'),
 )
 
@@ -58,6 +59,20 @@ use(Himari::Middlewares::Config,
     { name: :github, button: 'Log in with GitHub' },
   ],
   storage: Himari::Aws::DynamodbStorage.new(table_name: ENV.fetch('HIMARI_DYNAMODB_TABLE')),
+  custom_messages: {
+    title: 'KaigiAuth: Login',
+    footer: <<~EOH,
+       <p>
+        <small>
+          Powered by <a href="https://github.com/sorah/himari">sorah/himari</a> | <a href="https://github.com/ruby-no-kai/rubykaigi-nw/tree/master/tf/himari">Deployment</a>
+        </small>
+      </p>
+    EOH
+  },
+  release_fragment: [
+    ("r.#{File.read(File.join(ENV['LAMBDA_TASK_ROOT'] || '/', 'app', 'REVISION')).chomp}" rescue "r-"),
+    ("c.#{Base64.urlsafe_encode64(Base64.decode64(ENV.fetch('HIMARI_RACK_DIGEST')), padding: false)}" rescue "c-"),
+  ].join(?:),
 )
 
 use(Himari::Aws::SecretsmanagerSigningKeyProvider, 
@@ -135,7 +150,7 @@ use(Himari::Middlewares::AuthenticationRule, name: 'allow-github-with-teams') do
   if context.claims[:groups] && !context.claims[:groups].empty?
     next decision.allow!
   end
-  
+
   decision.skip!
 end
 
