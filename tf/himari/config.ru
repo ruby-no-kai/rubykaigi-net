@@ -50,7 +50,8 @@ use(Rack::Session::Cookie,
 )
 
 use OmniAuth::Builder do
-  provider :github, 'ebbaee63436735e33573', secret.fetch('GITHUB_CLIENT_SECRET') # https://github.com/settings/applications/1979624 (sorah)
+  # https://github.com/settings/applications/1979624 (sorah)
+  provider :github, 'ebbaee63436735e33573', secret.fetch('GITHUB_CLIENT_SECRET'), scope: 'user,read:org'
 end
 
 use(Himari::Middlewares::Config,
@@ -121,7 +122,11 @@ use(Himari::Middlewares::ClaimsRule, name: 'github-oauth-teams') do |context, de
 
   # https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#list-teams-for-the-authenticated-user
   # (not available in GitHub Apps = only available in OAuth apps)
-  user_teams_resp = gh_faraday.get('user/teams', {per_page: 100}, { 'Accept' => 'application/vnd.github+json', 'Authorization' => "Bearer #{context.auth[:credentials][:token]}" }).body
+  user_teams_resp = begin
+    gh_faraday.get('user/teams', {per_page: 100}, { 'Accept' => 'application/vnd.github+json', 'Authorization' => "Bearer #{context.auth[:credentials][:token]}" }).body
+  rescue Faraday::ResourceNotFound => e
+    []
+  end
 
   teams_in_scope = [
     'ruby-no-kai/rk-noc',
@@ -151,7 +156,7 @@ use(Himari::Middlewares::AuthenticationRule, name: 'allow-github-with-teams') do
     next decision.allow!
   end
 
-  decision.skip!
+  decision.skip!("no available groups")
 end
 
 
