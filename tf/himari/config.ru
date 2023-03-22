@@ -41,19 +41,6 @@ class ::CloudFrontViewerAddressToXff
 end unless defined? ::CloudFrontViewerAddressToXff
 use CloudFrontViewerAddressToXff
 
-use(Rack::Session::Cookie,
-  key: '__Host-himari-sess',
-  path: '/',
-  secure: true,
-  expire_after: 3600 * 9,
-  secret: secret.fetch('SECRET_KEY_BASE'),
-)
-
-use OmniAuth::Builder do
-  # https://github.com/settings/applications/1979624 (sorah)
-  provider :github, 'ebbaee63436735e33573', secret.fetch('GITHUB_CLIENT_SECRET'), scope: 'user,read:org'
-end
-
 use(Himari::Middlewares::Config,
   issuer: 'https://idp.rubykaigi.net',
   providers: [
@@ -75,6 +62,21 @@ use(Himari::Middlewares::Config,
     ("c.#{Base64.urlsafe_encode64(Base64.decode64(ENV.fetch('HIMARI_RACK_DIGEST')), padding: false)}" rescue "c-"),
   ].join(?:),
 )
+
+use Rack::CommonLogger
+
+use(Rack::Session::Cookie,
+  key: '__Host-himari-sess',
+  path: '/',
+  secure: true,
+  expire_after: 3600 * 9,
+  secret: secret.fetch('SECRET_KEY_BASE'),
+)
+
+use OmniAuth::Builder do
+  # https://github.com/settings/applications/1979624 (sorah)
+  provider :github, 'ebbaee63436735e33573', secret.fetch('GITHUB_CLIENT_SECRET'), scope: 'user,read:org'
+end
 
 use(Himari::Aws::SecretsmanagerSigningKeyProvider, 
   secret_id: ENV.fetch('HIMARI_SIGNING_KEY_ARN'),
