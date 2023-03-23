@@ -8,38 +8,13 @@ require 'rack'
 require 'rack/session/cookie'
 require 'faraday'
 require 'base64'
+require 'apigatewayv2_rack'
 USER_AGENT = 'RubyKaigi-StaffIdP 1.0 (+https://rubykaigi.org)'
 
 require 'aws-sdk-secretsmanager'
 secret = JSON.parse(Aws::SecretsManager::Client.new().get_secret_value(secret_id: ENV.fetch('HIMARI_SECRET_PARAMS_ARN'), version_stage: 'AWSCURRENT').secret_string)
 
-class ::CloudFrontViewerAddressToXff
-  def initialize(app)
-    @app = app
-  end
-
-  V6_REGEXP = /^([a-f0-9:]+):(\d+)$/
-
-  def call(env)
-    viewer = env['HTTP_CLOUDFRONT_VIEWER_ADDRESS']
-    if viewer
-      addr,port = if viewer.include?('.')
-                    viewer.split(?:, 2)
-                  else
-                    viewer.downcase.match(V6_REGEXP)&.to_a[1,2]
-                  end
-      if addr && port
-        env['HTTP_X_RACK_ORIG_X_FORWARDED_FOR'] = env['HTTP_X_FORWARDED_FOR'] if env['HTTP_X_FORWARDED_FOR']
-        env['HTTP_X_RACK_ORIG_X_FORWARDED_PORT'] = env['HTTP_X_FORWARDED_FOR'] if env['HTTP_X_FORWARDED_PORT']
-        env['HTTP_X_FORWARDED_FOR'] = addr
-        env['HTTP_X_FORWARDED_PORT'] = port
-      end
-    end
-
-    @app.call(env)
-  end
-end unless defined? ::CloudFrontViewerAddressToXff
-use CloudFrontViewerAddressToXff
+use Apigatewayv2Rack::Middlewares::CloudfrontXff
 
 use(Himari::Middlewares::Config,
   issuer: 'https://idp.rubykaigi.net',
