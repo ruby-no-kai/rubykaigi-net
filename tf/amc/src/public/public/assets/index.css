@@ -22,11 +22,10 @@ main {
   border: none;
 }
 
-main > header {
+main > header, main > footer {
   text-align: center;
-  margin-bottom: 25px;
 }
-main > header img{
+main > header img, main > footer img {
   max-width: 200px;
   height: auto;
 }
@@ -128,6 +127,9 @@ main > header img{
   display: none;
 }
 
+footer, footer a, footer a:visited {
+  color: #5e5e6b;
+}
 
 .d-none {
   display: none;
