@@ -1,12 +1,9 @@
-# amc - AWS Management Console Access behind ALB OIDC authentication
+# amc - AWS Management Console Access through Himari
 
-A lambda function as a ALB target that serves a web application to obtain AWS credentials. While authentication is done via ALB OIDC integration, it also acts as OIDC IdP against AWS STS (read caveats).
+https://amc.rubykaigi.net
 
-## Secrets Rotation
+Amc is an Sinatra app run on Lambda Function URL, which authenticates with Himari (idp.rubykaigi.org) and allow authenticated users to sign into AWS or generate credentials for AWS.
 
-AMC has a secret of RSA private key that used for ID token signing. Generation and periodic rotation are done through Secrets Manager and key rotation lambda function.
+Amc uses its own signing key to use sts:AssumeRoleWithWebIdentity with appropriate `sub` claim and is auto-rotated through Secrets Manager.
 
-## Caveats
-
-- User authentication is done through ALB's authenticate-oidc, however it doesn't give us a ID token, we have to generate JWT for sts:AssumeRoleWithWebIdentity and corresponding OpenID Connect Discovery Document...
-  - We can't use sts:AssumeRole due to role chaining restriction on maximum session duration.
+For roles claim rule, refer to [tf/himari/config.ru](https://github.com/ruby-no-kai/rubykaigi-nw/blob/master/tf/himari/config.ru).
