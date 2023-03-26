@@ -12,7 +12,7 @@ data "archive_file" "amc" {
 
 locals {
   tsdgst   = sha256(join("", [for f in fileset("${path.module}/src", "public/**/*.ts") : filesha256("${path.module}/src/${f}")]))
-  rbdgst   = sha256(join("", [for f in fileset("${path.module}/src", "public/**/*.rb") : filesha256("${path.module}/src/${f}")]))
+  rbdgst   = sha256(join("", [for f in fileset("${path.module}/src", "*.rb") : filesha256("${path.module}/src/${f}")]))
   lockdgst = filesha256("${path.module}/src/Gemfile.lock")
 }
 
@@ -43,32 +43,3 @@ resource "null_resource" "amc-revision" {
     command = "cd ${path.module}/src && echo 'unknown.${sha256("${local.tsdgst}${local.rbdgst}${local.lockdgst}")}' > REVISION"
   }
 }
-
-resource "aws_lambda_function" "amc" {
-  function_name = "rknw-amc"
-
-  filename         = "${path.module}/amc.zip"
-  source_code_hash = data.archive_file.amc.output_base64sha256
-  handler          = "app.handler"
-  runtime          = "ruby2.7"
-  architectures    = ["arm64"]
-
-  role = aws_iam_role.amc.arn
-
-  memory_size = 128
-  timeout     = 15
-
-  environment {
-    variables = {
-      AMC_EXPECT_ISS       = "https://idp.rubykaigi.net"
-      AMC_SELF_ISS         = "https://amc.rubykaigi.net"
-      AMC_PROVIDER_ID      = "amc.rubykaigi.net"
-      AMC_ROLE_ARN         = data.aws_iam_role.nocadmin.arn
-      AMC_SIGNING_KEY_ARN  = aws_secretsmanager_secret.signing_key.arn
-      AMC_SESSION_DURATION = tostring(3600 * 12)
-    }
-  }
-}
-
-# refer to core/ tfstate for target groups
-

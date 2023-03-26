@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>AMC</title>
-    <link rel="stylesheet" href="/public/index.css?v=<%= cachebuster %>" type="text/css" />
+    <link rel="stylesheet" href="/public/assets/index.css?v=<%= cachebuster %>" type="text/css" />
     <meta name="viewport" content="initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
 
-    <meta name="amc-user" content="<%= ERB::Util.h(JSON.generate(user)) %>">
-    <meta name="amc-release" content="<%= ERB::Util.h(JSON.generate({r: revision_file, fn: request.function_arn, v: request.function_version})) %>">
+    <meta name="amc-user" content="<%= ERB::Util.h(JSON.generate(current_user[:claims])) %>">
+    <meta name="amc-release" content="<%= ERB::Util.h(JSON.generate({r: revision_file, fn: lambda_context.invoked_function_arn, v: lambda_context.function_version})) %>">
   </head>
 
   <body class='amc-app amc-loading'>
@@ -20,6 +20,14 @@
         <p aria-label='Loading'>😴</p>
       </div>
       <div class='amc-wait-load'>
+        <div class='amc-roles'>
+          <select id='amc-roles-select'>
+            <% @assigned_roles.each_with_index do |role, i| %>
+              <option value="<%= ERB::Util.h(role) %>" <%= i.zero? ? ' selected' : nil %>><%= ERB::Util.h(role) %></option>
+            <% end %>
+          </select>
+        </div>
+
         <nav class='actions'>
           <div class="actions-creds">
             <form action='#'>
@@ -53,14 +61,14 @@
               <h4>Envchain</h4>
               <div class='creds-response-copy'><a href='#'>Copy</a></div>
               <code><pre></pre></code>
-              <p><small>The above snippet expires in 3 minutes. <a href="" class='creds-response-url' target=_blank>Verify content?</a></small></p>
+              <p><small>The above snippet expires in 1 minutes.</small></p>
             </div>
           </div>
         </section>
       </div>
     </main>
 
-    <script src='/public/index.js?v=<%= cachebuster %>'></script>
+    <script src='/public/assets/index.js?v=<%= cachebuster %>'></script>
   </body>
 </html>
 

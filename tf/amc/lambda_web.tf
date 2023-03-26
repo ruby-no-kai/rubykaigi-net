@@ -1,3 +1,40 @@
+resource "aws_secretsmanager_secret" "params" {
+  name = "amc/params"
+}
+
+resource "aws_lambda_function" "amc-web" {
+  function_name = "amc-web"
+
+  filename         = "${path.module}/amc.zip"
+  source_code_hash = data.archive_file.amc.output_base64sha256
+  handler          = "web.Main.handle"
+  runtime          = "ruby2.7"
+  architectures    = ["arm64"]
+
+  role = aws_iam_role.amc.arn
+
+  memory_size = 128
+  timeout     = 15
+
+  environment {
+    variables = {
+      RACK_ENV = "production"
+
+      AMC_EXPECT_ISS        = "https://idp.rubykaigi.net"
+      AMC_SELF_ISS          = "https://amc.rubykaigi.net"
+      AMC_PROVIDER_ID       = "amc.rubykaigi.net"
+      AMC_SIGNING_KEY_ARN   = aws_secretsmanager_secret.signing_key.arn
+      AMC_SECRET_PARAMS_ARN = aws_secretsmanager_secret.params.arn
+      AMC_SESSION_DURATION  = tostring(3600 * 12)
+    }
+  }
+}
+
+resource "aws_lambda_function_url" "amc-web" {
+  function_name      = aws_lambda_function.amc-web.function_name
+  authorization_type = "NONE"
+}
+
 data "aws_acm_certificate" "use1-wild-rk-n" {
   provider = aws.use1
   domain   = "*.rubykaigi.net"
@@ -10,12 +47,12 @@ data "aws_cloudfront_cache_policy" "Managed-CachingDisabled" {
   name = "Managed-CachingDisabled"
 }
 
-resource "aws_cloudfront_distribution" "idp-rubykaigi-net" {
+resource "aws_cloudfront_distribution" "amc-rubykaigi-net" {
   provider        = aws.use1
   enabled         = true
   is_ipv6_enabled = true
-  comment         = "himari"
-  aliases         = ["idp.rubykaigi.net"]
+  comment         = "amc"
+  aliases         = ["amc.rubykaigi.net"]
 
   viewer_certificate {
     acm_certificate_arn      = data.aws_acm_certificate.use1-wild-rk-n.arn
@@ -26,15 +63,15 @@ resource "aws_cloudfront_distribution" "idp-rubykaigi-net" {
   logging_config {
     include_cookies = false
     bucket          = "rk-aws-logs.s3.amazonaws.com"
-    prefix          = "cf/idp.rubykaigi.net/"
+    prefix          = "cf/amc.rubykaigi.net/"
   }
 
   origin {
-    origin_id   = "himari-function-url"
-    domain_name = replace(replace(module.himari_functions.function_url, "https://", ""), "/", "")
+    origin_id   = "amc-function-url"
+    domain_name = replace(replace(aws_lambda_function_url.amc-web.function_url, "https://", ""), "/", "")
     custom_header {
       name  = "X-Forwarded-Host"
-      value = "idp.rubykaigi.net"
+      value = "amc.rubykaigi.net"
     }
     custom_origin_config {
       http_port                = 80
@@ -47,32 +84,10 @@ resource "aws_cloudfront_distribution" "idp-rubykaigi-net" {
   }
 
   ordered_cache_behavior {
-    path_pattern     = "/public/index.css"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "himari-function-url"
-
-    forwarded_values {
-      query_string = true
-      headers      = []
-      cookies {
-        forward = "none"
-      }
-    }
-
-    min_ttl     = 0
-    default_ttl = 0
-    max_ttl     = 31536000
-
-    compress               = true
-    viewer_protocol_policy = "redirect-to-https"
-  }
-
-  ordered_cache_behavior {
     path_pattern     = "/public/assets/*"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "himari-function-url"
+    target_origin_id = "amc-function-url"
 
     forwarded_values {
       query_string = true
@@ -94,7 +109,7 @@ resource "aws_cloudfront_distribution" "idp-rubykaigi-net" {
     allowed_methods = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
     cached_methods  = ["GET", "HEAD"]
 
-    target_origin_id         = "himari-function-url"
+    target_origin_id         = "amc-function-url"
     cache_policy_id          = data.aws_cloudfront_cache_policy.Managed-CachingDisabled.id
     origin_request_policy_id = data.aws_cloudfront_origin_request_policy.Managed-AllViewerExceptHostHeader.id
 

@@ -1,10 +1,24 @@
-const sendRequest = async function <T>(path: string) {
+const getSelectedRoleArn = () => {
+  const roleArnSelector =
+    document.querySelector<HTMLSelectElement>("#amc-roles-select");
+  return roleArnSelector!.value;
+};
+
+const sendRequest = async function <T>(path: string, payload?: object) {
+  const headers: { [key: string]: string } = {
+    "x-requested-with": "amc-client",
+    accept: "application/json, text/plain",
+  };
+  if (payload !== undefined)
+    headers["content-type"] = "application/json; charset=utf-8";
+
   const resp = await fetch(path, {
     method: "POST",
     mode: "same-origin",
     cache: "no-cache",
     credentials: "include",
-    headers: { "x-requested-with": "amc-client" },
+    headers: headers,
+    body: payload !== undefined ? JSON.stringify(payload) : null,
   });
   if (resp.ok) {
     return (await resp.json()) as T;
@@ -67,7 +81,10 @@ type CredsResponse = {
       expiration: string;
     };
   };
-  envchain_snippet_url: string;
+  envchain_snippet_url: {
+    url: string;
+    data: string;
+  };
 };
 
 document.querySelectorAll("div.actions-signin").forEach((elem) => {
@@ -79,7 +96,9 @@ document.querySelectorAll("div.actions-signin").forEach((elem) => {
     enableSpinner();
 
     (async () => {
-      const resp = await sendRequest<SigninResponse>("/api/signin");
+      const resp = await sendRequest<SigninResponse>("/api/signin", {
+        role_arn: getSelectedRoleArn(),
+      });
 
       const params = new URLSearchParams({
         Action: "login",
@@ -109,7 +128,9 @@ document.querySelectorAll("div.actions-creds").forEach((elem) => {
     });
 
     (async () => {
-      const resp = await sendRequest<CredsResponse>("/api/creds");
+      const resp = await sendRequest<CredsResponse>("/api/creds", {
+        role_arn: getSelectedRoleArn(),
+      });
 
       document
         .querySelectorAll(".creds-response-text.creds-response-type-export pre")
@@ -128,18 +149,10 @@ document.querySelectorAll("div.actions-creds").forEach((elem) => {
         )
         .forEach((pre) => {
           pre.innerHTML = [
-            `curl -Ssf '${resp.envchain_snippet_url}' | envchain --set aws-rk AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN >/dev/null`,
+            `curl -Ssf -d '${resp.envchain_snippet_url.data}' '${resp.envchain_snippet_url.url}' | envchain --set aws-rk AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN >/dev/null`,
             "",
           ].join("\n");
         });
-      document
-        .querySelectorAll<HTMLAnchorElement>(
-          ".creds-response-text.creds-response-type-envchain a.creds-response-url"
-        )
-        .forEach((a) => {
-          a.href = resp.envchain_snippet_url;
-        });
-
       document.querySelectorAll("div.creds-response").forEach((el) => {
         el.classList.remove("d-none");
         el.ariaLive = "assertive";

@@ -1,5 +1,8 @@
-body {
+body, button, select {
   font-family: "Segoe UI", Helvetica, sans-serif;
+}
+
+body {
   font-size: 16px;
   background-color: #FDF7EF;
   text-align: center;
@@ -21,10 +24,20 @@ main {
 
 main > header {
   text-align: center;
+  margin-bottom: 25px;
 }
 main > header img{
   max-width: 200px;
   height: auto;
+}
+
+.amc-roles {
+  text-align: center;
+  margin-bottom: 12px;
+}
+.amc-roles select {
+  font-size: 20px;
+  font-family: "Segoe UI";
 }
 
 .actions {
