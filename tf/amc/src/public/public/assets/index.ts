@@ -132,27 +132,56 @@ document.querySelectorAll("div.actions-creds").forEach((elem) => {
         role_arn: getSelectedRoleArn(),
       });
 
-      document
-        .querySelectorAll(".creds-response-text.creds-response-type-export pre")
-        .forEach((pre) => {
-          pre.innerHTML = [
-            `export AWS_ACCESS_KEY_ID='${resp.assume_role_response.credentials.access_key_id}'`,
-            `export AWS_SECRET_ACCESS_KEY='${resp.assume_role_response.credentials.secret_access_key}'`,
-            `export AWS_SESSION_TOKEN='${resp.assume_role_response.credentials.session_token}'`,
-            "",
-          ].join("\n");
-        });
-
+      const exportRaw = [
+        `export AWS_ACCESS_KEY_ID='${resp.assume_role_response.credentials.access_key_id}'`,
+        `export AWS_SECRET_ACCESS_KEY='${resp.assume_role_response.credentials.secret_access_key}'`,
+        `export AWS_SESSION_TOKEN='${resp.assume_role_response.credentials.session_token}'`,
+        "",
+      ].join("\n");
+      const exportMasked = [
+        `export AWS_ACCESS_KEY_ID='${resp.assume_role_response.credentials.access_key_id}'`,
+        `export AWS_SECRET_ACCESS_KEY='*******'`,
+        `export AWS_SESSION_TOKEN='******'`,
+        "",
+      ].join("\n");
       document
         .querySelectorAll(
-          ".creds-response-text.creds-response-type-envchain pre"
+          ".creds-response-text.creds-response-type-export pre.creds-response-raw"
         )
         .forEach((pre) => {
-          pre.innerHTML = [
-            `curl -Ssf -d '${resp.envchain_snippet_url.data}' '${resp.envchain_snippet_url.url}' | envchain --set aws-rk AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN >/dev/null`,
-            "",
-          ].join("\n");
+          pre.innerHTML = exportRaw;
         });
+      document
+        .querySelectorAll(
+          ".creds-response-text.creds-response-type-export pre.creds-response-masked"
+        )
+        .forEach((pre) => {
+          pre.innerHTML = exportMasked;
+        });
+
+      const envchainRaw = [
+        `curl -Ssf -d '${resp.envchain_snippet_url.data}' '${resp.envchain_snippet_url.url}' | envchain --set aws-rk AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN >/dev/null`,
+        "",
+      ].join("\n");
+      const envchainMasked = [
+        `curl -Ssf -d '*************************' '${resp.envchain_snippet_url.url}' | envchain --set aws-rk AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN >/dev/null`,
+        "",
+      ].join("\n");
+      document
+        .querySelectorAll(
+          ".creds-response-text.creds-response-type-envchain pre.creds-response-raw"
+        )
+        .forEach((pre) => {
+          pre.innerHTML = envchainRaw;
+        });
+      document
+        .querySelectorAll(
+          ".creds-response-text.creds-response-type-envchain pre.creds-response-masked"
+        )
+        .forEach((pre) => {
+          pre.innerHTML = envchainMasked;
+        });
+
       document.querySelectorAll("div.creds-response").forEach((el) => {
         el.classList.remove("d-none");
         el.ariaLive = "assertive";
@@ -163,13 +192,35 @@ document.querySelectorAll("div.actions-creds").forEach((elem) => {
 });
 
 document
+  .querySelectorAll<HTMLAnchorElement>(".creds-response-unmask a")
+  .forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const textEl = link.closest(".creds-response-text");
+      if (!textEl) throw new Error("textEl");
+
+      const dNone = textEl.querySelector("pre.d-none");
+      const dDefault = textEl.querySelector("pre.d-default");
+
+      if (!dNone) throw new Error("dNone");
+      if (!dDefault) throw new Error("dDefault");
+
+      dNone.classList.add("d-default");
+      dNone.classList.remove("d-none");
+      dDefault.classList.add("d-none");
+      dDefault.classList.remove("d-default");
+    });
+  });
+document
   .querySelectorAll<HTMLAnchorElement>(".creds-response-copy a")
   .forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const textEl = link.closest(".creds-response-text");
       if (!textEl) throw new Error("textEl");
-      const pre = textEl.querySelector("pre");
+      const pre = textEl.querySelector<HTMLPreElement>(
+        "pre.creds-response-raw"
+      );
       if (!pre) throw new Error("pre");
 
       (async () => {

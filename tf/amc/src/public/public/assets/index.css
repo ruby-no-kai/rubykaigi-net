@@ -76,17 +76,24 @@ main > header img, main > footer img {
   margin-bottom: 3px;
 }
 
-.creds-response-copy a {
+.creds-response-actions div {
+  display: inline-block;
+}
+.creds-response-actions a, .creds-response-actions a {
   display: inline-block;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   border: 1px solid #4c6441;
   border-radius: 4px;
-  background: #2c2c21;
   color: #FFF;
   padding: 2px 5px;
-  
+}
+.creds-response-copy a {
+  background: #2c2c21;
+}
+.creds-response-unmask a {
+  background: #2c2c21;
 }
 
 .creds-response-text pre {
