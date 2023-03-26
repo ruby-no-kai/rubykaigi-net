@@ -1,7 +1,7 @@
 # private key to generate JWT
 
 resource "aws_secretsmanager_secret" "signing_key" {
-  name = "nw-amc-signing-key"
+  name = "amc/signing-key"
 }
 
 resource "aws_secretsmanager_secret_rotation" "signing_key" {
@@ -13,13 +13,13 @@ resource "aws_secretsmanager_secret_rotation" "signing_key" {
   }
 
   depends_on = [
-    aws_iam_role_policy.amc,
+    aws_iam_role_policy.amc-signingkey,
     aws_lambda_permission.signing_key_rotation,
   ]
 }
 
 resource "aws_lambda_function" "signing_key_rotation" {
-  function_name = "rknw-amc-key-rotation"
+  function_name = "amc-keyrotation"
 
   filename         = "${path.module}/amc.zip"
   source_code_hash = data.archive_file.amc.output_base64sha256

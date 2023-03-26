@@ -8,5 +8,6 @@ resource "aws_iam_openid_connect_provider" "amc" {
 }
 
 data "external" "amc-ca-thumbprint" {
-  program = ["${path.module}/ca_thumbprint.sh", "amc.rubykaigi.net"]
+  program    = ["${path.module}/ca_thumbprint.sh", "amc.rubykaigi.net"]
+  depends_on = [aws_route53_record.amc_rubykaigi_net]
 }
