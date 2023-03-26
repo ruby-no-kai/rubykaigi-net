@@ -25,6 +25,11 @@ data "aws_iam_policy_document" "NocAdmin-trust" {
         "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/amc.rubykaigi.net",
       ]
     }
+    condition {
+      test     = "StringLike"
+      variable = "amc.rubykaigi.net:sub"
+      values   = ["NocAdmin:*"]
+    }
   }
 }
 
@@ -116,7 +121,9 @@ resource "aws_iam_role_policy" "nocadmin-iam-with-boundary" {
 
 data "aws_iam_policy_document" "nocadmin-iam-with-boundary" {
   statement {
+    effect = "Allow"
     actions = [
+      "iam:AddRoleToInstanceProfile",
       "iam:CreateInstanceProfile",
       "iam:CreateOpenIDConnectProvider",
       "iam:CreatePolicy",
@@ -136,11 +143,11 @@ data "aws_iam_policy_document" "nocadmin-iam-with-boundary" {
       "iam:UpdateAssumeRolePolicy",
       "iam:Untag*",
     ]
-
     resources = ["*"]
   }
 
   statement {
+    effect = "Allow"
     actions = [
       "iam:AttachRolePolicy",
       "iam:CreateRole",
@@ -158,5 +165,15 @@ data "aws_iam_policy_document" "nocadmin-iam-with-boundary" {
 
       values = [aws_iam_policy.nocadmin-base.arn]
     }
+  }
+
+  statement {
+    effect  = "Deny"
+    actions = ["*"]
+    resources = [
+      "arn:aws:iam::005216166247:role/FederatedAdmin",
+      "arn:aws:iam::005216166247:role/OrgzAdmin",
+      "arn:aws:iam::005216166247:role/KaigiStaff",
+    ]
   }
 }
