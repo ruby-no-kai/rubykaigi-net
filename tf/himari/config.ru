@@ -23,7 +23,7 @@ use(Himari::Middlewares::Config,
   ],
   storage: Himari::Aws::DynamodbStorage.new(table_name: ENV.fetch('HIMARI_DYNAMODB_TABLE')),
   custom_messages: {
-    title: 'KaigiAuth: Login',
+    title: 'KaigiStaff Login',
     footer: <<~EOH,
        <p>
         <small>
@@ -67,12 +67,12 @@ use(Himari::Middlewares::Client,
   secret: 'testlbsecret',
   redirect_uris: %w(https://test-lb.rubykaigi.net/oauth2/idpresponse),
 )
-#use(Himari::Middlewares::Client,
-#  name: 'awsalb',
-#  id: '...',
-#  secret_hash: '...', # Digest::SHA384.hexdigest of actual secret
-#  redirect_uris: %w(https://app.example.net/oauth2/idpresponse),
-#)
+use(Himari::Middlewares::Client,
+  name: 'amc',
+  id: '87a353c4-f268-4399-ade3-de8f06cbc172',
+  secret_hash: 'f6d8f4422bb0e7c0443cbe85cc4ef4e1b5f23c7efe76dfe1d87f7de793a7082701df5a8d08f446bb04ec1e07520474cd', # sha384.hexdigest
+  redirect_uris: %w(https://amc.rubykaigi.net/auth/himari/callback),
+)
 
 #### CLAIMS RULE: GitHub
 
@@ -107,6 +107,7 @@ use(Himari::Middlewares::ClaimsRule, name: 'github-oauth-teams') do |context, de
 
   teams_in_scope = [
     'ruby-no-kai/rk-noc',
+    'ruby-no-kai/rk-aws-admin',
     'ruby-no-kai/rko-infra',
     %r{\Aruby-no-kai/rk\d+-orgz\z},
   ]
@@ -148,10 +149,36 @@ use(Himari::Middlewares::AuthorizationRule, name: 'default') do |context, decisi
   )
 
   if available_for_everyone.include?(context.client.name)
-    next decision.allow! 
+    next decision.allow!
   end
 
   decision.skip!
+end
+use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, decision|
+  next decision.skip!('client not in scope') unless context.client.name == 'amc'
+  next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
+
+  groups = decision.claims.dig(:groups)
+  roles = []
+
+  if groups.include?('ruby-no-kai/rk-aws-admin')
+    roles.push('arn:aws:iam::005216166247:role/OrgzAdmin') 
+  end
+  if groups.include?('ruby-no-kai/rk-noc')
+    roles.push('arn:aws:iam::005216166247:role/NocAdmin') 
+  end
+  if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk23-orgz')
+    roles.push('arn:aws:iam::005216166247:role/KaigiStaff')
+  end
+
+  decision.claims[:roles] = roles
+  decision.allowed_claims.push(:roles)
+
+  unless roles.empty?
+    next decision.allow!
+  end
+
+  decision.skip!('no roles assigned')
 end
 
 run Himari::App

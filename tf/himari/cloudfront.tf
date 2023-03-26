@@ -108,5 +108,3 @@ resource "aws_cloudfront_distribution" "idp-rubykaigi-net" {
     }
   }
 }
-
-
