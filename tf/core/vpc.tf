@@ -255,21 +255,33 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-link" {
   route_table_id = aws_route_table.onpremises-link_rtb.id
 }
 
-#resource "aws_eip" "nat" {
+resource "aws_eip" "nat-c" {
+  vpc = true
+  tags = {
+    Name = "nat-c"
+  }
+}
+resource "aws_nat_gateway" "nat-c" {
+  allocation_id = aws_eip.nat-c.id
+  subnet_id     = aws_subnet.c_public.id
+}
+resource "aws_route" "private_nat" {
+  route_table_id         = aws_route_table.private_rtb.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat-c.id
+}
+#resource "aws_eip" "nat-d" {
 #  vpc = true
 #  tags = {
-#    Name = "nat"
+#    Name = "nat-d"
 #  }
 #}
-#resource "aws_nat_gateway" "nat" {
-#  allocation_id = aws_eip.nat.id
-#  subnet_id     = aws_subnet.c_public.id
+#resource "aws_nat_gateway" "nat-d" {
+#  allocation_id = aws_eip.nat-d.id
+#  subnet_id     = aws_subnet.d_public.id
 #}
-#resource "aws_route" "private_nat" {
-#  route_table_id         = aws_route_table.private_rtb.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.nat.id
-#}
+
+
 
 #resource "aws_nat_gateway" "onpremises-c" {
 #  subnet_id         = aws_subnet.c_onpremises_link.id
