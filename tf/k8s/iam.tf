@@ -1,9 +1,9 @@
 module "iam" {
   source  = "cookpad/eks/aws//modules/iam"
-  version = "~> 1.22"
+  version = "~> 1.23"
 
-  service_role_name = "NwEksServiceRole"
-  node_role_name    = "NwEksNode"
+  service_role_name = "NetEksServiceRole"
+  node_role_name    = "NetEksNode"
 }
 
 data "aws_iam_role" "FederatedAdmin" {

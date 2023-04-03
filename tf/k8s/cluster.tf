@@ -1,9 +1,8 @@
 module "cluster" {
-  # https://github.com/cookpad/terraform-aws-eks/pull/325
-  source = "github.com/cookpad/terraform-aws-eks//modules/cluster?ref=5868115d4cc178a6ca7396251c13df4f608555fd"
-  #source = "cookpad/eks/aws//modules/cluster"
+  source  = "cookpad/eks/aws//modules/cluster"
+  version = "~> 1.23"
 
-  name = "rk22"
+  name = "rk23"
 
   iam_config = module.iam.config
   vpc_config = {

@@ -1,7 +1,7 @@
 resource "helm_release" "load-balancer-controller" {
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
-  version    = "1.4.4" # 2.4.3
+  version    = "1.4.8" # 2.4.6
 
   name      = "aws-load-balancer-controller"
   namespace = "kube-system"
@@ -17,7 +17,7 @@ resource "helm_release" "load-balancer-controller" {
   }
   set {
     name  = "clusterName"
-    value = "rk22"
+    value = "rk23"
   }
 }
 
@@ -55,11 +55,11 @@ resource "aws_iam_role_policy" "load-balancer-controller" {
 }
 
 data "http" "load-balancer-controller-policy" {
-  url = "https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.3/docs/install/iam_policy.json"
+  url = "https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/4ecd10c76b559251dabf7c74421b04f0d5678a6c/docs/install/iam_policy.json"
 
   lifecycle {
     postcondition {
-      condition     = sha512(self.response_body) == "5101cc61f3b11a7dca012c55cc5fe3939f7c9bdfcf2afe3ffe78a67cb5cc179ea0ca8fd07e3938e76c7b5b3f51ca8a64b86eb5833ec5fd354575eed2cf476a05"
+      condition     = sha512(self.response_body) == "adb65a821563336991123a2de8004cb7cf77a8638e201fe6417353881b4462b1583f3e12c79e041327a499dbfb20471611cfb5b33584e1d76d03fa6d82ff24ea"
       error_message = "checksum mismatch"
     }
   }
