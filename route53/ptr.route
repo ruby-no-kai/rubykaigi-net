@@ -1,0 +1,10 @@
+# vi: set ft=ruby :
+
+hosted_zone "10.in-addr.arpa.", "ZXVREYZ84QE7Y" do
+  include_template "vpcs"
+  include_template "hosts-ptr-10"
+end
+
+hosted_zone "a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa." do
+  include_template "hosts-ptr-ip6"
+end

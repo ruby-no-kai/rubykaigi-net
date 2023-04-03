@@ -1,0 +1,44 @@
+# vim: ft=ruby
+require 'json'
+
+HOSTS_DATA = JSON.parse(File.read(File.join(__dir__, 'hosts.json')), symbolize_names: true).fetch(:records)
+
+template 'hosts-ptr-10' do
+  HOSTS_DATA.each do |host|
+    next unless host.fetch(:zone) == 'ptr-10'
+    rrset(host.fetch(:name), host.fetch(:type)) do
+      ttl 60
+      resource_records(*host.fetch(:records))
+    end
+  end
+end
+
+template 'hosts-ptr-ip6' do
+  HOSTS_DATA.each do |host|
+    next unless host.fetch(:zone) == 'ptr-ip6'
+    rrset(host.fetch(:name), host.fetch(:type)) do
+      ttl 60
+      resource_records(*host.fetch(:records))
+    end
+  end
+end
+
+template 'hosts-rubykaigi.net-private' do
+  HOSTS_DATA.each do |host|
+    next unless host.fetch(:zone) == 'rubykaigi.net-private'
+    rrset(host.fetch(:name), host.fetch(:type)) do
+      ttl 60
+      resource_records(*host.fetch(:records))
+    end
+  end
+end
+
+template 'hosts-rubykaigi.net-common' do
+  HOSTS_DATA.each do |host|
+    next unless host.fetch(:zone) == 'rubykaigi.net-common'
+    rrset(host.fetch(:name), host.fetch(:type)) do
+      ttl 60
+      resource_records(*host.fetch(:records))
+    end
+  end
+end

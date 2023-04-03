@@ -1,0 +1,9 @@
+# vim: ft=ruby
+#require_relative '../cnw/misc/ensure-aws-account.rb'
+
+require 'vpc.route'
+require 'hosts.route'
+
+require 'rubykaigi.net.route'
+require 'nw.rubykaigi.org.route'
+require 'ptr.route'

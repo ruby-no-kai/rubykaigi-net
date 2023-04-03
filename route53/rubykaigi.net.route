@@ -1,0 +1,45 @@
+# vi: set ft=ruby :
+#
+# Use Terraform as much as possible.
+
+template 'rubykaigi.net-common' do
+  ignore 'rubykaigi.net.'
+  ignore '_dmarc.rubykaigi.net.'
+
+  ignore 'takeout-app-origin.rubykaigi.net.'
+
+  ignore(/_acme-challenge/)
+  ignore '_66c28117835ab26e5f882e6866d2e00a.rubykaigi.net.'
+
+  ignore 'amc.rubykaigi.net'
+  ignore 'idp.rubykaigi.net'
+  ignore 'grafana.rubykaigi.net'
+  ignore 'prometheus.rubykaigi.net'
+  ignore 'alertmanager.rubykaigi.net'
+
+  ignore 'ops-lb.rubykaigi.net'
+
+  ignore(/^bastion[^.]*\.rubykaigi\.net$/)
+end
+
+template 'rubykaigi.net-public' do
+end
+
+template 'rubykaigi.net-private' do
+end
+
+hosted_zone "rubykaigi.net.", "Z0666077CULB2VMXZP9C" do
+  include_template "rubykaigi.net-common"
+  include_template "rubykaigi.net-public"
+
+  include_template "hosts-rubykaigi.net-common"
+end
+
+hosted_zone "rubykaigi.net.", "Z05547502KT77L0O53UWK" do
+  include_template "vpcs"
+  include_template "rubykaigi.net-common"
+  include_template "rubykaigi.net-private"
+
+  include_template "hosts-rubykaigi.net-common"
+  include_template "hosts-rubykaigi.net-private"
+end

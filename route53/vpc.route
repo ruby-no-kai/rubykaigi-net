@@ -1,0 +1,6 @@
+# vim: ft=ruby
+
+template "vpcs" do
+  vpc "ap-northeast-1", 'vpc-004eca6fe0bf3494d' # rubykaigi
+  vpc "ap-northeast-1", 'vpc-7ed78e19' # ?
+end
