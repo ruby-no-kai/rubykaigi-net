@@ -228,7 +228,7 @@ resource "aws_route_table" "onpremises-d" {
   }
 }
 
-resource "aws_route_table" "onpremises-link_rtb" {
+resource "aws_route_table" "onpremises-link" {
   vpc_id = aws_vpc.main.id
   tags = {
     Name = "rk-onpremises-link"
@@ -257,7 +257,7 @@ resource "aws_route_table_association" "onpremises-d" {
 resource "aws_route_table_association" "onpremises-link" {
   for_each       = local.onpremises_link_subnet_ids
   subnet_id      = each.value
-  route_table_id = aws_route_table.onpremises-link_rtb.id
+  route_table_id = aws_route_table.onpremises-link.id
 }
 
 resource "aws_vpn_gateway" "main" {
@@ -285,7 +285,7 @@ resource "aws_vpn_gateway_route_propagation" "main-private-d" {
 }
 resource "aws_vpn_gateway_route_propagation" "main-onpremises-link" {
   vpn_gateway_id = aws_vpn_gateway.main.id
-  route_table_id = aws_route_table.onpremises-link_rtb.id
+  route_table_id = aws_route_table.onpremises-link.id
 }
 
 resource "aws_eip" "nat-c" {
@@ -335,3 +335,8 @@ resource "aws_route" "private_nat" {
 #  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
 #}
 
+
+moved {
+  from = aws_route_table.onpremises-link_rtb
+  to   = aws_route_table.onpremises-link
+}
