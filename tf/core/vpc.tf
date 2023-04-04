@@ -147,9 +147,18 @@ locals {
   private_subnet_ids         = toset([aws_subnet.c_private.id, aws_subnet.d_private.id])
   onpremises_subnet_ids      = toset([aws_subnet.c_onpremises.id, aws_subnet.d_onpremises.id])
   onpremises_link_subnet_ids = toset([aws_subnet.c_onpremises_link.id, aws_subnet.d_onpremises_link.id])
+
+  rtb_ids = {
+    "public-*"     = aws_route_table.public.id
+    "private-*"    = aws_route_table.private.id
+    "private-c"    = aws_route_table.private-c.id
+    "private-d"    = aws_route_table.private-d.id
+    "onpremises-c" = aws_route_table.onpremises-c.id
+    "onpremises-d" = aws_route_table.onpremises-d.id
+  }
 }
 
-resource "aws_route_table" "public_rtb" {
+resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
   tags = {
     Name = "rk-public"
@@ -157,45 +166,54 @@ resource "aws_route_table" "public_rtb" {
   }
 }
 resource "aws_route" "public_v4_default" {
-  route_table_id         = aws_route_table.public_rtb.id
+  route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.igw.id
 }
 resource "aws_route" "public_v6_default" {
-  route_table_id              = aws_route_table.public_rtb.id
+  route_table_id              = aws_route_table.public.id
   destination_ipv6_cidr_block = "::/0"
   gateway_id                  = aws_internet_gateway.igw.id
 }
 
 
-resource "aws_route_table" "private_rtb" {
+resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
   tags = {
     Name = "rk-private"
     Tier = "private"
   }
 }
+resource "aws_route_table" "private-c" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "rk-private-c"
+    Tier = "private"
+  }
+}
+resource "aws_route_table" "private-d" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "rk-private-d"
+    Tier = "private"
+  }
+}
 resource "aws_route" "private_v6_default" {
-  route_table_id              = aws_route_table.private_rtb.id
+  for_each = { for k, v in local.rtb_ids : k => v if startswith(k, "private-") }
+
+  route_table_id              = each.value
   destination_ipv6_cidr_block = "::/0"
   egress_only_gateway_id      = aws_egress_only_internet_gateway.eigw.id
 }
 
-resource "aws_route_table" "onpremises_rtb" {
-  vpc_id = aws_vpc.main.id
-  tags = {
-    Name = "rk-onpremises"
-    Tier = "onpremises"
-  }
-}
-resource "aws_route_table" "onpremises-c_rtb" {
+resource "aws_route_table" "onpremises-c" {
   vpc_id = aws_vpc.main.id
   tags = {
     Name = "rk-onpremises-c"
     Tier = "onpremises"
   }
 }
-resource "aws_route_table" "onpremises-d_rtb" {
+resource "aws_route_table" "onpremises-d" {
   vpc_id = aws_vpc.main.id
   tags = {
     Name = "rk-onpremises-d"
@@ -203,7 +221,7 @@ resource "aws_route_table" "onpremises-d_rtb" {
   }
 }
 
-resource "aws_route_table" "onpremises-link_rtb" {
+resource "aws_route_table" "onpremises-link" {
   vpc_id = aws_vpc.main.id
   tags = {
     Name = "rk-onpremises-link"
@@ -214,25 +232,28 @@ resource "aws_route_table" "onpremises-link_rtb" {
 resource "aws_route_table_association" "public" {
   for_each       = local.public_subnet_ids
   subnet_id      = each.value
-  route_table_id = aws_route_table.public_rtb.id
+  route_table_id = aws_route_table.public.id
 }
-resource "aws_route_table_association" "private" {
-  for_each       = local.private_subnet_ids
-  subnet_id      = each.value
-  route_table_id = aws_route_table.private_rtb.id
+resource "aws_route_table_association" "private-c" {
+  subnet_id      = aws_subnet.c_private.id
+  route_table_id = aws_route_table.private-c.id
+}
+resource "aws_route_table_association" "private-d" {
+  subnet_id      = aws_subnet.d_private.id
+  route_table_id = aws_route_table.private-d.id
 }
 resource "aws_route_table_association" "onpremises-c" {
   subnet_id      = aws_subnet.c_onpremises.id
-  route_table_id = aws_route_table.onpremises-c_rtb.id
+  route_table_id = aws_route_table.onpremises-c.id
 }
 resource "aws_route_table_association" "onpremises-d" {
   subnet_id      = aws_subnet.d_onpremises.id
-  route_table_id = aws_route_table.onpremises-d_rtb.id
+  route_table_id = aws_route_table.onpremises-d.id
 }
 resource "aws_route_table_association" "onpremises-link" {
   for_each       = local.onpremises_link_subnet_ids
   subnet_id      = each.value
-  route_table_id = aws_route_table.onpremises-link_rtb.id
+  route_table_id = aws_route_table.onpremises-link.id
 }
 
 resource "aws_vpn_gateway" "main" {
@@ -244,60 +265,103 @@ resource "aws_vpn_gateway" "main" {
 
 resource "aws_vpn_gateway_route_propagation" "main-public" {
   vpn_gateway_id = aws_vpn_gateway.main.id
-  route_table_id = aws_route_table.public_rtb.id
+  route_table_id = aws_route_table.public.id
 }
 resource "aws_vpn_gateway_route_propagation" "main-private" {
   vpn_gateway_id = aws_vpn_gateway.main.id
-  route_table_id = aws_route_table.private_rtb.id
+  route_table_id = aws_route_table.private.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-private-c" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.private-c.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-private-d" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.private-d.id
 }
 resource "aws_vpn_gateway_route_propagation" "main-onpremises-link" {
   vpn_gateway_id = aws_vpn_gateway.main.id
-  route_table_id = aws_route_table.onpremises-link_rtb.id
+  route_table_id = aws_route_table.onpremises-link.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-onpremises-c" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.onpremises-c.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.onpremises-d.id
 }
 
 resource "aws_eip" "nat-c" {
   vpc = true
   tags = {
-    Name = "nat-c"
+    Name    = "nat-c"
+    Project = "rk23net"
   }
 }
 resource "aws_nat_gateway" "nat-c" {
   allocation_id = aws_eip.nat-c.id
   subnet_id     = aws_subnet.c_public.id
+  tags = {
+    Name    = "nat-c"
+    Project = "rk23net"
+  }
 }
 resource "aws_route" "private_nat" {
-  route_table_id         = aws_route_table.private_rtb.id
+  route_table_id         = aws_route_table.private.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat-c.id
 }
-#resource "aws_eip" "nat-d" {
-#  vpc = true
-#  tags = {
-#    Name = "nat-d"
-#  }
-#}
-#resource "aws_nat_gateway" "nat-d" {
-#  allocation_id = aws_eip.nat-d.id
-#  subnet_id     = aws_subnet.d_public.id
-#}
+resource "aws_route" "private-c_v4_default" {
+  route_table_id         = aws_route_table.private-c.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat-c.id
+}
 
+resource "aws_eip" "nat-d" {
+  vpc = true
+  tags = {
+    Name    = "nat-d"
+    Project = "rk23net"
+  }
+}
+resource "aws_nat_gateway" "nat-d" {
+  allocation_id = aws_eip.nat-d.id
+  subnet_id     = aws_subnet.d_public.id
+  tags = {
+    Name    = "nat-d"
+    Project = "rk23net"
+  }
+}
+resource "aws_route" "private-d_v4_default" {
+  route_table_id         = aws_route_table.private-d.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat-d.id
+}
 
-
-#resource "aws_nat_gateway" "onpremises-c" {
-#  subnet_id         = aws_subnet.c_onpremises_link.id
-#  connectivity_type = "private"
-#}
-#resource "aws_nat_gateway" "onpremises-d" {
-#  subnet_id         = aws_subnet.d_onpremises_link.id
-#  connectivity_type = "private"
-#}
-#resource "aws_route" "onpremises_c_nat" {
-#  route_table_id         = aws_route_table.onpremises-c_rtb.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
-#}
-#resource "aws_route" "onpremises_d_nat" {
-#  route_table_id         = aws_route_table.onpremises-d_rtb.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
-#}
+resource "aws_nat_gateway" "onpremises-c" {
+  subnet_id         = aws_subnet.c_onpremises_link.id
+  connectivity_type = "private"
+  tags = {
+    Name    = "onpremises-c"
+    Project = "rk23net"
+  }
+}
+resource "aws_nat_gateway" "onpremises-d" {
+  subnet_id         = aws_subnet.d_onpremises_link.id
+  connectivity_type = "private"
+  tags = {
+    Name    = "onpremises-d"
+    Project = "rk23net"
+  }
+}
+resource "aws_route" "onpremises-c_v4_default" {
+  route_table_id         = aws_route_table.onpremises-c.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
+}
+resource "aws_route" "onpremises-d_v4_default" {
+  route_table_id         = aws_route_table.onpremises-d.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
+}
