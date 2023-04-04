@@ -287,6 +287,14 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-link" {
   vpn_gateway_id = aws_vpn_gateway.main.id
   route_table_id = aws_route_table.onpremises-link.id
 }
+resource "aws_vpn_gateway_route_propagation" "main-onpremises-c" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.onpremises-c.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.onpremises-d.id
+}
 
 resource "aws_eip" "nat-c" {
   vpc = true
