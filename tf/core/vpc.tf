@@ -147,6 +147,15 @@ locals {
   private_subnet_ids         = toset([aws_subnet.c_private.id, aws_subnet.d_private.id])
   onpremises_subnet_ids      = toset([aws_subnet.c_onpremises.id, aws_subnet.d_onpremises.id])
   onpremises_link_subnet_ids = toset([aws_subnet.c_onpremises_link.id, aws_subnet.d_onpremises_link.id])
+
+  rtb_ids = {
+    "public-*"     = aws_route_table.public_rtb.id
+    "private-*"    = aws_route_table.private_rtb.id
+    "private-c"    = aws_route_table.private-c.id
+    "private-d"    = aws_route_table.private-d.id
+    "onpremises-c" = aws_route_table.onpremises-c_rtb.id
+    "onpremises-d" = aws_route_table.onpremises-d_rtb.id
+  }
 }
 
 resource "aws_route_table" "public_rtb" {
@@ -175,10 +184,30 @@ resource "aws_route_table" "private_rtb" {
     Tier = "private"
   }
 }
+resource "aws_route_table" "private-c" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "rk-private-c"
+    Tier = "private"
+  }
+}
+resource "aws_route_table" "private-d" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "rk-private-d"
+    Tier = "private"
+  }
+}
 resource "aws_route" "private_v6_default" {
-  route_table_id              = aws_route_table.private_rtb.id
+  for_each = { for k, v in local.rtb_ids : k => v if startswith(k, "private-") }
+
+  route_table_id              = each.value
   destination_ipv6_cidr_block = "::/0"
   egress_only_gateway_id      = aws_egress_only_internet_gateway.eigw.id
+}
+moved {
+  from = aws_route.private_v6_default
+  to   = aws_route.private_v6_default["private-*"]
 }
 
 resource "aws_route_table" "onpremises_rtb" {
@@ -249,6 +278,14 @@ resource "aws_vpn_gateway_route_propagation" "main-public" {
 resource "aws_vpn_gateway_route_propagation" "main-private" {
   vpn_gateway_id = aws_vpn_gateway.main.id
   route_table_id = aws_route_table.private_rtb.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-private-c" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.private-c.id
+}
+resource "aws_vpn_gateway_route_propagation" "main-private-d" {
+  vpn_gateway_id = aws_vpn_gateway.main.id
+  route_table_id = aws_route_table.private-d.id
 }
 resource "aws_vpn_gateway_route_propagation" "main-onpremises-link" {
   vpn_gateway_id = aws_vpn_gateway.main.id
