@@ -241,10 +241,13 @@ resource "aws_route_table_association" "public" {
   subnet_id      = each.value
   route_table_id = aws_route_table.public.id
 }
-resource "aws_route_table_association" "private" {
-  for_each       = local.private_subnet_ids
-  subnet_id      = each.value
-  route_table_id = aws_route_table.private.id
+resource "aws_route_table_association" "private-c" {
+  subnet_id      = aws_subnet.c_private.id
+  route_table_id = aws_route_table.private-c.id
+}
+resource "aws_route_table_association" "private-d" {
+  subnet_id      = aws_subnet.d_private.id
+  route_table_id = aws_route_table.private-d.id
 }
 resource "aws_route_table_association" "onpremises-c" {
   subnet_id      = aws_subnet.c_onpremises.id
