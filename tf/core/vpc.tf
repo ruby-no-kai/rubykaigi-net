@@ -206,13 +206,6 @@ resource "aws_route" "private_v6_default" {
   egress_only_gateway_id      = aws_egress_only_internet_gateway.eigw.id
 }
 
-resource "aws_route_table" "onpremises_rtb" {
-  vpc_id = aws_vpc.main.id
-  tags = {
-    Name = "rk-onpremises"
-    Tier = "onpremises"
-  }
-}
 resource "aws_route_table" "onpremises-c" {
   vpc_id = aws_vpc.main.id
   tags = {
