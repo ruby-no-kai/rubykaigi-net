@@ -1,3 +1,4 @@
+require 'json'
 require 'ipaddr'
 
 host_lines = File.read(File.join(__dir__, 'hosts.txt'))
@@ -31,7 +32,7 @@ hosts.each do |host_ips|
     if host.primary
       # v6 may not be able for management, so...
       if v6
-        rrsets.push(RRSet.new(zone, fqdn6, 'AAAA', [host.ip, true]))
+        rrsets.push(RRSet.new(zone, fqdn6, 'AAAA', [host.ip], true))
       else
         rrsets.push(RRSet.new(zone,  "#{rev}.", 'PTR', [fqdn]))
         rrsets.push(RRSet.new(zone, fqdn6, 'A', [host.ip]))
@@ -50,29 +51,23 @@ parts = []
 rrsets.uniq { |rr|  [rr.type, rr.name] }.each do |rr|
   zone = case
          when rr.type == 'PTR' && rr.zone == :private
-           "  zone_id = data.aws_route53_zone.ptr-10.zone_id"
+           'ptr-10'
          when rr.zone == :private
-           "  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id"
+           'rubykaigi.net-private'
          when rr.name.match?(/(?:\.|^)rubykaigi\.net\.$/)
-           "  for_each = local.rubykaigi_net_zones\n  zone_id  = each.value\n"
+           'rubykaigi.net-common'
          when rr.name.match?(/(?:\.|^)a\.c\.0\.0\.5\.8\.0\.f\.d\.0\.1\.0\.0\.2\.ip6\.arpa\.$/)
-           "  zone_id = aws_route53_zone.ptr-ip6.zone_id"
+           'ptr-ip6'
          else
            warn "Unknown zone: #{rr.inspect}"
            next
          end
-  parts.push <<~EOF
-    resource "aws_route53_record" "host_#{rr.name.tr('.','_').sub(/_$/,'')}_#{rr.type}" {
-    #{zone}
-
-      name = "#{rr.name.sub(/\.$/,'')}"
-      type = "#{rr.type}"
-      ttl  = 60
-      records = [
-        "#{rr.records[0]}",
-      ]
-    }
-  EOF
+  parts.push(
+    zone: zone,
+    name: rr.name,
+    type: rr.type,
+    records: rr.records,
+  )
 end
 
 
@@ -80,5 +75,6 @@ deadman = rrsets.select(&:primary).uniq { |rr|  [rr.type, rr.name] }.map do |rr|
   "#{rr.name} #{rr.records[0]}"
 end
 
-File.write "tf/dns-hosts/hosts.tf", parts.join(?\n)
+#File.write "tf/dns-hosts/hosts.tf", parts.join(?\n)
+File.write "route53/hosts.json", "#{JSON.pretty_generate(records: parts)}\n"
 File.write "deadman.conf", deadman.join(?\n)
