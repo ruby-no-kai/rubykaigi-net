@@ -299,30 +299,49 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
 resource "aws_eip" "nat-c" {
   vpc = true
   tags = {
-    Name = "nat-c"
+    Name    = "nat-c"
+    Project = "rk23net"
   }
 }
 resource "aws_nat_gateway" "nat-c" {
   allocation_id = aws_eip.nat-c.id
   subnet_id     = aws_subnet.c_public.id
+  tags = {
+    Name    = "nat-c"
+    Project = "rk23net"
+  }
 }
 resource "aws_route" "private_nat" {
   route_table_id         = aws_route_table.private.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat-c.id
 }
-#resource "aws_eip" "nat-d" {
-#  vpc = true
-#  tags = {
-#    Name = "nat-d"
-#  }
-#}
-#resource "aws_nat_gateway" "nat-d" {
-#  allocation_id = aws_eip.nat-d.id
-#  subnet_id     = aws_subnet.d_public.id
-#}
+resource "aws_route" "private-c_v4_default" {
+  route_table_id         = aws_route_table.private-c.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat-c.id
+}
 
-
+resource "aws_eip" "nat-d" {
+  vpc = true
+  tags = {
+    Name    = "nat-d"
+    Project = "rk23net"
+  }
+}
+resource "aws_nat_gateway" "nat-d" {
+  allocation_id = aws_eip.nat-d.id
+  subnet_id     = aws_subnet.d_public.id
+  tags = {
+    Name    = "nat-d"
+    Project = "rk23net"
+  }
+}
+resource "aws_route" "private-d_v4_default" {
+  route_table_id         = aws_route_table.private-d.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat-d.id
+}
 
 #resource "aws_nat_gateway" "onpremises-c" {
 #  subnet_id         = aws_subnet.c_onpremises_link.id
