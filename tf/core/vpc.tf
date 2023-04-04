@@ -205,10 +205,6 @@ resource "aws_route" "private_v6_default" {
   destination_ipv6_cidr_block = "::/0"
   egress_only_gateway_id      = aws_egress_only_internet_gateway.eigw.id
 }
-moved {
-  from = aws_route.private_v6_default
-  to   = aws_route.private_v6_default["private-*"]
-}
 
 resource "aws_route_table" "onpremises_rtb" {
   vpc_id = aws_vpc.main.id
@@ -339,19 +335,3 @@ resource "aws_route" "private_nat" {
 #  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
 #}
 
-moved {
-  from = aws_route_table.public_rtb
-  to   = aws_route_table.public
-}
-moved {
-  from = aws_route_table.private_rtb
-  to   = aws_route_table.private
-}
-moved {
-  from = aws_route_table.onpremises-c_rtb
-  to   = aws_route_table.onpremises-c
-}
-moved {
-  from = aws_route_table.onpremises-d_rtb
-  to   = aws_route_table.onpremises-d
-}
