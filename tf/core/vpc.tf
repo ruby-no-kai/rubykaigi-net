@@ -339,27 +339,29 @@ resource "aws_route" "private-d_v4_default" {
   nat_gateway_id         = aws_nat_gateway.nat-d.id
 }
 
-#resource "aws_nat_gateway" "onpremises-c" {
-#  subnet_id         = aws_subnet.c_onpremises_link.id
-#  connectivity_type = "private"
-#}
-#resource "aws_nat_gateway" "onpremises-d" {
-#  subnet_id         = aws_subnet.d_onpremises_link.id
-#  connectivity_type = "private"
-#}
-#resource "aws_route" "onpremises_c_nat" {
-#  route_table_id         = aws_route_table.onpremises-c.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
-#}
-#resource "aws_route" "onpremises_d_nat" {
-#  route_table_id         = aws_route_table.onpremises-d.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
-#}
-
-
-moved {
-  from = aws_route_table.onpremises-link_rtb
-  to   = aws_route_table.onpremises-link
+resource "aws_nat_gateway" "onpremises-c" {
+  subnet_id         = aws_subnet.c_onpremises_link.id
+  connectivity_type = "private"
+  tags = {
+    Name    = "onpremises-c"
+    Project = "rk23net"
+  }
+}
+resource "aws_nat_gateway" "onpremises-d" {
+  subnet_id         = aws_subnet.d_onpremises_link.id
+  connectivity_type = "private"
+  tags = {
+    Name    = "onpremises-d"
+    Project = "rk23net"
+  }
+}
+resource "aws_route" "onpremises-c_v4_default" {
+  route_table_id         = aws_route_table.onpremises-c.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
+}
+resource "aws_route" "onpremises-d_v4_default" {
+  route_table_id         = aws_route_table.onpremises-d.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
 }

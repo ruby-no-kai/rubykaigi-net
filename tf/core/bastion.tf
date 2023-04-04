@@ -73,7 +73,8 @@ resource "aws_instance" "bastion" {
   user_data = file("./bastion.yml")
 
   tags = {
-    Name = "bastion"
+    Name    = "bastion"
+    Project = "rk23net"
   }
   lifecycle {
     ignore_changes = [ami]
