@@ -16,10 +16,14 @@ template 'rubykaigi.net-common' do
   ignore 'grafana.rubykaigi.net'
   ignore 'prometheus.rubykaigi.net'
   ignore 'alertmanager.rubykaigi.net'
+  ignore 'wlc.rubykaigi.net'
 
   ignore 'ops-lb.rubykaigi.net'
 
   ignore(/^bastion[^.]*\.rubykaigi\.net$/)
+
+  ignore(/^cisco-capwap-controller\./i)
+  ignore_under 'db.apne1.rubykaigi.net'
 end
 
 template 'rubykaigi.net-public' do
