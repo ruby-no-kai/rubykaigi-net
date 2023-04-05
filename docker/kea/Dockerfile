@@ -35,5 +35,4 @@ COPY --from=config /app/kea-ctrl-agent.json /app/kea-ctrl-agent.json
 
 RUN kea-ctrl-agent -t /app/kea-ctrl-agent.json 
 
-
 CMD /app/run.sh
