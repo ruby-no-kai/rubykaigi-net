@@ -192,14 +192,4 @@ data "aws_iam_policy_document" "NocAdmin_iam-with-boundary" {
       values = [aws_iam_policy.NocAdminBase.arn]
     }
   }
-
-  statement {
-    effect  = "Deny"
-    actions = ["*"]
-    resources = [
-      "arn:aws:iam::005216166247:role/FederatedAdmin",
-      "arn:aws:iam::005216166247:role/OrgzAdmin",
-      "arn:aws:iam::005216166247:role/KaigiStaff",
-    ]
-  }
 }
