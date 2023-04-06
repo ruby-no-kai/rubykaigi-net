@@ -1,6 +1,6 @@
-FROM public.ecr.aws/docker/library/golang:1.19-bullseye as build
+FROM public.ecr.aws/docker/library/golang:1.20-bullseye as build
 
-RUN go install github.com/hanazuki/unbound_exporter@f275b66dd1eff4b7f225455c22cfae31fc9c95fc
+RUN go install github.com/hanazuki/unbound_exporter@3cf4ae0d9684285dc49d6a2f31a0a0078601c6a0
 
 ###
 
