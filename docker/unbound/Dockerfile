@@ -4,7 +4,7 @@ RUN go install github.com/hanazuki/unbound_exporter@3cf4ae0d9684285dc49d6a2f31a0
 
 ###
 
-FROM public.ecr.aws/debian/debian:bullseye-slim
+FROM public.ecr.aws/ubuntu/ubuntu:jammy
 
 RUN apt-get update -qq && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends unbound dns-root-data dumb-init
