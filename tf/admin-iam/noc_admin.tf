@@ -130,8 +130,8 @@ data "aws_iam_policy_document" "NocAdminBase" {
     ]
   }
   statement {
-    effect  = "Deny"
-    actions = ["*"]
+    effect      = "Deny"
+    not_actions = ["iam:Get*"]
     resources = [
       "arn:aws:iam::005216166247:role/FederatedAdmin",
       "arn:aws:iam::005216166247:role/OrgzAdmin",
