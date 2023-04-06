@@ -46,4 +46,6 @@ hosted_zone "rubykaigi.net.", "Z05547502KT77L0O53UWK" do
 
   include_template "hosts-rubykaigi.net-common"
   include_template "hosts-rubykaigi.net-private"
+
+  ignore 'do53.resolver.rubykaigi.net'
 end
