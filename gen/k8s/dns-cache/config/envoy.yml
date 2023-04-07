@@ -17,6 +17,9 @@
                      "listener": {
                         "tcp": {
                            "connection_limit": 2000
+                        },
+                        "udp": {
+                           "connection_limit": 2000
                         }
                      }
                   }

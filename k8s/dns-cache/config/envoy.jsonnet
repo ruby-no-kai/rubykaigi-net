@@ -243,6 +243,7 @@ local http_connection_manager(codec_type, stat_prefix) = {
             resource_limits: {
               listener: {
                 tcp: { connection_limit: 2000 },
+                udp: { connection_limit: 2000 },
               },
             },
           },
