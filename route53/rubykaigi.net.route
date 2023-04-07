@@ -27,6 +27,16 @@ template 'rubykaigi.net-common' do
 end
 
 template 'rubykaigi.net-public' do
+  rrset 'resolver.rubykaigi.net', 'CAA' do
+    ttl 300
+    resource_records(
+      *[
+        'letsencrypt.org',
+        'amazonaws.com',
+        'sectigo.com',  # ZeroSSL
+       ].map {|cn| "0 issue \"#{cn}\"" }
+    )
+  end
 end
 
 template 'rubykaigi.net-private' do
