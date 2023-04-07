@@ -54,7 +54,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               capabilities: { add: ['NET_ADMIN'] },  // For SO_RCVBUFFORCE/SO_SNDBUFFORCE
             },
             volumeMounts: [
-              { name: 'config', mountPath: '/etc/unbound', readOnly: true },
+              { name: 'unbound-config', mountPath: '/etc/unbound', readOnly: true },
               { name: 'tls-cert', mountPath: '/secrets/tls-cert', readOnly: true },
             ],
             readinessProbe: {
@@ -66,12 +66,33 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               periodSeconds: 3,
             },
           },
+          {
+            name: 'envoy',
+            image: 'envoyproxy/envoy:v1.25.4',
+            args: ['--config-path', '/etc/envoy/envoy.json'],
+            ports: [
+              { name: 'dns-https', containerPort: 11443, protocol: 'TCP' },
+              { name: 'dns-https-udp', containerPort: 11443, protocol: 'UDP' },
+            ],
+            env: [
+            ],
+            volumeMounts: [
+              { name: 'envoy-config', mountPath: '/etc/envoy', readOnly: true },
+              { name: 'tls-cert', mountPath: '/secrets/tls-cert', readOnly: true },
+            ],
+          },
         ],
         volumes: [
           {
-            name: 'config',
+            name: 'unbound-config',
             configMap: {
               name: 'unbound-config',
+            },
+          },
+          {
+            name: 'envoy-config',
+            configMap: {
+              name: 'envoy-config',
             },
           },
           {

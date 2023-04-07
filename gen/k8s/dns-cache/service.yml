@@ -23,6 +23,18 @@
         "port": 853,
         "protocol": "TCP",
         "targetPort": "dns-tls"
+      },
+      {
+        "name": "dns-https",
+        "port": 443,
+        "protocol": "TCP",
+        "targetPort": "dns-https"
+      },
+      {
+        "name": "dns-https-udp",
+        "port": 443,
+        "protocol": "UDP",
+        "targetPort": "dns-https-udp"
       }
     ],
     "selector": {

@@ -78,7 +78,40 @@
                   "volumeMounts": [
                      {
                         "mountPath": "/etc/unbound",
-                        "name": "config",
+                        "name": "unbound-config",
+                        "readOnly": true
+                     },
+                     {
+                        "mountPath": "/secrets/tls-cert",
+                        "name": "tls-cert",
+                        "readOnly": true
+                     }
+                  ]
+               },
+               {
+                  "args": [
+                     "--config-path",
+                     "/etc/envoy/envoy.json"
+                  ],
+                  "env": [ ],
+                  "image": "envoyproxy/envoy:v1.25.4",
+                  "name": "envoy",
+                  "ports": [
+                     {
+                        "containerPort": 11443,
+                        "name": "dns-https",
+                        "protocol": "TCP"
+                     },
+                     {
+                        "containerPort": 11443,
+                        "name": "dns-https-udp",
+                        "protocol": "UDP"
+                     }
+                  ],
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/envoy",
+                        "name": "envoy-config",
                         "readOnly": true
                      },
                      {
@@ -116,7 +149,13 @@
                   "configMap": {
                      "name": "unbound-config"
                   },
-                  "name": "config"
+                  "name": "unbound-config"
+               },
+               {
+                  "configMap": {
+                     "name": "envoy-config"
+                  },
+                  "name": "envoy-config"
                },
                {
                   "name": "tls-cert",
