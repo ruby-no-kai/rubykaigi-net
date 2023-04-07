@@ -17,6 +17,12 @@
         "port": 53,
         "protocol": "TCP",
         "targetPort": "dns-tcp"
+      },
+      {
+        "name": "dns-tls",
+        "port": 853,
+        "protocol": "TCP",
+        "targetPort": "dns-tls"
       }
     ],
     "selector": {

@@ -1,4 +1,7 @@
-local commit = 'ba5d9dbe4dcb985109f82f910445fd560964b826';
+local commit = 'ba7f01468e10c19acb987767987e3693945a7ebe';
+
+local tls_cert_secret = 'cert-resolver-rubykaigi-net';
+
 {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
@@ -42,6 +45,7 @@ local commit = 'ba5d9dbe4dcb985109f82f910445fd560964b826';
             ports: [
               { name: 'dns', containerPort: 10053, protocol: 'UDP' },
               { name: 'dns-tcp', containerPort: 10053, protocol: 'TCP' },
+              { name: 'dns-tls', containerPort: 10853, protocol: 'TCP' },
               { name: 'prom', containerPort: 9167 },
             ],
             env: [
@@ -51,6 +55,7 @@ local commit = 'ba5d9dbe4dcb985109f82f910445fd560964b826';
             },
             volumeMounts: [
               { name: 'config', mountPath: '/etc/unbound', readOnly: true },
+              { name: 'tls-cert', mountPath: '/secrets/tls-cert', readOnly: true },
             ],
             readinessProbe: {
               httpGet: { path: '/healthz', port: 9167, scheme: 'HTTP' },
@@ -67,6 +72,12 @@ local commit = 'ba5d9dbe4dcb985109f82f910445fd560964b826';
             name: 'config',
             configMap: {
               name: 'unbound-config',
+            },
+          },
+          {
+            name: 'tls-cert',
+            secret: {
+              secretName: tls_cert_secret,
             },
           },
         ],

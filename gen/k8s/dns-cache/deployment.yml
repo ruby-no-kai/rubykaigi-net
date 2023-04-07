@@ -29,7 +29,7 @@
                      "-dd"
                   ],
                   "env": [ ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:ba5d9dbe4dcb985109f82f910445fd560964b826",
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:ba7f01468e10c19acb987767987e3693945a7ebe",
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {
@@ -49,6 +49,11 @@
                      {
                         "containerPort": 10053,
                         "name": "dns-tcp",
+                        "protocol": "TCP"
+                     },
+                     {
+                        "containerPort": 10853,
+                        "name": "dns-tls",
                         "protocol": "TCP"
                      },
                      {
@@ -74,6 +79,11 @@
                      {
                         "mountPath": "/etc/unbound",
                         "name": "config",
+                        "readOnly": true
+                     },
+                     {
+                        "mountPath": "/secrets/tls-cert",
+                        "name": "tls-cert",
                         "readOnly": true
                      }
                   ]
@@ -107,6 +117,12 @@
                      "name": "unbound-config"
                   },
                   "name": "config"
+               },
+               {
+                  "name": "tls-cert",
+                  "secret": {
+                     "secretName": "cert-resolver-rubykaigi-net"
+                  }
                }
             ]
          }
