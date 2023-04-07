@@ -18,6 +18,71 @@ local upstream_tls_transport_socket(domain) =
     },
   };
 
+local tls_certificate = {
+  certificate_chain: { filename: '/secrets/tls-cert/tls.crt' },
+  private_key: { filename: '/secrets/tls-cert/tls.key' },
+};
+
+
+local route_config = {
+  virtual_hosts: [
+    {
+      name: 'default',
+      domains: ['*'],
+      routes: [
+        {
+          name: 'dns-query',
+          match: {
+            path: '/dns-query',
+          },
+          route: { cluster: 'unbound' },
+        },
+      ],
+    },
+  ],
+};
+
+local http_connection_manager(codec_type, stat_prefix) = {
+  name: 'envoy.filters.network.http_connection_manager',
+  typed_config: {
+    '@type': 'type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager',
+    codec_type: codec_type,
+    stat_prefix: stat_prefix,
+    use_remote_address: true,
+    normalize_path: true,
+    merge_slashes: true,
+    path_with_escaped_slashes_action: 'UNESCAPE_AND_REDIRECT',
+    common_http_protocol_options: {
+      idle_timeout: '3600s',
+      headers_with_underscores_action: 'REJECT_REQUEST',
+    },
+    http2_protocol_options: {
+      max_concurrent_streams: 100,
+      initial_stream_window_size: 65536,  // 64 KiB
+      initial_connection_window_size: 1048576,  // 1 MiB
+    },
+    stream_idle_timeout: '300s',
+    request_timeout: '300s',
+    http_filters: [
+      {
+        name: 'envoy.filters.http.router',
+        typed_config: {
+          '@type': 'type.googleapis.com/envoy.extensions.filters.http.router.v3.Router',
+        },
+      },
+    ],
+    route_config: route_config,
+    access_log: [
+      {
+        name: 'envoy.access_loggers.file',
+        typed_config: {
+          '@type': 'type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog',
+          path: '/dev/stdout',
+        },
+      },
+    ],
+  },
+};
 
 {
   overload_manager: {
@@ -85,76 +150,44 @@ local upstream_tls_transport_socket(domain) =
                   tls_params: {
                     tls_minimum_protocol_version: 'TLSv1_3',
                   },
-                  tls_certificates: [
-                    {
-                      certificate_chain: { filename: '/secrets/tls-cert/tls.crt' },
-                      private_key: { filename: '/secrets/tls-cert/tls.key' },
-                    },
-                  ],
+                  tls_certificates: [tls_certificate],
                   alpn_protocols: ['h2', 'http/1.1'],
                 },
-
               },
-            },
-            filter_chain_match: {
             },
             filters: [
-              {
-                name: 'envoy.filters.network.http_connection_manager',
-                typed_config: {
-                  '@type': 'type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager',
-                  stat_prefix: 'ingress_http_tcp',
-                  use_remote_address: true,
-                  normalize_path: true,
-                  merge_slashes: true,
-                  path_with_escaped_slashes_action: 'UNESCAPE_AND_REDIRECT',
-                  common_http_protocol_options: {
-                    idle_timeout: '3600s',
-                    headers_with_underscores_action: 'REJECT_REQUEST',
+              http_connection_manager('AUTO', 'ingress_http_tcp'),
+            ],
+          },
+        ],
+      },
+      {
+        name: 'udp',
+        address: {
+          socket_address: { protocol: 'UDP', address: '0.0.0.0', port_value: 11443 },
+        },
+        udp_listener_config: {
+          quic_options: {},
+          downstream_socket_config: {
+            prefer_gro: true,
+          },
+        },
+        per_connection_buffer_limit_bytes: 32768,  // 32 KiB
+        filter_chains: [
+          {
+            transport_socket: {
+              name: 'envoy.transport_sockets.quic',
+              typed_config: {
+                '@type': 'type.googleapis.com/envoy.extensions.transport_sockets.quic.v3.QuicDownstreamTransport',
+                downstream_tls_context: {
+                  common_tls_context: {
+                    tls_certificates: [tls_certificate],
                   },
-                  http2_protocol_options: {
-                    max_concurrent_streams: 100,
-                    initial_stream_window_size: 65536,  // 64 KiB
-                    initial_connection_window_size: 1048576,  // 1 MiB
-                  },
-                  stream_idle_timeout: '300s',
-                  request_timeout: '300s',
-                  http_filters: [
-                    {
-                      name: 'envoy.filters.http.router',
-                      typed_config: {
-                        '@type': 'type.googleapis.com/envoy.extensions.filters.http.router.v3.Router',
-                      },
-                    },
-                  ],
-                  route_config: {
-                    virtual_hosts: [
-                      {
-                        name: 'default',
-                        domains: ['*'],
-                        routes: [
-                          {
-                            name: 'dns-query',
-                            match: {
-                              path: '/dns-query',
-                            },
-                            route: { cluster: 'unbound' },
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                  access_log: [
-                    {
-                      name: 'envoy.access_loggers.file',
-                      typed_config: {
-                        '@type': 'type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog',
-                        path: '/dev/stdout',
-                      },
-                    },
-                  ],
                 },
               },
+            },
+            filters: [
+              http_connection_manager('HTTP3', 'ingress_http_udp'),
             ],
           },
         ],
