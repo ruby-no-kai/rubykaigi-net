@@ -1,5 +1,6 @@
 /gen/ linguist-generated=true
 /gen/**/*.yml linguist-generated=true
+/vendor/ linguist-generated=true
 /.github/workflows/*.yml linguist-generated=true
 /tf/dns-hosts/hosts.tf linguist-generated=true
 /tf/k8s-prom/gen/**/*.yml linguist-generated=true
