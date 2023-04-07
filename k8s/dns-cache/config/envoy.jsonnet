@@ -85,6 +85,11 @@ local http_connection_manager(codec_type, stat_prefix) = {
 };
 
 {
+  admin: {
+    address: {
+      socket_address: { address: '0.0.0.0', port_value: 9901 },
+    },
+  },
   overload_manager: {
     refresh_interval: '0.25s',
     resource_monitors: [
@@ -198,6 +203,7 @@ local http_connection_manager(codec_type, stat_prefix) = {
         name: 'unbound',
         connect_timeout: '0.25s',
         per_connection_buffer_limit_bytes: 32768,  // 32 KiB
+        type: 'LOGICAL_DNS',
         load_assignment: {
           cluster_name: 'unbound',
           endpoints: [
@@ -205,7 +211,7 @@ local http_connection_manager(codec_type, stat_prefix) = {
               lb_endpoints: [
                 {
                   endpoint: {
-                    address: { socket_address: { address: '127.0.0.1', port_value: 10443 } },
+                    address: { socket_address: { address: 'unbound.default.svc.cluster.local', port_value: 443 } },
                   },
                 },
               ],

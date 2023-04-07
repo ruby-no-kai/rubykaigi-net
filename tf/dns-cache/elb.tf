@@ -35,7 +35,7 @@ resource "aws_lb_target_group" "dns" {
 
   health_check {
     protocol = "HTTP"
-    port     = local.dns_cache_healthz_target_port
+    port     = local.dns_cache_unbound_healthz_target_port
     path     = "/healthz"
     interval = 10
   }
@@ -90,7 +90,7 @@ resource "aws_lb_target_group" "dns-tls" {
 
   health_check {
     protocol = "HTTP"
-    port     = local.dns_cache_healthz_target_port
+    port     = local.dns_cache_unbound_healthz_target_port
     path     = "/healthz"
     interval = 10
   }
@@ -145,8 +145,8 @@ resource "aws_lb_target_group" "dns-https" {
 
   health_check {
     protocol = "HTTP"
-    port     = local.dns_cache_healthz_target_port
-    path     = "/healthz"
+    port     = local.dns_cache_envoy_healthz_target_port
+    path     = "/ready"
     interval = 10
   }
 
@@ -169,7 +169,7 @@ resource "kubernetes_manifest" "targetgroupbinding-dns-cache-dns-https" {
 
     "spec" = {
       "serviceRef" = {
-        "name" = "unbound"
+        "name" = "unbound-envoy"
         "port" = "dns-https"
       },
       "targetGroupARN" = aws_lb_target_group.dns-https.arn

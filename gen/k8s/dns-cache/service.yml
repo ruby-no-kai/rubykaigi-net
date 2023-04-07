@@ -25,6 +25,27 @@
         "targetPort": "dns-tls"
       },
       {
+        "name": "dns-h2",
+        "port": 443,
+        "protocol": "TCP",
+        "targetPort": "dns-h2"
+      }
+    ],
+    "selector": {
+      "rubykaigi.org/app": "unbound"
+    }
+  }
+}
+---
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "name": "unbound-envoy"
+  },
+  "spec": {
+    "ports": [
+      {
         "name": "dns-https",
         "port": 443,
         "protocol": "TCP",
@@ -38,7 +59,7 @@
       }
     ],
     "selector": {
-      "rubykaigi.org/app": "unbound"
+      "rubykaigi.org/app": "unbound-envoy"
     }
   }
 }
