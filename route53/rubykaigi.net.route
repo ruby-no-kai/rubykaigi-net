@@ -24,6 +24,12 @@ template 'rubykaigi.net-common' do
 
   ignore(/^cisco-capwap-controller\./i)
   ignore_under 'db.apne1.rubykaigi.net'
+
+  rrset 'resolver.rubykaigi.net', 'A' do
+    ttl 300
+    resource_records %w[192.50.220.164 192.50.220.165]
+  end
+  ignore 'origin.resolver.rubykaigi.net'
 end
 
 template 'rubykaigi.net-public' do
@@ -40,12 +46,6 @@ template 'rubykaigi.net-public' do
 end
 
 template 'rubykaigi.net-private' do
-  rrset 'resolver.rubykaigi.net', 'A' do
-    ttl 300
-    resource_records %w[192.50.220.164 192.50.220.165]
-  end
-
-  ignore 'origin.resolver.rubykaigi.net'
 end
 
 hosted_zone "rubykaigi.net.", "Z0666077CULB2VMXZP9C" do
