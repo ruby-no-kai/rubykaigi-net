@@ -40,6 +40,12 @@ template 'rubykaigi.net-public' do
 end
 
 template 'rubykaigi.net-private' do
+  rrset 'resolver.rubykaigi.net', 'A' do
+    ttl 300
+    resource_records %w[192.50.220.164 192.50.220.165]
+  end
+
+  ignore 'origin.resolver.rubykaigi.net'
 end
 
 hosted_zone "rubykaigi.net.", "Z0666077CULB2VMXZP9C" do
@@ -56,6 +62,4 @@ hosted_zone "rubykaigi.net.", "Z05547502KT77L0O53UWK" do
 
   include_template "hosts-rubykaigi.net-common"
   include_template "hosts-rubykaigi.net-private"
-
-  ignore 'do53.resolver.rubykaigi.net'
 end
