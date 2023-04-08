@@ -127,6 +127,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "arn:aws:cloudfront::005216166247:distribution/E1WQVN1OCCTP56",
       "arn:aws:lambda:ap-northeast-1:005216166247:function:amc-*",
       "arn:aws:lambda:ap-northeast-1:005216166247:function:himari-prd-*",
+      "arn:aws:ecr:ap-northeast-1:005216166247:repository/himari-*",
     ]
   }
   statement {
