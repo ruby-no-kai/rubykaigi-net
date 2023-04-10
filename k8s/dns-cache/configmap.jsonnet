@@ -16,7 +16,7 @@
       name: 'envoy-config',
     },
     data: {
-      'envoy.json': std.manifestJson(import './config/envoy.jsonnet'),
+      'envoy.json': std.manifestJson(import './config/envoy.libsonnet'),
     },
   },
 ]
