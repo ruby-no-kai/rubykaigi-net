@@ -84,6 +84,8 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "s3:ListAllMyBuckets",
       "s3:GetBucketLocation",
 
+      "secretsmanager:*",
+
       # IAMReadOnlyAccess
       "iam:GenerateCredentialReport",
       "iam:GenerateServiceLastAccessedDetails",
@@ -119,14 +121,15 @@ data "aws_iam_policy_document" "NocAdminBase" {
     resources = [
       "arn:aws:dynamodb:ap-northeast-1:005216166247:table/himari-prd",
       "arn:aws:dynamodb:ap-northeast-1:005216166247:table/himari-prd/*",
-      "arn:aws:secretsmanager:ap-northeast-1:005216166247:secret:himari-prd-envvars-bUt5MY",
-      "arn:aws:secretsmanager:ap-northeast-1:005216166247:secret:himari-prd-signing-key-Nkuugw",
+      "arn:aws:secretsmanager:ap-northeast-1:005216166247:secret:himari-prd-*",
       "arn:aws:cloudfront::005216166247:distribution/E28V10WV08LDV0",
       "arn:aws:iam::005216166247:role/LambdaHimari",
       "arn:aws:iam::005216166247:role/LambdaAmc",
-      "arn:aws:secretsmanager:ap-northeast-1:005216166247:secret:amc/params-ZQrZWs",
-      "arn:aws:secretsmanager:ap-northeast-1:005216166247:secret:amc/signing-key-uDbNgw",
+      "arn:aws:secretsmanager:ap-northeast-1:005216166247:secret:amc/*",
       "arn:aws:cloudfront::005216166247:distribution/E1WQVN1OCCTP56",
+      "arn:aws:lambda:ap-northeast-1:005216166247:function:amc-*",
+      "arn:aws:lambda:ap-northeast-1:005216166247:function:himari-prd-*",
+      "arn:aws:ecr:ap-northeast-1:005216166247:repository/himari-*",
     ]
   }
   statement {

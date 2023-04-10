@@ -94,6 +94,7 @@ local config = {
       import './config/subnet_cast.libsonnet',
       import './config/subnet_mgmt.libsonnet',
       import './config/subnet_tkyk.libsonnet',
+      import './config/subnet_tkykmgmt.libsonnet',
     ],
   },
 };

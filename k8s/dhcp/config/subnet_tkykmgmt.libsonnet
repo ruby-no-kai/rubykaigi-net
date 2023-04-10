@@ -1,21 +1,17 @@
 local consts = import './consts.libsonnet';
-local domainName = 'usr.venue.rubykaigi.net';
+local domainName = 'mgmt.tkyk.rubykaigi.net';
 {
-  id: 400,
-  subnet: '10.33.64.0/20',
+  id: 930,
+  subnet: '10.33.30.0/24',
   pools: [
     {
-      pool: '10.33.65.0 - 10.33.79.250',
+      pool: '10.33.30.200 - 10.33.30.250',
     },
   ],
   'option-data': [
     {
       name: 'routers',
-      data: '10.33.79.254',
-    },
-    {
-      name: 'domain-name-servers',
-      data: std.join(', ', consts.dns_resolvers_usr),
+      data: '10.33.30.254',
     },
     {
       name: 'domain-name',
