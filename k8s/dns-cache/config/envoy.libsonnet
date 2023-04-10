@@ -47,6 +47,12 @@ local route_config = {
       },
     },
   ],
+  response_headers_to_add: [
+    {
+      header: { key: 'alt-svc', value: 'h3=":443"; ma=3600, h2=":443"; ma=3600' },
+      append_action: 'OVERWRITE_IF_EXISTS_OR_ADD',
+    },
+  ],
 };
 
 local http_connection_manager(codec_type, stat_prefix) = {
