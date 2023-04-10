@@ -61,6 +61,13 @@ local http_connection_manager(codec_type, stat_prefix) = {
       initial_stream_window_size: 65536,  // 64 KiB
       initial_connection_window_size: 1048576,  // 1 MiB
     },
+    http3_protocol_options: {
+      quic_protocol_options: {
+        max_concurrent_streams: 100,
+        initial_stream_window_size: 65536,  // 64 KiB
+        initial_connection_window_size: 1048576,  // 1 MiB
+      },
+    },
     stream_idle_timeout: '300s',
     request_timeout: '300s',
     http_filters: [
