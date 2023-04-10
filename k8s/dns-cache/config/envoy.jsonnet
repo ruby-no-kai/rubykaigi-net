@@ -38,6 +38,13 @@ local route_config = {
           route: { cluster: 'unbound' },
         },
       ],
+      include_request_attempt_count: true,
+      include_attempt_count_in_response: true,
+      retry_policy: {
+        retry_on: '5xx',
+        num_retries: 2,
+        per_try_timeout: '1s',
+      },
     },
   ],
 };

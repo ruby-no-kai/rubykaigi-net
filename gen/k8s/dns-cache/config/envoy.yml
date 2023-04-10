@@ -188,7 +188,14 @@
                                     "domains": [
                                        "*"
                                     ],
+                                    "include_attempt_count_in_response": true,
+                                    "include_request_attempt_count": true,
                                     "name": "default",
+                                    "retry_policy": {
+                                       "num_retries": 2,
+                                       "per_try_timeout": "1s",
+                                       "retry_on": "5xx"
+                                    },
                                     "routes": [
                                        {
                                           "match": {
@@ -312,7 +319,14 @@
                                     "domains": [
                                        "*"
                                     ],
+                                    "include_attempt_count_in_response": true,
+                                    "include_request_attempt_count": true,
                                     "name": "default",
+                                    "retry_policy": {
+                                       "num_retries": 2,
+                                       "per_try_timeout": "1s",
+                                       "retry_on": "5xx"
+                                    },
                                     "routes": [
                                        {
                                           "match": {
