@@ -3,7 +3,7 @@ data "aws_iam_policy" "nocadmin-base" {
 }
 
 resource "aws_iam_role" "syslog" {
-  name                 = "NwSyslog"
+  name                 = "NetSyslog"
   description          = "k8s syslog"
   assume_role_policy   = data.aws_iam_policy_document.syslog-trust.json
   permissions_boundary = data.aws_iam_policy.nocadmin-base.arn
@@ -36,8 +36,8 @@ data "aws_iam_policy_document" "fluentd-s3-policy" {
     actions = [
       "s3:PutObject",
     ]
-    resources = ["arn:aws:s3:::rk-syslog/*",]
-    effect  = "Allow"
+    resources = ["arn:aws:s3:::rk-syslog/*", ]
+    effect    = "Allow"
   }
 }
 
