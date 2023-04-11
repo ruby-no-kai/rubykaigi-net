@@ -12,7 +12,7 @@ Dir["./k8s/**/*.jsonnet"].each do |src|
   FileUtils.mkdir_p File.dirname(dst)
 
   File.open(dst, 'w') do |io|
-    system('jsonnet', src, out: io, exception: true)
+    system('jsonnet', '-J', './vendor/jb', src, out: io, exception: true)
   end
 
   out = JSON.parse(File.read(dst))
