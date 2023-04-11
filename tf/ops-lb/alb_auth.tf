@@ -1,13 +1,27 @@
+resource "random_uuid" "client_id" {
+}
+
+resource "random_id" "client_secret" {
+  byte_length = 32
+}
+
 locals {
   alb_oidc = {
-    authorization_endpoint     = "https://idp.rubykaigi.net/auth"
-    token_endpoint             = "https://idp-internal.rubykaigi.net/token"
-    user_info_endpoint         = "https://idp-internal.rubykaigi.net/userinfo"
-    client_id                  = "5VM7b7zXTEcQA5zcW2wmY0PM7RK2W6yT5M6xglFj8SI"
-    client_secret              = "rQHgwpnOwsUTpvp6QDttq2KNs53HMbtPp5k4Go307Ds"
+    authorization_endpoint     = "https://idp.rubykaigi.net/oidc/authorize"
+    token_endpoint             = "https://idp.rubykaigi.net/public/oidc/token"
+    user_info_endpoint         = "https://idp.rubykaigi.net/public/oidc/userinfo"
+    client_id                  = random_uuid.client_id.result
+    client_secret              = random_id.client_secret.id
     issuer                     = "https://idp.rubykaigi.net"
     on_unauthenticated_request = "authenticate"
-    scope                      = "openid email profile"
-    session_timeout            = 12 * 3600
+    scope                      = "openid"
+    session_timeout            = 3600
+  }
+}
+
+output "oidc_client" {
+  value = {
+    id     = local.alb_oidc.client_id
+    secret = local.alb_oidc.client_secret
   }
 }
