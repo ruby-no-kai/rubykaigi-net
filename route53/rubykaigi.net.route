@@ -17,7 +17,7 @@ template 'rubykaigi.net-common' do
   %w[test wlc prometheus alertmanager grafana].each do |name|
     rrset "#{name}.rubykaigi.net.", 'CNAME' do
       ttl 300
-      resource_records ['ops-lb.rubykaigi.net.']
+      resource_records 'ops-lb.rubykaigi.net.'
     end
   end
   ignore 'ops-lb.rubykaigi.net'
