@@ -28,7 +28,7 @@
                      "/config/fluent.conf"
                   ],
                   "env": [ ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/fluentd:cdc426084da714bdcb75dd3db51574b49e079744",
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/fluentd:2a69cc23f6d8cbbe9ef7681d4e64ed28dbab3f7c",
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {
