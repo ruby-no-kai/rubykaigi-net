@@ -13,12 +13,16 @@ template 'rubykaigi.net-common' do
 
   ignore 'amc.rubykaigi.net'
   ignore 'idp.rubykaigi.net'
-  ignore 'grafana.rubykaigi.net'
-  ignore 'prometheus.rubykaigi.net'
-  ignore 'alertmanager.rubykaigi.net'
-  ignore 'wlc.rubykaigi.net'
 
+  %w[test wlc prometheus alertmanager grafana].each do |name|
+    rrset "#{name}.rubykaigi.net.", 'CNAME' do
+      ttl 300
+      resource_records ['ops-lb.rubykaigi.net.']
+    end
+  end
   ignore 'ops-lb.rubykaigi.net'
+  ignore 'ops-lb-public.rubykaigi.net'
+  ignore 'ops-lb-internal.rubykaigi.net'
 
   ignore(/^bastion[^.]*\.rubykaigi\.net$/)
 
