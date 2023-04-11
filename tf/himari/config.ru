@@ -73,6 +73,18 @@ use(Himari::Middlewares::Client,
   secret_hash: 'f6d8f4422bb0e7c0443cbe85cc4ef4e1b5f23c7efe76dfe1d87f7de793a7082701df5a8d08f446bb04ec1e07520474cd', # sha384.hexdigest
   redirect_uris: %w(https://amc.rubykaigi.net/auth/himari/callback),
 )
+use(Himari::Middlewares::Client,
+  name: 'ops-lb',
+  id: 'be906815-f319-8c1c-5078-b6ceed8cd57e',
+  secret_hash: '3fcd566d9a8313e3fd120adf7a15fb29824413c3dfa1bfc36b20a8935699ff3afc8605761e4dd9d39ed40092e84fab64', # sha384.hexdigest
+  redirect_uris: %w(
+    https://test.rubykaigi.net/oauth2/idpresponse
+    https://wlc.rubykaigi.net/oauth2/idpresponse
+    https://prometheus.rubykaigi.net/oauth2/idpresponse
+    https://alertmanager.rubykaigi.net/oauth2/idpresponse
+    https://grafana.rubykaigi.net/oauth2/idpresponse
+  ),
+)
 
 #### CLAIMS RULE: GitHub
 
@@ -146,6 +158,7 @@ use(Himari::Middlewares::AuthorizationRule, name: 'default') do |context, decisi
   available_for_everyone = %w(
     wiki
     testlb
+    ops-lb
   )
 
   if available_for_everyone.include?(context.client.name)
