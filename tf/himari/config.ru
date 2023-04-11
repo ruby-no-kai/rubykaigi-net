@@ -158,6 +158,7 @@ use(Himari::Middlewares::AuthorizationRule, name: 'default') do |context, decisi
   available_for_everyone = %w(
     wiki
     testlb
+    ops-lb
   )
 
   if available_for_everyone.include?(context.client.name)
