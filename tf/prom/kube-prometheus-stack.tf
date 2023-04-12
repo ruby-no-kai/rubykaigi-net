@@ -1,7 +1,7 @@
 resource "helm_release" "kube-prometheus-stack" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-prometheus-stack"
-  version    = "39.9.0"
+  version    = "45.9.1"
 
   name = "kube-prometheus-stack"
 
