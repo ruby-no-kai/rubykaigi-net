@@ -28,6 +28,30 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
+    "name": "unbound-envoy"
+  },
+  "spec": {
+    "podMetricsEndpoints": [
+      {
+        "path": "/stats/prometheus",
+        "port": "admin"
+      }
+    ],
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "unbound-envoy"
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "PodMonitor",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
     "name": "unbound-resolv"
   },
   "spec": {

@@ -74,6 +74,30 @@ local dnsProbes(domain) = [
     },
   },
 
+  {
+    apiVersion: 'monitoring.coreos.com/v1',
+    kind: 'PodMonitor',
+    metadata: {
+      name: 'unbound-envoy',
+      labels: {
+        release: 'kube-prometheus-stack',
+      },
+    },
+    spec: {
+      selector: {
+        matchLabels: {
+          'rubykaigi.org/app': 'unbound-envoy',
+        },
+      },
+      podMetricsEndpoints: [
+        {
+          port: 'admin',
+          path: '/stats/prometheus',
+        },
+      ],
+    },
+  },
+
   ///
 
   {
