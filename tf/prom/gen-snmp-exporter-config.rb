@@ -14,7 +14,7 @@ system(
 
 Tempfile.open do |jsonnet|
   system(
-    'jsonnet ./snmp-exporter.generator.jsonnet',
+    'jsonnet ./snmp-exporter.config.jsonnet',
     out: jsonnet,
     exception: true,
   )

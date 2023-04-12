@@ -9,14 +9,14 @@
         {
           name: 'Prometheus',
           type: 'prometheus',
-          url: 'http://prometheus-operated.monitoring.svc.cluster.local:9090',
+          url: 'http://prometheus-operated.default.svc.cluster.local:9090',
           access: 'proxy',
           isDefault: true,
         },
         {
           name: 'Alertmanager',
           type: 'alertmanager',
-          url: 'http://alertmanager-operated.monitoring.svc.cluster.local:9093',
+          url: 'http://alertmanager-operated.default.svc.cluster.local:9093',
           access: 'proxy',
           jsonData: {
             implementation: 'prometheus',

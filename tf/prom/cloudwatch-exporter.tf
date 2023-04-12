@@ -1,20 +1,18 @@
 resource "helm_release" "cloudwatch-exporter-apne1" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-cloudwatch-exporter"
-  version    = "0.19.2"
+  version    = "0.24.0"
 
-  name             = "cloudwatch-exporter-apne1"
-  namespace        = "monitoring"
-  create_namespace = true
+  name = "cloudwatch-exporter-apne1"
 
   values = [
     data.external.cloudwatch-exporter-values.result.json,
     jsonencode({
       config = data.external.cloudwatch-exporter-config-apne1.result.json
       serviceMonitor = {
-        enabled = true
+        enabled  = true
         interval = "120s"
-        timeout = "120s"
+        timeout  = "120s"
         labels = {
           release = helm_release.kube-prometheus-stack.name
         }
@@ -34,20 +32,18 @@ data "external" "cloudwatch-exporter-config-apne1" {
 resource "helm_release" "cloudwatch-exporter-apne1hi" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-cloudwatch-exporter"
-  version    = "0.19.2"
+  version    = "0.24.0"
 
-  name             = "cloudwatch-exporter-apne1hi"
-  namespace        = "monitoring"
-  create_namespace = true
+  name = "cloudwatch-exporter-apne1hi"
 
   values = [
     data.external.cloudwatch-exporter-values.result.json,
     jsonencode({
       config = data.external.cloudwatch-exporter-config-apne1hi.result.json
       serviceMonitor = {
-        enabled = true
+        enabled  = true
         interval = "60s"
-        timeout = "60s"
+        timeout  = "60s"
         labels = {
           release = helm_release.kube-prometheus-stack.name
         }
@@ -68,7 +64,7 @@ data "external" "cloudwatch-exporter-values" {
   program = ["../jsonnet.rb"]
 
   query = {
-    path = "./cloudwatch-exporter.values.jsonnet"
+    path = "./cloudwatch-exporter.jsonnet"
   }
 }
 
@@ -113,14 +109,13 @@ data "aws_iam_policy_document" "cloudwatch-exporter-policy" {
       "cloudwatch:GetMetricData",
     ]
     resources = ["*"]
-    effect  = "Allow"
+    effect    = "Allow"
   }
 }
 
 resource "kubernetes_service_account" "cloudwatch-exporter" {
   metadata {
-    name      = "cloudwatch-exporter"
-    namespace = "monitoring"
+    name = "cloudwatch-exporter"
     annotations = {
       "eks.amazonaws.com/role-arn"               = aws_iam_role.cloudwatch-exporter.arn
       "eks.amazonaws.com/sts-regional-endpoints" = true

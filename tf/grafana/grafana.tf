@@ -1,11 +1,9 @@
 resource "helm_release" "grafana" {
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
-  version    = "6.34.0"
+  version    = "6.52.9"
 
-  name             = "grafana"
-  namespace        = "monitoring"
-  create_namespace = true
+  name = "grafana"
 
   values = [data.external.grafana-values.result.json]
 }
@@ -14,7 +12,7 @@ data "external" "grafana-values" {
   program = ["../jsonnet.rb"]
 
   query = {
-    path = "./grafana.values.jsonnet"
+    path = "./grafana.jsonnet"
   }
 }
 
@@ -26,13 +24,13 @@ resource "kubernetes_manifest" "targetgroupbinding-grafana" {
   manifest = {
     "apiVersion" = "elbv2.k8s.aws/v1beta1"
     "kind"       = "TargetGroupBinding"
-    "metadata"   = {
+    "metadata" = {
       "name"      = "grafana"
-      "namespace" = "monitoring"
+      "namespace" = "default"
     }
 
     "spec" = {
-      "serviceRef"     = {
+      "serviceRef" = {
         "name" = "grafana"
         "port" = 80
       },
