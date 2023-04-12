@@ -169,8 +169,7 @@ use(Himari::Middlewares::AuthorizationRule, name: 'default') do |context, decisi
   )
 
   if available_for_everyone.include?(context.client.name)
-    decision.lifetime.access_token = 3600 * 12
-    decision.lifetime.id_token = 3600 * 12
+    decision.lifetime = 3600 * 12
     next decision.allow!
   end
 
