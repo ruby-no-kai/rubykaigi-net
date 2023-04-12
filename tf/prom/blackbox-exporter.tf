@@ -12,6 +12,6 @@ data "external" "blackbox-exporter-values" {
   program = ["../jsonnet.rb"]
 
   query = {
-    path = "./blackbox-exporter.values.jsonnet"
+    path = "./blackbox-exporter.jsonnet"
   }
 }

@@ -64,7 +64,7 @@ data "external" "cloudwatch-exporter-values" {
   program = ["../jsonnet.rb"]
 
   query = {
-    path = "./cloudwatch-exporter.values.jsonnet"
+    path = "./cloudwatch-exporter.jsonnet"
   }
 }
 

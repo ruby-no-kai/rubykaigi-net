@@ -12,7 +12,7 @@ data "external" "kube-prometheus-stack-values" {
   program = ["../jsonnet.rb"]
 
   query = {
-    path = "./kube-prometheus-stack.values.jsonnet"
+    path = "./kube-prometheus-stack.jsonnet"
   }
 }
 

@@ -17,7 +17,7 @@ data "external" "snmp-exporter-values" {
   program = ["../jsonnet.rb"]
 
   query = {
-    path = "./snmp-exporter.values.jsonnet"
+    path = "./snmp-exporter.jsonnet"
   }
 }
 

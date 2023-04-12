@@ -12,7 +12,7 @@ data "external" "grafana-values" {
   program = ["../jsonnet.rb"]
 
   query = {
-    path = "./grafana.values.jsonnet"
+    path = "./grafana.jsonnet"
   }
 }
 
