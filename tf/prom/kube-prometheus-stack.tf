@@ -3,9 +3,7 @@ resource "helm_release" "kube-prometheus-stack" {
   chart      = "kube-prometheus-stack"
   version    = "39.9.0"
 
-  name             = "kube-prometheus-stack"
-  namespace        = "monitoring"
-  create_namespace = true
+  name = "kube-prometheus-stack"
 
   values = [data.external.kube-prometheus-stack-values.result.json]
 }
@@ -26,13 +24,12 @@ resource "kubernetes_manifest" "targetgroupbinding-prometheus" {
   manifest = {
     "apiVersion" = "elbv2.k8s.aws/v1beta1"
     "kind"       = "TargetGroupBinding"
-    "metadata"   = {
-      "name"      = "prometheus"
-      "namespace" = "monitoring"
+    "metadata" = {
+      "name" = "prometheus"
     }
 
     "spec" = {
-      "serviceRef"     = {
+      "serviceRef" = {
         "name" = "prometheus-operated"
         "port" = 9090
       },
@@ -49,13 +46,12 @@ resource "kubernetes_manifest" "targetgroupbinding-alertmanager" {
   manifest = {
     "apiVersion" = "elbv2.k8s.aws/v1beta1"
     "kind"       = "TargetGroupBinding"
-    "metadata"   = {
-      "name"      = "alertmanager"
-      "namespace" = "monitoring"
+    "metadata" = {
+      "name" = "alertmanager"
     }
 
     "spec" = {
-      "serviceRef"     = {
+      "serviceRef" = {
         "name" = "alertmanager-operated"
         "port" = 9093
       },

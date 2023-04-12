@@ -3,9 +3,7 @@ resource "helm_release" "blackbox-exporter" {
   chart      = "prometheus-blackbox-exporter"
   version    = "7.0.0"
 
-  name             = "blackbox-exporter"
-  namespace        = "monitoring"
-  create_namespace = true
+  name = "blackbox-exporter"
 
   values = [data.external.blackbox-exporter-values.result.json]
 }

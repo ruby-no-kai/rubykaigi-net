@@ -3,9 +3,7 @@ resource "helm_release" "grafana" {
   chart      = "grafana"
   version    = "6.34.0"
 
-  name             = "grafana"
-  namespace        = "monitoring"
-  create_namespace = true
+  name = "grafana"
 
   values = [data.external.grafana-values.result.json]
 }
@@ -26,13 +24,12 @@ resource "kubernetes_manifest" "targetgroupbinding-grafana" {
   manifest = {
     "apiVersion" = "elbv2.k8s.aws/v1beta1"
     "kind"       = "TargetGroupBinding"
-    "metadata"   = {
-      "name"      = "grafana"
-      "namespace" = "monitoring"
+    "metadata" = {
+      "name" = "grafana"
     }
 
     "spec" = {
-      "serviceRef"     = {
+      "serviceRef" = {
         "name" = "grafana"
         "port" = 80
       },

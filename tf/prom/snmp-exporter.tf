@@ -3,9 +3,7 @@ resource "helm_release" "snmp-exporter" {
   chart      = "prometheus-snmp-exporter"
   version    = "1.2.0"
 
-  name             = "snmp-exporter"
-  namespace        = "monitoring"
-  create_namespace = true
+  name = "snmp-exporter"
 
   values = [
     data.external.snmp-exporter-values.result.json,
