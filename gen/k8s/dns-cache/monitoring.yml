@@ -63,7 +63,7 @@
             "targetLabel": "transport_protocol"
           },
           {
-            "replacement": "google.com",
+            "replacement": "kmc.gr.jp",
             "targetLabel": "query_name"
           }
         ],
@@ -87,7 +87,7 @@
             "targetLabel": "instance"
           },
           {
-            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115",
             "targetLabel": "__address__"
           },
           {
@@ -103,7 +103,7 @@
             "targetLabel": "transport_protocol"
           },
           {
-            "replacement": "google.com",
+            "replacement": "kmc.gr.jp",
             "targetLabel": "query_name"
           }
         ],
@@ -127,7 +127,7 @@
             "targetLabel": "instance"
           },
           {
-            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115",
             "targetLabel": "__address__"
           },
           {
@@ -167,7 +167,7 @@
             "targetLabel": "instance"
           },
           {
-            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115",
             "targetLabel": "__address__"
           },
           {
@@ -207,7 +207,7 @@
             "targetLabel": "instance"
           },
           {
-            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115",
             "targetLabel": "__address__"
           },
           {

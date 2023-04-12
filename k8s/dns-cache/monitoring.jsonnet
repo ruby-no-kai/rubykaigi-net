@@ -9,7 +9,7 @@ local blackboxExporterRelabelings = [
   },
   {
     targetLabel: '__address__',
-    replacement: 'blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115',
+    replacement: 'blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115',
   },
   {
     targetLabel: '__metrics_path__',
@@ -116,7 +116,7 @@ local dnsProbes(domain) = [
         },
       },
       podMetricsEndpoints: std.flattenArrays([
-        dnsProbes('google.com'),
+        dnsProbes('kmc.gr.jp'),
         dnsProbes('rubykaigi.org'),
       ]),
     },
