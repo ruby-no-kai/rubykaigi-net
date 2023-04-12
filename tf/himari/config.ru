@@ -82,7 +82,14 @@ use(Himari::Middlewares::Client,
     https://wlc.rubykaigi.net/oauth2/idpresponse
     https://prometheus.rubykaigi.net/oauth2/idpresponse
     https://alertmanager.rubykaigi.net/oauth2/idpresponse
-    https://grafana.rubykaigi.net/oauth2/idpresponse
+  ),
+)
+use(Himari::Middlewares::Client,
+  name: 'grafana',
+  id: '88445b54-09dd-6790-ecf0-1e7bbfd5e12d',
+  secret_hash: 'b6a4af3ad25e3d6f5416d12bde5a72cd8bac5ac0f04c19b59c2ebe2781de4112cd1c4aac17139c63364e02a86a26a32d', # sha384.hexdigest
+  redirect_uris: %w(
+    https://grafana.rubykaigi.net/login/generic_oauth
   ),
 )
 
@@ -162,11 +169,37 @@ use(Himari::Middlewares::AuthorizationRule, name: 'default') do |context, decisi
   )
 
   if available_for_everyone.include?(context.client.name)
+    decision.lifetime.access_token = 3600 * 12
     next decision.allow!
   end
 
   decision.skip!
 end
+
+use(Himari::Middlewares::AuthorizationRule, name: 'grafana') do |context, decision|
+  next decision.skip!('client not in scope') unless context.client.name == 'grafana'
+  next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
+
+  groups = decision.claims.dig(:groups)
+  roles = []
+
+  if groups.include?('ruby-no-kai/rk-noc')
+    roles.push('admin')
+  else
+    roles.push('viewer')
+  end
+
+  decision.claims[:roles] = roles
+  decision.allowed_claims.push(:roles)
+
+  unless roles.empty?
+    decision.lifetime.access_token = 3600 * 12
+    next decision.allow!
+  end
+
+  decision.skip!
+end
+
 use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, decision|
   next decision.skip!('client not in scope') unless context.client.name == 'amc'
   next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
