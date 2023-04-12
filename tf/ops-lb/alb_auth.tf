@@ -15,7 +15,7 @@ locals {
     issuer                     = "https://idp.rubykaigi.net"
     on_unauthenticated_request = "authenticate"
     scope                      = "openid"
-    session_timeout            = 3600
+    session_timeout            = 12 * 3600
   }
 }
 
