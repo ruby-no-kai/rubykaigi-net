@@ -61,3 +61,17 @@ resource "kubernetes_manifest" "targetgroupbinding-alertmanager" {
     }
   }
 }
+
+resource "kubernetes_secret" "alertmanager-slack-webhook" {
+  metadata {
+    name = "alertmanager-slack-webhook"
+  }
+
+  data = {
+    url = data.aws_ssm_parameter.slack-webhook-url.value
+  }
+}
+
+data "aws_ssm_parameter" "slack-webhook-url" {
+  name = "/misc/network-slack-webhook-url"
+}
