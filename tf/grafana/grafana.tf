@@ -5,7 +5,14 @@ resource "helm_release" "grafana" {
 
   name = "grafana"
 
-  values = [data.external.grafana-values.result.json]
+  values = [
+    data.external.grafana-values.result.json,
+    jsonencode({
+      "grafana.ini" = {
+        "auth.generic_oauth" = local.oidc_config,
+      },
+    }),
+  ]
 }
 
 data "external" "grafana-values" {
