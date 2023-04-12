@@ -25,7 +25,8 @@ resource "kubernetes_manifest" "targetgroupbinding-prometheus" {
     "apiVersion" = "elbv2.k8s.aws/v1beta1"
     "kind"       = "TargetGroupBinding"
     "metadata" = {
-      "name" = "prometheus"
+      "name"      = "prometheus"
+      "namespace" = "default"
     }
 
     "spec" = {
@@ -47,7 +48,8 @@ resource "kubernetes_manifest" "targetgroupbinding-alertmanager" {
     "apiVersion" = "elbv2.k8s.aws/v1beta1"
     "kind"       = "TargetGroupBinding"
     "metadata" = {
-      "name" = "alertmanager"
+      "name"      = "alertmanager"
+      "namespace" = "default"
     }
 
     "spec" = {

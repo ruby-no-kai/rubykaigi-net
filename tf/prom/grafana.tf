@@ -25,7 +25,8 @@ resource "kubernetes_manifest" "targetgroupbinding-grafana" {
     "apiVersion" = "elbv2.k8s.aws/v1beta1"
     "kind"       = "TargetGroupBinding"
     "metadata" = {
-      "name" = "grafana"
+      "name"      = "grafana"
+      "namespace" = "default"
     }
 
     "spec" = {
