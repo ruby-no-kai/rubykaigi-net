@@ -26,13 +26,8 @@
     },
   },
   'grafana.ini': {
-    'auth.proxy': {
-      enabled: true,
-      auto_sign_up: true,
-      header_name: 'x-amzn-oidc-identity',
-    },
-    users: {
-      auto_assign_org_role: 'Admin',
+    server: {
+      root_url: 'https://grafana.rubykaigi.net/',
     },
   },
 }
