@@ -28,6 +28,30 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
+    "name": "unbound-envoy"
+  },
+  "spec": {
+    "podMetricsEndpoints": [
+      {
+        "path": "/stats/prometheus",
+        "port": "admin"
+      }
+    ],
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "unbound-envoy"
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "PodMonitor",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
     "name": "unbound-resolv"
   },
   "spec": {
@@ -39,7 +63,7 @@
             "targetLabel": "transport_protocol"
           },
           {
-            "replacement": "google.com",
+            "replacement": "kmc.gr.jp",
             "targetLabel": "query_name"
           }
         ],
@@ -63,7 +87,7 @@
             "targetLabel": "instance"
           },
           {
-            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115",
             "targetLabel": "__address__"
           },
           {
@@ -79,7 +103,7 @@
             "targetLabel": "transport_protocol"
           },
           {
-            "replacement": "google.com",
+            "replacement": "kmc.gr.jp",
             "targetLabel": "query_name"
           }
         ],
@@ -103,7 +127,7 @@
             "targetLabel": "instance"
           },
           {
-            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115",
             "targetLabel": "__address__"
           },
           {
@@ -143,7 +167,7 @@
             "targetLabel": "instance"
           },
           {
-            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115",
             "targetLabel": "__address__"
           },
           {
@@ -183,7 +207,7 @@
             "targetLabel": "instance"
           },
           {
-            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115",
+            "replacement": "blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115",
             "targetLabel": "__address__"
           },
           {

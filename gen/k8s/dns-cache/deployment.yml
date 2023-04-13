@@ -1,115 +1,250 @@
 {
-   "apiVersion": "apps/v1",
-   "kind": "Deployment",
-   "metadata": {
-      "labels": {
-         "rubykaigi.org/app": "unbound"
-      },
-      "name": "unbound"
-   },
-   "spec": {
-      "replicas": 2,
-      "selector": {
-         "matchLabels": {
-            "rubykaigi.org/app": "unbound"
-         }
-      },
-      "template": {
-         "metadata": {
-            "labels": {
-               "rubykaigi.org/app": "unbound"
-            }
-         },
-         "spec": {
-            "containers": [
-               {
-                  "args": [
-                     "-c",
-                     "/etc/unbound/unbound.conf",
-                     "-dd"
-                  ],
-                  "env": [ ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:ba5d9dbe4dcb985109f82f910445fd560964b826",
-                  "livenessProbe": {
-                     "failureThreshold": 2,
-                     "httpGet": {
-                        "path": "/healthz",
-                        "port": 9167,
-                        "scheme": "HTTP"
-                     },
-                     "periodSeconds": 3
-                  },
-                  "name": "unbound",
-                  "ports": [
-                     {
-                        "containerPort": 10053,
-                        "name": "dns",
-                        "protocol": "UDP"
-                     },
-                     {
-                        "containerPort": 10053,
-                        "name": "dns-tcp",
-                        "protocol": "TCP"
-                     },
-                     {
-                        "containerPort": 9167,
-                        "name": "prom"
-                     }
-                  ],
-                  "readinessProbe": {
-                     "httpGet": {
-                        "path": "/healthz",
-                        "port": 9167,
-                        "scheme": "HTTP"
-                     }
-                  },
-                  "securityContext": {
-                     "capabilities": {
-                        "add": [
-                           "NET_ADMIN"
-                        ]
-                     }
-                  },
-                  "volumeMounts": [
-                     {
-                        "mountPath": "/etc/unbound",
-                        "name": "config",
-                        "readOnly": true
-                     }
-                  ]
-               }
-            ],
-            "nodeSelector": {
-               "rubykaigi.org/node-group": "onpremises"
-            },
-            "tolerations": [
-               {
-                  "effect": "NoSchedule",
-                  "key": "dedicated",
-                  "value": "onpremises"
-               }
-            ],
-            "topologySpreadConstraints": [
-               {
-                  "labelSelector": {
-                     "matchLabels": {
-                        "rubykaigi.org/app": "unbound"
-                     }
-                  },
-                  "maxSkew": 1,
-                  "topologyKey": "topology.kubernetes.io/zone",
-                  "whenUnsatisfiable": "ScheduleAnyway"
-               }
-            ],
-            "volumes": [
-               {
-                  "configMap": {
-                     "name": "unbound-config"
-                  },
-                  "name": "config"
-               }
-            ]
-         }
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "labels": {
+      "rubykaigi.org/app": "unbound"
+    },
+    "name": "unbound"
+  },
+  "spec": {
+    "replicas": 2,
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "unbound"
       }
-   }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "rubykaigi.org/app": "unbound"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "args": [
+              "-c",
+              "/etc/unbound/unbound.conf",
+              "-dd"
+            ],
+            "env": [
+
+            ],
+            "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:b400f4a7bbcb44c69dc0eff35afe0c86b577f144",
+            "livenessProbe": {
+              "failureThreshold": 2,
+              "httpGet": {
+                "path": "/healthz",
+                "port": 9167,
+                "scheme": "HTTP"
+              },
+              "periodSeconds": 3
+            },
+            "name": "unbound",
+            "ports": [
+              {
+                "containerPort": 10053,
+                "name": "dns",
+                "protocol": "UDP"
+              },
+              {
+                "containerPort": 10053,
+                "name": "dns-tcp",
+                "protocol": "TCP"
+              },
+              {
+                "containerPort": 10853,
+                "name": "dns-tls",
+                "protocol": "TCP"
+              },
+              {
+                "containerPort": 10443,
+                "name": "dns-h2",
+                "protocol": "TCP"
+              },
+              {
+                "containerPort": 9167,
+                "name": "prom"
+              }
+            ],
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/healthz",
+                "port": 9167,
+                "scheme": "HTTP"
+              }
+            },
+            "securityContext": {
+              "capabilities": {
+                "add": [
+                  "NET_ADMIN"
+                ]
+              }
+            },
+            "volumeMounts": [
+              {
+                "mountPath": "/etc/unbound",
+                "name": "unbound-config",
+                "readOnly": true
+              },
+              {
+                "mountPath": "/secrets/tls-cert",
+                "name": "tls-cert",
+                "readOnly": true
+              }
+            ]
+          }
+        ],
+        "nodeSelector": {
+          "rubykaigi.org/node-group": "onpremises"
+        },
+        "tolerations": [
+          {
+            "effect": "NoSchedule",
+            "key": "dedicated",
+            "value": "onpremises"
+          }
+        ],
+        "topologySpreadConstraints": [
+          {
+            "labelSelector": {
+              "matchLabels": {
+                "rubykaigi.org/app": "unbound"
+              }
+            },
+            "maxSkew": 1,
+            "topologyKey": "topology.kubernetes.io/zone",
+            "whenUnsatisfiable": "ScheduleAnyway"
+          }
+        ],
+        "volumes": [
+          {
+            "configMap": {
+              "name": "unbound-config"
+            },
+            "name": "unbound-config"
+          },
+          {
+            "name": "tls-cert",
+            "secret": {
+              "secretName": "cert-resolver-rubykaigi-net"
+            }
+          }
+        ]
+      }
+    }
+  }
 }
+---
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "labels": {
+      "rubykaigi.org/app": "unbound-envoy"
+    },
+    "name": "unbound-envoy"
+  },
+  "spec": {
+    "replicas": 2,
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "unbound-envoy"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "rubykaigi.org/app": "unbound-envoy"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "args": [
+              "--config-path",
+              "/etc/envoy/envoy.json"
+            ],
+            "env": [
+
+            ],
+            "image": "envoyproxy/envoy:v1.25.4",
+            "livenessProbe": {
+              "failureThreshold": 2,
+              "httpGet": {
+                "path": "/ready",
+                "port": 9901,
+                "scheme": "HTTP"
+              },
+              "periodSeconds": 3
+            },
+            "name": "envoy",
+            "ports": [
+              {
+                "containerPort": 11443,
+                "name": "dns-https",
+                "protocol": "TCP"
+              },
+              {
+                "containerPort": 11443,
+                "name": "dns-https-udp",
+                "protocol": "UDP"
+              },
+              {
+                "containerPort": 9901,
+                "name": "admin"
+              }
+            ],
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/ready",
+                "port": 9901,
+                "scheme": "HTTP"
+              }
+            },
+            "volumeMounts": [
+              {
+                "mountPath": "/etc/envoy",
+                "name": "envoy-config",
+                "readOnly": true
+              },
+              {
+                "mountPath": "/secrets/tls-cert",
+                "name": "tls-cert",
+                "readOnly": true
+              }
+            ]
+          }
+        ],
+        "topologySpreadConstraints": [
+          {
+            "labelSelector": {
+              "matchLabels": {
+                "rubykaigi.org/app": "unbound-envoy"
+              }
+            },
+            "maxSkew": 1,
+            "topologyKey": "topology.kubernetes.io/zone",
+            "whenUnsatisfiable": "ScheduleAnyway"
+          }
+        ],
+        "volumes": [
+          {
+            "configMap": {
+              "name": "envoy-config"
+            },
+            "name": "envoy-config"
+          },
+          {
+            "name": "tls-cert",
+            "secret": {
+              "secretName": "cert-resolver-rubykaigi-net"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+---

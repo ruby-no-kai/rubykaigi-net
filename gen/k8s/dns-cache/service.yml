@@ -17,10 +17,49 @@
         "port": 53,
         "protocol": "TCP",
         "targetPort": "dns-tcp"
+      },
+      {
+        "name": "dns-tls",
+        "port": 853,
+        "protocol": "TCP",
+        "targetPort": "dns-tls"
+      },
+      {
+        "name": "dns-h2",
+        "port": 443,
+        "protocol": "TCP",
+        "targetPort": "dns-h2"
       }
     ],
     "selector": {
       "rubykaigi.org/app": "unbound"
+    }
+  }
+}
+---
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "name": "unbound-envoy"
+  },
+  "spec": {
+    "ports": [
+      {
+        "name": "dns-https",
+        "port": 443,
+        "protocol": "TCP",
+        "targetPort": "dns-https"
+      },
+      {
+        "name": "dns-https-udp",
+        "port": 443,
+        "protocol": "UDP",
+        "targetPort": "dns-https-udp"
+      }
+    ],
+    "selector": {
+      "rubykaigi.org/app": "unbound-envoy"
     }
   }
 }

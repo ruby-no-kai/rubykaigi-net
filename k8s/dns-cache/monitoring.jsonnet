@@ -9,7 +9,7 @@ local blackboxExporterRelabelings = [
   },
   {
     targetLabel: '__address__',
-    replacement: 'blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115',
+    replacement: 'blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115',
   },
   {
     targetLabel: '__metrics_path__',
@@ -74,6 +74,30 @@ local dnsProbes(domain) = [
     },
   },
 
+  {
+    apiVersion: 'monitoring.coreos.com/v1',
+    kind: 'PodMonitor',
+    metadata: {
+      name: 'unbound-envoy',
+      labels: {
+        release: 'kube-prometheus-stack',
+      },
+    },
+    spec: {
+      selector: {
+        matchLabels: {
+          'rubykaigi.org/app': 'unbound-envoy',
+        },
+      },
+      podMetricsEndpoints: [
+        {
+          port: 'admin',
+          path: '/stats/prometheus',
+        },
+      ],
+    },
+  },
+
   ///
 
   {
@@ -92,7 +116,7 @@ local dnsProbes(domain) = [
         },
       },
       podMetricsEndpoints: std.flattenArrays([
-        dnsProbes('google.com'),
+        dnsProbes('kmc.gr.jp'),
         dnsProbes('rubykaigi.org'),
       ]),
     },
