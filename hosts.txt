@@ -72,7 +72,6 @@ venue	bb	192.50.220.160/29	192.50.220.163	gw-02	nat
 apne1	bb	192.50.220.160/29	192.50.220.164	resolver-01	x
 apne1	bb	192.50.220.160/29	192.50.220.165	resolver-02	x
 hot	bb	192.50.220.160/29	192.50.220.166	gw-01	nat
-venue	bb	192.50.220.160/29	192.50.220.167
 transit	bb	192.50.220.152/29	2001:0df0:8500:ca2a::a	mahiru-kmc	enp1s0f0
 hnd	bb	192.50.220.152/29	2001:0df0:8500:ca2a::b	br-01	gi3-0
 transit	bb	192.50.220.152/29	2001:0df0:8500:ca2b::a	rola-kmc	enx

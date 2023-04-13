@@ -2034,46 +2034,6 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "167.220.50.192.reverse.rubykaigi.net.",
-      "type": "PTR",
-      "records": [
-        "false.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-common",
-      "name": "false.venue.dualstack.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "192.50.220.167"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-common",
-      "name": "false.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "192.50.220.167"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-common",
-      "name": ".false.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "192.50.220.167"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-common",
-      "name": "bb.false.venue.rubykaigi.net.",
-      "type": "CNAME",
-      "records": [
-        ".false.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-common",
       "name": "mahiru-kmc.transit.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
