@@ -7,6 +7,7 @@ require 'pathname'
 Dir.chdir __dir__
 
 system(
+  {'DOCKER_BUILDKIT' => '1'},
   'docker', 'build', '-qt', 'snmp-exporter-config-generator',
   '../../docker/snmp-exporter-config-generator',
   exception: true,
@@ -20,7 +21,7 @@ Tempfile.open do |jsonnet|
   )
 
   system(
-    'docker', 'run', '--rm', '-i', 'snmp-exporter-config-generator',
+    'docker', 'run', '--rm', '-i', 'snmp-exporter-config-generator', 'generate',
     in: jsonnet.tap(&:rewind),
     out: './gen/snmp.yml',
     exception: true,
