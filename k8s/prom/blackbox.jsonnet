@@ -12,12 +12,12 @@
       interval: '60s',
       module: 'icmp',
       prober: {
-        url: 'blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115',
+        url: 'blackbox-exporter-prometheus-blackbox-exporter.default.svc.cluster.local:9115',
       },
       targets: {
         staticConfig: {
           static: [
-            '8.8.8.8',
+            '192.50.220.1',
           ],
         },
       },

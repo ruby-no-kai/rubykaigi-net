@@ -3,11 +3,16 @@ local targets = [
     modules: ['if_mib', 'nec_ix'],
     hosts: [
       'br-01.hnd.rubykaigi.net',
-      'br-01.itm.rubykaigi.net',
+      'br-01.nrt.rubykaigi.net',
       'tun-01.venue.rubykaigi.net',
       'tun-02.venue.rubykaigi.net',
       'gw-01.venue.rubykaigi.net',
       'gw-02.venue.rubykaigi.net',
+
+      'tun-01.hot.rubykaigi.net',
+      'gw-01.hot.rubykaigi.net',
+      'tun-99.tkyk.rubykaigi.net',
+      'gw-99.tkyk.rubykaigi.net',
     ],
   },
   {
@@ -62,7 +67,7 @@ local probes(name, targets, interval) =
         scrapeTimeout: std.format('%ds', interval - 1),
         module: module,
         prober: {
-          url: 'snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116',
+          url: 'snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116',
           path: '/snmp',
         },
         targets: {

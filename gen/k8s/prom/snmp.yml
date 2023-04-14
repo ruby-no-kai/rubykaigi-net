@@ -12,18 +12,22 @@
     "module": "if_mib",
     "prober": {
       "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
     },
     "scrapeTimeout": "19s",
     "targets": {
       "staticConfig": {
         "static": [
           "br-01.hnd.rubykaigi.net",
-          "br-01.itm.rubykaigi.net",
+          "br-01.nrt.rubykaigi.net",
           "tun-01.venue.rubykaigi.net",
           "tun-02.venue.rubykaigi.net",
           "gw-01.venue.rubykaigi.net",
           "gw-02.venue.rubykaigi.net",
+          "tun-01.hot.rubykaigi.net",
+          "gw-01.hot.rubykaigi.net",
+          "tun-99.tkyk.rubykaigi.net",
+          "gw-99.tkyk.rubykaigi.net",
           "sw-tra-01.venue.rubykaigi.net",
           "sw-tra-02.venue.rubykaigi.net",
           "sw-foa-01.venue.rubykaigi.net",
@@ -53,18 +57,22 @@
     "module": "nec_ix",
     "prober": {
       "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
     },
     "scrapeTimeout": "19s",
     "targets": {
       "staticConfig": {
         "static": [
           "br-01.hnd.rubykaigi.net",
-          "br-01.itm.rubykaigi.net",
+          "br-01.nrt.rubykaigi.net",
           "tun-01.venue.rubykaigi.net",
           "tun-02.venue.rubykaigi.net",
           "gw-01.venue.rubykaigi.net",
-          "gw-02.venue.rubykaigi.net"
+          "gw-02.venue.rubykaigi.net",
+          "tun-01.hot.rubykaigi.net",
+          "gw-01.hot.rubykaigi.net",
+          "tun-99.tkyk.rubykaigi.net",
+          "gw-99.tkyk.rubykaigi.net"
         ]
       }
     }
@@ -85,7 +93,7 @@
     "module": "cisco_wlc",
     "prober": {
       "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
     },
     "scrapeTimeout": "59s",
     "targets": {
@@ -112,7 +120,7 @@
     "module": "if_mib",
     "prober": {
       "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
     },
     "scrapeTimeout": "59s",
     "targets": {
@@ -139,7 +147,7 @@
     "module": "if_mib2",
     "prober": {
       "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.monitoring.svc.cluster.local:9116"
+      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
     },
     "scrapeTimeout": "59s",
     "targets": {
