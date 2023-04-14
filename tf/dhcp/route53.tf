@@ -20,6 +20,6 @@ resource "aws_route53_record" "cisco-capwap-controller" {
   type     = "A"
   ttl      = 60
   records = [
-    "10.33.100.2",
+    "10.33.2.2",
   ]
 }
