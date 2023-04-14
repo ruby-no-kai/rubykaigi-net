@@ -1,3 +1,5 @@
+// Run ./gen-snmp-exporter-config.rb to regenerate snmp.yml
+
 local common = {
   auth: {
     community: 'public',
@@ -58,15 +60,14 @@ local common = {
         community: 'public2',
       },
       walk: [
-        'interfaces',
-        'ifXTable',
         '1.3.6.1.4.1.9.9.618.1.8',  // clsSysInfo
+        '1.3.6.1.4.1.9.9.513.1.1.1.1.6',  // cLApUpTime
         '1.3.6.1.4.1.14179.2.1.1.1.38',  // bsnDot11EssNumberofMobileStations
         '1.3.6.1.4.1.14179.2.2.2.1.2',  // bsnAPIfType
-        '1.3.6.1.4.1.14179.2.2.2.1.3', // bsnAPIfPhyChannelAssignment
+        '1.3.6.1.4.1.14179.2.2.2.1.3',  // bsnAPIfPhyChannelAssignment
         '1.3.6.1.4.1.14179.2.2.2.1.4',  // bsnAPIfPhyChannelNumber
-        '1.3.6.1.4.1.14179.2.2.2.1.5', // bsnAPIfPhyTxPowerControl
-        '1.3.6.1.4.1.14179.2.2.2.1.6',  // power level
+        '1.3.6.1.4.1.14179.2.2.2.1.5',  // bsnAPIfPhyTxPowerControl
+        '1.3.6.1.4.1.14179.2.2.2.1.6',  // bsnAPIfPhyTxPowerLevel
         '1.3.6.1.4.1.14179.2.2.2.1.15',  // bsnApIfNoOfUsers
         '1.3.6.1.4.1.14179.2.2.6.1',  // bsnAPIfDot11CountersTable
         '1.3.6.1.4.1.14179.2.2.13.1.3',  // bsnAPIfLoadChannelUtilization
@@ -79,20 +80,17 @@ local common = {
           drop_source_indexes: true,
         },
         {
+          source_indexes: ['bsnAPDot3MacAddress', 'bsnAPIfSlotId'],
+          lookup: 'bsnAPIfType',
+        },
+        {
           source_indexes: ['bsnAPDot3MacAddress'],
           lookup: 'bsnAPName',
-          drop_source_indexes: true,
         },
         {
           source_indexes: ['cLApSysMacAddress'],
           lookup: 'cLApName',
-          drop_source_indexes: true,
         },
-        // {
-        //   source_indexes: ['bsnAPDot3MacAddress', 'bsnAPIfSlotId'],
-        //   lookup: 'bsnAPIfType',
-        //   drop_source_indexes: false,
-        // },
       ],
       overrides: {
         bsnAPName: {
@@ -100,9 +98,13 @@ local common = {
         },
         bsnAPIfType: {
           type: 'EnumAsInfo',
+          ignore: true,
         },
-        ifType: {
-          type: 'EnumAsInfo',
+        ifName: {
+          ignore: true,
+        },
+        cLApName: {
+          ignore: true,
         },
       },
     },
