@@ -11,7 +11,7 @@
     ],
     issuerRef: {
       kind: 'ClusterIssuer',
-      name: 'letsencrypt-staging',
+      name: 'letsencrypt',
     },
   },
 }

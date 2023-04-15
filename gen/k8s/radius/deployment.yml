@@ -1,0 +1,110 @@
+{
+   "apiVersion": "apps/v1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "rubykaigi.org/app": "radius"
+      },
+      "name": "radius",
+      "namespace": "default"
+   },
+   "spec": {
+      "replicas": 3,
+      "selector": {
+         "matchLabels": {
+            "rubykaigi.org/app": "radius"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "rubykaigi.org/app": "radius"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/run.sh"
+                  ],
+                  "env": [
+                     {
+                        "name": "RADIUS_SECRET",
+                        "valueFrom": {
+                           "secretKeyRef": {
+                              "key": "secret",
+                              "name": "radius"
+                           }
+                        }
+                     }
+                  ],
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/radiusd:c26454c2e2bebc5de663760e040b070490f5a861",
+                  "name": "app",
+                  "ports": [
+                     {
+                        "containerPort": 1812,
+                        "name": "radius",
+                        "protocol": "UDP"
+                     },
+                     {
+                        "containerPort": 1812,
+                        "name": "radius-tcp",
+                        "protocol": "TCP"
+                     }
+                  ],
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/secrets/tls-cert",
+                        "name": "tls-cert"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "/usr/local/bin/freeradius_exporter"
+                  ],
+                  "env": [
+                     {
+                        "name": "RADIUS_SECRET",
+                        "value": "maplenutbunny"
+                     }
+                  ],
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/freeradius-exporter:c26454c2e2bebc5de663760e040b070490f5a861",
+                  "livenessProbe": {
+                     "failureThreshold": 2,
+                     "httpGet": {
+                        "path": "/metrics",
+                        "port": 9812,
+                        "scheme": "HTTP"
+                     },
+                     "periodSeconds": 45
+                  },
+                  "name": "exporter",
+                  "ports": [
+                     {
+                        "containerPort": 9812,
+                        "name": "prom",
+                        "protocol": "TCP"
+                     }
+                  ],
+                  "readinessProbe": {
+                     "httpGet": {
+                        "path": "/metrics",
+                        "port": 9812,
+                        "scheme": "HTTP"
+                     }
+                  }
+               }
+            ],
+            "volumes": [
+               {
+                  "name": "tls-cert",
+                  "secret": {
+                     "secretName": "cert-radius"
+                  }
+               }
+            ]
+         }
+      }
+   }
+}

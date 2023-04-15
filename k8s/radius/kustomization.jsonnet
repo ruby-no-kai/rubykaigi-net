@@ -3,9 +3,9 @@
   kind: 'Kustomization',
   namespace: 'default',
   resources: [
-    // './deployment.yml',
+    './deployment.yml',
     // './configmap.yml',
-    // './service.yml',
+    './service.yml',
     // './monitoring.yml',
     './certificate.yml',
   ],
