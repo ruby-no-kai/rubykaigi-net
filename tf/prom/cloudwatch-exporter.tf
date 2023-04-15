@@ -90,7 +90,7 @@ data "aws_iam_policy_document" "cloudwatch-exporter-trust" {
     condition {
       test     = "StringEquals"
       variable = local.cluster_oidc_config.condition
-      values   = ["system:serviceaccount:monitoring:cloudwatch-exporter"]
+      values   = ["system:serviceaccount:default:cloudwatch-exporter"]
     }
   }
 }
