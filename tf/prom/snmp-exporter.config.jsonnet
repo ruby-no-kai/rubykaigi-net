@@ -117,19 +117,27 @@ local common = {
     nec_ix: common {
       walk: [
         'picoSystem',
-        'picoIpSecFlowMonitorMIB',
         'picoExtIfMIB',
-        'picoNetworkMonitorMIB',
-        'picoIsdnMIB',
-        'picoNgnMIB',
-        'picoMobileMIB',
         'picoIPv4MIB',
         'picoIPv6MIB',
+        'picoNAPTMIB',
       ],
       lookups: [
         {
           source_indexes: ['picoExtIfInstalledSlot', 'picoExtIfIndex'],
           lookup: 'picoExtIfDescr',
+        },
+        {
+          source_indexes: ['naptCacheIfIndex'],
+          lookup: 'ifName',
+        },
+        {
+          source_indexes: ['naptCacheIfIndex'],
+          lookup: 'ifAlias',
+        },
+        {
+          source_indexes: ['naptCacheIfIndex'],
+          lookup: 'ifDescr',
         },
       ],
       overrides: {
