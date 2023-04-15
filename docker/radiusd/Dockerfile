@@ -24,4 +24,5 @@ RUN rm -rf /secrets
 
 USER freerad
 EXPOSE 1812/tcp 1812/udp
+EXPOSE 18121/tcp 18121/udp
 CMD ["/run.sh"]
