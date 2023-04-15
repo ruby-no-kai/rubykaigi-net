@@ -20,6 +20,16 @@ local commit = 'bf1b115eff0ec17dbc071416075fe99de4538d9b';
       },
       spec: {
         // serviceAccountName: 'radius',
+        topologySpreadConstraints: [
+          {
+            maxSkew: 1,
+            topologyKey: 'topology.kubernetes.io/zone',
+            whenUnsatisfiable: 'ScheduleAnyway',
+            labelSelector: {
+              matchLabels: { 'rubykaigi.org/app': 'radius' },
+            },
+          },
+        ],
         containers: [
           {
             name: 'app',
