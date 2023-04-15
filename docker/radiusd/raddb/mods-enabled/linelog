@@ -1,0 +1,39 @@
+linelog linelog_recv_request {
+  filename = /dev/stdout
+  syslog_facility = local0
+  syslog_severity = debug
+  format = "action = Recv-Request, %{pairs:request:}"
+}
+
+linelog linelog_send_accept {
+  filename = /dev/stdout
+  syslog_facility = local0
+  syslog_severity = debug
+  format = "action = Send-Accept, %{pairs:request:}"
+}
+
+linelog linelog_send_reject {
+  filename = /dev/stdout
+  syslog_facility = local0
+  syslog_severity = debug
+  format = "action = Send-Reject, %{pairs:request:}"
+}
+
+linelog linelog_send_proxy_request {
+  filename = /dev/stdout
+  syslog_facility = local0
+  syslog_severity = debug
+  format = "action = Send-Proxy-Request, %{pairs:proxy-request:}"
+}
+
+linelog linelog_recv_proxy_response {
+  filename = /dev/stdout
+  syslog_facility = local0
+  syslog_severity = debug
+  reference = "messages.%{proxy-reply:Response-Packet-Type}"
+  messages {
+    Access-Accept = "action = Recv-Proxy-Accept, User-Name = %{User-Name}, Calling-Station-Id = %{Calling-Station-Id}, %{pairs:proxy-reply:}"
+    Access-Reject = "action = Recv-Proxy-Reject, User-Name = %{User-Name}, Calling-Station-Id = %{Calling-Station-Id}, %{pairs:proxy-reply:}"
+    Access-Challenge = "action = Recv-Proxy-Challenge, User-Name = %{User-Name}, Calling-Station-ID = %{Calling-Station-Id}, %{pairs:proxy-reply:}"
+  }
+}
