@@ -1,0 +1,5 @@
+files {
+  moddir = ${modconfdir}/${.:instance}
+  #key = "%{%{Stripped-User-Name}:-%{User-Name}}"
+  filename = ${moddir}/authorize
+}

@@ -1,0 +1,31 @@
+eap {
+  default_eap_type = peap
+  timer_expire = 60
+  tls-config tls-common {
+    private_key_password = whatever
+    private_key_file = /secrets/tls-cert/tls.key
+    certificate_file = /secrets/tls-cert/tls.crt
+    # ca_file = /secrets/tls-cert/ca.crt
+    tls_min_version = "1.2"
+    cipher_server_preference = no
+    cipher_list = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384"
+    ocsp {
+      enable = yes
+      override_cert_url = no
+      use_nonce = yes
+    }
+  }
+  #  tls {
+  #    tls = tls-common
+  #  }
+  ttls {
+    tls = tls-common
+    default_eap_type = mschapv2
+    virtual_server = "inner-tunnel"
+  }
+  peap {
+    tls = tls-common
+    default_eap_type = mschapv2
+    virtual_server = "inner-tunnel"
+  }
+}

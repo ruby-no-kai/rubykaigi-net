@@ -1,0 +1,36 @@
+#! vim: set ft=conf :
+#
+server inner-tunnel {
+  listen {
+    ipaddr = 127.0.0.1
+      port = 18120
+      type = auth
+  }
+
+  authorize {
+    auth_log
+    split_username_nai
+    if (noop || (&Stripped-User-Domain && (&outer.Stripped-User-Domain != &Stripped-User-Domain))) {
+      reject
+    }
+    if (&outer.session-state:)
+        update {
+          &outer.session-state:Stripped-User-Name := &Stripped-User-Name
+        }
+    }
+
+    inner-eap {
+      ok = return
+    }
+    files
+
+    pap
+    mschap
+  }
+
+  authenticate {
+    inner-eap
+    mschap
+    pap
+  }
+}

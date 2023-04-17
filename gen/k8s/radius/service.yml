@@ -1,0 +1,26 @@
+{
+   "apiVersion": "v1",
+   "kind": "Service",
+   "metadata": {
+      "name": "radius"
+   },
+   "spec": {
+      "ports": [
+         {
+            "name": "radius",
+            "port": 1812,
+            "protocol": "UDP",
+            "targetPort": "radius"
+         },
+         {
+            "name": "radius-udp",
+            "port": 1812,
+            "protocol": "TCP",
+            "targetPort": "radius-udp"
+         }
+      ],
+      "selector": {
+         "rubykaigi.org/app": "radius"
+      }
+   }
+}

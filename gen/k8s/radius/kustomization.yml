@@ -3,6 +3,8 @@
    "kind": "Kustomization",
    "namespace": "default",
    "resources": [
+      "./deployment.yml",
+      "./service.yml",
       "./certificate.yml"
    ]
 }

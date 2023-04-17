@@ -34,6 +34,8 @@ template 'rubykaigi.net-common' do
     resource_records %w[192.50.220.164 192.50.220.165]
   end
   ignore 'origin.resolver.rubykaigi.net'
+
+  ignore 'radius.rubykaigi.net'
 end
 
 template 'rubykaigi.net-public' do
