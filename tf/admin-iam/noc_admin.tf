@@ -53,6 +53,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "application-autoscaling:*",
       "autoscaling:*",
       "chime:*",
+      "cloudformation:ListStacks",
       "cloudfront:*",
       "cloudwatch:*",
       "codebuild:*",
