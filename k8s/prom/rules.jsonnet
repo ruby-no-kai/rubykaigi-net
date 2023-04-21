@@ -1,6 +1,6 @@
 [
   {
-  apiVersion: 'monitoring.coreos.com/v1',
+    apiVersion: 'monitoring.coreos.com/v1',
     kind: 'PrometheusRule',
     metadata: {
       name: 'common-rules',
@@ -17,8 +17,9 @@
         import './rules/aws_rds.libsonnet',
         import './rules/cloudwatch.libsonnet',
         import './rules/snmp.libsonnet',
+        import './rules/kube.libsonnet',
       ],
       {},
     ),
-  }
+  },
 ]
