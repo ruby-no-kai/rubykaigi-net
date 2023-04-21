@@ -88,4 +88,13 @@ local volumeClaimTemplate(size) = {
   },
   kubeControllerManager: { enabled: false },
   kubeScheduler: { enabled: false },
+
+  'kube-state-metrics': {
+    metricLabelsAllowlist: [
+      'nodes=[kubernetes.io/arch,topology.kubernetes.io/region,topology.kubernetes.io/zone,node-group.k8s.cookpad.com/name]',
+      'pods=[pod-template-hash,rubykaigi.org/app]',
+      'replicasets=[pod-template-hash,rubykaigi.org/app]',
+      'deployments=[rubykaigi.org/app]',
+    ],
+  },
 }
