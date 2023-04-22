@@ -23,6 +23,12 @@ RUN git init && \
 
 RUN file-rename -- 's/\.my$//' v2/*.my
 
+WORKDIR /build/generator/juniper
+RUN curl -LO 'https://www.juniper.net/documentation/software/junos/junos194/juniper-mibs-19.4R3.11.tgz' && \
+    tar xf juniper-mibs-*.tgz
+
+RUN file-rename -- 's/\.txt$//' JuniperMibs/*.txt
+
 FROM public.ecr.aws/ubuntu/ubuntu:jammy
 
 RUN apt-get update -qq && \
@@ -32,6 +38,7 @@ RUN apt-get update -qq && \
 COPY --from=build /build/generator/generator /opt/snmp-exporter/bin/
 COPY --from=build /build/generator/mibs/ /usr/share/snmp/mibs/
 COPY --from=build /build/generator/cisco/v2/ /usr/share/snmp/mibs/
+COPY --from=build /build/generator/juniper/JuniperMibs/ /usr/share/snmp/mibs/
 COPY --from=build /usr/share/snmp/mibs/ /usr/share/snmp/mibs/
 COPY --from=build /var/lib/mibs/ /var/lib/mibs/
 

@@ -1,4 +1,324 @@
 # WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
+cisco_envmon:
+  walk:
+  - 1.3.6.1.4.1.9.9.13.1.3.1.2
+  - 1.3.6.1.4.1.9.9.13.1.3.1.3
+  - 1.3.6.1.4.1.9.9.13.1.4.1.2
+  - 1.3.6.1.4.1.9.9.13.1.4.1.3
+  - 1.3.6.1.4.1.9.9.13.1.5.1.2
+  - 1.3.6.1.4.1.9.9.13.1.5.1.3
+  metrics:
+  - name: ciscoEnvMonTemperatureStatusValue
+    oid: 1.3.6.1.4.1.9.9.13.1.3.1.3
+    type: gauge
+    help: The current measurement of the testpoint being instrumented - 1.3.6.1.4.1.9.9.13.1.3.1.3
+    indexes:
+    - labelname: ciscoEnvMonTemperatureStatusIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ciscoEnvMonTemperatureStatusIndex
+      labelname: ciscoEnvMonTemperatureStatusDescr
+      oid: 1.3.6.1.4.1.9.9.13.1.3.1.2
+      type: DisplayString
+  - name: ciscoEnvMonFanState
+    oid: 1.3.6.1.4.1.9.9.13.1.4.1.3
+    type: gauge
+    help: The current state of the fan being instrumented. - 1.3.6.1.4.1.9.9.13.1.4.1.3
+    indexes:
+    - labelname: ciscoEnvMonFanStatusIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ciscoEnvMonFanStatusIndex
+      labelname: ciscoEnvMonFanStatusDescr
+      oid: 1.3.6.1.4.1.9.9.13.1.4.1.2
+      type: DisplayString
+    enum_values:
+      1: normal
+      2: warning
+      3: critical
+      4: shutdown
+      5: notPresent
+      6: notFunctioning
+  - name: ciscoEnvMonSupplyState
+    oid: 1.3.6.1.4.1.9.9.13.1.5.1.3
+    type: gauge
+    help: The current state of the power supply being instrumented. - 1.3.6.1.4.1.9.9.13.1.5.1.3
+    indexes:
+    - labelname: ciscoEnvMonSupplyStatusIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ciscoEnvMonSupplyStatusIndex
+      labelname: ciscoEnvMonSupplyStatusDescr
+      oid: 1.3.6.1.4.1.9.9.13.1.5.1.2
+      type: DisplayString
+    enum_values:
+      1: normal
+      2: warning
+      3: critical
+      4: shutdown
+      5: notPresent
+      6: notFunctioning
+  version: 2
+  max_repetitions: 25
+  retries: 3
+  timeout: 5s
+  auth:
+    community: public
+cisco_sensors:
+  walk:
+  - 1.3.6.1.2.1.47.1.1.1.1.2
+  - 1.3.6.1.2.1.47.1.1.1.1.4
+  - 1.3.6.1.2.1.47.1.1.1.1.7
+  - 1.3.6.1.4.1.9.9.91.1.1.1.1
+  metrics:
+  - name: entSensorType
+    oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.1
+    type: EnumAsInfo
+    help: This variable indicates the type of data reported by the entSensorValue
+      - 1.3.6.1.4.1.9.9.91.1.1.1.1.1
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalContainedIn
+      oid: 1.3.6.1.2.1.47.1.1.1.1.4
+      type: gauge
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalName
+      oid: 1.3.6.1.2.1.47.1.1.1.1.7
+      type: DisplayString
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    enum_values:
+      1: other
+      2: unknown
+      3: voltsAC
+      4: voltsDC
+      5: amperes
+      6: watts
+      7: hertz
+      8: celsius
+      9: percentRH
+      10: rpm
+      11: cmm
+      12: truthvalue
+      13: specialEnum
+  - name: entSensorScale
+    oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.2
+    type: gauge
+    help: This variable indicates the exponent to apply to sensor values reported
+      by entSensorValue - 1.3.6.1.4.1.9.9.91.1.1.1.1.2
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalContainedIn
+      oid: 1.3.6.1.2.1.47.1.1.1.1.4
+      type: gauge
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalName
+      oid: 1.3.6.1.2.1.47.1.1.1.1.7
+      type: DisplayString
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    regex_extracts:
+      "":
+      - value: "0.000000000000000000000001"
+        regex: ^(?:^1$)$
+      - value: "0.000000000000000000001"
+        regex: ^(?:^2$)$
+      - value: "0.000000000000000001"
+        regex: ^(?:^3$)$
+      - value: "0.000000000000001"
+        regex: ^(?:^4$)$
+      - value: "0.000000000001"
+        regex: ^(?:^5$)$
+      - value: "0.000000001"
+        regex: ^(?:^6$)$
+      - value: "0.000001"
+        regex: ^(?:^7$)$
+      - value: "0.001"
+        regex: ^(?:^8$)$
+      - value: "1"
+        regex: ^(?:^9$)$
+      - value: "1000"
+        regex: ^(?:^10$)$
+      - value: "1000000"
+        regex: ^(?:^11$)$
+      - value: "1000000000"
+        regex: ^(?:^12$)$
+      - value: "1000000000000"
+        regex: ^(?:^13$)$
+      - value: "1000000000000000"
+        regex: ^(?:^14$)$
+      - value: "1000000000000000000"
+        regex: ^(?:^15$)$
+      - value: "1000000000000000000000"
+        regex: ^(?:^16$)$
+      - value: '1000000000000000000000000  '
+        regex: ^(?:^17$)$
+    enum_values:
+      1: yocto
+      2: zepto
+      3: atto
+      4: femto
+      5: pico
+      6: nano
+      7: micro
+      8: milli
+      9: units
+      10: kilo
+      11: mega
+      12: giga
+      13: tera
+      14: exa
+      15: peta
+      16: zetta
+      17: yotta
+  - name: entSensorPrecision
+    oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.3
+    type: gauge
+    help: This variable indicates the number of decimal places of precision in fixed-point
+      sensor values reported by entSensorValue - 1.3.6.1.4.1.9.9.91.1.1.1.1.3
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalContainedIn
+      oid: 1.3.6.1.2.1.47.1.1.1.1.4
+      type: gauge
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalName
+      oid: 1.3.6.1.2.1.47.1.1.1.1.7
+      type: DisplayString
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+  - name: entSensorValue
+    oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.4
+    type: gauge
+    help: This variable reports the most recent measurement seen by the sensor - 1.3.6.1.4.1.9.9.91.1.1.1.1.4
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalContainedIn
+      oid: 1.3.6.1.2.1.47.1.1.1.1.4
+      type: gauge
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalName
+      oid: 1.3.6.1.2.1.47.1.1.1.1.7
+      type: DisplayString
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+  - name: entSensorStatus
+    oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.5
+    type: gauge
+    help: This variable indicates the present operational status of the sensor. -
+      1.3.6.1.4.1.9.9.91.1.1.1.1.5
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalContainedIn
+      oid: 1.3.6.1.2.1.47.1.1.1.1.4
+      type: gauge
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalName
+      oid: 1.3.6.1.2.1.47.1.1.1.1.7
+      type: DisplayString
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+    enum_values:
+      1: ok
+      2: unavailable
+      3: nonoperational
+  - name: entSensorValueTimeStamp
+    oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.6
+    type: gauge
+    help: This variable indicates the age of the value reported by entSensorValue
+      - 1.3.6.1.4.1.9.9.91.1.1.1.1.6
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalContainedIn
+      oid: 1.3.6.1.2.1.47.1.1.1.1.4
+      type: gauge
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalName
+      oid: 1.3.6.1.2.1.47.1.1.1.1.7
+      type: DisplayString
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+  - name: entSensorMeasuredEntity
+    oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.8
+    type: gauge
+    help: This object identifies the physical entity for which the sensor is taking
+      measurements - 1.3.6.1.4.1.9.9.91.1.1.1.1.8
+    indexes:
+    - labelname: entPhysicalIndex
+      type: gauge
+    lookups:
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalContainedIn
+      oid: 1.3.6.1.2.1.47.1.1.1.1.4
+      type: gauge
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalName
+      oid: 1.3.6.1.2.1.47.1.1.1.1.7
+      type: DisplayString
+    - labels:
+      - entPhysicalIndex
+      labelname: entPhysicalDescr
+      oid: 1.3.6.1.2.1.47.1.1.1.1.2
+      type: DisplayString
+  version: 2
+  max_repetitions: 25
+  retries: 3
+  timeout: 5s
+  auth:
+    community: public
 cisco_wlc:
   walk:
   - 1.3.6.1.4.1.14179.2.1.1.1.2
@@ -717,6 +1037,9 @@ cisco_wlc:
     help: This object represents the count of active connections present on the controller.
       - 1.3.6.1.4.1.9.9.618.1.8.28
   version: 2
+  max_repetitions: 25
+  retries: 3
+  timeout: 5s
   auth:
     community: public2
 if_mib:
@@ -1953,6 +2276,9 @@ if_mib:
       oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   version: 2
+  max_repetitions: 25
+  retries: 3
+  timeout: 5s
   auth:
     community: public
 if_mib2:
@@ -3189,8 +3515,163 @@ if_mib2:
       oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   version: 2
+  max_repetitions: 25
+  retries: 3
+  timeout: 5s
   auth:
     community: public2
+juniper_alarm:
+  get:
+  - 1.3.6.1.4.1.2636.3.4.2.2.1.0
+  - 1.3.6.1.4.1.2636.3.4.2.2.2.0
+  - 1.3.6.1.4.1.2636.3.4.2.2.3.0
+  - 1.3.6.1.4.1.2636.3.4.2.3.1.0
+  - 1.3.6.1.4.1.2636.3.4.2.3.2.0
+  - 1.3.6.1.4.1.2636.3.4.2.3.3.0
+  metrics:
+  - name: jnxYellowAlarmState
+    oid: 1.3.6.1.4.1.2636.3.4.2.2.1
+    type: EnumAsStateSet
+    help: The yellow alarm state on the craft interface panel - 1.3.6.1.4.1.2636.3.4.2.2.1
+    enum_values:
+      1: other
+      2: "off"
+      3: "on"
+  - name: jnxYellowAlarmCount
+    oid: 1.3.6.1.4.1.2636.3.4.2.2.2
+    type: gauge
+    help: The number of currently active and non-silent yellow alarms - 1.3.6.1.4.1.2636.3.4.2.2.2
+  - name: jnxYellowAlarmLastChange
+    oid: 1.3.6.1.4.1.2636.3.4.2.2.3
+    type: gauge
+    help: The value of sysUpTime when the yellow alarm last changed - either from
+      off to on or vice versa - 1.3.6.1.4.1.2636.3.4.2.2.3
+  - name: jnxRedAlarmState
+    oid: 1.3.6.1.4.1.2636.3.4.2.3.1
+    type: EnumAsStateSet
+    help: The red alarm indication on the craft interface panel - 1.3.6.1.4.1.2636.3.4.2.3.1
+    enum_values:
+      1: other
+      2: "off"
+      3: "on"
+  - name: jnxRedAlarmCount
+    oid: 1.3.6.1.4.1.2636.3.4.2.3.2
+    type: gauge
+    help: The number of currently active and non-silent red alarms - 1.3.6.1.4.1.2636.3.4.2.3.2
+  - name: jnxRedAlarmLastChange
+    oid: 1.3.6.1.4.1.2636.3.4.2.3.3
+    type: gauge
+    help: The value of sysUpTime when the red alarm last changed - either from off
+      to on or vice versa - 1.3.6.1.4.1.2636.3.4.2.3.3
+  version: 2
+  max_repetitions: 25
+  retries: 3
+  timeout: 5s
+  auth:
+    community: public
+juniper_dom:
+  walk:
+  - 1.3.6.1.2.1.31.1.1.1.1
+  - 1.3.6.1.2.1.31.1.1.1.18
+  - 1.3.6.1.4.1.2636.3.60.1.1.1.1.1
+  - 1.3.6.1.4.1.2636.3.60.1.1.1.1.4
+  - 1.3.6.1.4.1.2636.3.60.1.1.1.1.5
+  metrics:
+  - name: jnxDomCurrentAlarms
+    oid: 1.3.6.1.4.1.2636.3.60.1.1.1.1.1
+    type: Bits
+    help: This object identifies all the active DOM alarms on a SFF physical interface
+      on this router. - 1.3.6.1.4.1.2636.3.60.1.1.1.1.1
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifAlias
+      oid: 1.3.6.1.2.1.31.1.1.1.18
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    enum_values:
+      0: domRxLossSignalAlarm
+      1: domRxCDRLossLockAlarm
+      2: domRxNotReadyAlarm
+      3: domRxLaserPowerHighAlarm
+      4: domRxLaserPowerLowAlarm
+      5: domTxLaserBiasCurrentHighAlarm
+      6: domTxLaserBiasCurrentLowAlarm
+      7: domTxLaserOutputPowerHighAlarm
+      8: domTxLaserOutputPowerLowAlarm
+      9: domTxDataNotReadyAlarm
+      10: domTxNotReadyAlarm
+      11: domTxLaserFaultAlarm
+      12: domTxCDRLossLockAlarm
+      13: domModuleTemperatureHighAlarm
+      14: domModuleTemperatureLowAlarm
+      15: domModuleNotReadyAlarm
+      16: domModulePowerDownAlarm
+      17: domLinkDownAlarm
+      18: domModuleRemovedAlarm
+      19: domModuleVoltageHighAlarm
+      20: domModuleVoltageLowAlarm
+  - name: jnxDomCurrentWarnings
+    oid: 1.3.6.1.4.1.2636.3.60.1.1.1.1.4
+    type: Bits
+    help: This object identifies all the active DOM warnings on a SFF physical interface
+      on this router. - 1.3.6.1.4.1.2636.3.60.1.1.1.1.4
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifAlias
+      oid: 1.3.6.1.2.1.31.1.1.1.18
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    enum_values:
+      0: domRxLaserPowerHighWarning
+      1: domRxLaserPowerLowWarning
+      2: domTxLaserBiasCurrentHighWarning
+      3: domTxLaserBiasCurrentLowWarning
+      4: domTxLaserOutputPowerHighWarning
+      5: domTxLaserOutputPowerLowWarning
+      6: domModuleTemperatureHighWarning
+      7: domModuleTemperatureLowWarning
+      8: domModuleVoltageHighWarning
+      9: domModuleVoltageLowWarning
+  - name: jnxDomCurrentRxLaserPower
+    oid: 1.3.6.1.4.1.2636.3.60.1.1.1.1.5
+    type: gauge
+    help: Receiver laser power. - 1.3.6.1.4.1.2636.3.60.1.1.1.1.5
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+    lookups:
+    - labels:
+      - ifIndex
+      labelname: ifAlias
+      oid: 1.3.6.1.2.1.31.1.1.1.18
+      type: DisplayString
+    - labels:
+      - ifIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+  version: 2
+  max_repetitions: 25
+  retries: 1
+  timeout: 30s
+  auth:
+    community: public
 nec_ix:
   walk:
   - 1.3.6.1.2.1.31.1.1.1.1
@@ -3635,5 +4116,8 @@ nec_ix:
       oid: 1.3.6.1.4.1.119.2.3.84.6.1.1.3
       type: DisplayString
   version: 2
+  max_repetitions: 25
+  retries: 3
+  timeout: 5s
   auth:
     community: public
