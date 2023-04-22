@@ -146,6 +146,19 @@
         ]
       },
       {
+        "name": "cisco_optics_rec",
+        "rules": [
+          {
+            "expr": "label_replace(\n  entSensorValue{entPhysicalName=~\".*Receive Power Sensor$\"}\n  * 1\n  / 10^entSensorPrecision\n,\n  \"ifName\", \"$1\",\n  \"entPhysicalName\", \"^([^ ]+) .*$\"\n)\n",
+            "record": "cisco_optics:receive_power_sensor"
+          },
+          {
+            "expr": "label_replace(\n  entSensorValue{entPhysicalName=~\".*Transmit Power Sensor$\"}\n  * 1\n  / 10^entSensorPrecision\n,\n  \"ifName\", \"$1\",\n  \"entPhysicalName\", \"^([^ ]+) .*$\"\n)\n",
+            "record": "cisco_optics:transmit_power_sensor"
+          }
+        ]
+      },
+      {
         "name": "cloudwatch_down",
         "rules": [
           {
@@ -169,6 +182,15 @@
             "labels": {
               "severity": "critical"
             }
+          }
+        ]
+      },
+      {
+        "name": "kube",
+        "rules": [
+          {
+            "expr": "max by (namespace, pod, uid) (kube_pod_status_ready{condition=\"true\"}) * on(uid) group_left(node, pod_ip) max by (uid, pod_ip, node) (kube_pod_info) * on(node) group_left(label_topology_kubernetes_io_zone) max by (node, label_topology_kubernetes_io_zone) (kube_node_labels)",
+            "record": "kube:pods_with_zone:ready"
           }
         ]
       },
@@ -217,15 +239,6 @@
             "labels": {
               "severity": "critical"
             }
-          }
-        ]
-      },
-      {
-        "name": "kube",
-        "rules": [
-          {
-            "expr": "max by (namespace, pod, uid) (kube_pod_status_ready{condition=\"true\"}) * on(uid) group_left(node, pod_ip) max by (uid, pod_ip, node) (kube_pod_info) * on(node) group_left(label_topology_kubernetes_io_zone) max by (node, label_topology_kubernetes_io_zone) (kube_node_labels)",
-            "record": "kube:pods_with_zone:ready"
           }
         ]
       }
