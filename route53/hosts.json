@@ -1997,6 +1997,46 @@
       "name": "111.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
+        "esw-tra-02.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "esw-tra-02.venue.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.111"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "esw-tra-02.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.111"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "vlan1000.esw-tra-02.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.111"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "mgmt.esw-tra-02.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "vlan1000.esw-tra-02.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "115.100.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
         "esw-fow-01.venue.rubykaigi.net."
       ]
     },
@@ -2005,7 +2045,7 @@
       "name": "esw-fow-01.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.111"
+        "10.33.100.115"
       ]
     },
     {
@@ -2013,7 +2053,7 @@
       "name": "esw-fow-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.111"
+        "10.33.100.115"
       ]
     },
     {
@@ -2021,7 +2061,7 @@
       "name": "vlan1000.esw-fow-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.111"
+        "10.33.100.115"
       ]
     },
     {
@@ -2034,7 +2074,7 @@
     },
     {
       "zone": "ptr-10",
-      "name": "112.100.33.10.in-addr.arpa.",
+      "name": "116.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
         "esw-foe-01.venue.rubykaigi.net."
@@ -2045,7 +2085,7 @@
       "name": "esw-foe-01.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.112"
+        "10.33.100.116"
       ]
     },
     {
@@ -2053,7 +2093,7 @@
       "name": "esw-foe-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.112"
+        "10.33.100.116"
       ]
     },
     {
@@ -2061,7 +2101,7 @@
       "name": "vlan1000.esw-foe-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.112"
+        "10.33.100.116"
       ]
     },
     {
