@@ -2,6 +2,9 @@
   persistence: {
     enabled: true,
   },
+  deploymentStrategy: {
+    type: 'Recreate',  // For PVC
+  },
   datasources: {
     'prometheus.yml': {
       apiVersion: 1,
@@ -20,6 +23,15 @@
           access: 'proxy',
           jsonData: {
             implementation: 'prometheus',
+          },
+        },
+        {
+          name: 'CloudWatch',
+          type: 'cloudwatch',
+          access: 'proxy',
+          jsonData: {
+            authType: 'default',
+            defaultRegion: 'ap-northeast-1',
           },
         },
       ],

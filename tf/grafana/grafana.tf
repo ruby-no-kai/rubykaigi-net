@@ -11,6 +11,13 @@ resource "helm_release" "grafana" {
       "grafana.ini" = {
         "auth.generic_oauth" = local.oidc_config,
       },
+      serviceAccount = {
+        name = "grafana"
+        annotations = {
+          "eks.amazonaws.com/role-arn"               = aws_iam_role.grafana.arn
+          "eks.amazonaws.com/sts-regional-endpoints" = "true"
+        }
+      },
     }),
   ]
 }
