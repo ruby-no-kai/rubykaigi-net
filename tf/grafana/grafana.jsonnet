@@ -26,7 +26,7 @@
           },
         },
         {
-          name: 'CloudWatch Logs',
+          name: 'CloudWatch',
           type: 'cloudwatch',
           access: 'proxy',
           jsonData: {

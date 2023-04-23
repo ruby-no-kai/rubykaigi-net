@@ -34,6 +34,12 @@ resource "aws_iam_role_policy" "grafana" {
 data "aws_iam_policy_document" "grafana-policy" {
   statement {
     actions = [
+      "cloudwatch:DescribeAlarmsForMetric",
+      "cloudwatch:DescribeAlarmHistory",
+      "cloudwatch:DescribeAlarms",
+      "cloudwatch:ListMetrics",
+      "cloudwatch:GetMetricData",
+      "cloudwatch:GetInsightRuleReport",
       "logs:DescribeLogGroups",
       "logs:GetLogGroupFields",
       "logs:StartQuery",
