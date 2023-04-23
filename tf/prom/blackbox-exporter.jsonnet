@@ -22,6 +22,18 @@ local dns_probe(domain) =
 
 
 {
+  podSecurityContext: {
+    sysctls: [
+      {
+        name: 'net.ipv4.ping_group_range',
+        value: '1000 1000',
+      },
+    ],
+  },
+  securityContext: {
+    runAsGroup: 1000,
+  },
+
   config: {
     modules: std.foldl(
       function(a, b) a + b,
