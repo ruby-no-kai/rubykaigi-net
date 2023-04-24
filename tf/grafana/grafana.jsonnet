@@ -5,6 +5,9 @@
   deploymentStrategy: {
     type: 'Recreate',  // For PVC
   },
+  plugins: [
+    'knightss27-weathermap-panel',
+  ],
   datasources: {
     'prometheus.yml': {
       apiVersion: 1,
