@@ -189,33 +189,6 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-lo-if-mib"
-  },
-  "spec": {
-    "interval": "60s",
-    "module": "if_mib",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
-    },
-    "scrapeTimeout": "59s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "csw-01.venue.rubykaigi.net"
-        ]
-      }
-    }
-  }
-}
----
-{
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
-  "metadata": {
-    "labels": {
-      "release": "kube-prometheus-stack"
-    },
     "name": "snmp-lo-if-mib2"
   },
   "spec": {
@@ -230,6 +203,118 @@
       "staticConfig": {
         "static": [
           "wlc-01.venue.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-lo-if-mib-juniper1"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "if_mib_juniper1",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
+    },
+    "scrapeTimeout": "59s",
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "csw-01.venue.rubykaigi.net",
+          "csw-02.venue.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-lo-if-mib-juniper2"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "if_mib_juniper2",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
+    },
+    "scrapeTimeout": "59s",
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "csw-01.venue.rubykaigi.net",
+          "csw-02.venue.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-lo-juniper-alarm"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "juniper_alarm",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
+    },
+    "scrapeTimeout": "59s",
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "csw-01.venue.rubykaigi.net",
+          "csw-02.venue.rubykaigi.net"
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1",
+  "kind": "Probe",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-lo-juniper-dom"
+  },
+  "spec": {
+    "interval": "60s",
+    "module": "juniper_dom",
+    "prober": {
+      "path": "/snmp",
+      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
+    },
+    "scrapeTimeout": "59s",
+    "targets": {
+      "staticConfig": {
+        "static": [
+          "csw-01.venue.rubykaigi.net",
+          "csw-02.venue.rubykaigi.net"
         ]
       }
     }

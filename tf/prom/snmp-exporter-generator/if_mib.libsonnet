@@ -44,5 +44,27 @@
         community: 'public2',
       },
     },
+
+    if_mib_juniper1: self.if_mib {
+      walk: [
+        'ifHCInOctets',
+        'ifHCInUcastPkts',
+        'ifHCInBroadcastPkts',
+        'ifHCOutOctets',
+        'ifHCOutUcastPkts',
+        'ifHCOutBroadcastPkts',
+      ],
+    },
+    if_mib_juniper2: self.if_mib {
+      walk: [
+        'ifAdminStatus',
+        'ifOperStatus',
+        'ifInDiscards',
+        'ifInErrors',
+        'ifOutDiscards',
+        'ifOutErrors',
+        'ifHighSpeed',
+      ],
+    },
   },
 }

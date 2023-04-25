@@ -43,9 +43,10 @@ local targets_lo = [
     ],
   },
   {
-    modules: ['if_mib'],
+    modules: ['if_mib_juniper1', 'if_mib_juniper2', 'juniper_dom', 'juniper_alarm'],
     hosts: [
       'csw-01.venue.rubykaigi.net',
+      'csw-02.venue.rubykaigi.net',
     ],
   },
   {
