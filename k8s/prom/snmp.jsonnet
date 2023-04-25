@@ -1,3 +1,17 @@
+local esws = [
+  'esw-tra-01.venue.rubykaigi.net',
+  'esw-tra-02.venue.rubykaigi.net',
+  'esw-fow-01.venue.rubykaigi.net',
+  'esw-foe-01.venue.rubykaigi.net',
+  'esw-trb-01.venue.rubykaigi.net',
+  'esw-tpk-01.venue.rubykaigi.net',
+  'esw-tpk-02.venue.rubykaigi.net',
+  'esw-trc-01.venue.rubykaigi.net',
+  'esw-stu-01.venue.rubykaigi.net',
+  'esw-con-01.venue.rubykaigi.net',
+  'esw-org-01.venue.rubykaigi.net',
+];
+
 local targets = [
   {
     modules: ['if_mib', 'nec_ix'],
@@ -17,17 +31,7 @@ local targets = [
   },
   {
     modules: ['if_mib'],
-    hosts: [
-      'sw-tra-01.venue.rubykaigi.net',
-      'sw-tra-02.venue.rubykaigi.net',
-      'sw-foa-01.venue.rubykaigi.net',
-      'sw-trb-01.venue.rubykaigi.net',
-      'sw-trb-02.venue.rubykaigi.net',
-      'sw-fob-01.venue.rubykaigi.net',
-      'sw-org-01.venue.rubykaigi.net',
-      'sw-exp-01.venue.rubykaigi.net',
-      'sw-con-01.venue.rubykaigi.net',
-    ],
+    hosts: esws,
   },
 ];
 
@@ -44,7 +48,10 @@ local targets_lo = [
       'csw-01.venue.rubykaigi.net',
     ],
   },
-
+  {
+    modules: ['cisco_envmon', 'cisco_sensors'],
+    hosts: esws,
+  },
 ];
 
 local probes(name, targets, interval) =
