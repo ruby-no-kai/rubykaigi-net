@@ -87,6 +87,8 @@ local config = {
       // },
     ],
 
+    allocator: 'random',
+
     subnet4: [
       import './config/subnet_air.libsonnet',
       import './config/subnet_life.libsonnet',
