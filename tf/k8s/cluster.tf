@@ -1,6 +1,7 @@
 module "cluster" {
-  source  = "cookpad/eks/aws//modules/cluster"
-  version = "~> 1.23"
+  #source  = "cookpad/eks/aws//modules/cluster"
+  #version = "~> 1.23"
+  source = "github.com/cookpad/terraform-aws-eks//modules/cluster?ref=6c563053ff6031d40293a32d8123a702cc55e913"
 
   name = "rk23"
 
