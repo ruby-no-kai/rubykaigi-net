@@ -15,22 +15,8 @@ data "aws_iam_policy_document" "rk-am-i-not-at" {
         "*",
       ]
     }
-  }
-
-  statement {
-    effect  = "Deny"
-    actions = ["s3:GetObject"]
-    resources = [
-      "${aws_s3_bucket.rk-am-i-not-at.arn}/check",
-    ]
-    principals {
-      type = "AWS"
-      identifiers = [
-        "*",
-      ]
-    }
     condition {
-      test     = "IpAddress"
+      test     = "NotIpAddress"
       variable = "aws:SourceIp"
       values = [
         "192.50.220.152/29",
