@@ -43,7 +43,7 @@ local route_config = {
       retry_policy: {
         retry_on: '5xx',
         num_retries: 2,
-        per_try_timeout: '1s',
+        per_try_timeout: '10s',
       },
     },
   ],
