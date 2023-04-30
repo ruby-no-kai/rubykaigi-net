@@ -1,7 +1,6 @@
 module "node_general" {
-  source = "github.com/cookpad/terraform-aws-eks//modules/asg_node_group?ref=6c563053ff6031d40293a32d8123a702cc55e913"
-  #source  = "cookpad/eks/aws//modules/asg_node_group"
-  #version = "~> 1.23"
+  source  = "cookpad/eks/aws//modules/asg_node_group"
+  version = "~> 1.23"
 
   name = "nodes-general"
   labels = {
@@ -17,9 +16,8 @@ module "node_general" {
 }
 
 module "node_onpremises" {
-  source = "github.com/cookpad/terraform-aws-eks//modules/asg_node_group?ref=6c563053ff6031d40293a32d8123a702cc55e913"
-  #source  = "cookpad/eks/aws//modules/asg_node_group"
-  #version = "~> 1.23"
+  source  = "cookpad/eks/aws//modules/asg_node_group"
+  version = "~> 1.23"
 
   name = "nodes-onpremises"
   labels = {
