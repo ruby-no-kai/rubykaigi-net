@@ -94,6 +94,21 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "iam:SimulateCustomPolicy",
       "iam:SimulatePrincipalPolicy",
       "iam:CreateServiceLinkedRole",
+
+      # cost explorer,
+      "ce:Get*",
+      "ce:Describe*",
+      "ce:CreateReport",
+      "ce:DeleteReport",
+      "ce:DeleteReport",
+      "ce:CreateAnomalyMonitor",
+      "ce:UpdateAnomalyMonitor",
+      "ce:DeleteAnomalyMonitor",
+      "ce:CreateAnomalySubscription",
+      "ce:UpdateAnomalySubscription",
+      "ce:DeleteAnomalySubscription",
+      "savingsplans:Describe*",
+      "aws-portal:View*",
     ]
     resources = ["*"]
   }
