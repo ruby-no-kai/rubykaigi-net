@@ -11,8 +11,8 @@ resource "helm_release" "cloudwatch-exporter-apne1" {
       config = data.external.cloudwatch-exporter-config-apne1.result.json
       serviceMonitor = {
         enabled  = true
-        interval = "120s"
-        timeout  = "120s"
+        interval = "300s"
+        timeout  = "300s"
         labels = {
           release = helm_release.kube-prometheus-stack.name
         }
@@ -42,8 +42,8 @@ resource "helm_release" "cloudwatch-exporter-apne1hi" {
       config = data.external.cloudwatch-exporter-config-apne1hi.result.json
       serviceMonitor = {
         enabled  = true
-        interval = "60s"
-        timeout  = "60s"
+        interval = "300s"
+        timeout  = "300s"
         labels = {
           release = helm_release.kube-prometheus-stack.name
         }
