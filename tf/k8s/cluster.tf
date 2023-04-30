@@ -40,5 +40,5 @@ module "cluster" {
 
   critical_addons_node_group_architecture    = "arm64"
   critical_addons_node_group_bottlerocket    = true
-  critical_addons_node_group_instance_family = "general_purpose"
+  critical_addons_node_group_instance_family = "burstable"
 }
