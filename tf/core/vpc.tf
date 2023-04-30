@@ -321,16 +321,18 @@ resource "aws_route" "private-c_v4_default" {
 resource "aws_eip" "nat-d" {
   vpc = true
   tags = {
-    Name    = "nat-d"
-    Project = "rk23net"
+    Name      = "nat-d"
+    Project   = "rk23net"
+    Component = "core/vpc"
   }
 }
 resource "aws_nat_gateway" "nat-d" {
   allocation_id = aws_eip.nat-d.id
   subnet_id     = aws_subnet.d_public.id
   tags = {
-    Name    = "nat-d"
-    Project = "rk23net"
+    Name      = "nat-d"
+    Project   = "rk23net"
+    Component = "core/vpc"
   }
 }
 resource "aws_route" "private-d_v4_default" {
@@ -343,16 +345,18 @@ resource "aws_nat_gateway" "onpremises-c" {
   subnet_id         = aws_subnet.c_onpremises_link.id
   connectivity_type = "private"
   tags = {
-    Name    = "onpremises-c"
-    Project = "rk23net"
+    Name      = "onpremises-c"
+    Project   = "rk23net"
+    Component = "core/vpc"
   }
 }
 resource "aws_nat_gateway" "onpremises-d" {
   subnet_id         = aws_subnet.d_onpremises_link.id
   connectivity_type = "private"
   tags = {
-    Name    = "onpremises-d"
-    Project = "rk23net"
+    Name      = "onpremises-d"
+    Project   = "rk23net"
+    Component = "core/vpc"
   }
 }
 resource "aws_route" "onpremises-c_v4_default" {

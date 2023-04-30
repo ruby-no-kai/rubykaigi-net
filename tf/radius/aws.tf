@@ -4,7 +4,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project = "radius"
+      Project   = "rk23net"
+      Component = "radius"
     }
   }
 }

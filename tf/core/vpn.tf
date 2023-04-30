@@ -8,8 +8,9 @@ resource "aws_vpn_connection" "rk23-nrt" {
   tunnel2_ike_versions = ["ikev2"]
 
   tags = {
-    Name    = "rk23-nrt"
-    Project = "rk23net"
+    Name      = "rk23-nrt"
+    Project   = "rk23net"
+    Component = "core/vpc"
   }
 }
 
@@ -19,7 +20,8 @@ resource "aws_customer_gateway" "rk23-nrt" {
   type       = "ipsec.1"
 
   tags = {
-    Name    = "rk23-nrt"
-    Project = "rk23net"
+    Name      = "rk23-nrt"
+    Project   = "rk23net"
+    Component = "core/vpc"
   }
 }

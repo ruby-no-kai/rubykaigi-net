@@ -1,7 +1,7 @@
 resource "aws_rds_cluster" "kea" {
   cluster_identifier = "kea1"
   engine             = "aurora-mysql"
-  engine_version     = "8.0.mysql_aurora.3.02.0"
+  engine_version     = "8.0.mysql_aurora.3.02.2"
 
   database_name = "kea"
 
