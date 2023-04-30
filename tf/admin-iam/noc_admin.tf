@@ -109,6 +109,12 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "ce:DeleteAnomalySubscription",
       "savingsplans:Describe*",
       "aws-portal:View*",
+
+      # resource explorer
+      "resource-explorer-2:Get*",
+      "resource-explorer-2:BatchGet*",
+      "resource-explorer-2:List*",
+      "resource-explorer-2:Search",
     ]
     resources = ["*"]
   }
