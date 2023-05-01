@@ -1690,6 +1690,30 @@
     },
     {
       "zone": "rubykaigi.net-common",
+      "name": "nat.gw-99.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "192.50.220.167"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "bb.gw-99.tkyk.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "nat.gw-99.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "167.220.50.192.reverse.rubykaigi.net.",
+      "type": "PTR",
+      "records": [
+        "nat.gw-99.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
       "name": "gw-99.tkyk.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [

@@ -1,11 +1,12 @@
+#!/usr/bin/env ruby
 require 'json'
 require 'ipaddr'
 
 host_lines = File.read(File.join(__dir__, 'hosts.txt'))
 
 HostInfo = Struct.new(:dc, :network, :cidr, :ip, :name, :iface, :mac, :primary)
-hosts = host_lines.lines.
-  map { |l| HostInfo.new(*l.chomp.split(?\t, 7).map(&:strip), false) }.
+hosts = host_lines.lines(chomp: true).grep_v(/\A\s*\Z/).
+  map { |l| HostInfo.new(*l.split(?\t, 7).map(&:strip), false) }.
   reject { |_| _.ip.nil? || _.ip.empty? }.
   group_by { |_| [_.dc, _.name, _.ip.include?(?:)] }.
   map { |_, ips| ips[0].primary = true; ips }
