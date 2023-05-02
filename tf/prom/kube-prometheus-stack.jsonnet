@@ -32,6 +32,15 @@ local volumeClaimTemplate(size) = {
       evaluationInterval: '20s',
 
       retention: '720h',
+
+      additionalScrapeConfigs: [
+        {
+          job_name: 'cloudprober',
+          dns_sd_configs: [{
+            names: ['_prometheus._http.cloudprober.rubykaigi.net'],
+          }],
+        },
+      ],
     },
   },
   alertmanager: {
