@@ -133,8 +133,8 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "arn:aws:s3:::rk-takeout-app/*",
       "arn:aws:s3:::am-i-not-at-rubykaigi",
       "arn:aws:s3:::am-i-not-at-rubykaigi/*",
-      "arn:aws:s3:::rk-cloudprober",
-      "arn:aws:s3:::rk-cloudprober/*",
+      "arn:aws:s3:::rubykaigi-public",
+      "arn:aws:s3:::rubykaigi-public/*",
     ]
   }
 
