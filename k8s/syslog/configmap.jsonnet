@@ -17,6 +17,7 @@
     },
     data: {
       'fluent-bit.conf': importstr './config/fluent-bit.conf',
+      'fluent-bit-parsers.conf': importstr './config/fluent-bit-parsers.conf',
     },
   },
 ]

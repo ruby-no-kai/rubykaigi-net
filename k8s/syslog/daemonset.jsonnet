@@ -17,7 +17,7 @@
           {
             name: 'fluent-bit',
             image: 'public.ecr.aws/aws-observability/aws-for-fluent-bit:latest',
-            args: ['--config', '/config/fluent-bit.conf'],
+            args: ['--config', '/config/fluent-bit.conf', '--parser', '/config/fluent-bit-parsers.conf'],
             ports: [
               { name: 'healthcheck', containerPort: 2020 },
             ],
@@ -43,7 +43,13 @@
             name: 'var-log-containers',
             hostPath: { path: '/var/log/containers', type: 'Directory' },
           },
+          {
+            name: 'var-lib-docker-containers',
+            hostPath: { path: '/var/lib/docker/containers', type: 'Directory' },
+          },
         ],
+        hostNetwork: true,
+        dnsPolicy: 'ClusterFirstWithHostNet',
       },
     },
   },
