@@ -41,9 +41,9 @@ data "aws_iam_policy_document" "fluentd-s3-policy" {
   }
 }
 
-resource "aws_iam_role_policy" "syslog-cwlogs" {
-  role = aws_iam_role.syslog.name
-  name = "fluentd-cwlogss"
+resource "aws_iam_role_policy" "fluentd-cwlogs" {
+  role   = aws_iam_role.syslog.name
+  name   = "fluentd-cwlogs"
   policy = data.aws_iam_policy_document.fluentd-cwlogs-policy.json
 }
 
@@ -57,8 +57,8 @@ data "aws_iam_policy_document" "fluentd-cwlogs-policy" {
       "logs:DescribeLogGroups",
       "logs:DescribeLogStreams",
     ]
-    resources = ["arn:aws:logs:ap-northeast-1:005216166247:log-group:"] #TODO
-    effect = "Allow"
+    resources = ["arn:aws:logs:ap-northeast-1:005216166247:log-group:*"]
+    effect    = "Allow"
   }
 }
 
