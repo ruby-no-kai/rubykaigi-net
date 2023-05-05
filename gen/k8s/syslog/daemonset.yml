@@ -1,0 +1,85 @@
+{
+   "apiVersion": "apps/v1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "rubykaigi.org/app": "fluent-bit"
+      },
+      "name": "fluent-bit"
+   },
+   "spec": {
+      "template": {
+         "metadata": {
+            "labels": {
+               "rubykaigi.org/app": "fluent-bit"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "args": [
+                     "--config",
+                     "/config/fluent-bit.conf",
+                     "--parser",
+                     "/config/fluent-bit-parsers.conf"
+                  ],
+                  "image": "public.ecr.aws/aws-observability/aws-for-fluent-bit:2.31.10",
+                  "livenessProbe": {
+                     "failureThreshold": 2,
+                     "httpGet": {
+                        "path": "/api/v1/health",
+                        "port": 2020,
+                        "scheme": "HTTP"
+                     },
+                     "periodSeconds": 3
+                  },
+                  "name": "fluent-bit",
+                  "ports": [
+                     {
+                        "containerPort": 2020,
+                        "name": "healthcheck"
+                     }
+                  ],
+                  "readinessProbe": {
+                     "httpGet": {
+                        "path": "/api/v1/health",
+                        "port": 2020,
+                        "scheme": "HTTP"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "dnsPolicy": "ClusterFirstWithHostNet",
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "configMap": {
+                     "name": "fluent-bit-config"
+                  },
+                  "name": "config"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/log/containers",
+                     "type": "Directory"
+                  },
+                  "name": "var-log-containers"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/lib/docker/containers",
+                     "type": "Directory"
+                  },
+                  "name": "var-lib-docker-containers"
+               }
+            ]
+         }
+      }
+   }
+}
