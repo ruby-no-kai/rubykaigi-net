@@ -8,9 +8,14 @@
     },
   },
   spec: {
+    selector: {
+      matchLabels: {
+        name: 'fluent-bit',
+      },
+    },
     template: {
       metadata: {
-        labels: { 'rubykaigi.org/app': 'fluent-bit' },
+        labels: { name: 'fluent-bit' },
       },
       spec: {
         containers: [
