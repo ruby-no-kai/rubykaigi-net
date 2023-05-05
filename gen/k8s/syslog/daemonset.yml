@@ -28,7 +28,7 @@
                      "--parser",
                      "/config/fluent-bit-parsers.conf"
                   ],
-                  "image": "public.ecr.aws/aws-observability/aws-for-fluent-bit:2.31.10",
+                  "image": "cr.fluentbit.io/fluent/fluent-bit:2.1.2",
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {

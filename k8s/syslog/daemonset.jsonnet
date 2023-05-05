@@ -21,7 +21,7 @@
         containers: [
           {
             name: 'fluent-bit',
-            image: 'public.ecr.aws/aws-observability/aws-for-fluent-bit:2.31.10',
+            image: 'cr.fluentbit.io/fluent/fluent-bit:2.1.2',
             args: ['--config', '/config/fluent-bit.conf', '--parser', '/config/fluent-bit-parsers.conf'],
             ports: [
               { name: 'healthcheck', containerPort: 2020 },
