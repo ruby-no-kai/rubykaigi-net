@@ -22,6 +22,12 @@ local dns_probe(domain) =
 
 
 {
+  resources: {
+    requests: {
+      cpu: '5m',
+      memory: '18M',
+    },
+  },
   podSecurityContext: {
     sysctls: [
       {

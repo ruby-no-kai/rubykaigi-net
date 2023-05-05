@@ -75,6 +75,12 @@
                 "scheme": "HTTP"
               }
             },
+            "resources": {
+              "requests": {
+                "cpu": "5m",
+                "memory": "128M"
+              }
+            },
             "securityContext": {
               "capabilities": {
                 "add": [
@@ -201,6 +207,12 @@
                 "path": "/ready",
                 "port": 9901,
                 "scheme": "HTTP"
+              }
+            },
+            "resources": {
+              "requests": {
+                "cpu": "5m",
+                "memory": "32M"
               }
             },
             "volumeMounts": [
