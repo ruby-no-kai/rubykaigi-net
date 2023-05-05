@@ -63,6 +63,13 @@ data "aws_iam_policy_document" "fluentd-cwlogs-policy" {
     ]
     effect = "Allow"
   }
+  statement {
+    actions = [
+      "logs:DescribeLogGroups",
+    ]
+    resources = ["arn:aws:logs:ap-northeast-1:005216166247:log-group:*:*"]
+    effect    = "Allow"
+  }
 }
 
 resource "kubernetes_service_account" "syslog" {
