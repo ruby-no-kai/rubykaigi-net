@@ -33,6 +33,12 @@ local commit = 'bf1b115eff0ec17dbc071416075fe99de4538d9b';
         containers: [
           {
             name: 'app',
+            resources: {
+              requests: {
+                cpu: '5m',
+                memory: '96M',
+              },
+            },
             image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/radiusd:%s', commit),
             command: ['/run.sh'],
             ports: [
@@ -48,6 +54,12 @@ local commit = 'bf1b115eff0ec17dbc071416075fe99de4538d9b';
           },
           {
             name: 'exporter',
+            resources: {
+              requests: {
+                cpu: '5m',
+                memory: '10M',
+              },
+            },
             image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/freeradius-exporter:%s', commit),
             command: ['/usr/local/bin/freeradius_exporter'],
             ports: [

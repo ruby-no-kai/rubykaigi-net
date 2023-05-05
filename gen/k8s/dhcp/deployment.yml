@@ -100,6 +100,12 @@
                         "scheme": "HTTP"
                      }
                   },
+                  "resources": {
+                     "requests": {
+                        "cpu": "5m",
+                        "memory": "20M"
+                     }
+                  },
                   "volumeMounts": [
                      {
                         "mountPath": "/config",

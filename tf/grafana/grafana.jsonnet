@@ -1,4 +1,10 @@
 {
+  resources: {
+    requests: {
+      cpu: '5m',
+      memory: '64M',
+    },
+  },
   persistence: {
     enabled: true,
   },

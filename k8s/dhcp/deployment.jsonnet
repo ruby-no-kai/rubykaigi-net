@@ -23,6 +23,12 @@ local commit = '4b1dc5bf74750690899ea5a3fda005c6179fd993';
         containers: [
           {
             name: 'app',
+            resources: {
+              requests: {
+                cpu: '5m',
+                memory: '20M',
+              },
+            },
             image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:%s', commit),
             command: ['/bin/bash', '-e', '/app/run.sh'],
             ports: [

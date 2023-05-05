@@ -52,6 +52,12 @@
                         "protocol": "TCP"
                      }
                   ],
+                  "resources": {
+                     "requests": {
+                        "cpu": "5m",
+                        "memory": "96M"
+                     }
+                  },
                   "volumeMounts": [
                      {
                         "mountPath": "/secrets/tls-cert",
@@ -92,6 +98,12 @@
                         "path": "/metrics",
                         "port": 9812,
                         "scheme": "HTTP"
+                     }
+                  },
+                  "resources": {
+                     "requests": {
+                        "cpu": "5m",
+                        "memory": "10M"
                      }
                   }
                }

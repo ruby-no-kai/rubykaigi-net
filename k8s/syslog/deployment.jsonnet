@@ -26,6 +26,12 @@ local commit = 'b400f4a7bbcb44c69dc0eff35afe0c86b577f144';
         containers: [
           {
             name: 'fluentd',
+            resources: {
+              requests: {
+                cpu: '5m',
+                memory: '192M',
+              },
+            },
             image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/fluentd:%s', commit),
             args: ['--config', '/config/fluent.conf'],
             ports: [

@@ -17,6 +17,12 @@ local volumeClaimTemplate(size) = {
   },
   prometheus: {
     prometheusSpec: {
+      resources: {
+        requests: {
+          cpu: '100m',
+          memory: '2048M',
+        },
+      },
       storageSpec: {
         volumeClaimTemplate: volumeClaimTemplate('100Gi'),
       },
@@ -66,6 +72,12 @@ local volumeClaimTemplate(size) = {
       ],
     },
     alertmanagerSpec: {
+      resources: {
+        requests: {
+          cpu: '5m',
+          memory: '64M',
+        },
+      },
       storage: {
         volumeClaimTemplate: volumeClaimTemplate('10Gi'),
       },
@@ -73,6 +85,14 @@ local volumeClaimTemplate(size) = {
         'alertmanager-slack-webhook',
       ],
       retention: '720h',
+    },
+  },
+  'prometheus-node-exporter': {
+    resources: {
+      requests: {
+        cpu: '5m',
+        memory: '16M',
+      },
     },
   },
   grafana: {

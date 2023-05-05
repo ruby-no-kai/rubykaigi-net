@@ -41,6 +41,12 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
           containers: [
             {
               name: 'unbound',
+              resources: {
+                requests: {
+                  cpu: '5m',
+                  memory: '128M',
+                },
+              },
               image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:%s', commit),
               args: ['-c', '/etc/unbound/unbound.conf', '-dd'],
               ports: [
@@ -119,6 +125,12 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
           containers: [
             {
               name: 'envoy',
+              resources: {
+                requests: {
+                  cpu: '5m',
+                  memory: '32M',
+                },
+              },
               image: 'envoyproxy/envoy:v1.25.4',
               args: ['--config-path', '/etc/envoy/envoy.json'],
               ports: [
