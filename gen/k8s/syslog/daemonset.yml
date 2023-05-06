@@ -56,6 +56,10 @@
                      {
                         "mountPath": "/config",
                         "name": "config"
+                     },
+                     {
+                        "mountPath": "/var/log/containers",
+                        "name": "var-log-containers"
                      }
                   ]
                }
@@ -75,13 +79,6 @@
                      "type": "Directory"
                   },
                   "name": "var-log-containers"
-               },
-               {
-                  "hostPath": {
-                     "path": "/var/lib/docker/containers",
-                     "type": "Directory"
-                  },
-                  "name": "var-lib-docker-containers"
                }
             ]
          }

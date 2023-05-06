@@ -28,6 +28,7 @@
             ],
             volumeMounts: [
               { name: 'config', mountPath: '/config' },
+              { name: 'var-log-containers', mountPath: '/var/log/containers' },
             ],
             readinessProbe: {
               httpGet: { path: '/api/v1/health', port: 2020, scheme: 'HTTP' },
@@ -47,10 +48,6 @@
           {
             name: 'var-log-containers',
             hostPath: { path: '/var/log/containers', type: 'Directory' },
-          },
-          {
-            name: 'var-lib-docker-containers',
-            hostPath: { path: '/var/lib/docker/containers', type: 'Directory' },
           },
         ],
         hostNetwork: true,
