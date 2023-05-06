@@ -66,6 +66,14 @@
             ],
             "dnsPolicy": "ClusterFirstWithHostNet",
             "hostNetwork": true,
+            "tolerations": [
+               {
+                  "effect": "NoSchedule",
+                  "key": "dedicated",
+                  "operator": "Equal",
+                  "value": "onpremises"
+               }
+            ],
             "volumes": [
                {
                   "configMap": {

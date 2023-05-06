@@ -52,6 +52,14 @@
         ],
         hostNetwork: true,
         dnsPolicy: 'ClusterFirstWithHostNet',
+        tolerations: [
+          {
+            key: 'dedicated',
+            operator: 'Equal',
+            value: 'onpremises',
+            effect: 'NoSchedule',
+          },
+        ],
       },
     },
   },
