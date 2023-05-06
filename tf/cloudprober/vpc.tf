@@ -2,7 +2,7 @@ data "aws_vpc" "main" {
   id = "vpc-004eca6fe0bf3494d"
 }
 
-data "aws_subnet" "main-private-c" {
+data "aws_subnet" "main-public-c" {
   filter {
     name   = "vpc-id"
     values = [data.aws_vpc.main.id]
@@ -13,11 +13,11 @@ data "aws_subnet" "main-private-c" {
   }
   filter {
     name   = "tag:Tier"
-    values = ["private"]
+    values = ["public"]
   }
 }
 
-data "aws_subnet" "main-private-d" {
+data "aws_subnet" "main-public-d" {
   filter {
     name   = "vpc-id"
     values = [data.aws_vpc.main.id]
@@ -28,6 +28,6 @@ data "aws_subnet" "main-private-d" {
   }
   filter {
     name   = "tag:Tier"
-    values = ["private"]
+    values = ["public"]
   }
 }

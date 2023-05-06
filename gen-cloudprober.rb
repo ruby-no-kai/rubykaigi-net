@@ -16,7 +16,6 @@ TARGETS = [
     targets: [
       /\Alo\.[\w-]+\.(?:hnd|nrt|venue)\./,
       'management.wlc-01.venue.rubykaigi.net',
-      /\w+\.cloudprober\./,
     ],
     labels: {
       network: 'private',

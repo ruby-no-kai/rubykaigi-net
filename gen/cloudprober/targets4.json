@@ -64,13 +64,6 @@
       }
     },
     {
-      "name": "10-33-137-173.apne1c.cloudprober.rubykaigi.net",
-      "ip": "10.33.137.173",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
       "name": "lo1.br-01.hnd.rubykaigi.net",
       "ip": "192.50.220.158",
       "labels": {

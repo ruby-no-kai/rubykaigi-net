@@ -18,7 +18,9 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "cloudprober-az-c" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t4g.micro"
-  subnet_id     = data.aws_subnet.main-private-c.id
+  subnet_id     = data.aws_subnet.main-public-c.id
+
+  associate_public_ip_address = true
 
   vpc_security_group_ids = [
     data.aws_security_group.default.id,
