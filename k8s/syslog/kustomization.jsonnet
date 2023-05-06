@@ -8,5 +8,6 @@
     './service.yml',
     './monitoring.yml',
     './daemonset.yml',
+    './serviceaccount.yml',
   ],
 }

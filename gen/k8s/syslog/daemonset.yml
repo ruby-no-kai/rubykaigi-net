@@ -70,6 +70,7 @@
             ],
             "dnsPolicy": "ClusterFirstWithHostNet",
             "hostNetwork": true,
+            "serviceAccountName": "fluent-bit",
             "tolerations": [
                {
                   "effect": "NoSchedule",

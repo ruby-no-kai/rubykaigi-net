@@ -18,6 +18,7 @@
         labels: { name: 'fluent-bit' },
       },
       spec: {
+        serviceAccountName: 'fluent-bit',
         containers: [
           {
             name: 'fluent-bit',
