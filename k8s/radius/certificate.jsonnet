@@ -7,7 +7,7 @@
   spec: {
     secretName: 'cert-radius',
     dnsNames: [
-      'welcome.rubykaigi.net',
+      'welcome.rubykaigi.org',
       'radius.rubykaigi.net',
     ],
     issuerRef: {

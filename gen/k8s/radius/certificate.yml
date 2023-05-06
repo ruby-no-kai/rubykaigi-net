@@ -6,7 +6,7 @@
    },
    "spec": {
       "dnsNames": [
-         "welcome.rubykaigi.net",
+         "welcome.rubykaigi.org",
          "radius.rubykaigi.net"
       ],
       "issuerRef": {

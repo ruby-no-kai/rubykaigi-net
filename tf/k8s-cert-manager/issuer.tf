@@ -1,12 +1,13 @@
 locals {
   solver = {
     dns01 = {
+      cnameStrategy = "Follow"
       route53 = {
         region = "ap-northeast-1",
       },
     },
     selector = {
-      dnsZones = sort(local.zones)
+      dnsZones = sort(concat(tolist(local.zones), ["rubykaigi.org"]))
     },
   }
 }
