@@ -2,13 +2,13 @@
 =begin
 ```
 data "external" "example" {
-  program = ["../jsonnet.rb"]
+program = ["../jsonnet.rb"]
 
-  query = {
-    path = "./program.jsonnet"
-    # or
-    input = "{jsonnet: 'program'}"
-  }
+query = {
+path = "./program.jsonnet"
+# or
+input = "{jsonnet: 'program'}"
+}
 }
 
 # => data.external.example.result.json
@@ -21,13 +21,17 @@ require 'tempfile'
 query = JSON.load($stdin)
 
 Tempfile.open do |output|
+  if args = query['args']
+    tla = %W[--tla-code args=#{args}]
+  end
+
   if path = query['path']
-    exit $?.to_i unless system('jsonnet', path, out: output)
+    exit $?.to_i unless system('jsonnet', *tla, path, out: output)
   else
     Tempfile.open do |input|
       input.write(query.fetch('input'))
 
-      exit $?.to_i unless system('jsonnet', '-', in: input.tap(&:rewind), out: output)
+      exit $?.to_i unless system('jsonnet', *tla, '-', in: input.tap(&:rewind), out: output)
     end
   end
 
