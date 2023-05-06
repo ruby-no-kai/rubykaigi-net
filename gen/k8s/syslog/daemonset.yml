@@ -60,6 +60,10 @@
                      {
                         "mountPath": "/var/log/containers",
                         "name": "var-log-containers"
+                     },
+                     {
+                        "mountPath": "/var/log/pods",
+                        "name": "var-log-pods"
                      }
                   ]
                }
@@ -87,6 +91,13 @@
                      "type": "Directory"
                   },
                   "name": "var-log-containers"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/log/pods",
+                     "type": "Directory"
+                  },
+                  "name": "var-log-pods"
                }
             ]
          }
