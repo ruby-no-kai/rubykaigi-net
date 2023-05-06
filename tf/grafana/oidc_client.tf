@@ -19,7 +19,9 @@ locals {
     auth_url             = "https://idp.rubykaigi.net/oidc/authorize"
     token_url            = "https://idp.rubykaigi.net/public/oidc/token"
     api_url              = "https://idp.rubykaigi.net/public/oidc/userinfo"
-    role_attribute_path  = "contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'"
+
+    role_attribute_path        = "contains(roles[*], 'admin') && 'GrafanaAdmin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'"
+    allow_assign_grafana_admin = true
   }
 }
 
