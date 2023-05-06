@@ -37,7 +37,14 @@ data "aws_iam_policy_document" "grafana-chain-trust" {
     effect  = "Allow"
     principals {
       type        = "AWS"
-      identifiers = [aws_iam_role.grafana.arn]
+      identifiers = ["*"]
+    }
+    condition {
+      variable = "aws:PrincipalArn"
+      test     = "ArnEquals"
+      values = [
+        aws_iam_role.grafana.arn,
+      ]
     }
   }
 }
