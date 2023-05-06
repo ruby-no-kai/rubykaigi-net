@@ -50,5 +50,8 @@
     server: {
       root_url: 'https://grafana.rubykaigi.net/',
     },
+    feature_toggles: {
+      publicDashboards: true,
+    },
   },
 }
