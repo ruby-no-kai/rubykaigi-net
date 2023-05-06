@@ -52,6 +52,10 @@
                      {
                         "containerPort": 10068,
                         "name": "healthz"
+                     },
+                     {
+                        "containerPort": 24224,
+                        "name": "forward"
                      }
                   ],
                   "readinessProbe": {

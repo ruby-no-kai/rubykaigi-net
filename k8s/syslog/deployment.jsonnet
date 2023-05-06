@@ -32,6 +32,7 @@ local commit = 'a4af8717304179185bb0697988ee947602f6d639';
               { name: 'syslog', containerPort: 5140, protocol: 'UDP' },
               { name: 'prom', containerPort: 24231 },
               { name: 'healthz', containerPort: 10068 },
+              { name: 'forward', containerPort: 24224 },
             ],
             env: [
             ],
