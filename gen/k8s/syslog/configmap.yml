@@ -13,7 +13,7 @@
   "apiVersion": "v1",
   "data": {
     "fluent-bit-parsers.conf": "[PARSER]\n  Name         docker\n  Format       json\n  Time_Key     time\n  Time_Format  %Y-%m-%dT%H:%M:%S.%L\n  Time_Keep    On\n",
-    "fluent-bit.conf": "[SERVICE]\n  daemon off\n\n  http_server  on\n  http_listen  0.0.0.0\n  http_port    2020\n\n[INPUT]\n  Name tail\n  Tag k8s.*\n  Path /var/log/containers/*.log\n  multiline.parser docker, cri\n\n[FILTER]\n  Name kubernetes\n  Match k8s.*\n  Use_Kubelet true\n  Buffer_Size 0\n\n[OUTPUT]\n  Name forward\n  Match k8s.*\n  Host fluentd-forward.default.svc.cluster.local\n"
+    "fluent-bit.conf": "[SERVICE]\n  daemon off\n\n  http_server  on\n  http_listen  0.0.0.0\n  http_port    2020\n\n[INPUT]\n  Name tail\n  Tag k8s.*\n  Path /var/log/containers/*.log\n  multiline.parser docker, cri\n\n[FILTER]\n  Name kubernetes\n  Match k8s.*\n  Use_Kubelet true\n  Kube_Tag_Prefix k8s.var.log.containers.\n  Buffer_Size 0\n\n[OUTPUT]\n  Name forward\n  Match k8s.*\n  Host fluentd-forward.default.svc.cluster.local\n"
   },
   "kind": "ConfigMap",
   "metadata": {
