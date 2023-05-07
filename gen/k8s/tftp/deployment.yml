@@ -1,0 +1,98 @@
+{
+   "apiVersion": "apps/v1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "rubykaigi.org/app": "s3tftpd"
+      },
+      "name": "s3tftpd",
+      "namespace": "default"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "rubykaigi.org/app": "s3tftpd"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "rubykaigi.org/app": "s3tftpd"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "args": [
+                     "--blocksize=1300",
+                     "s3://rk-tftp/"
+                  ],
+                  "env": [
+                     {
+                        "name": "S3TFTPD_LISTEN_PORT",
+                        "value": "69"
+                     },
+                     {
+                        "name": "AWS_REGION",
+                        "value": "ap-northeast-1"
+                     }
+                  ],
+                  "image": "ghcr.io/hanazuki/s3tftpd@sha256:22aabcfabc081287043744c4355c5d77f8d91062e42a877ad7c15eb35c9dc361",
+                  "name": "app",
+                  "ports": [
+                     {
+                        "containerPort": 69,
+                        "name": "tftp",
+                        "protocol": "UDP"
+                     }
+                  ],
+                  "resources": {
+                     "requests": {
+                        "cpu": "5m",
+                        "memory": "64M"
+                     }
+                  }
+               },
+               {
+                  "command": [
+                     "/usr/local/bin/healthz"
+                  ],
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:9aa2ad08c61a0e5fbe298c6cd27e2f12652d6a7f",
+                  "livenessProbe": {
+                     "failureThreshold": 2,
+                     "httpGet": {
+                        "path": "/ping",
+                        "port": 8080,
+                        "scheme": "HTTP"
+                     },
+                     "periodSeconds": 45
+                  },
+                  "name": "healthz",
+                  "ports": [
+                     {
+                        "containerPort": 8080,
+                        "name": "healthz",
+                        "protocol": "TCP"
+                     }
+                  ],
+                  "readinessProbe": {
+                     "httpGet": {
+                        "path": "/ping",
+                        "port": 8080,
+                        "scheme": "HTTP"
+                     }
+                  },
+                  "resources": {
+                     "requests": {
+                        "cpu": "5m",
+                        "memory": "10M"
+                     }
+                  }
+               }
+            ],
+            "serviceAccountName": "s3tftpd"
+         }
+      }
+   }
+}

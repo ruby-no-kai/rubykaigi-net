@@ -38,6 +38,14 @@ template 'rubykaigi.net-common' do
   ignore 'radius.rubykaigi.net'
 
   ignore_under 'cloudprober.rubykaigi.net'
+
+  ignore 'captioner.apne1.rubykaigi.net'
+
+  # external-dns ni sitai
+  rrset 'tftp.rubykaigi.net', 'CNAME' do
+    ttl 60
+    resource_records 'k8s-default-s3tftpd-a3a246d5bb-de731c4e195aee81.elb.ap-northeast-1.amazonaws.com'
+  end
 end
 
 template 'rubykaigi.net-public' do
