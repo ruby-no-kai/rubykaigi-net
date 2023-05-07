@@ -91,5 +91,10 @@ function(args)
       feature_toggles: {
         publicDashboards: true,
       },
+      'auth.anonymous': {
+        enabled: true,
+        org_name: 'RubyKaigi',
+        org_role: 'Viewer',
+      },
     },
   }
