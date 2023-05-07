@@ -5,6 +5,7 @@
    "resources": [
       "./deployment.yml",
       "./service.yml",
+      "./monitoring.yml",
       "./certificate.yml"
    ]
 }
