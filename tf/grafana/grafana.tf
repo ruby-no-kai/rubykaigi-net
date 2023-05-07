@@ -27,6 +27,10 @@ data "external" "grafana-values" {
 
   query = {
     path = "./grafana.jsonnet"
+    args = jsonencode({
+      role_public  = aws_iam_role.grafana-public.arn,
+      role_private = aws_iam_role.grafana-private.arn,
+    })
   }
 }
 
