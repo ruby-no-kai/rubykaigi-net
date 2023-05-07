@@ -1,0 +1,107 @@
+{
+   "apiVersion": "apps/v1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "rubykaigi.org/app": "fluent-bit"
+      },
+      "name": "fluent-bit"
+   },
+   "spec": {
+      "selector": {
+         "matchLabels": {
+            "name": "fluent-bit"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "fluent-bit"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "args": [
+                     "--config",
+                     "/config/fluent-bit.conf",
+                     "--parser",
+                     "/config/fluent-bit-parsers.conf"
+                  ],
+                  "image": "cr.fluentbit.io/fluent/fluent-bit:2.1.2",
+                  "livenessProbe": {
+                     "failureThreshold": 2,
+                     "httpGet": {
+                        "path": "/api/v1/health",
+                        "port": 2020,
+                        "scheme": "HTTP"
+                     },
+                     "periodSeconds": 3
+                  },
+                  "name": "fluent-bit",
+                  "ports": [
+                     {
+                        "containerPort": 2020,
+                        "name": "healthcheck"
+                     }
+                  ],
+                  "readinessProbe": {
+                     "httpGet": {
+                        "path": "/api/v1/health",
+                        "port": 2020,
+                        "scheme": "HTTP"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     },
+                     {
+                        "mountPath": "/var/log/containers",
+                        "name": "var-log-containers"
+                     },
+                     {
+                        "mountPath": "/var/log/pods",
+                        "name": "var-log-pods"
+                     }
+                  ]
+               }
+            ],
+            "dnsPolicy": "ClusterFirstWithHostNet",
+            "hostNetwork": true,
+            "serviceAccountName": "fluent-bit",
+            "tolerations": [
+               {
+                  "effect": "NoSchedule",
+                  "key": "dedicated",
+                  "operator": "Equal",
+                  "value": "onpremises"
+               }
+            ],
+            "volumes": [
+               {
+                  "configMap": {
+                     "name": "fluent-bit-config"
+                  },
+                  "name": "config"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/log/containers",
+                     "type": "Directory"
+                  },
+                  "name": "var-log-containers"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/log/pods",
+                     "type": "Directory"
+                  },
+                  "name": "var-log-pods"
+               }
+            ]
+         }
+      }
+   }
+}

@@ -12,7 +12,7 @@
         'service.beta.kubernetes.io/aws-load-balancer-healthcheck-port': '10068',
         'service.beta.kubernetes.io/aws-load-balancer-healthcheck-path': '/api/plugins.json',
         'service.beta.kubernetes.io/aws-load-balancer-target-group-attributes': 'deregistration_delay.timeout_seconds=10,deregistration_delay.connection_termination.enabled=true',
-        'service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags': 'Project=rk23net,Component=dhcp',
+        'service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags': 'Project=rk23net,Component=syslog',
       },
     },
     spec: {
@@ -23,6 +23,22 @@
       },
       ports: [
         { name: 'syslog', port: 514, targetPort: 'syslog', protocol: 'UDP' },
+      ],
+    },
+  },
+  {
+    apiVersion: 'v1',
+    kind: 'Service',
+    metadata: {
+      name: 'fluentd-forward',
+    },
+    spec: {
+      type: 'ClusterIP',
+      selector: {
+        'rubykaigi.org/app': 'syslog-fluentd',
+      },
+      ports: [
+        { name: 'forward', port: 24224, targetPort: 24224, protocol: 'TCP' },
       ],
     },
   },

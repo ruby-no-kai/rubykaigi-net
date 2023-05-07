@@ -7,5 +7,7 @@
     './configmap.yml',
     './service.yml',
     './monitoring.yml',
+    './daemonset.yml',
+    './serviceaccount.yml',
   ],
 }

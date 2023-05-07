@@ -1,4 +1,4 @@
-local commit = 'b400f4a7bbcb44c69dc0eff35afe0c86b577f144';
+local commit = 'a4af8717304179185bb0697988ee947602f6d639';
 {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
@@ -38,6 +38,7 @@ local commit = 'b400f4a7bbcb44c69dc0eff35afe0c86b577f144';
               { name: 'syslog', containerPort: 5140, protocol: 'UDP' },
               { name: 'prom', containerPort: 24231 },
               { name: 'healthz', containerPort: 10068 },
+              { name: 'forward', containerPort: 24224 },
             ],
             env: [
             ],

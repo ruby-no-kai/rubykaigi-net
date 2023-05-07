@@ -41,6 +41,37 @@ data "aws_iam_policy_document" "fluentd-s3-policy" {
   }
 }
 
+resource "aws_iam_role_policy" "fluentd-cwlogs" {
+  role   = aws_iam_role.syslog.name
+  name   = "fluentd-cwlogs"
+  policy = data.aws_iam_policy_document.fluentd-cwlogs-policy.json
+}
+
+data "aws_iam_policy_document" "fluentd-cwlogs-policy" {
+  statement {
+    actions = [
+      "logs:PutLogEvents",
+      "logs:CreateLogGroup",
+      "logs:PutRetentionPolicy",
+      "logs:CreateLogStream",
+      "logs:DescribeLogGroups",
+      "logs:DescribeLogStreams",
+    ]
+    resources = [
+      "arn:aws:logs:ap-northeast-1:005216166247:log-group:/rk23net/syslog:*",
+      "arn:aws:logs:ap-northeast-1:005216166247:log-group:/rk23net/k8s:*",
+    ]
+    effect = "Allow"
+  }
+  statement {
+    actions = [
+      "logs:DescribeLogGroups",
+    ]
+    resources = ["arn:aws:logs:ap-northeast-1:005216166247:log-group:*:*"]
+    effect    = "Allow"
+  }
+}
+
 resource "kubernetes_service_account" "syslog" {
   metadata {
     name      = "syslog"
