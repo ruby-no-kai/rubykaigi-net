@@ -75,6 +75,7 @@ data "aws_iam_policy_document" "GhaDockerPush" {
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/rko-router",
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/radiusd",
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/freeradius-exporter",
+      "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/s3tftpd-healthz",
 
       "arn:aws:ecr:us-west-2:${data.aws_caller_identity.current.account_id}:repository/takeout-app",
     ]
