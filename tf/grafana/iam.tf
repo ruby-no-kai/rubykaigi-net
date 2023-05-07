@@ -31,6 +31,9 @@ resource "aws_iam_role_policy" "grafana" {
   policy = data.aws_iam_policy_document.grafana-policy.json
 }
 
+# When chaining AssumeRole, Principal clause has to exactly match the :assumed-role/ session principal,
+# which includes a random session name.
+# OTOH, aws:PrincipalArn variable in Condition clause exposes :role/ principal.
 data "aws_iam_policy_document" "grafana-chain-trust" {
   statement {
     actions = ["sts:AssumeRole"]
