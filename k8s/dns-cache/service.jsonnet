@@ -9,6 +9,7 @@
       selector: {
         'rubykaigi.org/app': 'unbound',
       },
+      clusterIP: 'None',
       ports: [
         { name: 'dns', port: 53, targetPort: 'dns', protocol: 'UDP' },
         { name: 'dns-tcp', port: 53, targetPort: 'dns-tcp', protocol: 'TCP' },

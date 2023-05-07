@@ -223,7 +223,7 @@ local http_connection_manager(codec_type, stat_prefix) = {
         name: 'unbound',
         connect_timeout: '0.25s',
         per_connection_buffer_limit_bytes: 32768,  // 32 KiB
-        type: 'LOGICAL_DNS',
+        type: 'STRICT_DNS',
         load_assignment: {
           cluster_name: 'unbound',
           endpoints: [
@@ -231,7 +231,7 @@ local http_connection_manager(codec_type, stat_prefix) = {
               lb_endpoints: [
                 {
                   endpoint: {
-                    address: { socket_address: { address: 'unbound.default.svc.cluster.local', port_value: 443 } },
+                    address: { socket_address: { address: 'unbound.default.svc.cluster.local', port_value: 10443 } },
                   },
                 },
               ],
