@@ -1,16 +1,7 @@
 (import './base.libsonnet') + {
-  apt: {
-    sources: {
-      docker: {
-        source: 'deb [signed-by=$KEY_FILE] https://download.docker.com/linux/ubuntu $RELEASE stable',
-        key: importstr './files/docker.key',
-      },
-    },
-  },
-
   package_update: true,
   packages: [
-    'docker-ce',
+    'docker.io',
   ],
 
   write_files: [
