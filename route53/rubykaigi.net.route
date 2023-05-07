@@ -36,6 +36,8 @@ template 'rubykaigi.net-common' do
   ignore 'origin.resolver.rubykaigi.net'
 
   ignore 'radius.rubykaigi.net'
+
+  ignore_under 'cloudprober.rubykaigi.net'
 end
 
 template 'rubykaigi.net-public' do

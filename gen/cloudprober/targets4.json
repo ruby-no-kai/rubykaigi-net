@@ -1,0 +1,109 @@
+{
+  "resource": [
+    {
+      "name": "lo.br-01.hnd.rubykaigi.net",
+      "ip": "10.33.0.1",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.br-01.nrt.rubykaigi.net",
+      "ip": "10.33.0.2",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.csw-01.venue.rubykaigi.net",
+      "ip": "10.33.0.31",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.csw-02.venue.rubykaigi.net",
+      "ip": "10.33.0.32",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.gw-01.venue.rubykaigi.net",
+      "ip": "10.33.0.21",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.gw-02.venue.rubykaigi.net",
+      "ip": "10.33.0.22",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.tun-01.venue.rubykaigi.net",
+      "ip": "10.33.0.11",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.tun-02.venue.rubykaigi.net",
+      "ip": "10.33.0.12",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "management.wlc-01.venue.rubykaigi.net",
+      "ip": "10.33.2.2",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo1.br-01.hnd.rubykaigi.net",
+      "ip": "192.50.220.158",
+      "labels": {
+        "network": "public"
+      }
+    },
+    {
+      "name": "lo1.br-01.nrt.rubykaigi.net",
+      "ip": "192.50.220.159",
+      "labels": {
+        "network": "public"
+      }
+    },
+    {
+      "name": "lo1.gw-01.venue.rubykaigi.net",
+      "ip": "192.50.220.160",
+      "labels": {
+        "network": "public"
+      }
+    },
+    {
+      "name": "lo1.gw-02.venue.rubykaigi.net",
+      "ip": "192.50.220.162",
+      "labels": {
+        "network": "public"
+      }
+    },
+    {
+      "name": "nat.gw-01.venue.rubykaigi.net",
+      "ip": "192.50.220.161",
+      "labels": {
+        "network": "public"
+      }
+    },
+    {
+      "name": "nat.gw-02.venue.rubykaigi.net",
+      "ip": "192.50.220.163",
+      "labels": {
+        "network": "public"
+      }
+    }
+  ]
+}
