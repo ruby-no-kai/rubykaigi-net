@@ -10,6 +10,7 @@ local esws = [
   'esw-stu-01.venue.rubykaigi.net',
   'esw-con-01.venue.rubykaigi.net',
   'esw-org-01.venue.rubykaigi.net',
+  '10.33.32.2',  // hot
 ];
 
 local targets = [
