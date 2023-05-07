@@ -1,11 +1,19 @@
 hnd	lo	10.33.0.0/24	10.33.0.1	br-01	lo
+hnd	lo	10.33.0.0/24	2001:0df0:8500:ca00::1	br-01	lo
 nrt	lo	10.33.0.0/24	10.33.0.2	br-01	lo
+nrt	lo	10.33.0.0/24	2001:0df0:8500:ca00::2	br-01	lo
 venue	lo	10.33.0.0/24	10.33.0.11	tun-01	lo
+venue	lo	10.33.0.0/24	2001:0df0:8500:ca00::11	tun-01	lo
 venue	lo	10.33.0.0/24	10.33.0.12	tun-02	lo
+venue	lo	10.33.0.0/24	2001:0df0:8500:ca00::12	tun-02	lo
 venue	lo	10.33.0.0/24	10.33.0.21	gw-01	lo
+venue	lo	10.33.0.0/24	2001:0df0:8500:ca00::21	gw-01	lo
 venue	lo	10.33.0.0/24	10.33.0.22	gw-02	lo
+venue	lo	10.33.0.0/24	2001:0df0:8500:ca00::22	gw-02	lo
 venue	lo	10.33.0.0/24	10.33.0.31	csw-01	lo
+venue	lo	10.33.0.0/24	2001:0df0:8500:ca00::31	csw-01	lo
 venue	lo	10.33.0.0/24	10.33.0.32	csw-02	lo
+venue	lo	10.33.0.0/24	2001:0df0:8500:ca00::32	csw-02	lo
 hot	lo	10.33.0.0/24	10.33.0.90	tun-01	lo
 hot	lo	10.33.0.0/24	10.33.0.91	gw-01	lo
 					
@@ -24,13 +32,14 @@ venue	mgmt	10.33.100.0/24	2001:0df0:8500:cab0::1	csw-01	vlan-1000
 venue	mgmt	10.33.100.0/24	10.33.100.2	csw-02	vlan-1000
 venue	mgmt	10.33.100.0/24	2001:0df0:8500:cab0::2	csw-02	vlan-1000
 venue	mgmt	10.33.100.0/24	10.33.100.10	wlc-01	svc
-venue	mgmt	10.33.100.0/24	10.33.100.100	asw-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.100	asw-01	vlan-1000
 venue	mgmt	10.33.100.0/24	10.33.100.110	esw-tra-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.111	esw-tra-02	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.115	esw-fow-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.116	esw-foe-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.120	esw-trb-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.130	esw-tpk-01	vlan1000
+
 venue	mgmt	10.33.100.0/24	10.33.100.131	esw-tpk-02	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.140	esw-trc-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.150	esw-stu-01	vlan1000
@@ -53,10 +62,12 @@ venue	cast	10.33.21.0/24	2001:df0:8500:caa1::a	csw-01	vlan-410
 venue	cast	10.33.21.0/24	10.33.21.252	csw-02	vlan-410
 venue	cast	10.33.21.0/24	2001:df0:8500:caa1::b	csw-02	vlan-410
 venue	cast	10.33.21.0/24	10.33.21.254	vrrp	vlan-410
+
 venue	cast	10.33.21.0/24	2001:df0:8500:caa1::1	vrrp	vlan-410
 					
 venue	usr	10.33.64.0/20	10.33.79.251	csw-01	vlan-400
 venue	usr	10.33.64.0/20	2001:df0:8500:caaa::a	csw-01	vlan-400
+
 venue	usr	10.33.64.0/20	10.33.79.252	csw-02	vlan-400
 venue	usr	10.33.64.0/20	2001:df0:8500:caaa::b	csw-02	vlan-400
 venue	usr	10.33.64.0/20	10.33.79.254	vrrp	vlan-400
@@ -72,6 +83,7 @@ hnd	ptp	10.33.22./31	10.33.22.12	br-01	tun0-0
 nrt	ptp	10.33.22./31	10.33.22.13	br-01	tun0-0
 hnd	ptp	10.33.22./31	2001:df0:8500:ca22:12::a	br-01	tun0-0
 nrt	ptp	10.33.22./31	2001:df0:8500:ca22:12::b	br-01	tun0-0
+
 					
 hnd	ptp	10.33.22./31	10.33.22.14	br-01	tun10-0
 venue	ptp	10.33.22./31	10.33.22.15	tun-01	tun10-0
@@ -81,24 +93,29 @@ hnd	ptp	10.33.22./31	10.33.22.16	br-01	tun14-0
 venue	ptp	10.33.22./31	10.33.22.17	tun-01	tun14-0
 hnd	ptp	10.33.22./31	2001:df0:8500:ca22:16::a	br-01	tun16-0
 venue	ptp	10.33.22./31	2001:df0:8500:ca22:16::b	tun-01	tun16-0
+
 					
 hnd	ptp	10.33.22./31	10.33.22.18	br-01	tun20-0
 venue	ptp	10.33.22./31	10.33.22.19	tun-02	tun10-0
 hnd	ptp	10.33.22./31	2001:df0:8500:ca22:18::a	br-01	tun20-0
 venue	ptp	10.33.22./31	2001:df0:8500:ca22:18::b	tun-02	tun10-0
+
 hnd	ptp	10.33.22./31	10.33.22.20	br-01	tun24-0
 venue	ptp	10.33.22./31	10.33.22.21	tun-02	tun14-0
 hnd	ptp	10.33.22./31	2001:df0:8500:ca22:20::a	br-01	tun26-0
 venue	ptp	10.33.22./31	2001:df0:8500:ca22:20::b	tun-02	tun16-0
+
 					
 nrt	ptp	10.33.22./31	10.33.22.22	br-01	tun10-0
 venue	ptp	10.33.22./31	10.33.22.23	tun-01	tun20-0
 nrt	ptp	10.33.22./31	2001:df0:8500:ca22:22::a	br-01	tun10-0
 venue	ptp	10.33.22./31	2001:df0:8500:ca22:22::b	tun-01	tun20-0
+
 nrt	ptp	10.33.22./31	10.33.22.24	br-01	tun14-0
 venue	ptp	10.33.22./31	10.33.22.25	tun-01	tun24-0
 nrt	ptp	10.33.22./31	2001:df0:8500:ca22:24::a	br-01	tun16-0
 venue	ptp	10.33.22./31	2001:df0:8500:ca22:24::b	tun-01	tun26-0
+
 					
 nrt	ptp	10.33.22./31	10.33.22.26	br-01	tun20-0
 venue	ptp	10.33.22./31	10.33.22.27	tun-02	tun20-0
@@ -124,6 +141,7 @@ venue	ptp	10.33.22./31	2001:df0:8500:ca22:34::a	tun-01	gi1-2
 venue	ptp	10.33.22./31	2001:df0:8500:ca22:34::b	gw-01	gi0-2
 					
 venue	ptp	10.33.22./31	10.33.22.36	tun-02	gi1-1
+
 venue	ptp	10.33.22./31	10.33.22.37	gw-02	gi0-1
 venue	ptp	10.33.22./31	2001:df0:8500:ca22:36::a	tun-02	gi1-1
 venue	ptp	10.33.22./31	2001:df0:8500:ca22:36::b	gw-02	gi0-1
@@ -164,28 +182,32 @@ tkyk	ptp	10.33.22.194/31	10.33.22.194	tun-99	gi1-1-1
 tkyk	ptp	10.33.22.194/31	10.33.22.195	gw-99	gi0-1
 tkyk	ptp	10.33.22.194/31	2001:df0:8500:ca22:a1::a	tun-99	gi1-1-1
 tkyk	ptp	10.33.22.194/31	2001:df0:8500:ca22:a1::b	gw-99	gi0-1
-tkyk	ptp	10.33.22.196/31	10.33.22.196	tun-99	gi1-1-2
-tkyk	ptp	10.33.22.196/31	10.33.22.197	gw-99	gi0-2
+tkyk	ptp	10.33.22.196/31	10.33.22.200	tun-99	gi1-1-2
+tkyk	ptp	10.33.22.196/31	10.33.22.201	gw-99	gi0-2
 tkyk	ptp	10.33.22.196/31	2001:df0:8500:ca22:a2::a	tun-99	gi1-1-2
 tkyk	ptp	10.33.22.196/31	2001:df0:8500:ca22:a2::b	gw-99	gi0-2
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.10	cs-99	vlan1
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.15	wlc-99	mgmt
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.20	workbench-99	enp1s0
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.254	gw-99	gi-1-1-0
+tkyk	tkyk-mgmt	10.33.30.0/24	2001:df0:8500:ca30::af	gw-99	gi-1-1-0
 tkyk	tkyk-test	10.33.31.0/24	10.33.31.254	gw-99	gi-1-1-1
+tkyk	tkyk-test	10.33.31.0/24	2001:df0:8500:ca31::af	gw-99	gi-1-1-1
 					
 transit	bb	192.50.220.152/29	192.50.220.152	mahiru-kmc	enp1s0f0
 hnd	bb	192.50.220.152/29	192.50.220.153	br-01	gi3-0
 transit	bb	192.50.220.152/29	192.50.220.154	rola-kmc	enx
 nrt	bb	192.50.220.152/29	192.50.220.155	br-01	gi1-0
+apne1			10.33.164.14	nat-0ebc3b0ebd9ab9e30	eni
 apne1	bb	192.50.220.152/29	192.50.220.156	nat-0ebc3b0ebd9ab9e30	nat-onpremises-c
+apne1			10.33.164.56	nat-06340ad0438e86a04	eni
 apne1	bb	192.50.220.152/29	192.50.220.157	nat-06340ad0438e86a04	nat-onpremises-d
 hnd	bb	192.50.220.152/29	192.50.220.158	br-01	lo1
 nrt	bb	192.50.220.152/29	192.50.220.159	br-01	lo1
-venue	bb	192.50.220.160/29	192.50.220.160	gw-01	lo1
-venue	bb	192.50.220.160/29	192.50.220.161	gw-01	nat
-venue	bb	192.50.220.160/29	192.50.220.162	gw-02	lo1
-venue	bb	192.50.220.160/29	192.50.220.163	gw-02	nat
+venue	bb	192.50.220.160/29	192.50.220.160	gw-01	gi0-1-nat1
+venue	bb	192.50.220.160/29	192.50.220.161	gw-01	gi0-1-nat2
+venue	bb	192.50.220.160/29	192.50.220.162	gw-02	gi0-1-nat1
+venue	bb	192.50.220.160/29	192.50.220.163	gw-02	gi0-1-nat2
 apne1	bb	192.50.220.160/29	192.50.220.164	resolver	az-c
 apne1	bb	192.50.220.160/29	192.50.220.165	resolver	az-d
 hot	bb	192.50.220.160/29	192.50.220.166	gw-01	nat
@@ -193,9 +215,7 @@ tkyk	bb	192.50.220.160/29	192.50.220.167	gw-99	nat
 					
 transit	bb	192.50.220.152/29	2001:0df0:8500:ca2a::a	mahiru-kmc	enp1s0f0
 hnd	bb	192.50.220.152/29	2001:0df0:8500:ca2a::b	br-01	gi3-0
+
 transit	bb	192.50.220.152/29	2001:0df0:8500:ca2b::a	rola-kmc	enx
+
 nrt	bb	192.50.220.152/29	2001:0df0:8500:ca2b::b	br-01	gi1-0
-					
-hnd	ngn		2409:10:9d0:300:5::7822	br-01	gi0-1
-					
-nrt	ngn		2409:10:b400:1fa::7822	br-01	gi0-0
