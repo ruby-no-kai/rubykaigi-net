@@ -3,7 +3,7 @@
   "kind": "Service",
   "metadata": {
     "annotations": {
-      "service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags": "Project=rk23net,Component=dhcp",
+      "service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags": "Project=rk23net,Component=syslog",
       "service.beta.kubernetes.io/aws-load-balancer-healthcheck-path": "/api/plugins.json",
       "service.beta.kubernetes.io/aws-load-balancer-healthcheck-port": "10068",
       "service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol": "HTTP",
