@@ -2,13 +2,15 @@
 =begin
 ```
 data "external" "example" {
-program = ["../jsonnet.rb"]
+  program = ["../jsonnet.rb"]
 
-query = {
-path = "./program.jsonnet"
-# or
-input = "{jsonnet: 'program'}"
-}
+  query = {
+    path = "./program.jsonnet"
+    # or
+    input = "{jsonnet: 'program'}"
+
+    args = jsonencode({var = "val"})
+  }
 }
 
 # => data.external.example.result.json
