@@ -233,7 +233,8 @@
       "staticConfig": {
         "static": [
           "csw-01.venue.rubykaigi.net",
-          "csw-02.venue.rubykaigi.net"
+          "csw-02.venue.rubykaigi.net",
+          "asw-01.venue.rubykaigi.net"
         ]
       }
     }
@@ -261,7 +262,8 @@
       "staticConfig": {
         "static": [
           "csw-01.venue.rubykaigi.net",
-          "csw-02.venue.rubykaigi.net"
+          "csw-02.venue.rubykaigi.net",
+          "asw-01.venue.rubykaigi.net"
         ]
       }
     }
@@ -289,7 +291,8 @@
       "staticConfig": {
         "static": [
           "csw-01.venue.rubykaigi.net",
-          "csw-02.venue.rubykaigi.net"
+          "csw-02.venue.rubykaigi.net",
+          "asw-01.venue.rubykaigi.net"
         ]
       }
     }
@@ -317,7 +320,8 @@
       "staticConfig": {
         "static": [
           "csw-01.venue.rubykaigi.net",
-          "csw-02.venue.rubykaigi.net"
+          "csw-02.venue.rubykaigi.net",
+          "asw-01.venue.rubykaigi.net"
         ]
       }
     }

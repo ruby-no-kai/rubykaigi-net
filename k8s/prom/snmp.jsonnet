@@ -48,6 +48,7 @@ local targets_lo = [
     hosts: [
       'csw-01.venue.rubykaigi.net',
       'csw-02.venue.rubykaigi.net',
+      'asw-01.venue.rubykaigi.net',
     ],
   },
   {
