@@ -29,8 +29,8 @@ local commit = '9aa2ad08c61a0e5fbe298c6cd27e2f12652d6a7f';
                 memory: '64M',
               },
             },
-            image: 'ghcr.io/hanazuki/s3tftpd:0.4.3',
-            args: ['s3://rk-tftp/'],
+            image: 'ghcr.io/hanazuki/s3tftpd@sha256:22aabcfabc081287043744c4355c5d77f8d91062e42a877ad7c15eb35c9dc361',
+            args: ['--blocksize=1300', 's3://rk-tftp/'],
             ports: [
               { name: 'tftp', containerPort: 69, protocol: 'UDP' },
             ],
