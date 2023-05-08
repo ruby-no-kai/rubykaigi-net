@@ -25,8 +25,8 @@ local targets = [
 
       // 'tun-01.hot.rubykaigi.net',
       // 'gw-01.hot.rubykaigi.net',
-      'tun-99.tkyk.rubykaigi.net',
-      'gw-99.tkyk.rubykaigi.net',
+      // 'tun-99.tkyk.rubykaigi.net',
+      // 'gw-99.tkyk.rubykaigi.net',
     ],
   },
   {

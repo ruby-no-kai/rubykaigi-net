@@ -24,8 +24,6 @@
           "tun-02.venue.rubykaigi.net",
           "gw-01.venue.rubykaigi.net",
           "gw-02.venue.rubykaigi.net",
-          "tun-99.tkyk.rubykaigi.net",
-          "gw-99.tkyk.rubykaigi.net",
           "esw-tra-01.venue.rubykaigi.net",
           "esw-tra-02.venue.rubykaigi.net",
           "esw-fow-01.venue.rubykaigi.net",
@@ -68,9 +66,7 @@
           "tun-01.venue.rubykaigi.net",
           "tun-02.venue.rubykaigi.net",
           "gw-01.venue.rubykaigi.net",
-          "gw-02.venue.rubykaigi.net",
-          "tun-99.tkyk.rubykaigi.net",
-          "gw-99.tkyk.rubykaigi.net"
+          "gw-02.venue.rubykaigi.net"
         ]
       }
     }
