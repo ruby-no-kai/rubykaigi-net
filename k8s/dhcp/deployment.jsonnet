@@ -19,6 +19,16 @@ local commit = '4b1dc5bf74750690899ea5a3fda005c6179fd993';
         labels: { 'rubykaigi.org/app': 'kea4' },
       },
       spec: {
+        topologySpreadConstraints: [
+          {
+            maxSkew: 1,
+            topologyKey: 'topology.kubernetes.io/zone',
+            whenUnsatisfiable: 'ScheduleAnyway',
+            labelSelector: {
+              matchLabels: { 'rubykaigi.org/app': 'kea4' },
+            },
+          },
+        ],
         // serviceAccountName: 'kea4',
         containers: [
           {

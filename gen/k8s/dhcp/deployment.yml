@@ -114,6 +114,18 @@
                   ]
                }
             ],
+            "topologySpreadConstraints": [
+               {
+                  "labelSelector": {
+                     "matchLabels": {
+                        "rubykaigi.org/app": "kea4"
+                     }
+                  },
+                  "maxSkew": 1,
+                  "topologyKey": "topology.kubernetes.io/zone",
+                  "whenUnsatisfiable": "ScheduleAnyway"
+               }
+            ],
             "volumes": [
                {
                   "configMap": {
