@@ -17,7 +17,7 @@ resource "aws_security_group_rule" "k8s-node_tftp-healthz" {
   type              = "ingress"
   from_port         = 8080
   to_port           = 8080
-  protocol          = "udp"
+  protocol          = "tcp"
   cidr_blocks = [
     "10.33.128.0/18", # aws
   ]
