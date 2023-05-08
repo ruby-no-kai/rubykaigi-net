@@ -15,6 +15,9 @@ TARGETS = [
     network: '10.33.0.0/16',
     targets: [
       /\Alo\.[\w-]+\.(?:hnd|nrt|venue)\./,
+      /\Avlan1000.esw/,
+      /\Avlan-1000.asw/,
+      /\Avlan-1000.vrrp/,
       'management.wlc-01.venue.rubykaigi.net',
     ],
     labels: {
@@ -26,7 +29,7 @@ TARGETS = [
     network: '192.50.220.0/24',
     targets: [
       /\Alo1\./,
-      /\Anat\.gw-\d+\.venue\./,
+      /\Agi0-1-nat2\.gw-\d+\.venue\./,
     ],
     labels: {
       network: 'public',
