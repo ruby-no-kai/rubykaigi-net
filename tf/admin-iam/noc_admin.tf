@@ -141,6 +141,15 @@ data "aws_iam_policy_document" "NocAdminBase" {
   }
 
   statement {
+    effect = "Allow"
+    actions = ["sts:AssumeRole", "sts:TagSession"]
+    resources = [
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/TakeoutUser",
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/TakeoutUserDev",
+    ]
+  }
+
+  statement {
     effect  = "Deny"
     actions = ["*"]
     resources = [
