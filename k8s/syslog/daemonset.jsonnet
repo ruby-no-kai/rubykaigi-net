@@ -71,6 +71,12 @@
             value: 'onpremises',
             effect: 'NoSchedule',
           },
+          {
+            key: 'CriticalAddonsOnly',
+            operator: 'Equal',
+            value: 'true',
+            effect: 'NoSchedule',
+          },
         ],
       },
     },
