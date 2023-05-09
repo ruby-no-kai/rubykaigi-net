@@ -14,6 +14,10 @@ local domainName = 'air.venue.rubykaigi.net';
       data: '10.33.2.254',
     },
     {
+      name: 'domain-name-servers',
+      data: std.join(', ', consts.dns_resolvers_usr),
+    },
+    {
       name: 'domain-name',
       data: domainName,
     },

@@ -14,6 +14,10 @@ local domainName = 'cast.venue.rubykaigi.net';
       data: '10.33.21.254',
     },
     {
+      name: 'domain-name-servers',
+      data: std.join(', ', consts.dns_resolvers_usr),
+    },
+    {
       name: 'domain-name',
       data: domainName,
     },
