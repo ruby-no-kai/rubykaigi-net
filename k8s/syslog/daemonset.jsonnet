@@ -40,6 +40,12 @@
               failureThreshold: 2,
               periodSeconds: 3,
             },
+            resources: {
+              requests: {
+                cpu: '5m',
+                memory: '30M',
+              },
+            },
           },
         ],
         volumes: [
