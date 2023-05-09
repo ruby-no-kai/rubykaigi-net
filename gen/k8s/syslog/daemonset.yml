@@ -52,6 +52,12 @@
                         "scheme": "HTTP"
                      }
                   },
+                  "resources": {
+                     "requests": {
+                        "cpu": "5m",
+                        "memory": "30M"
+                     }
+                  },
                   "volumeMounts": [
                      {
                         "mountPath": "/config",
