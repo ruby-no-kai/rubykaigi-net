@@ -29,5 +29,6 @@ resource "aws_route53_record" "cloudprober-srv" {
   ttl     = 300
   records = [
     "0 0 ${local.cloudprober_port} ${aws_route53_record.cloudprober-az-c.fqdn}",
+    "0 0 ${local.cloudprober_port} cloudprober-01.venue.rubykaigi.net"
   ]
 }
