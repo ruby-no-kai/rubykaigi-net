@@ -2849,6 +2849,22 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "usr.wlc-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.64.2"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "2.64.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "usr.wlc-01.venue.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "100.100.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -3326,6 +3342,46 @@
       "type": "CNAME",
       "records": [
         "vlan1000.esw-org-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "251.100.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "cloudprober-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "cloudprober-01.venue.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.251"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "cloudprober-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.251"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "enp6s0.cloudprober-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.251"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "mgmt.cloudprober-01.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "enp6s0.cloudprober-01.venue.rubykaigi.net."
       ]
     },
     {
