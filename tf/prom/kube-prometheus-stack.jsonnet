@@ -50,16 +50,16 @@ local volumeClaimTemplate(size) = {
       },
       route: {
         routes: [
-          // {
-          //   matchers: [
-          //     'severity=~"warning|critical"',
-          //   ],
-          //   group_by: ['alertname', 'job'],
-          //   group_wait: '12s',
-          //   group_interval: '12s',
-          //   repeat_interval: '1h',
-          //   receiver: 'slack-default',
-          // },
+          {
+            matchers: [
+              'severity=~"warning|critical"',
+            ],
+            group_by: ['alertname', 'job'],
+            group_wait: '12s',
+            group_interval: '12s',
+            repeat_interval: '1h',
+            receiver: 'slack-default',
+          },
         ],
         receiver: 'null',
       },
