@@ -14,6 +14,7 @@ module "node_general" {
   bottlerocket    = true
   instance_family = "burstable"
   instance_size   = "medium"
+  min_size        = 4 # 2 per AZ
 }
 
 module "node_onpremises" {
