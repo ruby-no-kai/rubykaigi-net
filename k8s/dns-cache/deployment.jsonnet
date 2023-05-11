@@ -13,7 +13,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
       },
     },
     spec: {
-      replicas: 2,
+      replicas: 3,
       selector: {
         matchLabels: { 'rubykaigi.org/app': 'unbound' },
       },
@@ -32,7 +32,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
             {
               maxSkew: 1,
               topologyKey: 'topology.kubernetes.io/zone',
-              whenUnsatisfiable: 'ScheduleAnyway',
+              whenUnsatisfiable: 'DoNotSchedule',
               labelSelector: {
                 matchLabels: { 'rubykaigi.org/app': 'unbound' },
               },
@@ -103,7 +103,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
       },
     },
     spec: {
-      replicas: 2,
+      replicas: 3,
       selector: {
         matchLabels: { 'rubykaigi.org/app': 'unbound-envoy' },
       },
@@ -116,7 +116,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
             {
               maxSkew: 1,
               topologyKey: 'topology.kubernetes.io/zone',
-              whenUnsatisfiable: 'ScheduleAnyway',
+              whenUnsatisfiable: 'DoNotSchedule',
               labelSelector: {
                 matchLabels: { 'rubykaigi.org/app': 'unbound-envoy' },
               },
