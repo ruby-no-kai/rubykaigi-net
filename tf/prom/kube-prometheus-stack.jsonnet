@@ -54,31 +54,49 @@ local volumeClaimTemplate(size) = {
             matchers: [
               'severity=~"warning|critical"',
             ],
-            group_by: ['alertname', 'job'],
+            group_by: ['alertname'],
             group_wait: '12s',
             group_interval: '12s',
             repeat_interval: '1h',
             receiver: 'slack-default',
           },
+          {
+            matchers: [
+              'severity=~"warning|critical"',
+              'send_resolved="false"',
+            ],
+            group_by: ['alertname'],
+            group_wait: '12s',
+            group_interval: '12s',
+            repeat_interval: '1h',
+            receiver: 'slack-without-resolved',
+          },
         ],
         receiver: 'null',
       },
-      receivers: [
-        {
-          name: 'null',
-        },
-        {
-          name: 'slack-default',
-          slack_configs: [
-            {
-              send_resolved: true,
-              title_link: 'https://grafana.rubykaigi.net/alerting/list?view=state&dataSource=Prometheus&queryString=alertname%3D{{ .GroupLabels.alertname | urlquery }}',
-              title: '{{ .GroupLabels.alertname }}{{ with .GroupLabels.job }} - {{ . }}{{ end }}',
-              text: '{{ range .Alerts }}*{{ .Status }}* {{ with .Labels.instance }}{{ . }} - {{ end }}{{ .Annotations.summary }}\n{{ end }}',
-            },
-          ],
-        },
-      ],
+      receivers:
+        local slack_config = {
+          send_resolved: true,
+          title_link: 'https://grafana.rubykaigi.net/alerting/list?view=state&dataSource=Prometheus&queryString=alertname%3D{{ .GroupLabels.alertname | urlquery }}',
+          title: '{{ .GroupLabels.alertname }}',
+          text: '{{ range .Alerts }}*{{ .Status }}* {{ with .Labels.instance }}{{ . }} - {{ end }}{{ .Annotations.summary }}\n{{ end }}',
+        }; [
+          {
+            name: 'null',
+          },
+          {
+            name: 'slack-default',
+            slack_configs: [
+              slack_config { send_resolved: true },
+            ],
+          },
+          {
+            name: 'slack-without-resolved',
+            slack_configs: [
+              slack_config { send_resolved: false },
+            ],
+          },
+        ],
     },
     alertmanagerSpec: {
       resources: {

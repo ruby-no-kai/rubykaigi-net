@@ -19,6 +19,7 @@
           expr: 'resets(sysUpTime[5m]) > 0',
           labels: {
             severity: 'warning',
+            send_resolved: 'false',
           },
           annotations: {
             summary: 'Rebooted within 5m',
@@ -48,12 +49,13 @@
         },
         {
           alert: 'LinkStateChanged',
-          expr: 'changes(ifOperStatus[5m]) > 0',
+          expr: 'changes(ifOperStatus[3m]) > 0',
           labels: {
             severity: 'warning',
+            send_resolved: 'false',
           },
           annotations: {
-            summary: '{{$labels.instance}} {{$labels.ifName}} ({{$labels.ifAlias}}): Link state changed within 5m',
+            summary: '{{$labels.instance}} {{$labels.ifName}} ({{$labels.ifAlias}}): Link state changed',
           },
         },
         {
