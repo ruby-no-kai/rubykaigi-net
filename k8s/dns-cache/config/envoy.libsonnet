@@ -37,6 +37,20 @@ local route_config = {
           },
           route: { cluster: 'unbound' },
         },
+        {
+          name: 'blog',
+          match: {
+            path: '/',
+          },
+          redirect: {
+            https_redirect: true,
+            port_redirect: 443,
+            host_redirect: 'blog.kmc.gr.jp',
+            path_redirect: '/entry/2023/05/10/165300',
+            response_code: 'SEE_OTHER',
+            strip_query: true,
+          },
+        },
       ],
       include_request_attempt_count: true,
       include_attempt_count_in_response: true,
