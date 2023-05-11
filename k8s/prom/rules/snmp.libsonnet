@@ -46,6 +46,26 @@
             summary: 'System utilization >80% for 5m',
           },
         },
+        {
+          alert: 'LinkStateChanged',
+          expr: 'changes(ifOperStatus[5m]) > 0',
+          labels: {
+            severity: 'warning',
+          },
+          annotations: {
+            summary: '{{$labels.instance}} {{$labels.ifName}} ({{$labels.ifAlias}}): Link state changed within 5m',
+          },
+        },
+        {
+          alert: 'BGPPeerDown',
+          expr: 'bgpPeerState != 6',
+          labels: {
+            severity: 'critical',
+          },
+          annotations: {
+            summary: '{{$labels.instance}}: BGP peer to {{$labels.bgpPeerRemoteAddr}} is not established',
+          },
+        },
       ],
     },
   ],

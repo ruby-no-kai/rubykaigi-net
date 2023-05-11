@@ -239,6 +239,26 @@
             "labels": {
               "severity": "critical"
             }
+          },
+          {
+            "alert": "LinkStateChanged",
+            "annotations": {
+              "summary": "{{$labels.instance}} {{$labels.ifName}} ({{$labels.ifAlias}}): Link state changed within 5m"
+            },
+            "expr": "changes(ifOperStatus[5m]) > 0",
+            "labels": {
+              "severity": "warning"
+            }
+          },
+          {
+            "alert": "BGPPeerDown",
+            "annotations": {
+              "summary": "{{$labels.instance}}: BGP peer to {{$labels.bgpPeerRemoteAddr}} is not established"
+            },
+            "expr": "bgpPeerState != 6",
+            "labels": {
+              "severity": "critical"
+            }
           }
         ]
       }
