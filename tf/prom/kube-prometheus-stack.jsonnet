@@ -53,16 +53,6 @@ local volumeClaimTemplate(size) = {
           {
             matchers: [
               'severity=~"warning|critical"',
-            ],
-            group_by: ['alertname'],
-            group_wait: '12s',
-            group_interval: '12s',
-            repeat_interval: '1h',
-            receiver: 'slack-default',
-          },
-          {
-            matchers: [
-              'severity=~"warning|critical"',
               'send_resolved="false"',
             ],
             group_by: ['alertname'],
@@ -70,6 +60,16 @@ local volumeClaimTemplate(size) = {
             group_interval: '12s',
             repeat_interval: '1h',
             receiver: 'slack-without-resolved',
+          },
+          {
+            matchers: [
+              'severity=~"warning|critical"',
+            ],
+            group_by: ['alertname'],
+            group_wait: '12s',
+            group_interval: '12s',
+            repeat_interval: '1h',
+            receiver: 'slack-default',
           },
         ],
         receiver: 'null',
