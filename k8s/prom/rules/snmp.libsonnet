@@ -68,6 +68,16 @@
             summary: '{{$labels.instance}}: BGP peer to {{$labels.bgpPeerRemoteAddr}} is not established',
           },
         },
+        {
+          alert: 'HighPacketLossRate',
+          expr: '1 - rate(cloudprober_success[1m]) / rate(cloudprober_total[1m]) > 0.30',
+          labels: {
+            severity: 'critical',
+          },
+          annotations: {
+            summary: '{{$labels.probe}} loss > 30%: {{$labels.instance}} -> {{$labels.dst}}',
+          },
+        },
       ],
     },
   ],
