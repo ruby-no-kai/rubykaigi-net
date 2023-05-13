@@ -69,6 +69,25 @@ local route_config = {
   ],
 };
 
+local access_log_json_format = {
+  start_time: '%START_TIME%',
+  method: '%REQ(:METHOD)%',
+  path: '%REQ(X-ENVOY-ORIGINAL-PATH?:PATH)%',
+  protocol: '%PROTOCOL%',
+  response_code: '%RESPONSE_CODE%',
+  response_flags: '%RESPONSE_FLAGS%',
+  bytes_received: '%BYTES_RECEIVED%',
+  bytes_sent: '%BYTES_SENT%',
+  duration: '%DURATION%',
+  upstream_service_time: '%RESP(X-ENVOY-UPSTREAM-SERVICE-TIME)%',
+  host: '%DOWNSTREAM_DIRECT_REMOTE_ADDRESS_WITHOUT_PORT%',
+  xff: '%REQ(X-FORWARDED-FOR)%',
+  ua: '%REQ(USER-AGENT)%',
+  request_id: '%REQ(X-REQUEST-ID)%',
+  authority: '%REQ(:AUTHORITY)%',
+  upstream_host: '%UPSTREAM_HOST%',
+};
+
 local http_connection_manager(codec_type, stat_prefix) = {
   name: 'envoy.filters.network.http_connection_manager',
   typed_config: {
@@ -108,10 +127,12 @@ local http_connection_manager(codec_type, stat_prefix) = {
     route_config: route_config,
     access_log: [
       {
-        name: 'envoy.access_loggers.file',
+        name: 'envoy.access_loggers.stdout',
         typed_config: {
-          '@type': 'type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog',
-          path: '/dev/stdout',
+          '@type': 'type.googleapis.com/envoy.extensions.access_loggers.stream.v3.StdoutAccessLog',
+          log_format: {
+            json_format: access_log_json_format,
+          },
         },
       },
     ],
