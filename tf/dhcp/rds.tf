@@ -15,7 +15,7 @@ resource "aws_rds_cluster" "kea" {
   backup_retention_period = 2
   preferred_backup_window = "12:00-14:00"
 
-  final_snapshot_identifier = "kea22-final"
+  final_snapshot_identifier = "kea-rk23-final"
 
   apply_immediately = true
 }
