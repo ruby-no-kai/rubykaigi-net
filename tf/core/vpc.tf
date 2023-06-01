@@ -27,6 +27,15 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 }
 
+resource "aws_network_interface" "blackhole" {
+  subnet_id               = aws_subnet.d_onpremises_link.id
+  private_ip_list_enabled = false
+  security_groups         = [aws_security_group.default.id]
+  tags = {
+    Name = "blackhole"
+  }
+}
+
 resource "aws_subnet" "c_public" {
   availability_zone               = "ap-northeast-1c"
   vpc_id                          = aws_vpc.main.id
@@ -312,11 +321,12 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
 #  destination_cidr_block = "0.0.0.0/0"
 #  nat_gateway_id         = aws_nat_gateway.nat-c.id
 #}
-#resource "aws_route" "private-c_v4_default" {
-#  route_table_id         = aws_route_table.private-c.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.nat-c.id
-#}
+resource "aws_route" "private-c_v4_default" {
+  route_table_id         = aws_route_table.private-c.id
+  destination_cidr_block = "0.0.0.0/0"
+  #  nat_gateway_id         = aws_nat_gateway.nat-c.id
+  network_interface_id = aws_network_interface.blackhole.id
+}
 
 #resource "aws_eip" "nat-d" {
 #  domain = "vpc"
@@ -335,11 +345,12 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
 #    Component = "core/vpc"
 #  }
 #}
-#resource "aws_route" "private-d_v4_default" {
-#  route_table_id         = aws_route_table.private-d.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.nat-d.id
-#}
+resource "aws_route" "private-d_v4_default" {
+  route_table_id         = aws_route_table.private-d.id
+  destination_cidr_block = "0.0.0.0/0"
+  #nat_gateway_id         = aws_nat_gateway.nat-d.id
+  network_interface_id = aws_network_interface.blackhole.id
+}
 
 #resource "aws_nat_gateway" "onpremises-c" {
 #  subnet_id         = aws_subnet.c_onpremises_link.id
@@ -359,13 +370,15 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
 #    Component = "core/vpc"
 #  }
 #}
-#resource "aws_route" "onpremises-c_v4_default" {
-#  route_table_id         = aws_route_table.onpremises-c.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
-#}
-#resource "aws_route" "onpremises-d_v4_default" {
-#  route_table_id         = aws_route_table.onpremises-d.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
-#}
+resource "aws_route" "onpremises-c_v4_default" {
+  route_table_id         = aws_route_table.onpremises-c.id
+  destination_cidr_block = "0.0.0.0/0"
+  #nat_gateway_id         = aws_nat_gateway.onpremises-c.id
+  network_interface_id = aws_network_interface.blackhole.id
+}
+resource "aws_route" "onpremises-d_v4_default" {
+  route_table_id         = aws_route_table.onpremises-d.id
+  destination_cidr_block = "0.0.0.0/0"
+  #nat_gateway_id         = aws_nat_gateway.onpremises-d.id
+  network_interface_id = aws_network_interface.blackhole.id
+}
