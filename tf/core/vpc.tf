@@ -292,54 +292,54 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
   route_table_id = aws_route_table.onpremises-d.id
 }
 
-resource "aws_eip" "nat-c" {
-  domain = "vpc"
-  tags = {
-    Name    = "nat-c"
-    Project = "rk23net"
-  }
-}
-resource "aws_nat_gateway" "nat-c" {
-  allocation_id = aws_eip.nat-c.id
-  subnet_id     = aws_subnet.c_public.id
-  tags = {
-    Name    = "nat-c"
-    Project = "rk23net"
-  }
-}
-resource "aws_route" "private_nat" {
-  route_table_id         = aws_route_table.private.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat-c.id
-}
-resource "aws_route" "private-c_v4_default" {
-  route_table_id         = aws_route_table.private-c.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat-c.id
-}
+#resource "aws_eip" "nat-c" {
+#  domain = "vpc"
+#  tags = {
+#    Name    = "nat-c"
+#    Project = "rk23net"
+#  }
+#}
+#resource "aws_nat_gateway" "nat-c" {
+#  allocation_id = aws_eip.nat-c.id
+#  subnet_id     = aws_subnet.c_public.id
+#  tags = {
+#    Name    = "nat-c"
+#    Project = "rk23net"
+#  }
+#}
+#resource "aws_route" "private_nat" {
+#  route_table_id         = aws_route_table.private.id
+#  destination_cidr_block = "0.0.0.0/0"
+#  nat_gateway_id         = aws_nat_gateway.nat-c.id
+#}
+#resource "aws_route" "private-c_v4_default" {
+#  route_table_id         = aws_route_table.private-c.id
+#  destination_cidr_block = "0.0.0.0/0"
+#  nat_gateway_id         = aws_nat_gateway.nat-c.id
+#}
 
-resource "aws_eip" "nat-d" {
-  domain = "vpc"
-  tags = {
-    Name      = "nat-d"
-    Project   = "rk23net"
-    Component = "core/vpc"
-  }
-}
-resource "aws_nat_gateway" "nat-d" {
-  allocation_id = aws_eip.nat-d.id
-  subnet_id     = aws_subnet.d_public.id
-  tags = {
-    Name      = "nat-d"
-    Project   = "rk23net"
-    Component = "core/vpc"
-  }
-}
-resource "aws_route" "private-d_v4_default" {
-  route_table_id         = aws_route_table.private-d.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat-d.id
-}
+#resource "aws_eip" "nat-d" {
+#  domain = "vpc"
+#  tags = {
+#    Name      = "nat-d"
+#    Project   = "rk23net"
+#    Component = "core/vpc"
+#  }
+#}
+#resource "aws_nat_gateway" "nat-d" {
+#  allocation_id = aws_eip.nat-d.id
+#  subnet_id     = aws_subnet.d_public.id
+#  tags = {
+#    Name      = "nat-d"
+#    Project   = "rk23net"
+#    Component = "core/vpc"
+#  }
+#}
+#resource "aws_route" "private-d_v4_default" {
+#  route_table_id         = aws_route_table.private-d.id
+#  destination_cidr_block = "0.0.0.0/0"
+#  nat_gateway_id         = aws_nat_gateway.nat-d.id
+#}
 
 resource "aws_nat_gateway" "onpremises-c" {
   subnet_id         = aws_subnet.c_onpremises_link.id
@@ -350,22 +350,22 @@ resource "aws_nat_gateway" "onpremises-c" {
     Component = "core/vpc"
   }
 }
-resource "aws_nat_gateway" "onpremises-d" {
-  subnet_id         = aws_subnet.d_onpremises_link.id
-  connectivity_type = "private"
-  tags = {
-    Name      = "onpremises-d"
-    Project   = "rk23net"
-    Component = "core/vpc"
-  }
-}
-resource "aws_route" "onpremises-c_v4_default" {
-  route_table_id         = aws_route_table.onpremises-c.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
-}
-resource "aws_route" "onpremises-d_v4_default" {
-  route_table_id         = aws_route_table.onpremises-d.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
-}
+#resource "aws_nat_gateway" "onpremises-d" {
+#  subnet_id         = aws_subnet.d_onpremises_link.id
+#  connectivity_type = "private"
+#  tags = {
+#    Name      = "onpremises-d"
+#    Project   = "rk23net"
+#    Component = "core/vpc"
+#  }
+#}
+#resource "aws_route" "onpremises-c_v4_default" {
+#  route_table_id         = aws_route_table.onpremises-c.id
+#  destination_cidr_block = "0.0.0.0/0"
+#  nat_gateway_id         = aws_nat_gateway.onpremises-c.id
+#}
+#resource "aws_route" "onpremises-d_v4_default" {
+#  route_table_id         = aws_route_table.onpremises-d.id
+#  destination_cidr_block = "0.0.0.0/0"
+#  nat_gateway_id         = aws_nat_gateway.onpremises-d.id
+#}
