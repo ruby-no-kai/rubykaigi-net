@@ -58,7 +58,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_eip" "bastion" {
-  vpc = true
+  domain = "vpc"
 }
 
 resource "aws_instance" "bastion" {

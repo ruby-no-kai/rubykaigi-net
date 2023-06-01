@@ -7,7 +7,8 @@ terraform {
       source = "hashicorp/local"
     }
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
+      version = ">= 5"
     }
     helm = {
       source = "hashicorp/helm"

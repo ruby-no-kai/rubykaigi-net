@@ -293,7 +293,7 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
 }
 
 resource "aws_eip" "nat-c" {
-  vpc = true
+  domain = "vpc"
   tags = {
     Name    = "nat-c"
     Project = "rk23net"
@@ -319,7 +319,7 @@ resource "aws_route" "private-c_v4_default" {
 }
 
 resource "aws_eip" "nat-d" {
-  vpc = true
+  domain = "vpc"
   tags = {
     Name      = "nat-d"
     Project   = "rk23net"
