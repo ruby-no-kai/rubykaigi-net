@@ -341,15 +341,15 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
 #  nat_gateway_id         = aws_nat_gateway.nat-d.id
 #}
 
-resource "aws_nat_gateway" "onpremises-c" {
-  subnet_id         = aws_subnet.c_onpremises_link.id
-  connectivity_type = "private"
-  tags = {
-    Name      = "onpremises-c"
-    Project   = "rk23net"
-    Component = "core/vpc"
-  }
-}
+#resource "aws_nat_gateway" "onpremises-c" {
+#  subnet_id         = aws_subnet.c_onpremises_link.id
+#  connectivity_type = "private"
+#  tags = {
+#    Name      = "onpremises-c"
+#    Project   = "rk23net"
+#    Component = "core/vpc"
+#  }
+#}
 #resource "aws_nat_gateway" "onpremises-d" {
 #  subnet_id         = aws_subnet.d_onpremises_link.id
 #  connectivity_type = "private"
