@@ -1,6 +1,6 @@
 module "amc" {
-  source = "github.com/sorah/himari2amc?ref=1890f311139b1852bf569999765a898db38dc7b6"
-  # source = "/home/sorah/git/github.com/sorah/himari2amc"
+  source = "github.com/sorah/himari2amc?ref=8465db09c6683ef88a72fc8c75b442a7e0fd930f"
+  #source = "/home/sorah/git/github.com/sorah/himari2amc"
 
   name                       = "amc"
   iam_role_name              = "LambdaAmc"
