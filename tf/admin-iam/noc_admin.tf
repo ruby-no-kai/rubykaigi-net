@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "NocAdmin-trust" {
     condition {
       test     = "StringLike"
       variable = "amc.rubykaigi.net:sub"
-      values   = ["NocAdmin:*"]
+      values   = ["${data.aws_caller_identity.current.account_id}:NocAdmin:*"]
     }
   }
 }
@@ -141,7 +141,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
   }
 
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole", "sts:TagSession"]
     resources = [
       "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/TakeoutUser",

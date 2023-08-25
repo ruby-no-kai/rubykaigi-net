@@ -4,7 +4,7 @@ resource "aws_route53_record" "amc_rubykaigi_net" {
   zone_id  = each.value
   type     = "CNAME"
   ttl      = 60
-  records  = [aws_cloudfront_distribution.amc-rubykaigi-net.domain_name]
+  records  = [module.amc.cloudfront_domain_name]
 }
 
 data "aws_route53_zone" "rubykaigi-net_public" {

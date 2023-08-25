@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "KaigiStaff-trust" {
     condition {
       test     = "StringLike"
       variable = "amc.rubykaigi.net:sub"
-      values   = ["KaigiStaff:*"]
+      values   = ["${data.aws_caller_identity.current.account_id}:KaigiStaff:*"]
     }
   }
 }

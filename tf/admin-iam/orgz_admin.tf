@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "OrgzAdmin-trust" {
     condition {
       test     = "StringLike"
       variable = "amc.rubykaigi.net:sub"
-      values   = ["OrgzAdmin:*"]
+      values   = ["${data.aws_caller_identity.current.account_id}:OrgzAdmin:*"]
     }
   }
 }
