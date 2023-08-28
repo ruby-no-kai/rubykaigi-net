@@ -1,5 +1,5 @@
 module "amc" {
-  source = "github.com/sorah/himari2amc?ref=8465db09c6683ef88a72fc8c75b442a7e0fd930f"
+  source = "github.com/sorah/himari2amc?ref=41d6028adee6f927a55c8eca28d7c1186facc5cc"
   #source = "/home/sorah/git/github.com/sorah/himari2amc"
 
   name                       = "amc"
@@ -10,6 +10,10 @@ module "amc" {
   cloudfront_log_bucket      = "rk-aws-logs.s3.amazonaws.com"
   cloudfront_log_prefix      = "cf/amc.rubykaigi.net/"
   cloudfront_certificate_arn = data.aws_acm_certificate.use1-wild-rk-n.arn
+
+  environment_variables = {
+    AMC_ALT_CLIENT_IDS = "a94519af-8c51-4f8b-af3a-a58130415096",
+  }
 
   header_html = "<img height=310 width=310 src='https://img.sorah.jp/ba-01-09.png' alt=''>"
   footer_html = <<-EOH

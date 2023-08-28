@@ -74,6 +74,18 @@ use(Himari::Middlewares::Client,
   redirect_uris: %w(https://amc.rubykaigi.net/auth/himari/callback),
 )
 use(Himari::Middlewares::Client,
+  name: 'amc-local',
+  id: 'd22e8760-2fc9-4e5e-ab71-12d6657dcc92',
+  secret_hash: 'f6d8f4422bb0e7c0443cbe85cc4ef4e1b5f23c7efe76dfe1d87f7de793a7082701df5a8d08f446bb04ec1e07520474cd', # sha384.hexdigest
+  redirect_uris: %w(http://localhost:3000/auth/himari/callback),
+)
+use(Himari::Middlewares::Client,
+  name: 'amc-local2',
+  id: 'a94519af-8c51-4f8b-af3a-a58130415096',
+  secret_hash: 'b46b2dc7a429ebce84ad257d3bfab6608c40556e0384b7317a9d595c26fe813737749810bdfde5c62766d2750145d3a8', # sha384.hexdigest
+  redirect_uris: %w(http://localhost:16252/oauthcallback),
+)
+use(Himari::Middlewares::Client,
   name: 'ops-lb',
   id: 'be906815-f319-8c1c-5078-b6ceed8cd57e',
   secret_hash: '3fcd566d9a8313e3fd120adf7a15fb29824413c3dfa1bfc36b20a8935699ff3afc8605761e4dd9d39ed40092e84fab64', # sha384.hexdigest
@@ -202,7 +214,7 @@ use(Himari::Middlewares::AuthorizationRule, name: 'grafana') do |context, decisi
 end
 
 use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, decision|
-  next decision.skip!('client not in scope') unless context.client.name == 'amc'
+  next decision.skip!('client not in scope') unless context.client.name == 'amc' || context.client.name == 'amc-local' || context.client.name == 'amc-local2'
   next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
 
   groups = decision.claims.dig(:groups)
