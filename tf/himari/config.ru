@@ -83,7 +83,7 @@ use(Himari::Middlewares::Client,
   name: 'amc-local2',
   id: 'a94519af-8c51-4f8b-af3a-a58130415096',
   secret_hash: 'b46b2dc7a429ebce84ad257d3bfab6608c40556e0384b7317a9d595c26fe813737749810bdfde5c62766d2750145d3a8', # sha384.hexdigest
-  redirect_uris: %w(http://localhost:16252/oauthcallback),
+  redirect_uris: %w(http://127.0.0.1:16252/oauth2callback http://[::1]:16252/oauth2callback),
 )
 use(Himari::Middlewares::Client,
   name: 'ops-lb',
