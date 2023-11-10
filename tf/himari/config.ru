@@ -141,6 +141,8 @@ use(Himari::Middlewares::ClaimsRule, name: 'github-oauth-teams') do |context, de
     'ruby-no-kai/rk-aws-admin',
     'ruby-no-kai/rko-infra',
     %r{\Aruby-no-kai/rk\d+-orgz\z},
+
+    'kaigionrails/infra',
   ]
   teams = user_teams_resp
     .map { |team| "#{team.fetch('organization').fetch('login')}/#{team.fetch('slug')}" }
@@ -228,6 +230,10 @@ use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, dec
   end
   if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk23-orgz')
     roles.push('arn:aws:iam::005216166247:role/KaigiStaff')
+  end
+
+  if groups.include?('kaigionrails/infra')
+    roles.push('arn:aws:iam::861452569180:role/OrganizationAccountAccessRole')
   end
 
   decision.claims[:roles] = roles
