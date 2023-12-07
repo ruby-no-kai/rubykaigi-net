@@ -1,9 +1,0 @@
-eap inner-eap {
-  default_eap_type = mschapv2
-  timer_expire = 60
-  # max_sessions = ${max_requests}
-
-  mschapv2 {
-    send_error = yes
-  }
-}
