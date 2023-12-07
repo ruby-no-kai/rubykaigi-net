@@ -1,4 +1,4 @@
-module github.com/ruby-no-kai/rubykaigi-nw/docker/s3tftpd-healthz
+module github.com/ruby-no-kai/rubykaigi-net/docker/s3tftpd-healthz
 
 go 1.19
 

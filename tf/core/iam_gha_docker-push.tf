@@ -19,6 +19,8 @@ data "aws_iam_policy_document" "GhaDockerPush-trust" {
       values = [
         "repo:ruby-no-kai/rubykaigi-nw:ref:refs/heads/master",
         "repo:ruby-no-kai/rubykaigi-nw:ref:refs/heads/test",
+        "repo:ruby-no-kai/rubykaigi-net:ref:refs/heads/master",
+        "repo:ruby-no-kai/rubykaigi-net:ref:refs/heads/test",
         "repo:ruby-no-kai/rko-router:ref:refs/heads/master",
         "repo:ruby-no-kai/rko-router:ref:refs/heads/test",
         "repo:ruby-no-kai/takeout-app:ref:refs/heads/master",
