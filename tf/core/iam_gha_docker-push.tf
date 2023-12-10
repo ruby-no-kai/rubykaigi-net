@@ -25,7 +25,8 @@ data "aws_iam_policy_document" "GhaDockerPush-trust" {
         "repo:ruby-no-kai/rko-router:ref:refs/heads/test",
         "repo:ruby-no-kai/takeout-app:ref:refs/heads/master",
         "repo:ruby-no-kai/takeout-app:ref:refs/heads/test",
-
+        "repo:ruby-no-kai/sponsor-app:ref:refs/heads/master",
+        "repo:ruby-no-kai/sponsor-app:ref:refs/heads/test",
       ]
     }
   }
@@ -80,6 +81,7 @@ data "aws_iam_policy_document" "GhaDockerPush" {
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/s3tftpd-healthz",
 
       "arn:aws:ecr:us-west-2:${data.aws_caller_identity.current.account_id}:repository/takeout-app",
+      "arn:aws:ecr:us-west-2:${data.aws_caller_identity.current.account_id}:repository/sponsor-app",
       "arn:aws:ecr:us-west-2:${data.aws_caller_identity.current.account_id}:repository/slack-thread-expander",
     ]
   }
