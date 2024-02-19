@@ -9,7 +9,7 @@
 #
 #  tags = {
 #    Name      = "rk23-nrt"
-#    Project   = "rk23net"
+#    Project   = "rk24net"
 #    Component = "core/vpc"
 #  }
 #}
@@ -21,7 +21,7 @@
 #
 #  tags = {
 #    Name      = "rk23-nrt"
-#    Project   = "rk23net"
+#    Project   = "rk24net"
 #    Component = "core/vpc"
 #  }
 #}

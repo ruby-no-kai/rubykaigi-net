@@ -3,7 +3,7 @@ provider "aws" {
   allowed_account_ids = ["005216166247"]
   default_tags {
     tags = {
-      Project   = "rk23net"
+      Project   = "rk24net"
       Component = "grafana"
     }
   }

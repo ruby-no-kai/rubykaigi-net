@@ -74,7 +74,7 @@ data "aws_ami" "ubuntu" {
 #
 #  tags = {
 #    Name      = "bastion"
-#    Project   = "rk23net"
+#    Project   = "rk24net"
 #    Component = "radius"
 #  }
 #  lifecycle {

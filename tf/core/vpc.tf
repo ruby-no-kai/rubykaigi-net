@@ -305,7 +305,7 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
 #  domain = "vpc"
 #  tags = {
 #    Name    = "nat-c"
-#    Project = "rk23net"
+#    Project = "rk24net"
 #  }
 #}
 #resource "aws_nat_gateway" "nat-c" {
@@ -313,7 +313,7 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
 #  subnet_id     = aws_subnet.c_public.id
 #  tags = {
 #    Name    = "nat-c"
-#    Project = "rk23net"
+#    Project = "rk24net"
 #  }
 #}
 #resource "aws_route" "private_nat" {
@@ -332,7 +332,7 @@ resource "aws_route" "private-c_v4_default" {
 #  domain = "vpc"
 #  tags = {
 #    Name      = "nat-d"
-#    Project   = "rk23net"
+#    Project   = "rk24net"
 #    Component = "core/vpc"
 #  }
 #}
@@ -341,7 +341,7 @@ resource "aws_route" "private-c_v4_default" {
 #  subnet_id     = aws_subnet.d_public.id
 #  tags = {
 #    Name      = "nat-d"
-#    Project   = "rk23net"
+#    Project   = "rk24net"
 #    Component = "core/vpc"
 #  }
 #}
@@ -357,7 +357,7 @@ resource "aws_route" "private-d_v4_default" {
 #  connectivity_type = "private"
 #  tags = {
 #    Name      = "onpremises-c"
-#    Project   = "rk23net"
+#    Project   = "rk24net"
 #    Component = "core/vpc"
 #  }
 #}
@@ -366,7 +366,7 @@ resource "aws_route" "private-d_v4_default" {
 #  connectivity_type = "private"
 #  tags = {
 #    Name      = "onpremises-d"
-#    Project   = "rk23net"
+#    Project   = "rk24net"
 #    Component = "core/vpc"
 #  }
 #}

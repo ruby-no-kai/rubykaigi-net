@@ -58,8 +58,8 @@ data "aws_iam_policy_document" "fluentd-cwlogs-policy" {
       "logs:DescribeLogStreams",
     ]
     resources = [
-      "arn:aws:logs:ap-northeast-1:005216166247:log-group:/rk23net/syslog:*",
-      "arn:aws:logs:ap-northeast-1:005216166247:log-group:/rk23net/k8s:*",
+      "arn:aws:logs:ap-northeast-1:005216166247:log-group:/rk24net/syslog:*",
+      "arn:aws:logs:ap-northeast-1:005216166247:log-group:/rk24net/k8s:*",
     ]
     effect = "Allow"
   }
