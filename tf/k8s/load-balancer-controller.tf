@@ -4,7 +4,7 @@ resource "helm_release" "load-balancer-controller" {
   version    = "1.7.1" # 2.7.0
 
   name      = "aws-load-balancer-controller"
-  namespace = "kube-system"
+  namespace = kubernetes_namespace.platform.metadata.0.name
 
   # SA has to be created manually to enable eks pod iam role
   set {
@@ -27,7 +27,7 @@ data "aws_iam_policy" "nocadmin-base" {
 
 resource "aws_iam_role" "load-balancer-controller" {
   name                 = "NwLoadBalancerController"
-  description          = "cookpad-nw k8s/aws_iam_role.load-balancer-controller"
+  description          = "rubykaigi-net//k8s/aws_iam_role.load-balancer-controller"
   assume_role_policy   = data.aws_iam_policy_document.load-balancer-controller-trust.json
   permissions_boundary = data.aws_iam_policy.nocadmin-base.arn
 }
@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "load-balancer-controller-trust" {
     condition {
       test     = "StringEquals"
       variable = module.cluster.oidc_config.condition
-      values   = ["system:serviceaccount:kube-system:aws-load-balancer-controller"]
+      values   = ["system:serviceaccount:platform:aws-load-balancer-controller"]
     }
   }
 }
@@ -68,7 +68,7 @@ data "http" "load-balancer-controller-policy" {
 resource "kubernetes_service_account" "load-balancer-controller" {
   metadata {
     name      = "aws-load-balancer-controller"
-    namespace = "kube-system"
+    namespace = kubernetes_namespace.platform.metadata.0.name
     annotations = {
       "eks.amazonaws.com/role-arn"               = aws_iam_role.load-balancer-controller.arn
       "eks.amazonaws.com/sts-regional-endpoints" = true
