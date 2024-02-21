@@ -53,8 +53,8 @@ resource "aws_subnet" "c_public" {
     Name = "rk-c-public"
     Tier = "public"
 
-    "kubernetes.io/role/elb"     = "1"
-    "kubernetes.io/cluster/rk23" = "shared"
+    "kubernetes.io/role/elb"      = "1"
+    "kubernetes.io/cluster/rknet" = "shared"
   }
 }
 resource "aws_subnet" "d_public" {
@@ -69,8 +69,8 @@ resource "aws_subnet" "d_public" {
     Name = "rk-d-public"
     Tier = "public"
 
-    "kubernetes.io/role/elb"     = "1"
-    "kubernetes.io/cluster/rk23" = "shared"
+    "kubernetes.io/role/elb"      = "1"
+    "kubernetes.io/cluster/rknet" = "shared"
   }
 }
 
@@ -87,7 +87,7 @@ resource "aws_subnet" "c_private" {
     Tier = "private"
 
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/rk23"      = "shared"
+    "kubernetes.io/cluster/rknet"     = "shared"
   }
 }
 resource "aws_subnet" "d_private" {
@@ -103,7 +103,7 @@ resource "aws_subnet" "d_private" {
     Tier = "private"
 
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/rk23"      = "shared"
+    "kubernetes.io/cluster/rknet"     = "shared"
   }
 }
 
@@ -117,6 +117,8 @@ resource "aws_subnet" "c_onpremises" {
   tags = {
     Name = "rk-c-onpremises"
     Tier = "onpremises"
+
+    "kubernetes.io/cluster/rknet" = "shared"
   }
 }
 resource "aws_subnet" "d_onpremises" {
@@ -129,6 +131,8 @@ resource "aws_subnet" "d_onpremises" {
   tags = {
     Name = "rk-d-onpremises"
     Tier = "onpremises"
+
+    "kubernetes.io/cluster/rknet" = "shared"
   }
 }
 resource "aws_subnet" "c_onpremises_link" {
