@@ -6,19 +6,52 @@ resource "helm_release" "load-balancer-controller" {
   name      = "aws-load-balancer-controller"
   namespace = kubernetes_namespace.platform.metadata.0.name
 
-  # SA has to be created manually to enable eks pod iam role
-  set {
-    name  = "serviceAccount.create"
-    value = "false"
-  }
-  set {
-    name  = "serviceAccount.name"
-    value = kubernetes_service_account.load-balancer-controller.metadata.0.name
-  }
-  set {
-    name  = "clusterName"
-    value = "rk23"
-  }
+  values = [
+    jsonencode({
+      "clusterName" = module.cluster.config.name
+      # SA has to be created manually to enable eks pod iam role
+      "serviceAccount" = {
+        "name"   = kubernetes_service_account.load-balancer-controller.metadata.0.name
+        "create" = false
+      }
+      "affinity" = {
+        "podAntiAffinity" = {
+          "preferredDuringSchedulingIgnoredDuringExecution" = [
+            {
+              "weight" = 100
+              "podAffinityTerm" = {
+                "topologyKey" = "topology.kubernetes.io/zone"
+                "labelSelector" = {
+                  "matchExpressions" = [
+                    {
+                      "key"      = "app.kubernetes.io/name"
+                      "operator" = "In"
+                      "values"   = ["aws-load-balancer-controller"]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "weight" = 50
+              "podAffinityTerm" = {
+                "topologyKey" = "kubernetes.io/hostname"
+                "labelSelector" = {
+                  "matchExpressions" = [
+                    {
+                      "key"      = "app.kubernetes.io/name"
+                      "operator" = "In"
+                      "values"   = ["aws-load-balancer-controller"]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }),
+  ]
 }
 
 data "aws_iam_policy" "nocadmin-base" {
