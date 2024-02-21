@@ -20,6 +20,7 @@ data "external" "example" {
 require 'json'
 require 'tempfile'
 
+jsonnet = system('jrsonnet', '--help', out: File::NULL, err: [:child, :out]) ? 'jrsonnet' : 'jsonnet'
 query = JSON.load($stdin)
 
 Tempfile.open do |output|
@@ -28,12 +29,12 @@ Tempfile.open do |output|
   end
 
   if path = query['path']
-    exit $?.to_i unless system('jsonnet', *tla, path, out: output)
+    exit $?.to_i unless system(jsonnet, *tla, path, out: output)
   else
     Tempfile.open do |input|
       input.write(query.fetch('input'))
 
-      exit $?.to_i unless system('jsonnet', *tla, '-', in: input.tap(&:rewind), out: output)
+      exit $?.to_i unless system(jsonnet, *tla, '-', in: input.tap(&:rewind), out: output)
     end
   end
 
