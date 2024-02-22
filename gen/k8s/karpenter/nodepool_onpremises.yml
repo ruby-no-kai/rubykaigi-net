@@ -1,0 +1,69 @@
+{
+   "apiVersion": "karpenter.sh/v1beta1",
+   "kind": "NodePool",
+   "metadata": {
+      "name": "onpremises"
+   },
+   "spec": {
+      "disruption": {
+         "budgets": [
+            {
+               "nodes": "30%"
+            }
+         ],
+         "consolidationPolicy": "WhenUnderutilized",
+         "expireAfter": "24h"
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "rubykaigi.org/node-group": "onpremises"
+            }
+         },
+         "spec": {
+            "nodeClassRef": {
+               "name": "onpremises"
+            },
+            "requirements": [
+               {
+                  "key": "karpenter.k8s.aws/instance-category",
+                  "operator": "In",
+                  "values": [
+                     "t"
+                  ]
+               },
+               {
+                  "key": "kubernetes.io/arch",
+                  "operator": "In",
+                  "values": [
+                     "arm64"
+                  ]
+               },
+               {
+                  "key": "kubernetes.io/os",
+                  "operator": "In",
+                  "values": [
+                     "linux"
+                  ]
+               },
+               {
+                  "key": "karpenter.sh/capacity-type",
+                  "operator": "In",
+                  "values": [
+                     "spot",
+                     "on-demand"
+                  ]
+               }
+            ],
+            "taints": [
+               {
+                  "effect": "NoSchedule",
+                  "key": "dedicated",
+                  "value": "onpremises"
+               }
+            ]
+         }
+      },
+      "weight": 5
+   }
+}

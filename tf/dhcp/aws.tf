@@ -4,7 +4,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project   = "rk23net"
+      Project   = "rk24net"
       Component = "dhcp"
     }
   }

@@ -1,11 +1,11 @@
 module "cluster" {
-  #source  = "cookpad/eks/aws//modules/cluster"
-  #version = "~> 1.23"
-  source = "github.com/cookpad/terraform-aws-eks//modules/cluster?ref=79d6a080cec911103cceafb5802ddd29f5112b6e"
+  #source = "github.com/cookpad/terraform-aws-eks?ref=943156dec7855fb3fd25f120b8fbdee42c9ae050"
+  source = "github.com/sorah/terraform-aws-eks?ref=tmp-2-29"
 
-  name = "rk23"
+  name = "rknet"
 
-  iam_config = module.iam.config
+  iam_role_name_prefix = "NetEks"
+
   vpc_config = {
     vpc_id = data.aws_vpc.main.id
     public_subnet_ids = {
@@ -22,11 +22,6 @@ module "cluster" {
 
   aws_auth_role_map = [
     {
-      username = data.aws_iam_role.FederatedAdmin.name
-      rolearn  = data.aws_iam_role.FederatedAdmin.arn
-      groups   = ["system:masters"]
-    },
-    {
       username = data.aws_iam_role.NocAdmin.name
       rolearn  = data.aws_iam_role.NocAdmin.arn
       groups   = ["system:masters"]
@@ -35,10 +30,14 @@ module "cluster" {
       username = data.aws_iam_role.OrgzAdmin.name
       rolearn  = data.aws_iam_role.OrgzAdmin.arn
       groups   = ["system:masters"]
-    }
+    },
+    {
+      username = "system:node:{{EC2PrivateDNSName}}"
+      rolearn  = module.karpenter.node_role_arn
+      groups = [
+        "system:bootstrappers",
+        "system:nodes",
+      ]
+    },
   ]
-
-  critical_addons_node_group_architecture    = "arm64"
-  critical_addons_node_group_bottlerocket    = true
-  critical_addons_node_group_instance_family = "burstable"
 }

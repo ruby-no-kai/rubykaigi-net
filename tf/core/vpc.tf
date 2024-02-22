@@ -1,3 +1,8 @@
+locals {
+  enable_nat            = true
+  enable_onpremises_nat = false
+}
+
 resource "aws_vpc" "main" {
   cidr_block                       = "10.33.128.0/18"
   assign_generated_ipv6_cidr_block = true
@@ -48,8 +53,8 @@ resource "aws_subnet" "c_public" {
     Name = "rk-c-public"
     Tier = "public"
 
-    "kubernetes.io/role/elb"     = "1"
-    "kubernetes.io/cluster/rk23" = "shared"
+    "kubernetes.io/role/elb"      = "1"
+    "kubernetes.io/cluster/rknet" = "shared"
   }
 }
 resource "aws_subnet" "d_public" {
@@ -64,8 +69,8 @@ resource "aws_subnet" "d_public" {
     Name = "rk-d-public"
     Tier = "public"
 
-    "kubernetes.io/role/elb"     = "1"
-    "kubernetes.io/cluster/rk23" = "shared"
+    "kubernetes.io/role/elb"      = "1"
+    "kubernetes.io/cluster/rknet" = "shared"
   }
 }
 
@@ -82,7 +87,7 @@ resource "aws_subnet" "c_private" {
     Tier = "private"
 
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/rk23"      = "shared"
+    "kubernetes.io/cluster/rknet"     = "shared"
   }
 }
 resource "aws_subnet" "d_private" {
@@ -98,7 +103,7 @@ resource "aws_subnet" "d_private" {
     Tier = "private"
 
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/rk23"      = "shared"
+    "kubernetes.io/cluster/rknet"     = "shared"
   }
 }
 
@@ -112,6 +117,8 @@ resource "aws_subnet" "c_onpremises" {
   tags = {
     Name = "rk-c-onpremises"
     Tier = "onpremises"
+
+    "kubernetes.io/cluster/rknet" = "shared"
   }
 }
 resource "aws_subnet" "d_onpremises" {
@@ -124,6 +131,8 @@ resource "aws_subnet" "d_onpremises" {
   tags = {
     Name = "rk-d-onpremises"
     Tier = "onpremises"
+
+    "kubernetes.io/cluster/rknet" = "shared"
   }
 }
 resource "aws_subnet" "c_onpremises_link" {
@@ -301,84 +310,124 @@ resource "aws_vpn_gateway_route_propagation" "main-onpremises-d" {
   route_table_id = aws_route_table.onpremises-d.id
 }
 
-#resource "aws_eip" "nat-c" {
-#  domain = "vpc"
-#  tags = {
-#    Name    = "nat-c"
-#    Project = "rk23net"
-#  }
-#}
-#resource "aws_nat_gateway" "nat-c" {
-#  allocation_id = aws_eip.nat-c.id
-#  subnet_id     = aws_subnet.c_public.id
-#  tags = {
-#    Name    = "nat-c"
-#    Project = "rk23net"
-#  }
-#}
-#resource "aws_route" "private_nat" {
-#  route_table_id         = aws_route_table.private.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = aws_nat_gateway.nat-c.id
-#}
-resource "aws_route" "private-c_v4_default" {
+resource "aws_eip" "nat-c" {
+  count  = local.enable_nat ? 1 : 0
+  domain = "vpc"
+  tags = {
+    Name    = "nat-c"
+    Project = "rk24net"
+  }
+}
+resource "aws_nat_gateway" "nat-c" {
+  count         = local.enable_nat ? 1 : 0
+  allocation_id = aws_eip.nat-c[0].id
+  subnet_id     = aws_subnet.c_public.id
+  tags = {
+    Name    = "nat-c"
+    Project = "rk24net"
+  }
+}
+resource "aws_route" "private_nat" {
+  count                  = local.enable_nat ? 1 : 0
+  route_table_id         = aws_route_table.private.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat-c[0].id
+}
+resource "aws_route" "private_blackhole" {
+  count                  = !local.enable_nat ? 1 : 0
+  route_table_id         = aws_route_table.private.id
+  destination_cidr_block = "0.0.0.0/0"
+  network_interface_id   = aws_network_interface.blackhole.id
+}
+resource "aws_route" "private-c_v4_default_nat" {
+  count                  = local.enable_nat ? 1 : 0
   route_table_id         = aws_route_table.private-c.id
   destination_cidr_block = "0.0.0.0/0"
-  #  nat_gateway_id         = aws_nat_gateway.nat-c.id
-  network_interface_id = aws_network_interface.blackhole.id
+  nat_gateway_id         = aws_nat_gateway.nat-c[0].id
+}
+resource "aws_route" "private-c_v4_default_blackhole" {
+  count                  = !local.enable_nat ? 1 : 0
+  route_table_id         = aws_route_table.private-c.id
+  destination_cidr_block = "0.0.0.0/0"
+  network_interface_id   = aws_network_interface.blackhole.id
 }
 
-#resource "aws_eip" "nat-d" {
-#  domain = "vpc"
-#  tags = {
-#    Name      = "nat-d"
-#    Project   = "rk23net"
-#    Component = "core/vpc"
-#  }
-#}
-#resource "aws_nat_gateway" "nat-d" {
-#  allocation_id = aws_eip.nat-d.id
-#  subnet_id     = aws_subnet.d_public.id
-#  tags = {
-#    Name      = "nat-d"
-#    Project   = "rk23net"
-#    Component = "core/vpc"
-#  }
-#}
-resource "aws_route" "private-d_v4_default" {
+resource "aws_eip" "nat-d" {
+  count  = local.enable_nat ? 1 : 0
+  domain = "vpc"
+  tags = {
+    Name      = "nat-d"
+    Project   = "rk24net"
+    Component = "core/vpc"
+  }
+}
+resource "aws_nat_gateway" "nat-d" {
+  count         = local.enable_nat ? 1 : 0
+  allocation_id = aws_eip.nat-d[0].id
+  subnet_id     = aws_subnet.d_public.id
+  tags = {
+    Name      = "nat-d"
+    Project   = "rk24net"
+    Component = "core/vpc"
+  }
+}
+
+resource "aws_route" "private-d_v4_default_nat" {
+  count                  = local.enable_nat ? 1 : 0
   route_table_id         = aws_route_table.private-d.id
   destination_cidr_block = "0.0.0.0/0"
-  #nat_gateway_id         = aws_nat_gateway.nat-d.id
-  network_interface_id = aws_network_interface.blackhole.id
+  nat_gateway_id         = aws_nat_gateway.nat-d[0].id
+}
+resource "aws_route" "private-d_v4_default_blackhole" {
+  count                  = !local.enable_nat ? 1 : 0
+  route_table_id         = aws_route_table.private-d.id
+  destination_cidr_block = "0.0.0.0/0"
+  network_interface_id   = aws_network_interface.blackhole.id
 }
 
-#resource "aws_nat_gateway" "onpremises-c" {
-#  subnet_id         = aws_subnet.c_onpremises_link.id
-#  connectivity_type = "private"
-#  tags = {
-#    Name      = "onpremises-c"
-#    Project   = "rk23net"
-#    Component = "core/vpc"
-#  }
-#}
-#resource "aws_nat_gateway" "onpremises-d" {
-#  subnet_id         = aws_subnet.d_onpremises_link.id
-#  connectivity_type = "private"
-#  tags = {
-#    Name      = "onpremises-d"
-#    Project   = "rk23net"
-#    Component = "core/vpc"
-#  }
-#}
-resource "aws_route" "onpremises-c_v4_default" {
+resource "aws_nat_gateway" "onpremises-c" {
+  count             = local.enable_onpremises_nat ? 1 : 0
+  subnet_id         = aws_subnet.c_onpremises_link.id
+  connectivity_type = "private"
+  tags = {
+    Name      = "onpremises-c"
+    Project   = "rk24net"
+    Component = "core/vpc"
+  }
+}
+resource "aws_nat_gateway" "onpremises-d" {
+  count             = local.enable_onpremises_nat ? 1 : 0
+  subnet_id         = aws_subnet.d_onpremises_link.id
+  connectivity_type = "private"
+  tags = {
+    Name      = "onpremises-d"
+    Project   = "rk24net"
+    Component = "core/vpc"
+  }
+}
+resource "aws_route" "onpremises-c_v4_default_nat" {
+  count                  = local.enable_onpremises_nat ? 1 : 0
   route_table_id         = aws_route_table.onpremises-c.id
   destination_cidr_block = "0.0.0.0/0"
-  #nat_gateway_id         = aws_nat_gateway.onpremises-c.id
-  network_interface_id = aws_network_interface.blackhole.id
+  nat_gateway_id         = aws_nat_gateway.onpremises-c[0].id
+  #network_interface_id = aws_network_interface.blackhole.id
 }
-resource "aws_route" "onpremises-d_v4_default" {
+resource "aws_route" "onpremises-d_v4_default_nat" {
+  count                  = local.enable_onpremises_nat ? 1 : 0
   route_table_id         = aws_route_table.onpremises-d.id
   destination_cidr_block = "0.0.0.0/0"
-  #nat_gateway_id         = aws_nat_gateway.onpremises-d.id
-  network_interface_id = aws_network_interface.blackhole.id
+  nat_gateway_id         = aws_nat_gateway.onpremises-d[0].id
+  #network_interface_id = aws_network_interface.blackhole.id
+}
+resource "aws_route" "onpremises-c_v4_default_blackhole" {
+  count                  = !local.enable_onpremises_nat ? 1 : 0
+  route_table_id         = aws_route_table.onpremises-c.id
+  destination_cidr_block = "0.0.0.0/0"
+  network_interface_id   = aws_network_interface.blackhole.id
+}
+resource "aws_route" "onpremises-d_v4_default_blackhole" {
+  count                  = !local.enable_onpremises_nat ? 1 : 0
+  route_table_id         = aws_route_table.onpremises-d.id
+  destination_cidr_block = "0.0.0.0/0"
+  network_interface_id   = aws_network_interface.blackhole.id
 }

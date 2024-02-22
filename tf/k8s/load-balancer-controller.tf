@@ -1,24 +1,57 @@
 resource "helm_release" "load-balancer-controller" {
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
-  version    = "1.4.8" # 2.4.6
+  version    = "1.7.1" # 2.7.0
 
   name      = "aws-load-balancer-controller"
-  namespace = "kube-system"
+  namespace = kubernetes_namespace.platform.metadata.0.name
 
-  # SA has to be created manually to enable eks pod iam role
-  set {
-    name  = "serviceAccount.create"
-    value = "false"
-  }
-  set {
-    name  = "serviceAccount.name"
-    value = kubernetes_service_account.load-balancer-controller.metadata.0.name
-  }
-  set {
-    name  = "clusterName"
-    value = "rk23"
-  }
+  values = [
+    jsonencode({
+      "clusterName" = module.cluster.config.name
+      # SA has to be created manually to enable eks pod iam role
+      "serviceAccount" = {
+        "name"   = kubernetes_service_account.load-balancer-controller.metadata.0.name
+        "create" = false
+      }
+      "affinity" = {
+        "podAntiAffinity" = {
+          "preferredDuringSchedulingIgnoredDuringExecution" = [
+            {
+              "weight" = 100
+              "podAffinityTerm" = {
+                "topologyKey" = "topology.kubernetes.io/zone"
+                "labelSelector" = {
+                  "matchExpressions" = [
+                    {
+                      "key"      = "app.kubernetes.io/name"
+                      "operator" = "In"
+                      "values"   = ["aws-load-balancer-controller"]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "weight" = 50
+              "podAffinityTerm" = {
+                "topologyKey" = "kubernetes.io/hostname"
+                "labelSelector" = {
+                  "matchExpressions" = [
+                    {
+                      "key"      = "app.kubernetes.io/name"
+                      "operator" = "In"
+                      "values"   = ["aws-load-balancer-controller"]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }),
+  ]
 }
 
 data "aws_iam_policy" "nocadmin-base" {
@@ -27,7 +60,7 @@ data "aws_iam_policy" "nocadmin-base" {
 
 resource "aws_iam_role" "load-balancer-controller" {
   name                 = "NwLoadBalancerController"
-  description          = "cookpad-nw k8s/aws_iam_role.load-balancer-controller"
+  description          = "rubykaigi-net//k8s/aws_iam_role.load-balancer-controller"
   assume_role_policy   = data.aws_iam_policy_document.load-balancer-controller-trust.json
   permissions_boundary = data.aws_iam_policy.nocadmin-base.arn
 }
@@ -43,7 +76,7 @@ data "aws_iam_policy_document" "load-balancer-controller-trust" {
     condition {
       test     = "StringEquals"
       variable = module.cluster.oidc_config.condition
-      values   = ["system:serviceaccount:kube-system:aws-load-balancer-controller"]
+      values   = ["system:serviceaccount:platform:aws-load-balancer-controller"]
     }
   }
 }
@@ -55,11 +88,11 @@ resource "aws_iam_role_policy" "load-balancer-controller" {
 }
 
 data "http" "load-balancer-controller-policy" {
-  url = "https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/4ecd10c76b559251dabf7c74421b04f0d5678a6c/docs/install/iam_policy.json"
+  url = "https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/d0c13bf1576965a3b65fc09ebce94ed9f86833a2/docs/install/iam_policy.json"
 
   lifecycle {
     postcondition {
-      condition     = sha512(self.response_body) == "adb65a821563336991123a2de8004cb7cf77a8638e201fe6417353881b4462b1583f3e12c79e041327a499dbfb20471611cfb5b33584e1d76d03fa6d82ff24ea"
+      condition     = sha512(self.response_body) == "4060d7ffb2b476440950ffa908bee9b6ffbe5197e22e04a25b200a2da8f4ec23bbafbd07c3af922d38403309d27738aa624593566eb14b5dea2393e2d2d73f65"
       error_message = "checksum mismatch"
     }
   }
@@ -68,7 +101,7 @@ data "http" "load-balancer-controller-policy" {
 resource "kubernetes_service_account" "load-balancer-controller" {
   metadata {
     name      = "aws-load-balancer-controller"
-    namespace = "kube-system"
+    namespace = kubernetes_namespace.platform.metadata.0.name
     annotations = {
       "eks.amazonaws.com/role-arn"               = aws_iam_role.load-balancer-controller.arn
       "eks.amazonaws.com/sts-regional-endpoints" = true

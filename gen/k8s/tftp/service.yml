@@ -3,7 +3,7 @@
    "kind": "Service",
    "metadata": {
       "annotations": {
-         "service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags": "Project=rk23net,Component=tftp",
+         "service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags": "Project=rk24net,Component=tftp",
          "service.beta.kubernetes.io/aws-load-balancer-healthcheck-path": "/ping",
          "service.beta.kubernetes.io/aws-load-balancer-healthcheck-port": "8080",
          "service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol": "HTTP",

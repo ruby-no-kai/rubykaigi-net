@@ -42,7 +42,7 @@ resource "aws_lb_listener" "common-https" {
     type = "fixed-response"
     fixed_response {
       content_type = "text/plain"
-      message_body = "🏯🗻 ?"
+      message_body = "🏖️🏝️🌊!"
       status_code  = 404
     }
   }

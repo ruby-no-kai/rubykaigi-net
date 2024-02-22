@@ -3,6 +3,9 @@ require 'fileutils'
 require 'json'
 require 'tmpdir'
 
+
+jsonnet = system('jrsonnet', '--help', out: File::NULL, err: [:child, :out]) ? 'jrsonnet' : 'jsonnet'
+
 Dir.chdir(__dir__)
 tmpdir = Dir.mktmpdir
 
@@ -12,7 +15,7 @@ Dir["./k8s/**/*.jsonnet"].each do |src|
   FileUtils.mkdir_p File.dirname(dst)
 
   File.open(dst, 'w') do |io|
-    system('jsonnet', src, out: io, exception: true)
+    system(jsonnet, src, out: io, exception: true)
   end
 
   out = JSON.parse(File.read(dst))

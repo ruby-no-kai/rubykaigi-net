@@ -1,45 +1,44 @@
-module "node_general" {
-  source = "github.com/cookpad/terraform-aws-eks//modules/asg_node_group?ref=79d6a080cec911103cceafb5802ddd29f5112b6e"
-  #source  = "cookpad/eks/aws//modules/asg_node_group"
-  #version = "~> 1.23"
-
-  name = "nodes-general"
-  labels = {
-    "rubykaigi.org/node-group" = "general"
-  }
+module "karpenter" {
+  #source = "github.com/cookpad/terraform-aws-eks//modules/karpenter?ref=943156dec7855fb3fd25f120b8fbdee42c9ae050"
+  source = "github.com/sorah/terraform-aws-eks//modules/karpenter?ref=tmp-2-29"
 
   cluster_config = module.cluster.config
-
-  architecture    = "arm64"
-  bottlerocket    = true
-  instance_family = "burstable"
-  instance_size   = "medium"
-  min_size        = 4 # 2 per AZ
+  oidc_config    = module.cluster.oidc_config
 }
 
-module "node_onpremises" {
-  source = "github.com/cookpad/terraform-aws-eks//modules/asg_node_group?ref=79d6a080cec911103cceafb5802ddd29f5112b6e"
-  #source  = "cookpad/eks/aws//modules/asg_node_group"
-  #version = "~> 1.23"
 
-  name = "nodes-onpremises"
-  labels = {
-    "rubykaigi.org/node-group" = "onpremises"
-  }
-  taints = {
-    "dedicated" = "onpremises:NoSchedule"
-  }
+resource "helm_release" "karpenter" {
+  repository = "oci://public.ecr.aws/karpenter"
+  chart      = "karpenter"
+  version    = "v0.34.0"
 
-  cluster_config = merge(module.cluster.config, {
-    private_subnet_ids = {
-      "ap-northeast-1c" = data.aws_subnet.main-onpremises-c.id
-      "ap-northeast-1d" = data.aws_subnet.main-onpremises-d.id
-    }
-  })
+  name = "karpenter"
 
-  architecture    = "arm64"
-  bottlerocket    = true
-  instance_family = "burstable"
-  instance_size   = "small"
-  min_size        = 1
+  namespace        = "karpenter"
+  create_namespace = true
+
+  values = [
+    jsonencode({
+      "settings" = {
+        "clusterName"       = module.cluster.config.name
+        "interruptionQueue" = "Karpenter-${module.cluster.config.name}"
+      }
+      "controller" = {
+        "resources" = {
+          "requests" = {
+            "cpu"    = "250m"
+            "memory" = "250Mi"
+          }
+        }
+      }
+      "serviceAccount" = {
+        "annotations" = {
+          "eks.amazonaws.com/role-arn" = "arn:aws:iam::005216166247:role/NetEksKarpenter-rknet"
+        }
+      }
+    }),
+  ]
+
+  depends_on = [module.karpenter]
 }
+
