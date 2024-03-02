@@ -39,9 +39,14 @@ resource "aws_ecs_task_definition" "app" {
 
   container_definitions = jsonencode([
     {
-      name        = "app"
-      image       = "${aws_ecr_repository.app.repository_url}:5ca8de3ac184594089943423f796f9906df2fa98",
-      environment = []
+      name  = "app"
+      image = "${aws_ecr_repository.app.repository_url}:5ca8de3ac184594089943423f796f9906df2fa98",
+      environment = [
+        {
+          name  = "RUST_LOG"
+          value = "info"
+        }
+      ]
       secrets = [
         {
           name      = "SLACK_APP_TOKEN"
@@ -69,5 +74,5 @@ resource "aws_ecs_task_definition" "app" {
 
 resource "aws_cloudwatch_log_group" "app" {
   name              = "/ecs/slack-thread-expander"
-  retention_in_days = 3
+  retention_in_days = 14
 }
