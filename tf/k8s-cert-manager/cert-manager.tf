@@ -12,7 +12,7 @@ resource "kubernetes_namespace" "cert-manager" {
 resource "helm_release" "cert-manager" {
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
-  version    = "1.11.0"
+  version    = "1.14.4"
 
   name      = "cert-manager"
   namespace = local.namespace

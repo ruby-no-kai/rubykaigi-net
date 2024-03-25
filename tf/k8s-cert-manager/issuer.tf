@@ -36,4 +36,6 @@ resource "kubernetes_manifest" "letsencrypt" {
       }
     }
   }
+
+  depends_on = [helm_release.cert-manager]
 }
