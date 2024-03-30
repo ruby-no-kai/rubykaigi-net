@@ -39,12 +39,6 @@
       },
     },
 
-    if_mib2: self.if_mib {
-      auth+: {
-        community: 'public2',
-      },
-    },
-
     if_mib_juniper1: self.if_mib {
       walk: [
         'ifHCInOctets',
