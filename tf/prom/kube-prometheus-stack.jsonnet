@@ -121,6 +121,12 @@ local volumeClaimTemplate(size) = {
         memory: '16M',
       },
     },
+    tolerations: [  // TODO: onpremises nodes
+      // {
+      //   effect: 'NoSchedule',
+      //   operator: 'Exists',
+      // },
+    ],
   },
   grafana: {
     enabled: false,
