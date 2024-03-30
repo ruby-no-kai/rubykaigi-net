@@ -1,7 +1,7 @@
 resource "helm_release" "cloudwatch-exporter-apne1" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-cloudwatch-exporter"
-  version    = "0.24.0"
+  version    = "0.25.3"
 
   name = "cloudwatch-exporter-apne1"
 

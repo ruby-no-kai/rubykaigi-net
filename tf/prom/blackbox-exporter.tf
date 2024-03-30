@@ -1,7 +1,7 @@
 resource "helm_release" "blackbox-exporter" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-blackbox-exporter"
-  version    = "7.7.0"
+  version    = "8.12.0"
 
   name = "blackbox-exporter"
 
