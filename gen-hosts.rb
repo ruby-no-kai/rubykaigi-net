@@ -33,6 +33,8 @@ hosts.each do |host_ips|
     v6 = host.ip.include?(?:)
     ip = IPAddr.new(host.ip)
 
+    next if host.safe_name.empty?
+
     fqdn = "#{host.safe_name}.#{host.dc}.rubykaigi.net."
     fqdn6 = "#{host.safe_name}.#{host.dc}.dualstack.rubykaigi.net."
 
@@ -56,10 +58,12 @@ hosts.each do |host_ips|
       end
     end
 
-    iface_fqdn = "#{host.safe_iface}.#{fqdn}"
-    rrsets.push(RRSet.new(zone, iface_fqdn, v6 ? 'AAAA' : 'A', [host.ip]))
-    rrsets.push(RRSet.new(zone, "#{host.network}.#{fqdn}", 'CNAME', [iface_fqdn])) if host.network != 'ptp' && host.network != host.iface && !host.network.empty?
-    rrsets.push(RRSet.new(zone, "#{rev}.", 'PTR', [iface_fqdn]))
+    iface_fqdn = host.safe_iface.empty? ? nil : "#{host.safe_iface}.#{fqdn}"
+    if iface_fqdn
+      rrsets.push(RRSet.new(zone, iface_fqdn, v6 ? 'AAAA' : 'A', [host.ip]))
+      rrsets.push(RRSet.new(zone, "#{host.network}.#{fqdn}", 'CNAME', [iface_fqdn])) if host.network != 'ptp' && host.network != host.iface && !host.network.empty?
+      rrsets.push(RRSet.new(zone, "#{rev}.", 'PTR', [iface_fqdn]))
+    end
   end
 end
 
