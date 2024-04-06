@@ -102,16 +102,6 @@
             ]
           }
         ],
-        "nodeSelector": {
-          "rubykaigi.org/node-group": "onpremises"
-        },
-        "tolerations": [
-          {
-            "effect": "NoSchedule",
-            "key": "dedicated",
-            "value": "onpremises"
-          }
-        ],
         "topologySpreadConstraints": [
           {
             "labelSelector": {
