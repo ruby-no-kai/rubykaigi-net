@@ -28,6 +28,9 @@ local commit = 'bf1b115eff0ec17dbc071416075fe99de4538d9b';
             labelSelector: {
               matchLabels: { 'rubykaigi.org/app': 'radius' },
             },
+            matchLabelKeys: [
+              'pod-template-hash',
+            ],
           },
         ],
         containers: [
