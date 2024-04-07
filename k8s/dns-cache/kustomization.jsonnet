@@ -7,5 +7,6 @@
     './configmap.yml',
     './service.yml',
     './monitoring.yml',
+    './certificate.yml',  // TEMP
   ],
 }

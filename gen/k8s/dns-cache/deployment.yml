@@ -102,16 +102,6 @@
             ]
           }
         ],
-        "nodeSelector": {
-          "rubykaigi.org/node-group": "onpremises"
-        },
-        "tolerations": [
-          {
-            "effect": "NoSchedule",
-            "key": "dedicated",
-            "value": "onpremises"
-          }
-        ],
         "topologySpreadConstraints": [
           {
             "labelSelector": {
@@ -119,6 +109,9 @@
                 "rubykaigi.org/app": "unbound"
               }
             },
+            "matchLabelKeys": [
+              "pod-template-hash"
+            ],
             "maxSkew": 1,
             "topologyKey": "topology.kubernetes.io/zone",
             "whenUnsatisfiable": "DoNotSchedule"
@@ -236,6 +229,9 @@
                 "rubykaigi.org/app": "unbound-envoy"
               }
             },
+            "matchLabelKeys": [
+              "pod-template-hash"
+            ],
             "maxSkew": 1,
             "topologyKey": "topology.kubernetes.io/zone",
             "whenUnsatisfiable": "DoNotSchedule"

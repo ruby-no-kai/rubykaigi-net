@@ -22,12 +22,12 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
           labels: { 'rubykaigi.org/app': 'unbound' },
         },
         spec: {
-          nodeSelector: {
-            'rubykaigi.org/node-group': 'onpremises',
-          },
-          tolerations: [
-            { key: 'dedicated', value: 'onpremises', effect: 'NoSchedule' },
-          ],
+          // nodeSelector: {
+          //   'rubykaigi.org/node-group': 'onpremises',
+          // },
+          // tolerations: [
+          //   { key: 'dedicated', value: 'onpremises', effect: 'NoSchedule' },
+          // ],
           topologySpreadConstraints: [
             {
               maxSkew: 1,
@@ -36,6 +36,9 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               labelSelector: {
                 matchLabels: { 'rubykaigi.org/app': 'unbound' },
               },
+              matchLabelKeys: [
+                'pod-template-hash',
+              ],
             },
           ],
           containers: [
@@ -120,6 +123,9 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               labelSelector: {
                 matchLabels: { 'rubykaigi.org/app': 'unbound-envoy' },
               },
+              matchLabelKeys: [
+                'pod-template-hash',
+              ],
             },
           ],
           containers: [
