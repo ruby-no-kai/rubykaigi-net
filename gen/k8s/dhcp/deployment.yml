@@ -121,6 +121,9 @@
                         "rubykaigi.org/app": "kea4"
                      }
                   },
+                  "matchLabelKeys": [
+                     "pod-template-hash"
+                  ],
                   "maxSkew": 1,
                   "topologyKey": "topology.kubernetes.io/zone",
                   "whenUnsatisfiable": "ScheduleAnyway"
