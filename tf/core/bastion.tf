@@ -45,5 +45,6 @@ resource "aws_security_group_rule" "bastion_iperf3" {
   from_port         = 5201
   to_port           = 5201
   protocol          = "tcp"
-  cidr_blocks       = ["10.0.0.0/8"]
+  cidr_blocks       = ["0.0.0.0/0"]
+  ipv6_cidr_blocks  = ["::/0"]
 }
