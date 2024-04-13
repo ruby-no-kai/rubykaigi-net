@@ -21,6 +21,9 @@
             }
          },
          "spec": {
+            "kubelet": {
+               "maxPods": 110
+            },
             "nodeClassRef": {
                "name": "onpremises"
             },
