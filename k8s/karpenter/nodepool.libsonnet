@@ -39,6 +39,11 @@
             operator: 'In',
             values: $.capacity_type,
           },
+          {
+            key: 'node.kubernetes.io/instance-type',
+            operator: 'NotIn',
+            values: $.excluded_instance_types,
+          },
         ],
 
       },
@@ -55,4 +60,9 @@
   instance_category:: ['t'],
   arch:: ['arm64'],
   capacity_type:: ['spot', 'on-demand'],  // spot is prioritized: https://karpenter.sh/docs/concepts/nodepools/#capacity-type
+  excluded_instance_types:: [
+    // Too small pod capacity (4)
+    't4g.nano',
+    't4g.micro',
+  ],
 }

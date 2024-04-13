@@ -53,6 +53,14 @@
                      "spot",
                      "on-demand"
                   ]
+               },
+               {
+                  "key": "node.kubernetes.io/instance-type",
+                  "operator": "NotIn",
+                  "values": [
+                     "t4g.nano",
+                     "t4g.micro"
+                  ]
                }
             ],
             "taints": [ ]
