@@ -42,6 +42,7 @@ template 'rubykaigi.net-common' do
   ignore 'radius.rubykaigi.net'
 
   ignore_under 'cloudprober.rubykaigi.net'
+  ignore_under 'acme-responder.rubykaigi.net'
 
   ignore 'captioner.apne1.rubykaigi.net'
 
