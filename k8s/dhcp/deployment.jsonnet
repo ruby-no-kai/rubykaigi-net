@@ -23,10 +23,13 @@ local commit = '4b1dc5bf74750690899ea5a3fda005c6179fd993';
           {
             maxSkew: 1,
             topologyKey: 'topology.kubernetes.io/zone',
-            whenUnsatisfiable: 'ScheduleAnyway',
+            whenUnsatisfiable: 'DoNotSchedule',
             labelSelector: {
               matchLabels: { 'rubykaigi.org/app': 'kea4' },
             },
+            matchLabelKeys: [
+              'pod-template-hash',
+            ],
           },
         ],
         // serviceAccountName: 'kea4',

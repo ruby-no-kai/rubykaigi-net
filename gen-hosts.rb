@@ -4,12 +4,26 @@ require 'ipaddr'
 
 host_lines = File.read(File.join(__dir__, 'hosts.txt'))
 
-HostInfo = Struct.new(:dc, :network, :cidr, :ip, :name, :iface, :mac, :primary)
+
+def escape_name(str)
+  str.gsub(/[^a-zA-Z0-9]/,'-')
+end
+
+HostInfo = Struct.new(:dc, :network, :cidr, :ip, :name, :iface, :mac, :primary) do
+  def safe_name
+    @safe_name ||= escape_name(name)
+  end
+
+  def safe_iface
+    @safe_iface ||= escape_name(iface)
+  end
+end
 hosts = host_lines.lines(chomp: true).grep_v(/\A\s*\Z/).
   map { |l| HostInfo.new(*l.split(?\t, 7).map(&:strip), false) }.
   reject { |_| _.ip.nil? || _.ip.empty? }.
   group_by { |_| [_.dc, _.name, _.ip.include?(?:)] }.
   map { |_, ips| ips[0].primary = true; ips }
+
 
 
 RRSet = Struct.new(:zone, :name, :type, :records, :primary)
@@ -18,8 +32,11 @@ hosts.each do |host_ips|
   host_ips.each do |host|
     v6 = host.ip.include?(?:)
     ip = IPAddr.new(host.ip)
-    fqdn = "#{host.name}.#{host.dc}.rubykaigi.net."
-    fqdn6 = "#{host.name}.#{host.dc}.dualstack.rubykaigi.net."
+
+    next if host.safe_name.empty?
+
+    fqdn = "#{host.safe_name}.#{host.dc}.rubykaigi.net."
+    fqdn6 = "#{host.safe_name}.#{host.dc}.dualstack.rubykaigi.net."
 
     zone = case
     when IPAddr.new('10.0.0.0/8').include?(ip)
@@ -41,10 +58,12 @@ hosts.each do |host_ips|
       end
     end
 
-    iface_fqdn = "#{host.iface}.#{fqdn}"
-    rrsets.push(RRSet.new(zone, iface_fqdn, v6 ? 'AAAA' : 'A', [host.ip]))
-    rrsets.push(RRSet.new(zone, "#{host.network}.#{fqdn}", 'CNAME', [iface_fqdn])) if host.network != 'ptp' && host.network != host.iface && !host.network.empty?
-    rrsets.push(RRSet.new(zone, "#{rev}.", 'PTR', [iface_fqdn]))
+    iface_fqdn = host.safe_iface.empty? ? nil : "#{host.safe_iface}.#{fqdn}"
+    if iface_fqdn
+      rrsets.push(RRSet.new(zone, iface_fqdn, v6 ? 'AAAA' : 'A', [host.ip]))
+      rrsets.push(RRSet.new(zone, "#{host.network}.#{fqdn}", 'CNAME', [iface_fqdn])) if host.network != 'ptp' && host.network != host.iface && !host.network.empty?
+      rrsets.push(RRSet.new(zone, "#{rev}.", 'PTR', [iface_fqdn]))
+    end
   end
 end
 

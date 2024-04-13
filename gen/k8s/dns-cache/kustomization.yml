@@ -6,6 +6,7 @@
       "./deployment.yml",
       "./configmap.yml",
       "./service.yml",
-      "./monitoring.yml"
+      "./monitoring.yml",
+      "./certificate.yml"
    ]
 }

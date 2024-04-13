@@ -1,3 +1,4 @@
+dc	network	CIDR	IP	name	iface
 hnd	lo	10.33.0.0/24	10.33.0.1	br-01	lo
 hnd	lo	10.33.0.0/24	2001:0df0:8500:ca00::1	br-01	lo
 nrt	lo	10.33.0.0/24	10.33.0.2	br-01	lo

@@ -36,6 +36,9 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               labelSelector: {
                 matchLabels: { 'rubykaigi.org/app': 'unbound' },
               },
+              matchLabelKeys: [
+                'pod-template-hash',
+              ],
             },
           ],
           containers: [
@@ -120,6 +123,9 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               labelSelector: {
                 matchLabels: { 'rubykaigi.org/app': 'unbound-envoy' },
               },
+              matchLabelKeys: [
+                'pod-template-hash',
+              ],
             },
           ],
           containers: [

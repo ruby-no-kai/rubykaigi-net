@@ -8,7 +8,6 @@ users:
       - gh:hanazuki
       - gh:nna774
       - gh:osyoyu
-      - gh:private-yusuke
       - gh:sorah
       - gh:takuan517
       - gh:terfno
@@ -18,3 +17,7 @@ users:
     shell: /bin/bash
 bootcmd:
   - [ cloud-init-per, once, ssh-port, bash, '-c', 'echo Port 9922 >> /etc/ssh/sshd_config']
+packages:
+  - iperf3
+  - postgresql-client
+  - mysql-client
