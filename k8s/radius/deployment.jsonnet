@@ -24,7 +24,7 @@ local commit = 'bf1b115eff0ec17dbc071416075fe99de4538d9b';
           {
             maxSkew: 1,
             topologyKey: 'topology.kubernetes.io/zone',
-            whenUnsatisfiable: 'ScheduleAnyway',
+            whenUnsatisfiable: 'DoNotSchedule',
             labelSelector: {
               matchLabels: { 'rubykaigi.org/app': 'radius' },
             },
