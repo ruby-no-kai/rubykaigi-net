@@ -10,6 +10,8 @@ local esws = [
   // 'esw-stu-01.venue.rubykaigi.net',
   // 'esw-con-01.venue.rubykaigi.net',
   // 'esw-org-01.venue.rubykaigi.net',
+
+  'cs-99.tkyk.rubykaigi.net',
 ];
 
 local targets_hi = {

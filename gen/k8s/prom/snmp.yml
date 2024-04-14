@@ -40,7 +40,7 @@
     "staticConfigs": [
       {
         "targets": [
-
+          "cs-99.tkyk.rubykaigi.net"
         ]
       }
     ]
@@ -147,7 +147,7 @@
     "staticConfigs": [
       {
         "targets": [
-
+          "cs-99.tkyk.rubykaigi.net"
         ]
       }
     ]
