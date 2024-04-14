@@ -39,12 +39,6 @@
       },
     },
 
-    if_mib2: self.if_mib {
-      auth+: {
-        community: 'public2',
-      },
-    },
-
     if_mib_juniper1: self.if_mib + (import './juniper_base_config.libsonnet') + {
       walk: [
         'ifHCInOctets',
