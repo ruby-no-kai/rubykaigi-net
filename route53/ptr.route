@@ -7,4 +7,17 @@ end
 
 hosted_zone "a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa." do
   include_template "hosts-ptr-ip6"
+
+  rrset 'a.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.', 'PTR' do
+    ttl 60
+    resource_records 'rubykaigi--enp1s0f0.mahiru.srh738.customers.as59128.net.'
+  end
+  rrset 'a.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.b.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.', 'PTR' do
+    ttl 60
+    resource_records 'rubykaigi.rola.srh.customers.as59128.net.'
+  end
+  rrset 'a.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.c.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.', 'PTR' do
+    ttl 60
+    resource_records 'rubykaigi.yume.box2.customers.as59128.net.'
+  end
 end

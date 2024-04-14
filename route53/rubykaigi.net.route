@@ -51,6 +51,20 @@ template 'rubykaigi.net-common' do
     ttl 60
     resource_records 'k8s-default-s3tftpd-a3a246d5bb-de731c4e195aee81.elb.ap-northeast-1.amazonaws.com'
   end
+
+  # gen-hosts.rb overrides
+  rrset '152.220.50.192.reverse.rubykaigi.net.', 'PTR' do
+    ttl 60
+    resource_records 'rubykaigi--enp1s0f0.mahiru.srh738.customers.as59128.net.'
+  end
+  rrset '154.220.50.192.reverse.rubykaigi.net.', 'PTR' do
+    ttl 60
+    resource_records 'rubykaigi.rola.srh.customers.as59128.net.'
+  end
+  rrset '156.220.50.192.reverse.rubykaigi.net.', 'PTR' do
+    ttl 60
+    resource_records 'rubykaigi.yume.box2.customers.as59128.net.'
+  end
 end
 
 template 'rubykaigi.net-public' do
@@ -70,17 +84,20 @@ template 'rubykaigi.net-private' do
 end
 
 hosted_zone "rubykaigi.net.", "Z0666077CULB2VMXZP9C" do
+  include_template "hosts-rubykaigi.net-common"
+
   include_template "rubykaigi.net-common"
   include_template "rubykaigi.net-public"
-
-  include_template "hosts-rubykaigi.net-common"
 end
 
 hosted_zone "rubykaigi.net.", "Z05547502KT77L0O53UWK" do
   include_template "vpcs"
-  include_template "rubykaigi.net-common"
-  include_template "rubykaigi.net-private"
 
   include_template "hosts-rubykaigi.net-common"
   include_template "hosts-rubykaigi.net-private"
+
+  include_template "rubykaigi.net-common"
+  include_template "rubykaigi.net-private"
+
+
 end
