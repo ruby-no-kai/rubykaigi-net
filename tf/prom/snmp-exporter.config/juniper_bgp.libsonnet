@@ -29,5 +29,3 @@
     },
   },
 }
-FooterCookpad Inc.
-
