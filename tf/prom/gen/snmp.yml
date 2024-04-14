@@ -12,6 +12,12 @@ auths:
     auth_protocol: MD5
     priv_protocol: DES
     version: 2
+  tkyk:
+    community: T@koyakinek0
+    security_level: noAuthNoPriv
+    auth_protocol: MD5
+    priv_protocol: DES
+    version: 2
 modules:
   cisco_envmon:
     walk:

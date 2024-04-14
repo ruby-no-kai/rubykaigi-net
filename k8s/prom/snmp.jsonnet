@@ -44,8 +44,15 @@ local targets_lo = {
       // 'wlc-01.venue.rubykaigi.net',
     ],
   },
+  cisco_wlc_tkyk: {
+    modules: ['if_mib', 'cisco_wlc'],
+    auth: 'tkyk',
+    hosts: [
+      'wlc-99.tkyk.rubykaigi.net',
+    ],
+  },
   juniper_srx: {
-    modules: ['if_mib_juniper1', 'if_mib_juniper2', 'juniper_dom', 'juniper_alarm'],
+    modules: ['if_mib_juniper1', 'if_mib_juniper2', 'juniper_alarm'],
     auth: 'public',
     hosts: [
       'br-01.hnd.rubykaigi.net',
@@ -62,9 +69,6 @@ local targets_lo = {
     auth: 'public',
     hosts: [
       'cs-01.venue.rubykaigi.net',
-      'cs-02.venue.rubykaigi.net',
-
-      'br-99.tkyk.rubykaigi.net',
     ],
   },
   cisco_esw: {

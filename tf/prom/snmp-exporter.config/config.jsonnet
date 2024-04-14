@@ -17,6 +17,9 @@ local modules =
     public2: self.public {
       community: 'public2',
     },
+    tkyk: self.public {
+      community: 'T@koyakinek0',
+    },
   },
   modules: {
     [k]: {

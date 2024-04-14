@@ -208,6 +208,55 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
+    "name": "snmp-lo-cisco-wlc-tkyk"
+  },
+  "spec": {
+    "metricsPath": "/snmp",
+    "params": {
+      "auth": [
+        "tkyk"
+      ],
+      "module": [
+        "if_mib,cisco_wlc"
+      ]
+    },
+    "relabelings": [
+      {
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "__param_target"
+      },
+      {
+        "sourceLabels": [
+          "__param_target"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
+        "targetLabel": "__address__"
+      }
+    ],
+    "scrapeInterval": "60s",
+    "scrapeTimeout": "59s",
+    "staticConfigs": [
+      {
+        "targets": [
+          "wlc-99.tkyk.rubykaigi.net"
+        ]
+      }
+    ]
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
     "name": "snmp-lo-juniper-ex"
   },
   "spec": {
@@ -243,9 +292,7 @@
     "staticConfigs": [
       {
         "targets": [
-          "cs-01.venue.rubykaigi.net",
-          "cs-02.venue.rubykaigi.net",
-          "br-99.tkyk.rubykaigi.net"
+          "cs-01.venue.rubykaigi.net"
         ]
       }
     ]
@@ -268,7 +315,7 @@
         "public"
       ],
       "module": [
-        "if_mib_juniper1,if_mib_juniper2,juniper_dom,juniper_alarm"
+        "if_mib_juniper1,if_mib_juniper2,juniper_alarm"
       ]
     },
     "relabelings": [
