@@ -61,7 +61,7 @@ local targets_lo = {
       'er-01.venue.rubykaigi.net',
       'er-02.venue.rubykaigi.net',
 
-      'br-99.tkyk.rubykaigi.net',
+      'er-99.tkyk.rubykaigi.net',
     ],
   },
   juniper_ex: {
