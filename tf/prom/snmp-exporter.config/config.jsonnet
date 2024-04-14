@@ -4,7 +4,11 @@ local modules =
   + (import './cisco_sensors.libsonnet').modules
   + (import './cisco_wlc.libsonnet').modules
   + (import './juniper_alarm.libsonnet').modules
+  + (import './juniper_bgp.libsonnet').modules
+  + (import './juniper_chassis.libsonnet').modules
   + (import './juniper_dom.libsonnet').modules
+  + (import './juniper_jdhcp.libsonnet').modules
+  + (import './juniper_virtualchasiss.libsonnet').modules
   + (import './nec_ix.libsonnet').modules
 ;
 

@@ -1,6 +1,6 @@
 {
   modules: {
-    juniper_alarm: {  // JUNIPER-ALARM-MIB
+    juniper_alarm: (import './juniper_base_config.libsonnet') {  // JUNIPER-ALARM-MIB
       walk: [
         'jnxYellowAlarmState',
         'jnxYellowAlarmCount',
