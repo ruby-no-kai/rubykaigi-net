@@ -2,9 +2,6 @@
   modules: {
     // Cisco Wireless LAN Controller
     cisco_wlc: {
-      auth+: {
-        community: 'public2',
-      },
       walk: [
         '1.3.6.1.4.1.9.9.618.1.8',  // clsSysInfo
         '1.3.6.1.4.1.9.9.513.1.1.1.1.6',  // cLApUpTime

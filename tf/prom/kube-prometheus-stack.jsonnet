@@ -32,15 +32,6 @@ local volumeClaimTemplate(size) = {
       evaluationInterval: '20s',
 
       retention: '720h',
-
-      additionalScrapeConfigs: [
-        {
-          job_name: 'cloudprober',
-          dns_sd_configs: [{
-            names: ['_prometheus._http.cloudprober.rubykaigi.net'],
-          }],
-        },
-      ],
     },
   },
   alertmanager: {
@@ -121,6 +112,13 @@ local volumeClaimTemplate(size) = {
         memory: '16M',
       },
     },
+    tolerations: [
+      {
+        key: 'dedicated',
+        operator: 'Exists',
+        effect: 'NoSchedule',
+      },
+    ],
   },
   grafana: {
     enabled: false,
