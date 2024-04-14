@@ -17,3 +17,18 @@ data "aws_subnet" "main-public-c" {
   }
 }
 
+data "aws_subnet" "main-onpremises-c" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.main.id]
+  }
+  filter {
+    name   = "availability-zone"
+    values = ["ap-northeast-1c"]
+  }
+  filter {
+    name   = "tag:Tier"
+    values = ["onpremises"]
+  }
+}
+

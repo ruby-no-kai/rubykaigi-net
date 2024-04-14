@@ -19,5 +19,6 @@ bootcmd:
   - [ cloud-init-per, once, ssh-port, bash, '-c', 'echo Port 9922 >> /etc/ssh/sshd_config']
 packages:
   - iperf3
+  - mtr
   - postgresql-client
   - mysql-client
