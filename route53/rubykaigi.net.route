@@ -33,11 +33,16 @@ template 'rubykaigi.net-common' do
     ttl 300
     resource_records %w[192.50.220.164 192.50.220.165]
   end
+  rrset 'resolver.rubykaigi.net', 'AAAA' do
+    ttl 300
+    resource_records %w[2001:0df0:8500:ca6d:53::c 2001:0df0:8500:ca6d:53::d]
+  end
   ignore 'origin.resolver.rubykaigi.net'
 
   ignore 'radius.rubykaigi.net'
 
   ignore_under 'cloudprober.rubykaigi.net'
+  ignore_under 'acme-responder.rubykaigi.net'
 
   ignore 'captioner.apne1.rubykaigi.net'
 

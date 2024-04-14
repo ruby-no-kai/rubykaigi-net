@@ -21,6 +21,14 @@
             }
          },
          "spec": {
+            "kubelet": {
+               "kubeReserved": {
+                  "cpu": "70m",
+                  "ephemeral-storage": "1Gi",
+                  "memory": "300Mi"
+               },
+               "maxPods": 110
+            },
             "nodeClassRef": {
                "name": "onpremises"
             },
@@ -52,6 +60,14 @@
                   "values": [
                      "spot",
                      "on-demand"
+                  ]
+               },
+               {
+                  "key": "node.kubernetes.io/instance-type",
+                  "operator": "NotIn",
+                  "values": [
+                     "t4g.nano",
+                     "t4g.micro"
                   ]
                }
             ],

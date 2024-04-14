@@ -29,12 +29,12 @@ Tempfile.open do |output|
   end
 
   if path = query['path']
-    exit $?.to_i unless system(jsonnet, *tla, path, out: output)
+    exit $?.exitstatus unless system(jsonnet, *tla, path, out: output)
   else
     Tempfile.open do |input|
       input.write(query.fetch('input'))
 
-      exit $?.to_i unless system(jsonnet, *tla, '-', in: input.tap(&:rewind), out: output)
+      exit $?.exitstatus unless system(jsonnet, *tla, '-', in: input.tap(&:rewind), out: output)
     end
   end
 

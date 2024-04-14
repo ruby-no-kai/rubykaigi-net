@@ -13,7 +13,6 @@
         },
       },
       spec: {
-
         nodeClassRef: { name: 'general' },
 
         taints: [],
@@ -39,8 +38,21 @@
             operator: 'In',
             values: $.capacity_type,
           },
+          {
+            key: 'node.kubernetes.io/instance-type',
+            operator: 'NotIn',
+            values: $.excluded_instance_types,
+          },
         ],
 
+        kubelet: {
+          maxPods: $.max_pods,
+          kubeReserved: {
+            cpu: '70m',
+            'ephemeral-storage': '1Gi',
+            memory: '300Mi',
+          },
+        },
       },
     },
     disruption: {
@@ -52,7 +64,13 @@
     },
   },
 
+  max_pods:: 110,
   instance_category:: ['t'],
   arch:: ['arm64'],
   capacity_type:: ['spot', 'on-demand'],  // spot is prioritized: https://karpenter.sh/docs/concepts/nodepools/#capacity-type
+  excluded_instance_types:: [
+    // Too small pod capacity (4)
+    't4g.nano',
+    't4g.micro',
+  ],
 }

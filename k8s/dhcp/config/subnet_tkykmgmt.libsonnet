@@ -5,7 +5,22 @@ local domainName = 'mgmt.tkyk.rubykaigi.net';
   subnet: '10.33.30.0/24',
   pools: [
     {
-      pool: '10.33.30.200 - 10.33.30.250',
+      pool: '10.33.30.96 - 10.33.30.127',
+      'option-data': [
+        {
+          name: 'domain-name-servers',
+          data: std.join(', ', consts.dns_resolvers_usr),
+        },
+      ],
+    },
+    {
+      pool: '10.33.30.128 - 10.33.30.160',
+      'option-data': [
+        {
+          name: 'domain-name-servers',
+          data: std.join(', ', std.reverse(consts.dns_resolvers_usr)),
+        },
+      ],
     },
   ],
   'option-data': [
