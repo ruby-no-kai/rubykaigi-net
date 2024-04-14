@@ -1,155 +1,160 @@
 {
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
   "metadata": {
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-hi-if-mib"
+    "name": "snmp-hi-cisco-esw"
   },
   "spec": {
-    "interval": "20s",
-    "module": "if_mib",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
+    "metricsPath": "/snmp",
+    "params": {
+      "auth": [
+        "public"
+      ],
+      "module": [
+        "if_mib"
+      ]
     },
+    "relabelings": [
+      {
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "__param_target"
+      },
+      {
+        "sourceLabels": [
+          "__param_target"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
+        "targetLabel": "__address__"
+      }
+    ],
+    "scrapeInterval": "20s",
     "scrapeTimeout": "19s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "br-01.hnd.rubykaigi.net",
-          "br-01.nrt.rubykaigi.net",
+    "staticConfigs": [
+      {
+        "targets": [
+
+        ]
+      }
+    ]
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "snmp-hi-ix"
+  },
+  "spec": {
+    "metricsPath": "/snmp",
+    "params": {
+      "auth": [
+        "public"
+      ],
+      "module": [
+        "if_mib,nec_ix"
+      ]
+    },
+    "relabelings": [
+      {
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "__param_target"
+      },
+      {
+        "sourceLabels": [
+          "__param_target"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
+        "targetLabel": "__address__"
+      }
+    ],
+    "scrapeInterval": "20s",
+    "scrapeTimeout": "19s",
+    "staticConfigs": [
+      {
+        "targets": [
+          "tun-01.hnd.rubykaigi.net",
+          "tun-01.nrt.rubykaigi.net",
           "tun-01.venue.rubykaigi.net",
           "tun-02.venue.rubykaigi.net",
-          "gw-01.venue.rubykaigi.net",
-          "gw-02.venue.rubykaigi.net",
-          "esw-tra-01.venue.rubykaigi.net",
-          "esw-tra-02.venue.rubykaigi.net",
-          "esw-fow-01.venue.rubykaigi.net",
-          "esw-foe-01.venue.rubykaigi.net",
-          "esw-trb-01.venue.rubykaigi.net",
-          "esw-tpk-01.venue.rubykaigi.net",
-          "esw-tpk-02.venue.rubykaigi.net",
-          "esw-trc-01.venue.rubykaigi.net",
-          "esw-stu-01.venue.rubykaigi.net",
-          "esw-con-01.venue.rubykaigi.net",
-          "esw-org-01.venue.rubykaigi.net"
+          "nat-41.venue.rubykaigi.net",
+          "nat-42.venue.rubykaigi.net",
+          "tun-99.tkyk.rubykaigi.net",
+          "nat-49.tkyk.rubykaigi.net"
         ]
       }
-    }
+    ]
   }
 }
 ---
 {
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
   "metadata": {
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-hi-nec-ix"
+    "name": "snmp-lo-cisco-esw"
   },
   "spec": {
-    "interval": "20s",
-    "module": "nec_ix",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
+    "metricsPath": "/snmp",
+    "params": {
+      "auth": [
+        "public"
+      ],
+      "module": [
+        "cisco_envmon,cisco_sensors"
+      ]
     },
-    "scrapeTimeout": "19s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "br-01.hnd.rubykaigi.net",
-          "br-01.nrt.rubykaigi.net",
-          "tun-01.venue.rubykaigi.net",
-          "tun-02.venue.rubykaigi.net",
-          "gw-01.venue.rubykaigi.net",
-          "gw-02.venue.rubykaigi.net"
-        ]
+    "relabelings": [
+      {
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "__param_target"
+      },
+      {
+        "sourceLabels": [
+          "__param_target"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
+        "targetLabel": "__address__"
       }
-    }
-  }
-}
----
-{
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
-  "metadata": {
-    "labels": {
-      "release": "kube-prometheus-stack"
-    },
-    "name": "snmp-lo-cisco-envmon"
-  },
-  "spec": {
-    "interval": "60s",
-    "module": "cisco_envmon",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
-    },
+    ],
+    "scrapeInterval": "60s",
     "scrapeTimeout": "59s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "esw-tra-01.venue.rubykaigi.net",
-          "esw-tra-02.venue.rubykaigi.net",
-          "esw-fow-01.venue.rubykaigi.net",
-          "esw-foe-01.venue.rubykaigi.net",
-          "esw-trb-01.venue.rubykaigi.net",
-          "esw-tpk-01.venue.rubykaigi.net",
-          "esw-tpk-02.venue.rubykaigi.net",
-          "esw-trc-01.venue.rubykaigi.net",
-          "esw-stu-01.venue.rubykaigi.net",
-          "esw-con-01.venue.rubykaigi.net",
-          "esw-org-01.venue.rubykaigi.net"
+    "staticConfigs": [
+      {
+        "targets": [
+
         ]
       }
-    }
+    ]
   }
 }
 ---
 {
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
-  "metadata": {
-    "labels": {
-      "release": "kube-prometheus-stack"
-    },
-    "name": "snmp-lo-cisco-sensors"
-  },
-  "spec": {
-    "interval": "60s",
-    "module": "cisco_sensors",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
-    },
-    "scrapeTimeout": "59s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "esw-tra-01.venue.rubykaigi.net",
-          "esw-tra-02.venue.rubykaigi.net",
-          "esw-fow-01.venue.rubykaigi.net",
-          "esw-foe-01.venue.rubykaigi.net",
-          "esw-trb-01.venue.rubykaigi.net",
-          "esw-tpk-01.venue.rubykaigi.net",
-          "esw-tpk-02.venue.rubykaigi.net",
-          "esw-trc-01.venue.rubykaigi.net",
-          "esw-stu-01.venue.rubykaigi.net",
-          "esw-con-01.venue.rubykaigi.net",
-          "esw-org-01.venue.rubykaigi.net"
-        ]
-      }
-    }
-  }
-}
----
-{
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
   "metadata": {
     "labels": {
       "release": "kube-prometheus-stack"
@@ -157,163 +162,146 @@
     "name": "snmp-lo-cisco-wlc"
   },
   "spec": {
-    "interval": "60s",
-    "module": "cisco_wlc",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
+    "metricsPath": "/snmp",
+    "params": {
+      "auth": [
+        "public2"
+      ],
+      "module": [
+        "if_mib,cisco_wlc"
+      ]
     },
+    "relabelings": [
+      {
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "__param_target"
+      },
+      {
+        "sourceLabels": [
+          "__param_target"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
+        "targetLabel": "__address__"
+      }
+    ],
+    "scrapeInterval": "60s",
     "scrapeTimeout": "59s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "wlc-01.venue.rubykaigi.net"
+    "staticConfigs": [
+      {
+        "targets": [
+
         ]
       }
-    }
+    ]
   }
 }
 ---
 {
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
   "metadata": {
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-lo-if-mib2"
+    "name": "snmp-lo-juniper-ex"
   },
   "spec": {
-    "interval": "60s",
-    "module": "if_mib2",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
+    "metricsPath": "/snmp",
+    "params": {
+      "auth": [
+        "public"
+      ],
+      "module": [
+        "if_mib_juniper1,if_mib_juniper2,juniper_dom,juniper_alarm"
+      ]
     },
+    "relabelings": [
+      {
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "__param_target"
+      },
+      {
+        "sourceLabels": [
+          "__param_target"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
+        "targetLabel": "__address__"
+      }
+    ],
+    "scrapeInterval": "60s",
     "scrapeTimeout": "59s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "wlc-01.venue.rubykaigi.net"
+    "staticConfigs": [
+      {
+        "targets": [
+          "cs-01.venue.rubykaigi.net",
+          "cs-02.venue.rubykaigi.net",
+          "br-99.tkyk.rubykaigi.net"
         ]
       }
-    }
+    ]
   }
 }
 ---
 {
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
   "metadata": {
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-lo-if-mib-juniper1"
+    "name": "snmp-lo-juniper-srx"
   },
   "spec": {
-    "interval": "60s",
-    "module": "if_mib_juniper1",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
+    "metricsPath": "/snmp",
+    "params": {
+      "auth": [
+        "public"
+      ],
+      "module": [
+        "if_mib_juniper1,if_mib_juniper2,juniper_dom,juniper_alarm"
+      ]
     },
+    "relabelings": [
+      {
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "__param_target"
+      },
+      {
+        "sourceLabels": [
+          "__param_target"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
+        "targetLabel": "__address__"
+      }
+    ],
+    "scrapeInterval": "60s",
     "scrapeTimeout": "59s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "csw-01.venue.rubykaigi.net",
-          "csw-02.venue.rubykaigi.net",
-          "asw-01.venue.rubykaigi.net"
+    "staticConfigs": [
+      {
+        "targets": [
+          "br-01.hnd.rubykaigi.net",
+          "br-01.nrt.rubykaigi.net",
+          "er-01.venue.rubykaigi.net",
+          "er-02.venue.rubykaigi.net",
+          "br-99.tkyk.rubykaigi.net"
         ]
       }
-    }
-  }
-}
----
-{
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
-  "metadata": {
-    "labels": {
-      "release": "kube-prometheus-stack"
-    },
-    "name": "snmp-lo-if-mib-juniper2"
-  },
-  "spec": {
-    "interval": "60s",
-    "module": "if_mib_juniper2",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
-    },
-    "scrapeTimeout": "59s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "csw-01.venue.rubykaigi.net",
-          "csw-02.venue.rubykaigi.net",
-          "asw-01.venue.rubykaigi.net"
-        ]
-      }
-    }
-  }
-}
----
-{
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
-  "metadata": {
-    "labels": {
-      "release": "kube-prometheus-stack"
-    },
-    "name": "snmp-lo-juniper-alarm"
-  },
-  "spec": {
-    "interval": "60s",
-    "module": "juniper_alarm",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
-    },
-    "scrapeTimeout": "59s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "csw-01.venue.rubykaigi.net",
-          "csw-02.venue.rubykaigi.net",
-          "asw-01.venue.rubykaigi.net"
-        ]
-      }
-    }
-  }
-}
----
-{
-  "apiVersion": "monitoring.coreos.com/v1",
-  "kind": "Probe",
-  "metadata": {
-    "labels": {
-      "release": "kube-prometheus-stack"
-    },
-    "name": "snmp-lo-juniper-dom"
-  },
-  "spec": {
-    "interval": "60s",
-    "module": "juniper_dom",
-    "prober": {
-      "path": "/snmp",
-      "url": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116"
-    },
-    "scrapeTimeout": "59s",
-    "targets": {
-      "staticConfig": {
-        "static": [
-          "csw-01.venue.rubykaigi.net",
-          "csw-02.venue.rubykaigi.net",
-          "asw-01.venue.rubykaigi.net"
-        ]
-      }
-    }
+    ]
   }
 }
 ---

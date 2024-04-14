@@ -4,6 +4,7 @@
   resources: [
     './blackbox.yml',
     './snmp.yml',
+    './cloudprober.yml',
     './rules.yml',
   ],
 }
