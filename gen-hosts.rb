@@ -51,10 +51,12 @@ hosts.each do |host_ips|
       # v6 may not be able for management, so...
       if v6
         rrsets.push(RRSet.new(zone, fqdn6, 'AAAA', [host.ip], true))
+        rrsets.push(RRSet.new(zone, "#{host.safe_name}-#{host.dc}.f.rubykaigi.net.", 'CNAME', fqdn6))
       else
         rrsets.push(RRSet.new(zone,  "#{rev}.", 'PTR', [fqdn]))
         rrsets.push(RRSet.new(zone, fqdn6, 'A', [host.ip]))
         rrsets.push(RRSet.new(zone, fqdn, 'A', [host.ip], true))
+        rrsets.push(RRSet.new(zone, "#{host.safe_name}-#{host.dc}.f.rubykaigi.net.", 'CNAME', fqdn))
       end
     end
 
