@@ -94,7 +94,7 @@ local probes(name, targets, interval) =
         scrapeTimeout: std.format('%ds', interval - 1),
         metricsPath: '/snmp',
         params: {
-          module: [std.join(',', t.modules)],
+          module: t.modules,
           auth: [t.auth],
         },
         relabelings: [

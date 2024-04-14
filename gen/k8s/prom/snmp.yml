@@ -63,7 +63,8 @@
         "public"
       ],
       "module": [
-        "if_mib,nec_ix"
+        "if_mib",
+        "nec_ix"
       ]
     },
     "relabelings": [
@@ -119,7 +120,8 @@
         "public"
       ],
       "module": [
-        "cisco_envmon,cisco_sensors"
+        "cisco_envmon",
+        "cisco_sensors"
       ]
     },
     "relabelings": [
@@ -168,7 +170,8 @@
         "public2"
       ],
       "module": [
-        "if_mib,cisco_wlc"
+        "if_mib",
+        "cisco_wlc"
       ]
     },
     "relabelings": [
@@ -217,7 +220,8 @@
         "tkyk"
       ],
       "module": [
-        "if_mib,cisco_wlc"
+        "if_mib",
+        "cisco_wlc"
       ]
     },
     "relabelings": [
@@ -266,7 +270,10 @@
         "public"
       ],
       "module": [
-        "if_mib_juniper1,if_mib_juniper2,juniper_dom,juniper_alarm"
+        "if_mib_juniper1",
+        "if_mib_juniper2",
+        "juniper_dom",
+        "juniper_alarm"
       ]
     },
     "relabelings": [
@@ -315,7 +322,9 @@
         "public"
       ],
       "module": [
-        "if_mib_juniper1,if_mib_juniper2,juniper_alarm"
+        "if_mib_juniper1",
+        "if_mib_juniper2",
+        "juniper_alarm"
       ]
     },
     "relabelings": [
