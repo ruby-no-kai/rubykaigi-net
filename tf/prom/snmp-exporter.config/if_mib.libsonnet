@@ -39,7 +39,7 @@
       },
     },
 
-    if_mib_juniper1: self.if_mib {
+    if_mib_juniper1: self.if_mib + (import './juniper_base_config.libsonnet') + {
       walk: [
         'ifHCInOctets',
         'ifHCInUcastPkts',
@@ -49,7 +49,7 @@
         'ifHCOutBroadcastPkts',
       ],
     },
-    if_mib_juniper2: self.if_mib {
+    if_mib_juniper2: self.if_mib + (import './juniper_base_config.libsonnet') + {
       walk: [
         'ifAdminStatus',
         'ifOperStatus',
