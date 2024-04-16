@@ -137,7 +137,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
                   memory: '32M',
                 },
               },
-              image: 'envoyproxy/envoy:v1.25.4',
+              image: 'envoyproxy/envoy:v1.29.3',
               args: ['--config-path', '/etc/envoy/envoy.json'],
               ports: [
                 { name: 'dns-https', containerPort: 11443, protocol: 'TCP' },
