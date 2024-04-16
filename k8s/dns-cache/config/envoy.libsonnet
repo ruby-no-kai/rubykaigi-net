@@ -72,7 +72,7 @@ local route_config = {
 local access_log_json_format = {
   start_time: '%START_TIME%',
   method: '%REQ(:METHOD)%',
-  path: '%REQ(X-ENVOY-ORIGINAL-PATH?:PATH)%',
+  path: '%REQ_WITHOUT_QUERY(X-ENVOY-ORIGINAL-PATH?:PATH)%',
   protocol: '%PROTOCOL%',
   response_code: '%RESPONSE_CODE%',
   response_flags: '%RESPONSE_FLAGS%',
@@ -132,6 +132,14 @@ local http_connection_manager(codec_type, stat_prefix) = {
           '@type': 'type.googleapis.com/envoy.extensions.access_loggers.stream.v3.StdoutAccessLog',
           log_format: {
             json_format: access_log_json_format,
+            formatters: [
+              {
+                name: 'envoy.formatter.req_without_query',
+                typed_config: {
+                  '@type': 'type.googleapis.com/envoy.extensions.formatter.req_without_query.v3.ReqWithoutQuery',
+                },
+              },
+            ],
           },
         },
       },
