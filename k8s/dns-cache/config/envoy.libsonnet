@@ -142,6 +142,11 @@ local http_connection_manager(codec_type, stat_prefix) = {
             ],
           },
         },
+        filter: {
+          status_code_filter: {
+            comparison: { op: 'GE', value: { default_value: 300, runtime_key: 'access_log_min_status_code' } },
+          },
+        },
       },
     ],
   },
