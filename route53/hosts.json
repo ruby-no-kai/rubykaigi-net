@@ -47,6 +47,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.br-01.hnd.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "ge-0-0-4-3062.br-01.hnd.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "1.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -215,6 +223,22 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "ip-0-0-0-0.br-01.hnd.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.240"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "240.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "ip-0-0-0-0.br-01.hnd.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "rubykaigi.net-common",
       "name": "gi3-0.br-01.hnd.rubykaigi.net.",
       "type": "A",
@@ -224,7 +248,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.br-01.hnd.rubykaigi.net.",
+      "name": "pa.br-01.hnd.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "gi3-0.br-01.hnd.rubykaigi.net."
@@ -243,7 +267,7 @@
       "name": "br-01.hnd.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::1"
+        "2001:df0:8500:ca00::1"
       ]
     },
     {
@@ -251,7 +275,7 @@
       "name": "lo.br-01.hnd.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::1"
+        "2001:df0:8500:ca00::1"
       ]
     },
     {
@@ -363,7 +387,7 @@
       "name": "gi3-0.br-01.hnd.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca2a::b"
+        "2001:df0:8500:ca2a::b"
       ]
     },
     {
@@ -418,6 +442,14 @@
       "type": "A",
       "records": [
         "10.33.22.9"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "link.br-01.nrt.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "ge-0-0-1-11.br-01.nrt.rubykaigi.net."
       ]
     },
     {
@@ -614,7 +646,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.br-01.nrt.rubykaigi.net.",
+      "name": "pa.br-01.nrt.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "gi1-0.br-01.nrt.rubykaigi.net."
@@ -633,7 +665,7 @@
       "name": "br-01.nrt.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::2"
+        "2001:df0:8500:ca00::2"
       ]
     },
     {
@@ -641,7 +673,7 @@
       "name": "lo.br-01.nrt.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::2"
+        "2001:df0:8500:ca00::2"
       ]
     },
     {
@@ -785,7 +817,7 @@
       "name": "gi1-0.br-01.nrt.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca2b::b"
+        "2001:df0:8500:ca2b::b"
       ]
     },
     {
@@ -840,6 +872,14 @@
       "type": "A",
       "records": [
         "10.33.22.11"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "link.br-01.itm.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "ge-0-0-1-12.br-01.itm.rubykaigi.net."
       ]
     },
     {
@@ -951,7 +991,7 @@
       "name": "br-01.itm.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::3"
+        "2001:df0:8500:ca00::3"
       ]
     },
     {
@@ -959,7 +999,7 @@
       "name": "lo.br-01.itm.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::3"
+        "2001:df0:8500:ca00::3"
       ]
     },
     {
@@ -1071,12 +1111,12 @@
       "name": "gi1-0.br-01.itm.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca2c::a"
+        "2001:df0:8500:ca2c::a"
       ]
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.br-01.itm.rubykaigi.net.",
+      "name": "pa.br-01.itm.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "gi1-0.br-01.itm.rubykaigi.net."
@@ -1142,6 +1182,14 @@
       "type": "A",
       "records": [
         "10.33.22.15"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "link.er-01.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "ge-0-0-5-10.er-01.venue.rubykaigi.net."
       ]
     },
     {
@@ -1333,7 +1381,7 @@
       "name": "er-01.venue.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::11"
+        "2001:df0:8500:ca00::11"
       ]
     },
     {
@@ -1341,7 +1389,7 @@
       "name": "lo.er-01.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::11"
+        "2001:df0:8500:ca00::11"
       ]
     },
     {
@@ -1543,6 +1591,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.er-02.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "ge-0-0-5-10.er-02.venue.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "19.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -1731,7 +1787,7 @@
       "name": "er-02.venue.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::12"
+        "2001:df0:8500:ca00::12"
       ]
     },
     {
@@ -1739,7 +1795,7 @@
       "name": "lo.er-02.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::12"
+        "2001:df0:8500:ca00::12"
       ]
     },
     {
@@ -1941,6 +1997,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.nat-41.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "Gi0-1.nat-41.venue.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "53.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -1990,7 +2054,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.nat-41.venue.rubykaigi.net.",
+      "name": "pa.nat-41.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "gi0-2-nat-1.nat-41.venue.rubykaigi.net."
@@ -2051,6 +2115,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.nat-42.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "Gi0-1.nat-42.venue.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "57.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -2100,7 +2172,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.nat-42.venue.rubykaigi.net.",
+      "name": "pa.nat-42.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "gi0-2-nat-1.nat-42.venue.rubykaigi.net."
@@ -2162,6 +2234,14 @@
     },
     {
       "zone": "rubykaigi.net-private",
+      "name": "link.nat-61.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "TBD.nat-61.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
       "name": "TBD2.nat-61.venue.rubykaigi.net.",
       "type": "A",
       "records": [
@@ -2178,7 +2258,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.nat-61.venue.rubykaigi.net.",
+      "name": "pa.nat-61.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "lo.nat-61.venue.rubykaigi.net."
@@ -2197,7 +2277,7 @@
       "name": "nat-61.venue.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::23"
+        "2001:df0:8500:ca00::23"
       ]
     },
     {
@@ -2205,7 +2285,7 @@
       "name": "lo.nat-61.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::23"
+        "2001:df0:8500:ca00::23"
       ]
     },
     {
@@ -2295,6 +2375,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.nat-62.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "TBD.nat-62.venue.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "51.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -2320,7 +2408,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.nat-62.venue.rubykaigi.net.",
+      "name": "pa.nat-62.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "lo.nat-62.venue.rubykaigi.net."
@@ -2339,7 +2427,7 @@
       "name": "nat-62.venue.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::24"
+        "2001:df0:8500:ca00::24"
       ]
     },
     {
@@ -2347,7 +2435,7 @@
       "name": "lo.nat-62.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::24"
+        "2001:df0:8500:ca00::24"
       ]
     },
     {
@@ -2557,6 +2645,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.cs-01.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "ge-0-0-23.cs-01.venue.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "41.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -2649,7 +2745,7 @@
       "name": "cs-01.venue.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::30"
+        "2001:df0:8500:ca00::30"
       ]
     },
     {
@@ -2657,7 +2753,7 @@
       "name": "lo.cs-01.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::30"
+        "2001:df0:8500:ca00::30"
       ]
     },
     {
@@ -2673,7 +2769,7 @@
       "name": "irb-200.cs-01.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:cab1::a"
+        "2001:df0:8500:cab1::a"
       ]
     },
     {
@@ -2689,7 +2785,7 @@
       "name": "irb-1000.cs-01.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:cab0::1"
+        "2001:df0:8500:cab0::1"
       ]
     },
     {
@@ -2859,6 +2955,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.tun-01.hnd.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "Gi2-31.tun-01.hnd.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "69.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -2974,6 +3078,14 @@
       "type": "A",
       "records": [
         "10.33.22.73"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "link.tun-01.nrt.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "Gi2-31.tun-01.nrt.rubykaigi.net."
       ]
     },
     {
@@ -3095,6 +3207,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.tun-01.itm.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "tun52-0.tun-01.itm.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "153.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -3181,6 +3301,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.tun-01.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "gi1-1.tun-01.venue.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "167.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -3235,6 +3363,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.tun-02.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "gi1-1.tun-02.venue.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "169.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -3286,6 +3422,14 @@
       "type": "A",
       "records": [
         "10.33.22.196"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "link.tun-01.hot.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "gi1-1.tun-01.hot.rubykaigi.net."
       ]
     },
     {
@@ -3359,6 +3503,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.gw-01.hot.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "gi0-1.gw-01.hot.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "197.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -3408,7 +3560,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.gw-01.hot.rubykaigi.net.",
+      "name": "pa.gw-01.hot.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "nat.gw-01.hot.rubykaigi.net."
@@ -3469,35 +3621,19 @@
       ]
     },
     {
-      "zone": "ptr-10",
-      "name": "210.22.33.10.in-addr.arpa.",
-      "type": "PTR",
+      "zone": "rubykaigi.net-private",
+      "name": "link.tun-99.tkyk.rubykaigi.net.",
+      "type": "CNAME",
       "records": [
         "gi1-1-1.tun-99.tkyk.rubykaigi.net."
       ]
     },
     {
-      "zone": "rubykaigi.net-common",
-      "name": "tun-99.tkyk.dualstack.rubykaigi.net.",
-      "type": "AAAA",
-      "records": [
-        "2001:0df0:8500:ca00::200"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-common",
-      "name": "lo.tun-99.tkyk.rubykaigi.net.",
-      "type": "AAAA",
-      "records": [
-        "2001:0df0:8500:ca00::200"
-      ]
-    },
-    {
-      "zone": "ptr-ip6",
-      "name": "0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "zone": "ptr-10",
+      "name": "210.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "lo.tun-99.tkyk.rubykaigi.net."
+        "gi1-1-1.tun-99.tkyk.rubykaigi.net."
       ]
     },
     {
@@ -3544,6 +3680,14 @@
       "type": "A",
       "records": [
         "10.33.22.201"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "link.er-99.tkyk.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "ge-0-0-5-98.er-99.tkyk.rubykaigi.net."
       ]
     },
     {
@@ -3635,11 +3779,27 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "ge-0-0-3.er-99.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.220"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "220.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "ge-0-0-3.er-99.tkyk.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "rubykaigi.net-common",
       "name": "er-99.tkyk.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::201"
+        "2001:df0:8500:ca00::201"
       ]
     },
     {
@@ -3647,7 +3807,7 @@
       "name": "lo.er-99.tkyk.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::201"
+        "2001:df0:8500:ca00::201"
       ]
     },
     {
@@ -3707,6 +3867,22 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-common",
+      "name": "ge-0-0-3.er-99.tkyk.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:220::a"
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "a.0.0.0.0.0.0.0.0.0.0.0.0.2.2.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "ge-0-0-3.er-99.tkyk.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "202.0.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -3753,6 +3929,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.cs-99.tkyk.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "gi0-13.cs-99.tkyk.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "213.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -3774,6 +3958,22 @@
       "type": "PTR",
       "records": [
         "gi0-11.cs-99.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "gi0-12.cs-99.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.223"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "223.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "gi0-12.cs-99.tkyk.rubykaigi.net."
       ]
     },
     {
@@ -3829,7 +4029,7 @@
       "name": "cs-99.tkyk.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::202"
+        "2001:df0:8500:ca00::202"
       ]
     },
     {
@@ -3837,7 +4037,7 @@
       "name": "lo.cs-99.tkyk.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca00::202"
+        "2001:df0:8500:ca00::202"
       ]
     },
     {
@@ -3862,6 +4062,22 @@
       "type": "PTR",
       "records": [
         "gi0-13.cs-99.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "gi0-12.cs-99.tkyk.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:222::b"
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "b.0.0.0.0.0.0.0.0.0.0.0.2.2.2.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "gi0-12.cs-99.tkyk.rubykaigi.net."
       ]
     },
     {
@@ -3943,6 +4159,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.nat-49.tkyk.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "gi0-1.nat-49.tkyk.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "215.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -3992,7 +4216,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.nat-49.tkyk.rubykaigi.net.",
+      "name": "pa.nat-49.tkyk.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "nat.nat-49.tkyk.rubykaigi.net."
@@ -4004,6 +4228,140 @@
       "type": "PTR",
       "records": [
         "nat.nat-49.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "206.0.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "nat-69.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "nat-69.tkyk.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.0.206"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "nat-69.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.0.206"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "nat-69-tkyk.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "nat-69.tkyk.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "lo.nat-69.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.0.206"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "enp1s0.nat-69.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.221"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "link.nat-69.tkyk.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "enp1s0.nat-69.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "221.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "enp1s0.nat-69.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "enp2s0.nat-69.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.222"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "222.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "enp2s0.nat-69.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "nat-69.tkyk.dualstack.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca00::206"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "lo.nat-69.tkyk.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca00::206"
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "6.0.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "lo.nat-69.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "enp1s0.nat-69.tkyk.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:220::b"
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "b.0.0.0.0.0.0.0.0.0.0.0.0.2.2.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "enp1s0.nat-69.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "enp2s0.nat-69.tkyk.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:222::a"
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "a.0.0.0.0.0.0.0.0.0.0.0.2.2.2.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "enp2s0.nat-69.tkyk.rubykaigi.net."
       ]
     },
     {
@@ -4729,6 +5087,14 @@
       ]
     },
     {
+      "zone": "rubykaigi.net-private",
+      "name": "link.dxvif-a.apne1.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "dxvif-fgoavd8q.dxvif-a.apne1.rubykaigi.net."
+      ]
+    },
+    {
       "zone": "ptr-10",
       "name": "6.22.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -4764,6 +5130,60 @@
       "type": "A",
       "records": [
         "10.33.22.6"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "link.dxvif-b.apne1.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "dxvif-fglt2p46.dxvif-b.apne1.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "241.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "acme-responder.apne1.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "acme-responder.apne1.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.241"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "acme-responder.apne1.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.241"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "acme-responder-apne1.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "acme-responder.apne1.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "tun.acme-responder.apne1.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.241"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "link.acme-responder.apne1.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "tun.acme-responder.apne1.rubykaigi.net."
       ]
     },
     {
@@ -4944,7 +5364,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.mahiru-kmc.transit.rubykaigi.net.",
+      "name": "pa.mahiru-kmc.transit.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "enp1s0f0.mahiru-kmc.transit.rubykaigi.net."
@@ -4955,7 +5375,7 @@
       "name": "mahiru-kmc.transit.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca2a::a"
+        "2001:df0:8500:ca2a::a"
       ]
     },
     {
@@ -4963,7 +5383,7 @@
       "name": "enp1s0f0.mahiru-kmc.transit.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca2a::a"
+        "2001:df0:8500:ca2a::a"
       ]
     },
     {
@@ -5014,7 +5434,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.rola-kmc.transit.rubykaigi.net.",
+      "name": "pa.rola-kmc.transit.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "enx.rola-kmc.transit.rubykaigi.net."
@@ -5025,7 +5445,7 @@
       "name": "rola-kmc.transit.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca2b::a"
+        "2001:df0:8500:ca2b::a"
       ]
     },
     {
@@ -5033,7 +5453,7 @@
       "name": "enx.rola-kmc.transit.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca2b::a"
+        "2001:df0:8500:ca2b::a"
       ]
     },
     {
@@ -5084,7 +5504,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.yume-kmc.transit.rubykaigi.net.",
+      "name": "pa.yume-kmc.transit.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "enx.yume-kmc.transit.rubykaigi.net."
@@ -5154,7 +5574,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.nat-0ab4fde35b5e7ccca.apne1.rubykaigi.net.",
+      "name": "pa.nat-0ab4fde35b5e7ccca.apne1.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "nat-onpremises-c-out.nat-0ab4fde35b5e7ccca.apne1.rubykaigi.net."
@@ -5224,7 +5644,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.nat-0a2abe0a9929d85d5.apne1.rubykaigi.net.",
+      "name": "pa.nat-0a2abe0a9929d85d5.apne1.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "nat-onpremises-d-out.nat-0a2abe0a9929d85d5.apne1.rubykaigi.net."
@@ -5278,7 +5698,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "bb.resolver.apne1.rubykaigi.net.",
+      "name": "pa.resolver.apne1.rubykaigi.net.",
       "type": "CNAME",
       "records": [
         "az-c.resolver.apne1.rubykaigi.net."
@@ -5305,7 +5725,7 @@
       "name": "resolver.apne1.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca6d:53::c"
+        "2001:df0:8500:ca6d:53::c"
       ]
     },
     {
@@ -5313,7 +5733,7 @@
       "name": "az-c.resolver.apne1.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca6d:53::c"
+        "2001:df0:8500:ca6d:53::c"
       ]
     },
     {
@@ -5329,7 +5749,7 @@
       "name": "az-d.resolver.apne1.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:0df0:8500:ca6d:53::d"
+        "2001:df0:8500:ca6d:53::d"
       ]
     },
     {
