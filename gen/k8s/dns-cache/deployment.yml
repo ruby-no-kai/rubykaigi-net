@@ -178,7 +178,7 @@
             "env": [
 
             ],
-            "image": "envoyproxy/envoy:v1.25.4",
+            "image": "envoyproxy/envoy:v1.29.3",
             "livenessProbe": {
               "failureThreshold": 2,
               "httpGet": {
