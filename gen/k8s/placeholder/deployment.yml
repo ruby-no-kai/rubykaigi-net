@@ -1,0 +1,120 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "labels": {
+      "rubykaigi.org/app": "placeholder",
+      "rubykaigi.org/instance": "generic"
+    },
+    "name": "placeholder-generic"
+  },
+  "spec": {
+    "replicas": 2,
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "placeholder",
+        "rubykaigi.org/instance": "generic"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "rubykaigi.org/app": "placeholder",
+          "rubykaigi.org/instance": "generic"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "image": "public.ecr.aws/eks-distro/kubernetes/pause:3.9",
+            "name": "pause"
+          }
+        ],
+        "priorityClassName": "placeholder",
+        "topologySpreadConstraints": [
+          {
+            "labelSelector": {
+              "matchLabels": {
+                "rubykaigi.org/app": "placeholder",
+                "rubykaigi.org/instance": "generic"
+              }
+            },
+            "matchLabelKeys": [
+              "pod-template-hash"
+            ],
+            "maxSkew": 1,
+            "minDomains": 2,
+            "topologyKey": "topology.kubernetes.io/zone",
+            "whenUnsatisfiable": "DoNotSchedule"
+          }
+        ]
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "labels": {
+      "rubykaigi.org/app": "placeholder",
+      "rubykaigi.org/instance": "onpremises"
+    },
+    "name": "placeholder-onpremises"
+  },
+  "spec": {
+    "replicas": 2,
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "placeholder",
+        "rubykaigi.org/instance": "onpremises"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "rubykaigi.org/app": "placeholder",
+          "rubykaigi.org/instance": "onpremises"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "image": "public.ecr.aws/eks-distro/kubernetes/pause:3.9",
+            "name": "pause"
+          }
+        ],
+        "nodeSelector": {
+          "rubykaigi.org/node-group": "onpremises"
+        },
+        "priorityClassName": "placeholder",
+        "tolerations": [
+          {
+            "effect": "NoSchedule",
+            "key": "dedicated",
+            "value": "onpremises"
+          }
+        ],
+        "topologySpreadConstraints": [
+          {
+            "labelSelector": {
+              "matchLabels": {
+                "rubykaigi.org/app": "placeholder",
+                "rubykaigi.org/instance": "onpremises"
+              }
+            },
+            "matchLabelKeys": [
+              "pod-template-hash"
+            ],
+            "maxSkew": 1,
+            "minDomains": 2,
+            "topologyKey": "topology.kubernetes.io/zone",
+            "whenUnsatisfiable": "DoNotSchedule"
+          }
+        ]
+      }
+    }
+  }
+}
+---

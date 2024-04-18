@@ -1,0 +1,9 @@
+{
+   "apiVersion": "scheduling.k8s.io/v1",
+   "globalDefault": false,
+   "kind": "PriorityClass",
+   "metadata": {
+      "name": "placeholder"
+   },
+   "value": -1000
+}
