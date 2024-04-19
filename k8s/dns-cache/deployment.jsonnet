@@ -13,7 +13,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
       },
     },
     spec: {
-      replicas: 3,
+      replicas: 4,
       selector: {
         matchLabels: { 'rubykaigi.org/app': 'unbound' },
       },
@@ -106,7 +106,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
       },
     },
     spec: {
-      replicas: 3,
+      replicas: 4,
       selector: {
         matchLabels: { 'rubykaigi.org/app': 'unbound-envoy' },
       },

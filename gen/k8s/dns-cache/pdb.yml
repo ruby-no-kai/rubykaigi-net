@@ -1,0 +1,32 @@
+{
+  "apiVersion": "policy/v1",
+  "kind": "PodDisruptionBudget",
+  "metadata": {
+    "name": "unbound"
+  },
+  "spec": {
+    "maxUnavailable": 1,
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "unbound"
+      }
+    }
+  }
+}
+---
+{
+  "apiVersion": "policy/v1",
+  "kind": "PodDisruptionBudget",
+  "metadata": {
+    "name": "unbound-envoy"
+  },
+  "spec": {
+    "maxUnavailable": 1,
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "unbound-envoy"
+      }
+    }
+  }
+}
+---

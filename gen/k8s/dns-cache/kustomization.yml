@@ -5,6 +5,7 @@
    "resources": [
       "./deployment.yml",
       "./configmap.yml",
+      "./pdb.yml",
       "./service.yml",
       "./monitoring.yml"
    ]

@@ -8,7 +8,7 @@
     "name": "unbound"
   },
   "spec": {
-    "replicas": 3,
+    "replicas": 4,
     "selector": {
       "matchLabels": {
         "rubykaigi.org/app": "unbound"
@@ -156,7 +156,7 @@
     "name": "unbound-envoy"
   },
   "spec": {
-    "replicas": 3,
+    "replicas": 4,
     "selector": {
       "matchLabels": {
         "rubykaigi.org/app": "unbound-envoy"
