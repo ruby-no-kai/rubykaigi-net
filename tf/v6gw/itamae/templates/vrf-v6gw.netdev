@@ -1,0 +1,6 @@
+[NetDev]
+Name=vrf-v6gw
+Kind=vrf
+
+[VRF]
+Table=66

@@ -1,0 +1,9 @@
+[NetDev]
+Name=vxlan-66
+Kind=vxlan
+
+[VXLAN]
+VNI=66
+Local=dhcp4
+DestinationPort=4789
+MacLearning=no
