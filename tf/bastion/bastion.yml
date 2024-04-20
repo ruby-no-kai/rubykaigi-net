@@ -13,6 +13,7 @@ users:
       - gh:terfno
       - gh:unasuke
       - gh:utgwkk
+      - gh:segre5458
     sudo: ['ALL=(ALL) NOPASSWD: ALL']
     shell: /bin/bash
 bootcmd:
