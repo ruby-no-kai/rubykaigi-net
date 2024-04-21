@@ -1,16 +1,11 @@
 function(args)
   {
+    replicas: 2,
     resources: {
       requests: {
         cpu: '5m',
         memory: '64M',
       },
-    },
-    persistence: {
-      enabled: true,
-    },
-    deploymentStrategy: {
-      type: 'Recreate',  // For PVC
     },
     plugins: [
       'knightss27-weathermap-panel',
@@ -23,6 +18,13 @@ function(args)
     'grafana.ini': {
       server: {
         root_url: 'https://grafana.rubykaigi.net/',
+      },
+      database: {
+        type: 'mysql',
+        host: 'grafana1.db.apne1.rubykaigi.net',
+        name: 'grafana',
+        user: '$__file{/var/run/secrets/mysql/username}',
+        password: '$__file{/var/run/secrets/mysql/password}',
       },
       feature_toggles: {
         publicDashboards: true,
@@ -38,6 +40,12 @@ function(args)
         name: 'oidc-client',
         mountPath: '/var/run/secrets/oidc-client',
         secretName: 'grafana-oidc-client',
+        readOnly: true,
+      },
+      {
+        name: 'mysql',
+        mountPath: '/var/run/secrets/mysql',
+        secretName: 'grafana-mysql',
         readOnly: true,
       },
     ],
