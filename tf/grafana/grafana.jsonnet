@@ -33,4 +33,12 @@ function(args)
         org_role: 'Viewer',
       },
     },
+    extraSecretMounts: [
+      {
+        name: 'oidc-client',
+        mountPath: '/var/run/secrets/oidc-client',
+        secretName: 'grafana-oidc-client',
+        readOnly: true,
+      },
+    ],
   }

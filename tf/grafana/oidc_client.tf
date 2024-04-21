@@ -10,8 +10,8 @@ locals {
     enabled              = true
     name                 = "RubyKaigi-StaffIdP"
     allow_sign_up        = true
-    client_id            = random_uuid.client_id.result
-    client_secret        = random_id.client_secret.id
+    client_id            = "$__file{/var/run/secrets/oidc-client/client_id}"
+    client_secret        = "$__file{/var/run/secrets/oidc-client/client_secret}"
     scopes               = "openid"
     email_attribute_path = "email"
     login_attribute_path = "sub"
@@ -22,6 +22,17 @@ locals {
 
     role_attribute_path        = "contains(roles[*], 'admin') && 'GrafanaAdmin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'"
     allow_assign_grafana_admin = true
+  }
+}
+
+resource "kubernetes_secret" "oidc-client" {
+  metadata {
+    name = "grafana-oidc-client"
+  }
+
+  data = {
+    client_id     = random_uuid.client_id.result
+    client_secret = random_id.client_secret.id
   }
 }
 

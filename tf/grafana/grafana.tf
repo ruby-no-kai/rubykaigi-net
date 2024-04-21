@@ -1,7 +1,7 @@
 resource "helm_release" "grafana" {
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
-  version    = "6.52.9"
+  version    = "7.3.9"
 
   name = "grafana"
 
@@ -23,6 +23,7 @@ resource "helm_release" "grafana" {
 
   depends_on = [
     kubernetes_secret.grafana-admin,
+    kubernetes_secret.oidc-client,
   ]
 }
 
