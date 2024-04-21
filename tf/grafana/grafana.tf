@@ -1,7 +1,7 @@
 resource "helm_release" "grafana" {
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
-  version    = "6.52.9"
+  version    = "7.3.9"
 
   name = "grafana"
 
@@ -20,6 +20,11 @@ resource "helm_release" "grafana" {
       },
     }),
   ]
+
+  depends_on = [
+    kubernetes_secret.grafana-admin,
+    kubernetes_secret.oidc-client,
+  ]
 }
 
 data "external" "grafana-values" {
@@ -32,6 +37,24 @@ data "external" "grafana-values" {
       role_private = aws_iam_role.grafana-private.arn,
     })
   }
+}
+
+resource "random_password" "grafana-admin" {
+  length  = 64
+  special = false
+}
+
+resource "kubernetes_secret" "grafana-admin" {
+  metadata {
+    name = "grafana-admin"
+  }
+
+  data = {
+    username = "admin"
+    password = random_password.grafana-admin.result
+  }
+
+  type = "kubernetes.io/basic-auth"
 }
 
 data "aws_lb_target_group" "common-grafana" {

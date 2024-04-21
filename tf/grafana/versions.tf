@@ -16,6 +16,9 @@ terraform {
     kubernetes = {
       source = "hashicorp/kubernetes"
     }
+    grafana = {
+      source = "grafana/grafana"
+    }
     random = {
       source = "hashicorp/random"
     }
