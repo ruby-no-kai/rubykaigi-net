@@ -39,8 +39,11 @@ resource "aws_ecs_task_definition" "app" {
 
   container_definitions = jsonencode([
     {
-      name  = "app"
+      name      = "app"
+      essential = true
+
       image = "${aws_ecr_repository.app.repository_url}:5ca8de3ac184594089943423f796f9906df2fa98",
+
       environment = [
         {
           name  = "RUST_LOG"
@@ -64,7 +67,22 @@ resource "aws_ecs_task_definition" "app" {
           "awslogs-region"        = "us-west-2"
           "awslogs-stream-prefix" = "ecs"
         }
-      }
+      },
+    },
+    {
+      name      = "rebooter"
+      essential = true
+      image     = "public.ecr.aws/docker/library/debian:stable-slim"
+      command   = ["sleep", "86400"]
+
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = aws_cloudwatch_log_group.app.name
+          "awslogs-region"        = "us-west-2"
+          "awslogs-stream-prefix" = "ecs"
+        }
+      },
     }
   ])
 
