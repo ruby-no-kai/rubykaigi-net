@@ -273,8 +273,11 @@
       "module": [
         "if_mib_juniper1",
         "if_mib_juniper2",
+        "juniper_alarm",
+        "juniper_chassis",
         "juniper_dom",
-        "juniper_alarm"
+        "juniper_bgp",
+        "juniper_virtualchassis"
       ]
     },
     "relabelings": [
@@ -325,7 +328,9 @@
       "module": [
         "if_mib_juniper1",
         "if_mib_juniper2",
-        "juniper_alarm"
+        "juniper_alarm",
+        "juniper_chassis",
+        "juniper_bgp"
       ]
     },
     "relabelings": [

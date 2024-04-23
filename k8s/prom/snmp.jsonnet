@@ -54,12 +54,19 @@ local targets_lo = {
     ],
   },
   juniper_srx: {
-    modules: ['if_mib_juniper1', 'if_mib_juniper2', 'juniper_alarm'],
+    modules: [
+      'if_mib_juniper1',
+      'if_mib_juniper2',
+      'juniper_alarm',
+      'juniper_chassis',
+      'juniper_bgp',
+    ],
     auth: 'public',
     hosts: [
       'br-01.hnd.rubykaigi.net',
       'br-01.nrt.rubykaigi.net',
       'br-01.itm.rubykaigi.net',
+
       'er-01.venue.rubykaigi.net',
       'er-02.venue.rubykaigi.net',
 
@@ -67,7 +74,15 @@ local targets_lo = {
     ],
   },
   juniper_ex: {
-    modules: ['if_mib_juniper1', 'if_mib_juniper2', 'juniper_dom', 'juniper_alarm'],
+    modules: [
+      'if_mib_juniper1',
+      'if_mib_juniper2',
+      'juniper_alarm',
+      'juniper_chassis',
+      'juniper_dom',
+      'juniper_bgp',
+      'juniper_virtualchassis',
+    ],
     auth: 'public',
     hosts: [
       'cs-01.venue.rubykaigi.net',
