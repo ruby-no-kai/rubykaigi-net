@@ -14,11 +14,10 @@ TARGETS = [
     zone: 'Z05547502KT77L0O53UWK',
     network: '10.33.0.0/16',
     targets: [
-      /\Alo\.[\w-]+\.(?:hnd|nrt|venue)\./,
-      /\Avlan1000.esw/,
-      /\Avlan-1000.asw/,
-      /\Avlan-1000.vrrp/,
-      'management.wlc-01.venue.rubykaigi.net',
+      /\Alo\.[\w-]+\.(?:hnd|nrt|itm|venue)\./,
+      /\Amanagement\.wlc-[\w-]+\.venue\./,
+      /\Airb-\d+\.cs-[\w-]+\.venue\./,
+      /\Avlan1000\.esw-[\w-]+\.venue\./,
     ],
     labels: {
       network: 'private',
@@ -28,8 +27,8 @@ TARGETS = [
     zone: 'Z05547502KT77L0O53UWK',
     network: '192.50.220.0/24',
     targets: [
-      /\Alo1\./,
-      /\Agi0-1-nat2\.gw-\d+\.venue\./,
+      /\A[\w-]+\.\w+-kmc\./,
+      /\Age-0-0-5\.br-01\./,
     ],
     labels: {
       network: 'public',
@@ -39,10 +38,7 @@ TARGETS = [
     zone: 'Z05547502KT77L0O53UWK',
     network: '2001:0df0:8500:ca00::/56',
     targets: %w[
-      ge-0-0-23.csw-01.venue.rubykaigi.net
-      ge-0-0-23.csw-02.venue.rubykaigi.net
-      vlan-2046.csw-01.venue.rubykaigi.net
-      vlan-2044.csw-02.venue.rubykaigi.net
+      /\A[\w-]+\.br-01\./,
     ],
     labels: {
       network: 'public',

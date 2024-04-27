@@ -8,6 +8,27 @@
       }
     },
     {
+      "name": "lo.tun-01.hnd.rubykaigi.net",
+      "ip": "10.33.0.151",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.br-01.itm.rubykaigi.net",
+      "ip": "10.33.0.3",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.tun-01.itm.rubykaigi.net",
+      "ip": "10.33.0.153",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
       "name": "lo.br-01.nrt.rubykaigi.net",
       "ip": "10.33.0.2",
       "labels": {
@@ -15,43 +36,113 @@
       }
     },
     {
-      "name": "lo.csw-01.venue.rubykaigi.net",
-      "ip": "10.33.0.31",
+      "name": "lo.tun-01.nrt.rubykaigi.net",
+      "ip": "10.33.0.152",
       "labels": {
         "network": "private"
       }
     },
     {
-      "name": "lo.csw-02.venue.rubykaigi.net",
-      "ip": "10.33.0.32",
+      "name": "lo.cs-01.venue.rubykaigi.net",
+      "ip": "10.33.0.30",
       "labels": {
         "network": "private"
       }
     },
     {
-      "name": "lo.gw-01.venue.rubykaigi.net",
-      "ip": "10.33.0.21",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "lo.gw-02.venue.rubykaigi.net",
-      "ip": "10.33.0.22",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "lo.tun-01.venue.rubykaigi.net",
+      "name": "lo.er-01.venue.rubykaigi.net",
       "ip": "10.33.0.11",
       "labels": {
         "network": "private"
       }
     },
     {
-      "name": "lo.tun-02.venue.rubykaigi.net",
+      "name": "lo.er-02.venue.rubykaigi.net",
       "ip": "10.33.0.12",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.nat-41.venue.rubykaigi.net",
+      "ip": "10.33.0.21",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.nat-42.venue.rubykaigi.net",
+      "ip": "10.33.0.22",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.nat-61.venue.rubykaigi.net",
+      "ip": "10.33.0.23",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.nat-62.venue.rubykaigi.net",
+      "ip": "10.33.0.24",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.tun-01.venue.rubykaigi.net",
+      "ip": "10.33.0.161",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.tun-02.venue.rubykaigi.net",
+      "ip": "10.33.0.162",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "management.wlc-01.venue.rubykaigi.net",
+      "ip": "10.33.2.2",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "irb-1000.cs-01.venue.rubykaigi.net",
+      "ip": "10.33.100.254",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "irb-200.cs-01.venue.rubykaigi.net",
+      "ip": "10.33.2.254",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "irb-300.cs-01.venue.rubykaigi.net",
+      "ip": "10.33.1.254",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "irb-400.cs-01.venue.rubykaigi.net",
+      "ip": "10.33.79.254",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "irb-410.cs-01.venue.rubykaigi.net",
+      "ip": "10.33.21.254",
       "labels": {
         "network": "private"
       }
@@ -134,50 +225,22 @@
       }
     },
     {
-      "name": "vlan-1000.asw-01.venue.rubykaigi.net",
-      "ip": "10.33.100.100",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "vlan-1000.vrrp.venue.rubykaigi.net",
-      "ip": "10.33.100.254",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "management.wlc-01.venue.rubykaigi.net",
-      "ip": "10.33.2.2",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "lo1.br-01.hnd.rubykaigi.net",
-      "ip": "192.50.220.158",
+      "name": "enp1s0f0.mahiru-kmc.transit.rubykaigi.net",
+      "ip": "192.50.220.152",
       "labels": {
         "network": "public"
       }
     },
     {
-      "name": "lo1.br-01.nrt.rubykaigi.net",
-      "ip": "192.50.220.159",
+      "name": "enx.rola-kmc.transit.rubykaigi.net",
+      "ip": "192.50.220.154",
       "labels": {
         "network": "public"
       }
     },
     {
-      "name": "gi0-1-nat2.gw-01.venue.rubykaigi.net",
-      "ip": "192.50.220.161",
-      "labels": {
-        "network": "public"
-      }
-    },
-    {
-      "name": "gi0-1-nat2.gw-02.venue.rubykaigi.net",
-      "ip": "192.50.220.163",
+      "name": "enx.yume-kmc.transit.rubykaigi.net",
+      "ip": "192.50.220.156",
       "labels": {
         "network": "public"
       }
