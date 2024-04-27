@@ -1,4 +1,4 @@
-(import './base.libsonnet') + {
+(import '../cloudconfig.base.libsonnet') + {
   package_update: true,
   packages: [
     'docker.io',

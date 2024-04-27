@@ -45,7 +45,7 @@ data "external" "cloud-config" {
   program = ["${path.module}/../jsonnet.rb"]
 
   query = {
-    path = "${path.module}/cloud-init/cloudprober.jsonnet"
+    path = "${path.module}/cloudconfig.jsonnet"
   }
 }
 
