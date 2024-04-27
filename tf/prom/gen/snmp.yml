@@ -4027,6 +4027,14 @@ modules:
     - 1.3.6.1.4.1.2636.3.40.1.4.1.1.1.4
     - 1.3.6.1.4.1.2636.3.40.1.4.1.1.1.7
     - 1.3.6.1.4.1.2636.3.40.1.4.1.1.1.8
+    - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.10
+    - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.3
+    - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.4
+    - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.5
+    - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.6
+    - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.7
+    - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.8
+    - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.9
     metrics:
     - name: jnxVirtualChassisMemberRole
       oid: 1.3.6.1.4.1.2636.3.40.1.4.1.1.1.3
@@ -4078,6 +4086,96 @@ modules:
         - jnxVirtualChassisMemberId
         labelname: jnxVirtualChassisMemberSerialnumber
         oid: 1.3.6.1.4.1.2636.3.40.1.4.1.1.1.2
+        type: DisplayString
+    - name: jnxVirtualChassisPortOutMcasts
+      oid: 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.10
+      type: counter
+      help: Indicates the total number of multicast packets sent from the virtual-chassis
+        port - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.10
+      indexes:
+      - labelname: jnxVirtualChassisFpcId
+        type: gauge
+      - labelname: jnxVirtualChassisPortName
+        type: DisplayString
+    - name: jnxVirtualChassisPortAdminStatus
+      oid: 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.3
+      type: EnumAsStateSet
+      help: Indicates the actual admin status of this vccp port, which is typically
+        but not limited to, a function of the state of individual segments of this
+        port. - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.3
+      indexes:
+      - labelname: jnxVirtualChassisFpcId
+        type: gauge
+      - labelname: jnxVirtualChassisPortName
+        type: DisplayString
+      enum_values:
+        1: up
+        2: down
+        3: unknown
+    - name: jnxVirtualChassisPortOperStatus
+      oid: 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.4
+      type: EnumAsStateSet
+      help: Indicates the actual operational status of this vccp port, which is typically
+        but not limited to, a function of the state of individual segments of this
+        port. - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.4
+      indexes:
+      - labelname: jnxVirtualChassisFpcId
+        type: gauge
+      - labelname: jnxVirtualChassisPortName
+        type: DisplayString
+      enum_values:
+        1: up
+        2: down
+        3: unknown
+    - name: jnxVirtualChassisPortInPkts
+      oid: 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.5
+      type: counter
+      help: Indicates the total number of packets received on the virtual-chassis
+        port - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.5
+      indexes:
+      - labelname: jnxVirtualChassisFpcId
+        type: gauge
+      - labelname: jnxVirtualChassisPortName
+        type: DisplayString
+    - name: jnxVirtualChassisPortOutPkts
+      oid: 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.6
+      type: counter
+      help: Indicates the total number of packets sent from the virtual-chassis port
+        - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.6
+      indexes:
+      - labelname: jnxVirtualChassisFpcId
+        type: gauge
+      - labelname: jnxVirtualChassisPortName
+        type: DisplayString
+    - name: jnxVirtualChassisPortInOctets
+      oid: 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.7
+      type: counter
+      help: Indicates the total number of octets received on the virtual-chassis port
+        - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.7
+      indexes:
+      - labelname: jnxVirtualChassisFpcId
+        type: gauge
+      - labelname: jnxVirtualChassisPortName
+        type: DisplayString
+    - name: jnxVirtualChassisPortOutOctets
+      oid: 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.8
+      type: counter
+      help: Indicates the total number of octets sent on the virtual-chassis port
+        - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.8
+      indexes:
+      - labelname: jnxVirtualChassisFpcId
+        type: gauge
+      - labelname: jnxVirtualChassisPortName
+        type: DisplayString
+    - name: jnxVirtualChassisPortInMcasts
+      oid: 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.9
+      type: counter
+      help: Indicates the total number of multicast packets received on the virtual-chassis
+        port - 1.3.6.1.4.1.2636.3.40.1.4.1.2.1.9
+      indexes:
+      - labelname: jnxVirtualChassisFpcId
+        type: gauge
+      - labelname: jnxVirtualChassisPortName
         type: DisplayString
     max_repetitions: 25
     retries: 1
