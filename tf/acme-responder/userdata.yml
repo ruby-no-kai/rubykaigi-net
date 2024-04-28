@@ -13,6 +13,10 @@ users:
       - gh:terfno
       - gh:unasuke
       - gh:utgwkk
+      - gh:segre5458
+      - gh:walnuts1018
+      - gh:takikawauniv
+      - gh:ryokohbato
     sudo: ['ALL=(ALL) NOPASSWD: ALL']
     shell: /bin/bash
 
