@@ -31,7 +31,7 @@
             "env": [
 
             ],
-            "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:938335eff2ca3635ad52d17dc6432810eacc4f2b",
+            "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:ae5a0d23fd293e7e1437519b816480cd01dba5f2",
             "livenessProbe": {
               "failureThreshold": 2,
               "httpGet": {

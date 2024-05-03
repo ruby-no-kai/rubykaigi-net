@@ -1,4 +1,4 @@
-local commit = '938335eff2ca3635ad52d17dc6432810eacc4f2b';
+local commit = 'ae5a0d23fd293e7e1437519b816480cd01dba5f2';
 
 local tls_cert_secret = 'cert-resolver-rubykaigi-net';
 
