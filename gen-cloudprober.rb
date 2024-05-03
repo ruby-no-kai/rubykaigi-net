@@ -16,8 +16,8 @@ TARGETS = [
     targets: [
       /\Alo\.[\w-]+\.(?:hnd|nrt|itm|venue)\./,
       /\Amanagement\.wlc-[\w-]+\.venue\./,
-      /\Airb-\d+\.cs-[\w-]+\.venue\./,
-      /\Avlan1000\.esw-[\w-]+\.venue\./,
+      /\Airb-1000\.cs-[\w-]+\.venue\./,
+      /\Avlan1000\.es-[\w-]+\.venue\./,
     ],
     labels: {
       network: 'private',
