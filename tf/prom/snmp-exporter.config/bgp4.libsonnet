@@ -7,6 +7,7 @@
       lookups: [
       ],
       overrides: {
+        bgpPeerState: { type: 'EnumAsStateSet' },
       },
     },
   },

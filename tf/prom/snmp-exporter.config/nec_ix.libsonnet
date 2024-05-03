@@ -12,7 +12,6 @@
         'picoIPv4MIB',
         'picoIPv6MIB',
         'picoNAPTMIB',
-        'bgpPeerState',
       ],
       lookups: [
         {

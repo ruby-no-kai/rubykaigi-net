@@ -1,5 +1,6 @@
 local modules =
   (import './if_mib.libsonnet').modules
+  + (import './bgp4.libsonnet').modules
   + (import './cisco_envmon.libsonnet').modules
   + (import './cisco_sensors.libsonnet').modules
   + (import './cisco_wlc.libsonnet').modules

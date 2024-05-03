@@ -257,7 +257,7 @@
             "annotations": {
               "summary": "{{$labels.instance}}: BGP peer to {{$labels.bgpPeerRemoteAddr}} is not established"
             },
-            "expr": "bgpPeerState != 6",
+            "expr": "bgpPeerState{bgpPeerState=\"established\"} < 1",
             "labels": {
               "severity": "critical"
             }

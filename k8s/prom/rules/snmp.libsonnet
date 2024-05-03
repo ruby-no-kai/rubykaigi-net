@@ -60,7 +60,7 @@
         },
         {
           alert: 'BGPPeerDown',
-          expr: 'bgpPeerState != 6',
+          expr: 'bgpPeerState{bgpPeerState="established"} < 1',
           labels: {
             severity: 'critical',
           },

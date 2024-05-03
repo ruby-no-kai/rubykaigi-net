@@ -16,7 +16,7 @@ local esws = [
 
 local targets_hi = {
   ix: {
-    modules: ['if_mib', 'nec_ix'],
+    modules: ['if_mib', 'bgp4', 'nec_ix'],
     auth: 'public',
     hosts: [
       'tun-01.hnd.rubykaigi.net',
