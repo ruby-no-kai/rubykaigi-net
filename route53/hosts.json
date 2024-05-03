@@ -240,7 +240,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "gi3-0.br-01.hnd.rubykaigi.net.",
+      "name": "ge-0-0-5.br-01.hnd.rubykaigi.net.",
       "type": "A",
       "records": [
         "192.50.220.153"
@@ -251,7 +251,7 @@
       "name": "pa.br-01.hnd.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "gi3-0.br-01.hnd.rubykaigi.net."
+        "ge-0-0-5.br-01.hnd.rubykaigi.net."
       ]
     },
     {
@@ -259,7 +259,7 @@
       "name": "153.220.50.192.reverse.rubykaigi.net.",
       "type": "PTR",
       "records": [
-        "gi3-0.br-01.hnd.rubykaigi.net."
+        "ge-0-0-5.br-01.hnd.rubykaigi.net."
       ]
     },
     {
@@ -384,7 +384,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "gi3-0.br-01.hnd.rubykaigi.net.",
+      "name": "ge-0-0-5.br-01.hnd.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca2a::b"
@@ -395,7 +395,7 @@
       "name": "b.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "gi3-0.br-01.hnd.rubykaigi.net."
+        "ge-0-0-5.br-01.hnd.rubykaigi.net."
       ]
     },
     {
@@ -638,7 +638,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "gi1-0.br-01.nrt.rubykaigi.net.",
+      "name": "ge-0-0-5.br-01.nrt.rubykaigi.net.",
       "type": "A",
       "records": [
         "192.50.220.155"
@@ -649,7 +649,7 @@
       "name": "pa.br-01.nrt.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "gi1-0.br-01.nrt.rubykaigi.net."
+        "ge-0-0-5.br-01.nrt.rubykaigi.net."
       ]
     },
     {
@@ -657,7 +657,7 @@
       "name": "155.220.50.192.reverse.rubykaigi.net.",
       "type": "PTR",
       "records": [
-        "gi1-0.br-01.nrt.rubykaigi.net."
+        "ge-0-0-5.br-01.nrt.rubykaigi.net."
       ]
     },
     {
@@ -814,7 +814,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "gi1-0.br-01.nrt.rubykaigi.net.",
+      "name": "ge-0-0-5.br-01.nrt.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca2b::b"
@@ -825,7 +825,7 @@
       "name": "b.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.b.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "gi1-0.br-01.nrt.rubykaigi.net."
+        "ge-0-0-5.br-01.nrt.rubykaigi.net."
       ]
     },
     {
@@ -1108,10 +1108,10 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "gi1-0.br-01.itm.rubykaigi.net.",
+      "name": "ge-0-0-5.br-01.itm.rubykaigi.net.",
       "type": "AAAA",
       "records": [
-        "2001:df0:8500:ca2c::a"
+        "2001:df0:8500:ca2c::b"
       ]
     },
     {
@@ -1119,15 +1119,7 @@
       "name": "pa.br-01.itm.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "gi1-0.br-01.itm.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "ptr-ip6",
-      "name": "a.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.c.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
-      "type": "PTR",
-      "records": [
-        "gi1-0.br-01.itm.rubykaigi.net."
+        "ge-0-0-5.br-01.itm.rubykaigi.net."
       ]
     },
     {
@@ -1135,7 +1127,7 @@
       "name": "b.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.c.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "gi1-0.br-01.itm.rubykaigi.net."
+        "ge-0-0-5.br-01.itm.rubykaigi.net."
       ]
     },
     {
@@ -3551,30 +3543,6 @@
       ]
     },
     {
-      "zone": "rubykaigi.net-common",
-      "name": "nat.gw-01.hot.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "192.50.220.166"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-common",
-      "name": "pa.gw-01.hot.rubykaigi.net.",
-      "type": "CNAME",
-      "records": [
-        "nat.gw-01.hot.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-common",
-      "name": "166.220.50.192.reverse.rubykaigi.net.",
-      "type": "PTR",
-      "records": [
-        "nat.gw-01.hot.rubykaigi.net."
-      ]
-    },
-    {
       "zone": "ptr-10",
       "name": "200.0.33.10.in-addr.arpa.",
       "type": "PTR",
@@ -4310,6 +4278,30 @@
     },
     {
       "zone": "rubykaigi.net-common",
+      "name": "nat.nat-69.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "192.50.220.166"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "pa.nat-69.tkyk.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "nat.nat-69.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "166.220.50.192.reverse.rubykaigi.net.",
+      "type": "PTR",
+      "records": [
+        "nat.nat-69.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
       "name": "nat-69.tkyk.dualstack.rubykaigi.net.",
       "type": "AAAA",
       "records": [
@@ -4452,94 +4444,186 @@
     },
     {
       "zone": "ptr-10",
-      "name": "110.100.33.10.in-addr.arpa.",
+      "name": "100.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "esw-tra-01.venue.rubykaigi.net."
+        "es-tra-01.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-tra-01.venue.dualstack.rubykaigi.net.",
+      "name": "es-tra-01.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.110"
+        "10.33.100.100"
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-tra-01.venue.rubykaigi.net.",
+      "name": "es-tra-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.110"
+        "10.33.100.100"
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-tra-01-venue.f.rubykaigi.net.",
+      "name": "es-tra-01-venue.f.rubykaigi.net.",
       "type": "CNAME",
-      "records": "esw-tra-01.venue.rubykaigi.net."
+      "records": "es-tra-01.venue.rubykaigi.net."
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-tra-01.venue.rubykaigi.net.",
+      "name": "vlan1000.es-tra-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.110"
+        "10.33.100.100"
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-tra-01.venue.rubykaigi.net.",
+      "name": "mgmt.es-tra-01.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "vlan1000.esw-tra-01.venue.rubykaigi.net."
+        "vlan1000.es-tra-01.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "ptr-10",
-      "name": "111.100.33.10.in-addr.arpa.",
+      "name": "101.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "esw-tra-02.venue.rubykaigi.net."
+        "es-tra-02.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-tra-02.venue.dualstack.rubykaigi.net.",
+      "name": "es-tra-02.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.111"
+        "10.33.100.101"
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-tra-02.venue.rubykaigi.net.",
+      "name": "es-tra-02.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.111"
+        "10.33.100.101"
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-tra-02-venue.f.rubykaigi.net.",
+      "name": "es-tra-02-venue.f.rubykaigi.net.",
       "type": "CNAME",
-      "records": "esw-tra-02.venue.rubykaigi.net."
+      "records": "es-tra-02.venue.rubykaigi.net."
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-tra-02.venue.rubykaigi.net.",
+      "name": "vlan1000.es-tra-02.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.111"
+        "10.33.100.101"
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-tra-02.venue.rubykaigi.net.",
+      "name": "mgmt.es-tra-02.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "vlan1000.esw-tra-02.venue.rubykaigi.net."
+        "vlan1000.es-tra-02.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "105.100.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "es-trb-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-trb-01.venue.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.105"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-trb-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.105"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-trb-01-venue.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "es-trb-01.venue.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "vlan1000.es-trb-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.105"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "mgmt.es-trb-01.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "vlan1000.es-trb-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "110.100.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "es-trc-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-trc-01.venue.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.110"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-trc-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.110"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-trc-01-venue.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "es-trc-01.venue.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "vlan1000.es-trc-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.110"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "mgmt.es-trc-01.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "vlan1000.es-trc-01.venue.rubykaigi.net."
       ]
     },
     {
@@ -4547,12 +4631,12 @@
       "name": "115.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "esw-fow-01.venue.rubykaigi.net."
+        "es-lb1-01.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-fow-01.venue.dualstack.rubykaigi.net.",
+      "name": "es-lb1-01.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.115"
@@ -4560,7 +4644,7 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-fow-01.venue.rubykaigi.net.",
+      "name": "es-lb1-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.115"
@@ -4568,13 +4652,13 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-fow-01-venue.f.rubykaigi.net.",
+      "name": "es-lb1-01-venue.f.rubykaigi.net.",
       "type": "CNAME",
-      "records": "esw-fow-01.venue.rubykaigi.net."
+      "records": "es-lb1-01.venue.rubykaigi.net."
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-fow-01.venue.rubykaigi.net.",
+      "name": "vlan1000.es-lb1-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.115"
@@ -4582,10 +4666,10 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-fow-01.venue.rubykaigi.net.",
+      "name": "mgmt.es-lb1-01.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "vlan1000.esw-fow-01.venue.rubykaigi.net."
+        "vlan1000.es-lb1-01.venue.rubykaigi.net."
       ]
     },
     {
@@ -4593,12 +4677,12 @@
       "name": "116.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "esw-foe-01.venue.rubykaigi.net."
+        "es-lb1-02.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-foe-01.venue.dualstack.rubykaigi.net.",
+      "name": "es-lb1-02.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.116"
@@ -4606,7 +4690,7 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-foe-01.venue.rubykaigi.net.",
+      "name": "es-lb1-02.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.116"
@@ -4614,13 +4698,13 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-foe-01-venue.f.rubykaigi.net.",
+      "name": "es-lb1-02-venue.f.rubykaigi.net.",
       "type": "CNAME",
-      "records": "esw-foe-01.venue.rubykaigi.net."
+      "records": "es-lb1-02.venue.rubykaigi.net."
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-foe-01.venue.rubykaigi.net.",
+      "name": "vlan1000.es-lb1-02.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.116"
@@ -4628,10 +4712,10 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-foe-01.venue.rubykaigi.net.",
+      "name": "mgmt.es-lb1-02.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "vlan1000.esw-foe-01.venue.rubykaigi.net."
+        "vlan1000.es-lb1-02.venue.rubykaigi.net."
       ]
     },
     {
@@ -4639,12 +4723,12 @@
       "name": "120.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "esw-trb-01.venue.rubykaigi.net."
+        "es-lb2-01.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-trb-01.venue.dualstack.rubykaigi.net.",
+      "name": "es-lb2-01.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.120"
@@ -4652,7 +4736,7 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-trb-01.venue.rubykaigi.net.",
+      "name": "es-lb2-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.120"
@@ -4660,13 +4744,13 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-trb-01-venue.f.rubykaigi.net.",
+      "name": "es-lb2-01-venue.f.rubykaigi.net.",
       "type": "CNAME",
-      "records": "esw-trb-01.venue.rubykaigi.net."
+      "records": "es-lb2-01.venue.rubykaigi.net."
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-trb-01.venue.rubykaigi.net.",
+      "name": "vlan1000.es-lb2-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.120"
@@ -4674,10 +4758,56 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-trb-01.venue.rubykaigi.net.",
+      "name": "mgmt.es-lb2-01.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "vlan1000.esw-trb-01.venue.rubykaigi.net."
+        "vlan1000.es-lb2-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "125.100.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "es-lb3-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-lb3-01.venue.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.125"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-lb3-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.125"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-lb3-01-venue.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "es-lb3-01.venue.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "vlan1000.es-lb3-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.125"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "mgmt.es-lb3-01.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "vlan1000.es-lb3-01.venue.rubykaigi.net."
       ]
     },
     {
@@ -4685,12 +4815,12 @@
       "name": "130.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "esw-tpk-01.venue.rubykaigi.net."
+        "es-lb4-01.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-tpk-01.venue.dualstack.rubykaigi.net.",
+      "name": "es-lb4-01.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.130"
@@ -4698,7 +4828,7 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-tpk-01.venue.rubykaigi.net.",
+      "name": "es-lb4-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.130"
@@ -4706,13 +4836,13 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "esw-tpk-01-venue.f.rubykaigi.net.",
+      "name": "es-lb4-01-venue.f.rubykaigi.net.",
       "type": "CNAME",
-      "records": "esw-tpk-01.venue.rubykaigi.net."
+      "records": "es-lb4-01.venue.rubykaigi.net."
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-tpk-01.venue.rubykaigi.net.",
+      "name": "vlan1000.es-lb4-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.100.130"
@@ -4720,240 +4850,10 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-tpk-01.venue.rubykaigi.net.",
+      "name": "mgmt.es-lb4-01.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "vlan1000.esw-tpk-01.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "ptr-10",
-      "name": "131.100.33.10.in-addr.arpa.",
-      "type": "PTR",
-      "records": [
-        "esw-tpk-02.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-tpk-02.venue.dualstack.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.131"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-tpk-02.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.131"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-tpk-02-venue.f.rubykaigi.net.",
-      "type": "CNAME",
-      "records": "esw-tpk-02.venue.rubykaigi.net."
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-tpk-02.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.131"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-tpk-02.venue.rubykaigi.net.",
-      "type": "CNAME",
-      "records": [
-        "vlan1000.esw-tpk-02.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "ptr-10",
-      "name": "140.100.33.10.in-addr.arpa.",
-      "type": "PTR",
-      "records": [
-        "esw-trc-01.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-trc-01.venue.dualstack.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.140"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-trc-01.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.140"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-trc-01-venue.f.rubykaigi.net.",
-      "type": "CNAME",
-      "records": "esw-trc-01.venue.rubykaigi.net."
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-trc-01.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.140"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-trc-01.venue.rubykaigi.net.",
-      "type": "CNAME",
-      "records": [
-        "vlan1000.esw-trc-01.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "ptr-10",
-      "name": "150.100.33.10.in-addr.arpa.",
-      "type": "PTR",
-      "records": [
-        "esw-stu-01.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-stu-01.venue.dualstack.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.150"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-stu-01.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.150"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-stu-01-venue.f.rubykaigi.net.",
-      "type": "CNAME",
-      "records": "esw-stu-01.venue.rubykaigi.net."
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-stu-01.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.150"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-stu-01.venue.rubykaigi.net.",
-      "type": "CNAME",
-      "records": [
-        "vlan1000.esw-stu-01.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "ptr-10",
-      "name": "160.100.33.10.in-addr.arpa.",
-      "type": "PTR",
-      "records": [
-        "esw-con-01.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-con-01.venue.dualstack.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.160"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-con-01.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.160"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-con-01-venue.f.rubykaigi.net.",
-      "type": "CNAME",
-      "records": "esw-con-01.venue.rubykaigi.net."
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-con-01.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.160"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-con-01.venue.rubykaigi.net.",
-      "type": "CNAME",
-      "records": [
-        "vlan1000.esw-con-01.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "ptr-10",
-      "name": "190.100.33.10.in-addr.arpa.",
-      "type": "PTR",
-      "records": [
-        "esw-org-01.venue.rubykaigi.net."
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-org-01.venue.dualstack.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.190"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-org-01.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.190"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "esw-org-01-venue.f.rubykaigi.net.",
-      "type": "CNAME",
-      "records": "esw-org-01.venue.rubykaigi.net."
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "vlan1000.esw-org-01.venue.rubykaigi.net.",
-      "type": "A",
-      "records": [
-        "10.33.100.190"
-      ]
-    },
-    {
-      "zone": "rubykaigi.net-private",
-      "name": "mgmt.esw-org-01.venue.rubykaigi.net.",
-      "type": "CNAME",
-      "records": [
-        "vlan1000.esw-org-01.venue.rubykaigi.net."
+        "vlan1000.es-lb4-01.venue.rubykaigi.net."
       ]
     },
     {
@@ -5515,7 +5415,83 @@
       "name": "157.220.50.192.reverse.rubykaigi.net.",
       "type": "PTR",
       "records": [
-        "enx.yume-kmc.transit.rubykaigi.net."
+        "br-01.transit.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "br-01.transit.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "192.50.220.157"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "br-01.transit.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "192.50.220.157"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "br-01-transit.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "br-01.transit.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "ge-0-0-5.br-01.transit.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "192.50.220.157"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "pa.br-01.transit.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "ge-0-0-5.br-01.transit.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "yume-kmc.itm.dualstack.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca2c::a"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "yume-kmc-itm.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "yume-kmc.itm.dualstack.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "enx.yume-kmc.itm.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca2c::a"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "pa.yume-kmc.itm.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "enx.yume-kmc.itm.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "a.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.c.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "enx.yume-kmc.itm.rubykaigi.net."
       ]
     },
     {

@@ -47,20 +47,20 @@ venue	air	10.33.2.0/24	2001:df0:8500:cab1::a	cs-01	irb.200
 venue	mgmt	10.33.100.0/24	10.33.100.254	cs-01	irb.1000
 venue	mgmt	10.33.100.0/24	2001:df0:8500:cab0::1	cs-01	irb.1000
 venue	mgmt	10.33.100.0/24	10.33.100.10	wlc-01	svc
-venue	mgmt	10.33.100.0/24	10.33.100.110	esw-tra-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.111	esw-tra-02	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.115	esw-fow-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.116	esw-foe-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.120	esw-trb-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.130	esw-tpk-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.131	esw-tpk-02	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.140	esw-trc-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.150	esw-stu-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.160	esw-con-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.190	esw-org-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.100	es-tra-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.101	es-tra-02	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.105	es-trb-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.110	es-trc-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.115	es-lb1-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.116	es-lb1-02	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.120	es-lb2-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.125	es-lb3-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.130	es-lb4-01	vlan1000
+					
+					
 venue	mgmt	10.33.100.0/24	10.33.100.251	cloudprober-01	enp6s0
-venue	mgmt	10.33.100.0/24			
-venue	mgmt	10.33.100.0/24			
+					
+					
 					
 venue	life	10.33.1.0/24	10.33.1.10	printer	eth
 					
@@ -304,16 +304,16 @@ tkyk	tkyk-usr	10.33.31.0/24	2001:df0:8500:ca31::1	cs-99	vlan31
 					
 transit	pa	192.50.220.152/29	192.50.220.152	mahiru-kmc	enp1s0f0
 transit	pa	192.50.220.152/29	2001:df0:8500:ca2a::a	mahiru-kmc	enp1s0f0
-hnd	pa	192.50.220.152/29	192.50.220.153	br-01	gi3-0
-hnd	pa	192.50.220.152/29	2001:df0:8500:ca2a::b	br-01	gi3-0
+hnd	pa	192.50.220.152/29	192.50.220.153	br-01	ge-0/0/5
+hnd	pa	192.50.220.152/29	2001:df0:8500:ca2a::b	br-01	ge-0/0/5
 transit	pa	192.50.220.152/29	192.50.220.154	rola-kmc	enx
 transit	pa	192.50.220.152/29	2001:df0:8500:ca2b::a	rola-kmc	enx
-nrt	pa	192.50.220.152/29	192.50.220.155	br-01	gi1-0
-nrt	pa	192.50.220.152/29	2001:df0:8500:ca2b::b	br-01	gi1-0
+nrt	pa	192.50.220.152/29	192.50.220.155	br-01	ge-0/0/5
+nrt	pa	192.50.220.152/29	2001:df0:8500:ca2b::b	br-01	ge-0/0/5
 transit	pa	192.50.220.152/29	192.50.220.156	yume-kmc	enx
-transit	pa	192.50.220.152/29	192.50.220.157	yume-kmc	enx
-itm	pa	192.50.220.152/29	2001:df0:8500:ca2c::a	br-01	gi1-0
-itm	pa	192.50.220.152/29	2001:df0:8500:ca2c::b	br-01	gi1-0
+transit	pa	192.50.220.152/29	192.50.220.157	br-01	ge-0/0/5
+itm	pa	192.50.220.152/29	2001:df0:8500:ca2c::a	yume-kmc	enx
+itm	pa	192.50.220.152/29	2001:df0:8500:ca2c::b	br-01	ge-0/0/5
 					
 apne1	aws	10.33.128.0/18	10.33.164.12	nat-0ab4fde35b5e7ccca	nat-onpremises-c-in
 apne1	pa	192.50.220.152/29	192.50.220.158	nat-0ab4fde35b5e7ccca	nat-onpremises-c-out
@@ -328,5 +328,5 @@ apne1	pa	192.50.220.160/29	192.50.220.164	resolver	az-c
 apne1	pa	192.50.220.160/29	192.50.220.165	resolver	az-d
 apne1	pa	192.50.220.160/29	2001:df0:8500:ca6d:53::c	resolver	az-c
 apne1	pa	192.50.220.160/29	2001:df0:8500:ca6d:53::d	resolver	az-d
-hot	pa	192.50.220.160/29	192.50.220.166	gw-01	nat
+tkyk	pa	192.50.220.160/29	192.50.220.166	nat-69	nat
 tkyk	pa	192.50.220.160/29	192.50.220.167	nat-49	nat
