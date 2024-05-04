@@ -4858,7 +4858,7 @@
     },
     {
       "zone": "ptr-10",
-      "name": "251.100.33.10.in-addr.arpa.",
+      "name": "195.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
         "cloudprober-01.venue.rubykaigi.net."
@@ -4869,7 +4869,7 @@
       "name": "cloudprober-01.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.251"
+        "10.33.100.195"
       ]
     },
     {
@@ -4877,7 +4877,7 @@
       "name": "cloudprober-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.251"
+        "10.33.100.195"
       ]
     },
     {
@@ -4888,10 +4888,10 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "enp6s0.cloudprober-01.venue.rubykaigi.net.",
+      "name": "enp3s0.cloudprober-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.251"
+        "10.33.100.195"
       ]
     },
     {
@@ -4899,7 +4899,7 @@
       "name": "mgmt.cloudprober-01.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "enp6s0.cloudprober-01.venue.rubykaigi.net."
+        "enp3s0.cloudprober-01.venue.rubykaigi.net."
       ]
     },
     {
@@ -5180,48 +5180,48 @@
     },
     {
       "zone": "ptr-10",
-      "name": "20.30.33.10.in-addr.arpa.",
+      "name": "195.30.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "workbench-99.tkyk.rubykaigi.net."
+        "cloudprober-01.tkyk.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "workbench-99.tkyk.dualstack.rubykaigi.net.",
+      "name": "cloudprober-01.tkyk.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.30.20"
+        "10.33.30.195"
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "workbench-99.tkyk.rubykaigi.net.",
+      "name": "cloudprober-01.tkyk.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.30.20"
+        "10.33.30.195"
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "workbench-99-tkyk.f.rubykaigi.net.",
+      "name": "cloudprober-01-tkyk.f.rubykaigi.net.",
       "type": "CNAME",
-      "records": "workbench-99.tkyk.rubykaigi.net."
+      "records": "cloudprober-01.tkyk.rubykaigi.net."
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "enp1s0.workbench-99.tkyk.rubykaigi.net.",
+      "name": "enp1s0.cloudprober-01.tkyk.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.30.20"
+        "10.33.30.195"
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "tkyk-mgmt.workbench-99.tkyk.rubykaigi.net.",
+      "name": "tkyk-mgmt.cloudprober-01.tkyk.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "enp1s0.workbench-99.tkyk.rubykaigi.net."
+        "enp1s0.cloudprober-01.tkyk.rubykaigi.net."
       ]
     },
     {
