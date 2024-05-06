@@ -1,4 +1,5 @@
-local commit = 'ae5a0d23fd293e7e1437519b816480cd01dba5f2';
+local unbound_commit = 'ae5a0d23fd293e7e1437519b816480cd01dba5f2';
+local dnscollector_commit = 'e3ecd76868c1eb85e1eb6eb53badd01fb3f21e56';
 
 local tls_cert_secret = 'cert-resolver-rubykaigi-net';
 
@@ -43,6 +44,33 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
           ],
           containers: [
             {
+              name: 'dnscollector',
+              resources: {
+                requests: {
+                  cpu: '5m',
+                  memory: '64M',
+                },
+              },
+              image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/dnscollector:%s', dnscollector_commit),
+              args: ['-config', '/etc/dnscollector/config.yml'],
+              ports: [
+                { name: 'dnscollector', containerPort: 8081 },
+              ],
+              env: [
+              ],
+              volumeMounts: [
+                { name: 'dnscollector-config', mountPath: '/etc/dnscollector', readOnly: true },
+              ],
+              readinessProbe: {
+                httpGet: { path: '/metrics', port: 8081, scheme: 'HTTP' },
+              },
+              livenessProbe: {
+                httpGet: { path: '/metrics', port: 8081, scheme: 'HTTP' },
+                failureThreshold: 2,
+                periodSeconds: 3,
+              },
+            },
+            {
               name: 'unbound',
               resources: {
                 requests: {
@@ -50,7 +78,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
                   memory: '128M',
                 },
               },
-              image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:%s', commit),
+              image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:%s', unbound_commit),
               args: ['-c', '/etc/unbound/unbound.conf', '-dd'],
               ports: [
                 { name: 'dns', containerPort: 10053, protocol: 'UDP' },
@@ -83,6 +111,12 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               name: 'unbound-config',
               configMap: {
                 name: 'unbound-config',
+              },
+            },
+            {
+              name: 'dnscollector-config',
+              configMap: {
+                name: 'dnscollector-config',
               },
             },
             {
