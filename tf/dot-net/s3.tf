@@ -85,6 +85,14 @@ resource "aws_s3_object" "sheet" {
   website_redirect = "https://docs.google.com/spreadsheets/d/1pilZBGOs2SutEbymZSzt1QgyBzJVxRTLgZgcccUDauk/edit#gid=900835928"
 }
 
+resource "aws_s3_object" "assets" {
+  bucket           = aws_s3_bucket.dot-net.id
+  key              = "assets"
+  content          = ""
+  cache_control    = "max-age=0"
+  website_redirect = "https://docs.google.com/spreadsheets/d/1u27Eoip0GkvMGRFlqIeH5UZoMCDoXeYDKQ0GOxe7OJ0/edit#gid=0"
+}
+
 resource "aws_s3_object" "ssh" {
   bucket           = aws_s3_bucket.dot-net.id
   key              = "ssh"
