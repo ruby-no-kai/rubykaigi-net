@@ -63,7 +63,7 @@ hosts.each do |host_ips|
     iface_fqdn = host.safe_iface.empty? ? nil : "#{host.safe_iface}.#{fqdn}"
     if iface_fqdn
       rrsets.push(RRSet.new(zone, iface_fqdn, v6 ? 'AAAA' : 'A', [host.ip]))
-      rrsets.push(RRSet.new(zone, "#{host.network}.#{fqdn}", 'CNAME', [iface_fqdn])) if host.network != 'ptp' && host.network != host.iface && !host.network.empty?
+      rrsets.push(RRSet.new(zone, "#{host.network}.#{fqdn}", 'CNAME', [iface_fqdn])) if host.network != 'link' && host.network != 'lo' && host.network != host.iface && !host.network.empty?
       rrsets.push(RRSet.new(zone, "#{rev}.", 'PTR', [iface_fqdn]))
     end
   end
