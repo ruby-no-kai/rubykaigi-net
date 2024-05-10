@@ -72,18 +72,21 @@ use(Himari::Middlewares::Client,
   id: '87a353c4-f268-4399-ade3-de8f06cbc172',
   secret_hash: 'f6d8f4422bb0e7c0443cbe85cc4ef4e1b5f23c7efe76dfe1d87f7de793a7082701df5a8d08f446bb04ec1e07520474cd', # sha384.hexdigest
   redirect_uris: %w(https://amc.rubykaigi.net/auth/himari/callback),
+  require_pkce: true,
 )
 use(Himari::Middlewares::Client,
   name: 'amc-local',
   id: 'd22e8760-2fc9-4e5e-ab71-12d6657dcc92',
   secret_hash: 'f6d8f4422bb0e7c0443cbe85cc4ef4e1b5f23c7efe76dfe1d87f7de793a7082701df5a8d08f446bb04ec1e07520474cd', # sha384.hexdigest
   redirect_uris: %w(http://localhost:3000/auth/himari/callback),
+  require_pkce: true,
 )
 use(Himari::Middlewares::Client,
   name: 'amc-local2',
   id: 'a94519af-8c51-4f8b-af3a-a58130415096',
   secret_hash: 'b46b2dc7a429ebce84ad257d3bfab6608c40556e0384b7317a9d595c26fe813737749810bdfde5c62766d2750145d3a8', # sha384.hexdigest
   redirect_uris: %w(http://127.0.0.1:16252/oauth2callback http://[::1]:16252/oauth2callback),
+  require_pkce: true,
 )
 use(Himari::Middlewares::Client,
   name: 'ops-lb',

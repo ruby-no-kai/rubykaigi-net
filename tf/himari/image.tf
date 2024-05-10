@@ -3,5 +3,5 @@ module "himari_image" {
   source = "github.com/sorah/himari//himari-aws/lambda/terraform/image"
 
   repository_name  = "himari-lambda"
-  source_image_tag = "1c37f536b036da859588fd96695d1d8073c413da"
+  source_image_tag = "95181cf11ca6d6a492210682c351e1d2dac8c1fa"
 }
