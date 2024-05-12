@@ -261,16 +261,6 @@
             "labels": {
               "severity": "critical"
             }
-          },
-          {
-            "alert": "HighPacketLossRate",
-            "annotations": {
-              "summary": "{{$labels.probe}} loss > 30%: {{$labels.instance}} -> {{$labels.dst}}"
-            },
-            "expr": "1 - rate(cloudprober_success[1m]) / rate(cloudprober_total[1m]) > 0.30",
-            "labels": {
-              "severity": "critical"
-            }
           }
         ]
       }

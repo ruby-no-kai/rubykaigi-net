@@ -22,6 +22,7 @@ local targets_hi = {
       'tun-01.itm.rubykaigi.net',
       'tun-01.venue.rubykaigi.net',
       'tun-02.venue.rubykaigi.net',
+      'tun-03.venue.rubykaigi.net',
       'nat-41.venue.rubykaigi.net',
       'nat-42.venue.rubykaigi.net',
 

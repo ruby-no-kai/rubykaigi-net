@@ -22,6 +22,7 @@
             // 'br-01.nrt.rubykaigi.net',
             // 'tun-01.venue.rubykaigi.net',
             // 'tun-02.venue.rubykaigi.net',
+            // 'tun-03.venue.rubykaigi.net',
             // 'gw-01.venue.rubykaigi.net',
             // 'gw-02.venue.rubykaigi.net',
             // 'csw-01.venue.rubykaigi.net',
