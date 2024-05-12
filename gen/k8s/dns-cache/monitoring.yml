@@ -69,7 +69,7 @@
         ],
         "params": {
           "module": [
-            "dns_udp_rubykaigi.org"
+            "dns_udp_kmc.gr.jp"
           ]
         },
         "port": "dns",
@@ -109,7 +109,7 @@
         ],
         "params": {
           "module": [
-            "dns_tcp_rubykaigi.org"
+            "dns_tcp_kmc.gr.jp"
           ]
         },
         "port": "dns",

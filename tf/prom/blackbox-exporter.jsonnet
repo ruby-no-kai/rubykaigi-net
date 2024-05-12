@@ -50,7 +50,7 @@ local dns_probe(domain) =
           },
         },
         dns_probe('rubykaigi.org'),  // internal
-        dns_probe('google.com'),  // external
+        dns_probe('kmc.gr.jp'),  // external
       ],
       {},
     ),

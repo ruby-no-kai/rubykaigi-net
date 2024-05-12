@@ -20,7 +20,7 @@ local blackboxExporterRelabelings = [
 local dnsProbes(domain) = [
   {
     port: 'dns',
-    params: { module: ['dns_udp_rubykaigi.org'] },
+    params: { module: [std.format('dns_udp_%s', domain)] },
     relabelings: blackboxExporterRelabelings,
     metricRelabelings: [
       {
@@ -35,7 +35,7 @@ local dnsProbes(domain) = [
   },
   {
     port: 'dns',
-    params: { module: ['dns_tcp_rubykaigi.org'] },
+    params: { module: [std.format('dns_tcp_%s', domain)] },
     relabelings: blackboxExporterRelabelings,
     metricRelabelings: [
       {
