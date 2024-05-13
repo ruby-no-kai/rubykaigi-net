@@ -78,6 +78,16 @@
             summary: '{{$labels.instance}}: BGP peer to {{$labels.jnxBgpM2PeerRemoteAddr}} is not established',
           },
         },
+        {
+          alert: 'NAPTCacheOverflow',
+          expr: 'rate(naptCacheOverflows[3m]) > 0',
+          labels: {
+            severity: 'warning',
+          },
+          annotations: {
+            summary: '{{$labels.instance}}: NAPT cache overflowed',
+          },
+        },
       ],
     },
   ],

@@ -286,6 +286,16 @@
             "labels": {
               "severity": "critical"
             }
+          },
+          {
+            "alert": "NAPTCacheOverflow",
+            "annotations": {
+              "summary": "{{$labels.instance}}: NAPT cache overflowed"
+            },
+            "expr": "rate(naptCacheOverflows[3m]) > 0",
+            "labels": {
+              "severity": "warning"
+            }
           }
         ]
       }
