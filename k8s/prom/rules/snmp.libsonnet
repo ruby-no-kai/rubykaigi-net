@@ -88,6 +88,17 @@
             summary: '{{$labels.instance}}: NAPT cache overflowed',
           },
         },
+        {
+          alert: 'WifiApTooManyUsers',
+          expr: 'bsnApIfNoOfUsers > 80',
+          'for': '5m',
+          labels: {
+            severity: 'warning',
+          },
+          annotations: {
+            summary: '{{$labels.bsnAPName}}.{{$labels.bsnAPIfSlotId}}: Associated users >80 for 5m',
+          },
+        },
       ],
     },
   ],

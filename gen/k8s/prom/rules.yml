@@ -296,6 +296,17 @@
             "labels": {
               "severity": "warning"
             }
+          },
+          {
+            "alert": "WifiApTooManyUsers",
+            "annotations": {
+              "summary": "{{$labels.bsnAPName}}.{{$labels.bsnAPIfSlotId}}: Associated users >80 for 5m"
+            },
+            "expr": "bsnApIfNoOfUsers > 80",
+            "for": "5m",
+            "labels": {
+              "severity": "warning"
+            }
           }
         ]
       }
