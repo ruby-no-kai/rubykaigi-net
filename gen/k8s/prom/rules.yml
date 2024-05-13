@@ -276,6 +276,16 @@
             "labels": {
               "severity": "critical"
             }
+          },
+          {
+            "alert": "BGPPeerDownJnx",
+            "annotations": {
+              "summary": "{{$labels.instance}}: BGP peer to {{$labels.jnxBgpM2PeerRemoteAddr}} is not established"
+            },
+            "expr": "jnxBgpM2PeerState{jnxBgpM2PeerState=\"established\"} < 1",
+            "labels": {
+              "severity": "critical"
+            }
           }
         ]
       }

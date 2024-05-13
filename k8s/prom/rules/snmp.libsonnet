@@ -68,6 +68,16 @@
             summary: '{{$labels.instance}}: BGP peer to {{$labels.bgpPeerRemoteAddr}} is not established',
           },
         },
+        {
+          alert: 'BGPPeerDownJnx',
+          expr: 'jnxBgpM2PeerState{jnxBgpM2PeerState="established"} < 1',
+          labels: {
+            severity: 'critical',
+          },
+          annotations: {
+            summary: '{{$labels.instance}}: BGP peer to {{$labels.jnxBgpM2PeerRemoteAddr}} is not established',
+          },
+        },
       ],
     },
   ],
