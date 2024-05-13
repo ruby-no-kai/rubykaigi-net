@@ -16,6 +16,7 @@
         import './rules/aws_nat.libsonnet',
         import './rules/aws_rds.libsonnet',
         import './rules/cisco_optics_rec.libsonnet',
+        import './rules/cloudprober.libsonnet',
         import './rules/cloudwatch.libsonnet',
         import './rules/kube.libsonnet',
         import './rules/snmp.libsonnet',
