@@ -106,6 +106,13 @@
       }
     },
     {
+      "name": "lo.tun-03.venue.rubykaigi.net",
+      "ip": "10.33.0.163",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
       "name": "management.wlc-01.venue.rubykaigi.net",
       "ip": "10.33.2.2",
       "labels": {
