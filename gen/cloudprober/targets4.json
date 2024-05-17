@@ -190,27 +190,6 @@
       }
     },
     {
-      "name": "enp1s0f0.mahiru-kmc.transit.rubykaigi.net",
-      "ip": "192.50.220.152",
-      "labels": {
-        "network": "public"
-      }
-    },
-    {
-      "name": "enx.rola-kmc.transit.rubykaigi.net",
-      "ip": "192.50.220.154",
-      "labels": {
-        "network": "public"
-      }
-    },
-    {
-      "name": "enx.yume-kmc.transit.rubykaigi.net",
-      "ip": "192.50.220.156",
-      "labels": {
-        "network": "public"
-      }
-    },
-    {
       "name": "ge-0-0-5.br-01.hnd.rubykaigi.net",
       "ip": "192.50.220.153",
       "labels": {

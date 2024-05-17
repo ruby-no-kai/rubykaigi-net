@@ -27,7 +27,7 @@ TARGETS = [
     zone: 'Z05547502KT77L0O53UWK',
     network: '192.50.220.0/24',
     targets: [
-      /\A[\w-]+\.\w+-kmc\./,
+      # /\A[\w-]+\.\w+-kmc\./,
       /\Age-0-0-5\.br-01\./,
     ],
     labels: {
