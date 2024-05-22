@@ -6,6 +6,7 @@ require 'omniauth'
 require 'omniauth-github'
 require 'rack'
 require 'rack/session/cookie'
+require 'rack/cors'
 require 'faraday'
 require 'base64'
 require 'apigatewayv2_rack'
@@ -106,6 +107,25 @@ use(Himari::Middlewares::Client,
   secret_hash: '20582c92c1a1f5c2fdbb1fb88978d8b8e2217b5ea2fc701071770c21dbd1105d9f9968f1e3f5a19f7ab626c559c71ffa', # sha384.hexdigest
   redirect_uris: %w(
     https://grafana.rubykaigi.net/login/generic_oauth
+  ),
+)
+
+use(Himari::Middlewares::Client,
+  name: 'signage-prd',
+  id: '13756142-32e6-4379-aad4-52f3501485bc',
+  # rka tf output -json prd |jq .frontend_config.user_pool_client_secret | ruby -rdigest -rjson -e 'puts Digest::SHA384.hexdigest(JSON.parse($<.read).chomp)'
+  secret_hash: '86be04b593685d35ab20804cacd0ed419bb74eea2aa539aa263c576b8509ab0b49a29b2b69b12bc03538184ad8f793f7',
+  redirect_uris: %w(
+    https://rk-signage-prd.auth.ap-northeast-1.amazoncognito.com/oauth2/idpresponse
+  ),
+)
+use(Himari::Middlewares::Client,
+  name: 'signage-dev',
+  id: '689e0e73-c496-4269-b06c-28ee7d932cee',
+  # terraform output dev_oidc_client_secret | ruby -rdigest -rjson -e 'puts Digest::SHA384.hexdigest(JSON.parse($<.read).chomp)'
+  secret_hash: '963980c42c674de2397aab655a3e51eaa02ca572ea5721afff54012974c9c333b6ea1babd828d75388681260b9467aed',
+  redirect_uris: %w(
+    https://rk-signage-dev.auth.ap-northeast-1.amazoncognito.com/oauth2/idpresponse
   ),
 )
 
@@ -232,7 +252,7 @@ use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, dec
   if groups.include?('ruby-no-kai/rk-noc')
     roles.push('arn:aws:iam::005216166247:role/NocAdmin') 
   end
-  if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk23-orgz')
+  if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk24-orgz')
     roles.push('arn:aws:iam::005216166247:role/KaigiStaff')
   end
 
@@ -249,6 +269,34 @@ use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, dec
 
   decision.skip!('no roles assigned')
 end
+
+use(Himari::Middlewares::AuthorizationRule, name: 'signage-app') do |context, decision|
+  next decision.skip!('client not in scope') unless context.client.name == 'signage-dev' || context.client.name == 'signage-prd'
+  next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
+
+  groups = decision.claims.dig(:groups)
+  role = []
+
+  if groups.include?('ruby-no-kai/rk-noc')
+    role ||= :admin
+  end
+  if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk24-orgz')
+    role ||= :admin
+  end
+
+  decision.claims[:role] = role
+  decision.allowed_claims.push(:role)
+
+  if role
+    decision.lifetime.access_token = 3600 * 20
+    decision.lifetime.id_token = 3600 * 20
+    next decision.allow!
+  end
+
+  decision.skip!('no roles assigned')
+end
+
+
 
 run Himari::App
 
