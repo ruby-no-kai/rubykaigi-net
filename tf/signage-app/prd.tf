@@ -1,6 +1,5 @@
 module "prd" {
-  source = "/home/sorah/git/github.com/ruby-no-kai/signage-app/tf"
-  #source = "github.com/sorah/himari//himari-aws/lambda/terraform/functions"
+  source = "github.com/ruby-no-kai/signage-app//tf"
 
   name_prefix     = "signage-prd"
   iam_role_prefix = "SignagePrd"
