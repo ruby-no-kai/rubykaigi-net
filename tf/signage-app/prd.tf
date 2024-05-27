@@ -18,6 +18,8 @@ module "prd" {
   cloudfront_log_bucket = "rk-aws-logs.s3.amazonaws.com"
   cloudfront_log_prefix = "cf/signage.rubykaigi.org/"
 
+  github_actions_subs = ["repo:ruby-no-kai/signage-app:environment:prd"]
+
   captioner_enabled = true
   captioner_params = {
     vpc_id                            = data.aws_vpc.main.id
