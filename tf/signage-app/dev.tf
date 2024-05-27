@@ -1,5 +1,6 @@
 module "dev" {
   source = "github.com/ruby-no-kai/signage-app//tf"
+  #source = "/home/sorah/git/github.com/ruby-no-kai/signage-app/tf"
 
   name_prefix     = "signage-dev"
   iam_role_prefix = "SignageDev"

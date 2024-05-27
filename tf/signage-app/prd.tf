@@ -1,5 +1,6 @@
 module "prd" {
   source = "github.com/ruby-no-kai/signage-app//tf"
+  #source = "/home/sorah/git/github.com/ruby-no-kai/signage-app/tf"
 
   name_prefix     = "signage-prd"
   iam_role_prefix = "SignagePrd"
@@ -19,7 +20,7 @@ module "prd" {
 
   github_actions_subs = ["repo:ruby-no-kai/signage-app:environment:prd"]
 
-  captioner_enabled = true
+  captioner_enabled = false
   captioner_params = {
     vpc_id                            = data.aws_vpc.main.id
     ec2_security_group_ids            = [data.aws_security_group.default.id, aws_security_group.captioner.id]
@@ -76,13 +77,13 @@ resource "random_id" "prd_client_secret" {
 #}
 
 resource "aws_route53_record" "prd-captioner" {
-  for_each = local.rubykaigi_net_zones
-  zone_id  = each.value
+  for_each = { for zone in local.rubykaigi_net_zones : zone => module.prd.captioner_ip_address if module.prd.captioner_ip_address != null }
+  zone_id  = each.key
   name     = "captioner.apne1.rubykaigi.net."
   type     = "A"
   ttl      = 60
   records = [
-    module.prd.captioner_ip_address,
+    each.value,
   ]
 }
 
