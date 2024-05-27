@@ -51,6 +51,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "acm:*",
       "apigateway:*",
       "application-autoscaling:*",
+      "apprunner:*",
       "autoscaling:*",
       "chime:*",
       "cloudfront:*",
