@@ -51,11 +51,14 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "acm:*",
       "apigateway:*",
       "application-autoscaling:*",
+      "apprunner:*",
       "autoscaling:*",
       "chime:*",
       "cloudfront:*",
       "cloudwatch:*",
       "codebuild:*",
+      "cognito-identity:*",
+      "cognito-idp:*",
       "directconnect:*",
       "dynamodb:*",
       "ec2-instance-connect:*",
@@ -65,9 +68,10 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "eks:*",
       "elasticloadbalancing:*",
       "globalaccelerator:*",
+      "iot:*",
       "ivs:*",
-      "kms:*", # XXX: too excessive
-      "lambda:*",
+      "kms:*",    # XXX: too excessive
+      "lambda:*", # XXX: too excessive
       "logs:*",
       "medialive:*",
       "rds:*",
@@ -84,7 +88,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "s3:ListAllMyBuckets",
       "s3:GetBucketLocation",
 
-      "secretsmanager:*",
+      "secretsmanager:*", # XXX: too excessive
 
       # IAMReadOnlyAccess
       "iam:GenerateCredentialReport",
@@ -137,6 +141,10 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "arn:aws:s3:::rubykaigi-public/*",
       "arn:aws:s3:::rk-tftp",
       "arn:aws:s3:::rk-tftp/*",
+      "arn:aws:s3:::signage-dev-pub",
+      "arn:aws:s3:::signage-dev-pub/*",
+      "arn:aws:s3:::signage-prd-pub",
+      "arn:aws:s3:::signage-prd-pub/*",
     ]
   }
 
