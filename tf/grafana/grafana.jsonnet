@@ -7,6 +7,22 @@ function(args)
         memory: '64M',
       },
     },
+    topologySpreadConstraints: [
+      {
+        labelSelector: {
+          matchLabels: {
+            'app.kubernetes.io/name': 'grafana',
+            'app.kubernetes.io/instance': 'grafana',
+          },
+        },
+        matchLabelKeys: [
+          'pod-template-hash',
+        ],
+        maxSkew: 1,
+        topologyKey: 'topology.kubernetes.io/zone',
+        whenUnsatisfiable: 'ScheduleAnyway',
+      },
+    ],
     plugins: [
       'knightss27-weathermap-panel',
     ],
