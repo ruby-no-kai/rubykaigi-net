@@ -1,0 +1,88 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "labels": {
+      "rubykaigi.org/app": "v6test"
+    },
+    "name": "v6test"
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "matchLabels": {
+        "rubykaigi.org/app": "v6test"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "rubykaigi.org/app": "v6test"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "command": [
+              "/bin/bash",
+              "-xe",
+              "-c",
+              "if ! ip link show dev vxlan-66; then\n  underlay_iface=eth0\n  local_addr=$(ip -br addr show \"$underlay_iface\" | awk 'match($0, /10\\.33\\.\\d+\\.\\d+/) { print substr($0, RSTART, RLENGTH) }')\n  ip link add vxlan-66 type vxlan id 66 local \"$local_addr\" dstport 4789 nolearning dev \"$underlay_iface\"\n  ip link add br-66 type bridge stp_state 0\n  ip link set up br-66\n  ip link set up vxlan-66 master br-66\n  ip addr add 2001:df0:8500:ca60::\"$local_addr\"/64 dev br-66\n  ip route add default via 2001:df0:8500:ca60::a21:88b6\nfi\n\nln -sf /config/frr/frr.conf /etc/frr/\nsed -i 's|bgpd=no|bgpd=yes|' /etc/frr/daemons\nexec /usr/lib/frr/docker-start\n"
+            ],
+            "image": "quay.io/frrouting/frr:9.1.0",
+            "name": "frr",
+            "securityContext": {
+              "capabilities": {
+                "add": [
+                  "SYS_ADMIN",
+                  "NET_ADMIN"
+                ]
+              }
+            },
+            "volumeMounts": [
+              {
+                "mountPath": "/config/frr",
+                "name": "frr-config",
+                "readOnly": false
+              }
+            ]
+          },
+          {
+            "command": [
+              "/bin/sleep",
+              "1d"
+            ],
+            "image": "public.ecr.aws/docker/library/debian:stable",
+            "name": "v6test",
+            "securityContext": {
+              "capabilities": {
+                "add": [
+                  "NET_ADMIN"
+                ]
+              }
+            }
+          }
+        ],
+        "nodeSelector": {
+          "rubykaigi.org/node-group": "onpremises"
+        },
+        "tolerations": [
+          {
+            "effect": "NoSchedule",
+            "key": "dedicated",
+            "value": "onpremises"
+          }
+        ],
+        "volumes": [
+          {
+            "configMap": {
+              "name": "v6test-frr-config"
+            },
+            "name": "frr-config"
+          }
+        ]
+      }
+    }
+  }
+}
+---

@@ -1,0 +1,9 @@
+[NetDev]
+Name=tun-nrt
+Kind=ip6tnl
+
+[Tunnel]
+Mode=ip6ip6
+Local=dhcp6
+Remote=2001:df0:8500:ca00::2
+EncapsulationLimit=none

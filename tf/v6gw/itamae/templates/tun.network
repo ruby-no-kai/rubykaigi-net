@@ -1,0 +1,7 @@
+[Match]
+Name=tun-*
+
+[Network]
+VRF=vrf-v6gw
+IPForward=ipv6
+KeepConfiguration=static
