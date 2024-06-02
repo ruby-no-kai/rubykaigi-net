@@ -19,4 +19,14 @@
       'envoy.json': std.manifestJson(import './config/envoy.libsonnet'),
     },
   },
+  {
+    apiVersion: 'v1',
+    kind: 'ConfigMap',
+    metadata: {
+      name: 'dnscollector-config',
+    },
+    data: {
+      'config.yml': std.manifestJson(import './config/dnscollector.libsonnet'),
+    },
+  },
 ]

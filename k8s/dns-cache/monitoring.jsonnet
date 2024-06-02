@@ -70,6 +70,9 @@ local dnsProbes(domain) = [
         {
           port: 'prom',
         },
+        {
+          port: 'dnscollector',
+        },
       ],
     },
   },
