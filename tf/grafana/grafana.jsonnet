@@ -3,8 +3,8 @@ function(args)
     replicas: 2,
     resources: {
       requests: {
-        cpu: '5m',
-        memory: '64M',
+        cpu: '256m',
+        memory: '256M',
       },
     },
     topologySpreadConstraints: [
