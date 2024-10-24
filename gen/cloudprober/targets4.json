@@ -127,36 +127,22 @@
       }
     },
     {
-      "name": "vlan1000.es-lb1-01.venue.rubykaigi.net",
-      "ip": "10.33.100.115",
+      "name": "vlan1000.as-01.venue.rubykaigi.net",
+      "ip": "10.33.100.2",
       "labels": {
         "network": "private"
       }
     },
     {
-      "name": "vlan1000.es-lb1-02.venue.rubykaigi.net",
+      "name": "vlan1000.es-re1-01.venue.rubykaigi.net",
+      "ip": "10.33.100.110",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "vlan1000.es-ro6-01.venue.rubykaigi.net",
       "ip": "10.33.100.116",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "vlan1000.es-lb2-01.venue.rubykaigi.net",
-      "ip": "10.33.100.120",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "vlan1000.es-lb3-01.venue.rubykaigi.net",
-      "ip": "10.33.100.125",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "vlan1000.es-lb4-01.venue.rubykaigi.net",
-      "ip": "10.33.100.130",
       "labels": {
         "network": "private"
       }
@@ -178,13 +164,6 @@
     {
       "name": "vlan1000.es-trb-01.venue.rubykaigi.net",
       "ip": "10.33.100.105",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "vlan1000.es-trc-01.venue.rubykaigi.net",
-      "ip": "10.33.100.110",
       "labels": {
         "network": "private"
       }
