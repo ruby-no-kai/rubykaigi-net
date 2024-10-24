@@ -4784,7 +4784,7 @@
     },
     {
       "zone": "ptr-10",
-      "name": "111.100.33.10.in-addr.arpa.",
+      "name": "116.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
         "es-ro6-01.venue.rubykaigi.net."
@@ -4795,7 +4795,7 @@
       "name": "es-ro6-01.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.111"
+        "10.33.100.116"
       ]
     },
     {
@@ -4803,7 +4803,7 @@
       "name": "es-ro6-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.111"
+        "10.33.100.116"
       ]
     },
     {
@@ -4817,7 +4817,7 @@
       "name": "vlan1000.es-ro6-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.111"
+        "10.33.100.116"
       ]
     },
     {
@@ -4826,6 +4826,52 @@
       "type": "CNAME",
       "records": [
         "vlan1000.es-ro6-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "125.100.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "es-ro1-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-ro1-01.venue.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.125"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-ro1-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.125"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "es-ro1-01-venue.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "es-ro1-01.venue.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "vlan1000.es-ro1-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.125"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "mgmt.es-ro1-01.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "vlan1000.es-ro1-01.venue.rubykaigi.net."
       ]
     },
     {
