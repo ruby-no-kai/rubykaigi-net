@@ -30,6 +30,7 @@ RRSet = Struct.new(:zone, :name, :type, :records, :primary)
 rrsets = []
 hosts.each do |host_ips|
   host_ips.each do |host|
+    p host
     v6 = host.ip.include?(?:)
     ip = IPAddr.new(host.ip)
 

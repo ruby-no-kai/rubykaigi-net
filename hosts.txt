@@ -36,7 +36,7 @@ tkyk	lo	10.33.0.0/24	2001:df0:8500:ca00::201	er-99	lo
 tkyk	lo	10.33.0.0/24	10.33.0.202	cs-99	lo
 tkyk	lo	10.33.0.0/24	2001:df0:8500:ca00::202	cs-99	lo
 tkyk	lo	10.33.0.0/24	10.33.0.204	nat-49	lo
-tkyk	lo	10.33.0.0/24	10.33.0.205	nat-69	jool
+					
 tkyk	lo	10.33.0.0/24	10.33.0.206	nat-69	lo
 tkyk	lo	10.33.0.0/24	2001:df0:8500:ca00::206	nat-69	lo
 					
@@ -47,20 +47,23 @@ venue	air	10.33.2.0/24	2001:df0:8500:cab1::a	cs-01	irb.200
 					
 venue	mgmt	10.33.100.0/24	10.33.100.254	cs-01	irb.1000
 venue	mgmt	10.33.100.0/24	2001:df0:8500:cab0::1	cs-01	irb.1000
+venue	mgmt	10.33.100.0/24	10.33.100.2	as-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.10	wlc-01	svc
 venue	mgmt	10.33.100.0/24	10.33.100.100	es-tra-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.101	es-tra-02	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.105	es-trb-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.110	es-trc-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.115	es-lb1-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.116	es-lb1-02	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.120	es-lb2-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.125	es-lb3-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.130	es-lb4-01	vlan1000
-					
+venue	mgmt	10.33.100.0/24	10.33.100.110	es-re1-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.111	es-ro6-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.116		vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.120		vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.125		vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.130		vlan1000
 					
 venue	mgmt	10.33.100.0/24	10.33.100.195	cloudprober-01	enp3s0
 					
+venue	nat64-private-outer	10.33.40.0/24	10.33.40.162	nat-61	nat-private
+venue	nat64-private-outer	10.33.40.0/24	10.33.40.163	nat-62	nat-private
+tkyk	nat64-private-outer	10.33.40.0/24	10.33.40.64	nat-69	nat-private
 					
 					
 venue	life	10.33.1.0/24	10.33.1.10	printer	eth
@@ -298,6 +301,16 @@ tkyk	link	10.33.22./31	2001:df0:8500:ca22:222::b	cs-99	gi0/12
 hnd	link	10.33.22.0/24	10.33.22.240	br-01	ip-0/0/0.0
 apne1	link	10.33.22.0/24	10.33.22.241	acme-responder	tun
 					
+					
+hnd	link		2001:df0:8500:ca22:6611::a	br-01	ip-0/0/0.661
+apne1	link		2001:df0:8500:ca22:6611::b	v6gw-c01	ip-0/0/0.661
+hnd	link		2001:df0:8500:ca22:6621::a	br-01	ip-0/0/0.662
+apne1	link		2001:df0:8500:ca22:6621::b	v6gw-d01	ip-0/0/0.662
+nrt	link		2001:df0:8500:ca22:6612::a	br-01	ip-0/0/0.661
+apne1	link		2001:df0:8500:ca22:6612::b	v6gw-c01	ip-0/0/0.661
+nrt	link		2001:df0:8500:ca22:6622::a	br-01	ip-0/0/0.662
+apne1	link		2001:df0:8500:ca22:6622::b	v6gw-d01	ip-0/0/0.662
+					
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.10	es-99	vlan30
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.15	wlc-99	mgmt
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.195	cloudprober-01	enp1s0
@@ -326,8 +339,8 @@ apne1	pa	192.50.220.152/29	192.50.220.159	nat-0a2abe0a9929d85d5	nat-onpremises-d
 					
 venue	pa	192.50.220.160/29	192.50.220.160	nat-41	gi0.2-nat-1
 venue	pa	192.50.220.160/29	192.50.220.161	nat-42	gi0.2-nat-1
-venue	pa	192.50.220.160/29	192.50.220.162	nat-61	lo
-venue	pa	192.50.220.160/29	192.50.220.163	nat-62	lo
+venue	pa	192.50.220.160/29	192.50.220.162	nat-61	nat
+venue	pa	192.50.220.160/29	192.50.220.163	nat-62	nat
 apne1	pa	192.50.220.160/29	192.50.220.164	resolver	az-c
 apne1	pa	192.50.220.160/29	192.50.220.165	resolver	az-d
 apne1	pa	192.50.220.160/29	2001:df0:8500:ca6d:53::c	resolver	az-c
