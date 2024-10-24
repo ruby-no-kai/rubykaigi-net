@@ -1,13 +1,11 @@
 local esws = [
+  'as-01.venue.rubykaigi.net',
   'es-tra-01.venue.rubykaigi.net',
   'es-tra-02.venue.rubykaigi.net',
   'es-trb-01.venue.rubykaigi.net',
-  'es-trc-01.venue.rubykaigi.net',
-  'es-lb1-01.venue.rubykaigi.net',
-  'es-lb1-02.venue.rubykaigi.net',
-  'es-lb2-01.venue.rubykaigi.net',
-  'es-lb3-01.venue.rubykaigi.net',
-  'es-lb4-01.venue.rubykaigi.net',
+  'es-ro1-01.venue.rubykaigi.net',
+  'es-ro6-01.venue.rubykaigi.net',
+  'es-re1-01.venue.rubykaigi.net',
 
   'cs-99.tkyk.rubykaigi.net',
 ];
@@ -19,10 +17,10 @@ local targets_hi = {
     hosts: [
       'tun-01.hnd.rubykaigi.net',
       'tun-01.nrt.rubykaigi.net',
-      'tun-01.itm.rubykaigi.net',
+      // 'tun-01.itm.rubykaigi.net',
       'tun-01.venue.rubykaigi.net',
       'tun-02.venue.rubykaigi.net',
-      'tun-03.venue.rubykaigi.net',
+      // 'tun-03.venue.rubykaigi.net',
       'nat-41.venue.rubykaigi.net',
       'nat-42.venue.rubykaigi.net',
 
