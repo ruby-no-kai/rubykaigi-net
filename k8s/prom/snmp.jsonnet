@@ -62,7 +62,7 @@ local targets_lo = {
     hosts: [
       'br-01.hnd.rubykaigi.net',
       'br-01.nrt.rubykaigi.net',
-      'br-01.itm.rubykaigi.net',
+      // 'br-01.itm.rubykaigi.net',
 
       'er-01.venue.rubykaigi.net',
       'er-02.venue.rubykaigi.net',
