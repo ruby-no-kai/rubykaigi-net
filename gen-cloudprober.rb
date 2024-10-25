@@ -14,7 +14,7 @@ TARGETS = [
     zone: 'Z05547502KT77L0O53UWK',
     network: '10.33.0.0/16',
     targets: [
-      /\Alo\.[\w-]+\.(?:hnd|nrt|itm|venue)\./,
+      /\Alo\.[\w-]+\.(?:hnd|nrt|venue)\./,
       /\Amanagement\.wlc-[\w-]+\.venue\./,
       /\Airb-1000\.cs-[\w-]+\.venue\./,
       /\Avlan1000\.[ae]s-[\w-]+\.venue\./,
@@ -28,7 +28,7 @@ TARGETS = [
     network: '192.50.220.0/24',
     targets: [
       # /\A[\w-]+\.\w+-kmc\./,
-      /\Age-0-0-5\.br-01\./,
+      # /\Age-0-0-5\.br-01\./,
     ],
     labels: {
       network: 'public',
@@ -92,6 +92,7 @@ TARGETS.each do |h|
       rrsets.each do |rrset|
         name = rrset.name.sub(/.\z/, '')
         next unless t === name
+        next if /nat-6\d|tun-03/ === name  ## XXX: Kaigi on Rails
 
         if rrset.resource_records.empty?
           warn "#{name} has no static #{rrtype} records"
