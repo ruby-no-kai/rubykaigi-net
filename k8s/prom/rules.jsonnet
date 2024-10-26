@@ -18,6 +18,7 @@
         import './rules/cisco_optics_rec.libsonnet',
         import './rules/cloudprober.libsonnet',
         import './rules/cloudwatch.libsonnet',
+        import './rules/dns.libsonnet',
         import './rules/kube.libsonnet',
         import './rules/snmp.libsonnet',
       ],
