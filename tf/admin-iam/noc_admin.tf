@@ -119,6 +119,9 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "resource-explorer-2:BatchGet*",
       "resource-explorer-2:List*",
       "resource-explorer-2:Search",
+
+      # support
+      "support:*",
     ]
     resources = ["*"]
   }
