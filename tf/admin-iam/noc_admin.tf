@@ -67,6 +67,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "ecs:*",
       "eks:*",
       "elasticloadbalancing:*",
+      "events:*", # XXX: too excessive
       "globalaccelerator:*",
       "iot:*",
       "ivs:*",
@@ -77,6 +78,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "rds:*",
       "route53:*",
       "ssm:*",
+      "sqs:*", # XXX: too excessive
       "transcribe:*",
 
       # k8s load-balancer-controller
