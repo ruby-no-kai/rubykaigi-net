@@ -7,6 +7,7 @@ template 'rubykaigi.net-common' do
   ignore '_dmarc.rubykaigi.net.'
 
   ignore 'takeout-app-origin.rubykaigi.net.'
+  ignore 'rko-router.rubykaigi.net.' # ruby-no-kai/rubykaigi.org//tf
 
   ignore(/_acme-challenge/)
   ignore '_66c28117835ab26e5f882e6866d2e00a.rubykaigi.net.'
