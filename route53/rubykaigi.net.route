@@ -49,6 +49,8 @@ template 'rubykaigi.net-common' do
   ignore 'signage-dev-cf.rubykaigi.net'
   ignore 'signage-prd-cf.rubykaigi.net'
 
+  ignore_under 'v6gw.apne1.rubykaigi.net'
+
   # external-dns ni sitai
   rrset 'tftp.rubykaigi.net', 'CNAME' do
     ttl 60

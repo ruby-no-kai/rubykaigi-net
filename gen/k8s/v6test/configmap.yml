@@ -1,0 +1,11 @@
+{
+  "apiVersion": "v1",
+  "data": {
+    "frr.conf": "!\nfrr version 9.1\nfrr defaults traditional\nservice integrated-vtysh-config\n!\nrouter bgp 64567\n no bgp default ipv4-unicast\n bgp disable-ebgp-connected-route-check\n neighbor v6gw peer-group\n neighbor v6gw remote-as 64566\n neighbor v6gw ebgp-multihop\n neighbor v6gw timers 10 30\n neighbor 10.33.136.182 peer-group v6gw\n neighbor 10.33.159.57 peer-group v6gw\n !\n address-family l2vpn evpn\n  neighbor v6gw activate\n  neighbor v6gw route-map evpn in\n  neighbor v6gw route-map evpn out\n  advertise-all-vni\n exit-address-family\nexit\n!\nroute-map evpn permit 10\n match evpn vni 66\nexit\n!\nend\n"
+  },
+  "kind": "ConfigMap",
+  "metadata": {
+    "name": "v6test-frr-config"
+  }
+}
+---
