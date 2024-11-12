@@ -24,6 +24,52 @@
         "containers": [
           {
             "args": [
+              "-config",
+              "/etc/dnscollector/config.yml"
+            ],
+            "env": [
+
+            ],
+            "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/dnscollector:e3ecd76868c1eb85e1eb6eb53badd01fb3f21e56",
+            "livenessProbe": {
+              "failureThreshold": 2,
+              "httpGet": {
+                "path": "/metrics",
+                "port": 8081,
+                "scheme": "HTTP"
+              },
+              "periodSeconds": 3
+            },
+            "name": "dnscollector",
+            "ports": [
+              {
+                "containerPort": 8081,
+                "name": "dnscollector"
+              }
+            ],
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/metrics",
+                "port": 8081,
+                "scheme": "HTTP"
+              }
+            },
+            "resources": {
+              "requests": {
+                "cpu": "5m",
+                "memory": "64M"
+              }
+            },
+            "volumeMounts": [
+              {
+                "mountPath": "/etc/dnscollector",
+                "name": "dnscollector-config",
+                "readOnly": true
+              }
+            ]
+          },
+          {
+            "args": [
               "-c",
               "/etc/unbound/unbound.conf",
               "-dd"
@@ -133,6 +179,12 @@
               "name": "unbound-config"
             },
             "name": "unbound-config"
+          },
+          {
+            "configMap": {
+              "name": "dnscollector-config"
+            },
+            "name": "dnscollector-config"
           },
           {
             "name": "tls-cert",
