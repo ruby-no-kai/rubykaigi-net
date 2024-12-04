@@ -248,19 +248,22 @@ use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, dec
 
   if groups.include?('ruby-no-kai/rk-aws-admin')
     roles.push('arn:aws:iam::005216166247:role/OrgzAdmin') 
+    roles.push('arn:aws:iam::005216166247:role/SponsorAppDev') 
   end
   if groups.include?('ruby-no-kai/rk-noc')
     roles.push('arn:aws:iam::005216166247:role/NocAdmin') 
+    roles.push('arn:aws:iam::005216166247:role/SponsorAppDev') 
   end
   if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk24-orgz')
     roles.push('arn:aws:iam::005216166247:role/KaigiStaff')
+    roles.push('arn:aws:iam::005216166247:role/SponsorAppDev') 
   end
 
   if groups.include?('kaigionrails/infra')
     roles.push('arn:aws:iam::861452569180:role/OrganizationAccountAccessRole')
   end
 
-  decision.claims[:roles] = roles
+  decision.claims[:roles] = roles.uniq
   decision.allowed_claims.push(:roles)
 
   unless roles.empty?
