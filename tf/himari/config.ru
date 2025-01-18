@@ -240,7 +240,7 @@ use(Himari::Middlewares::AuthorizationRule, name: 'grafana') do |context, decisi
 end
 
 use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, decision|
-  next decision.skip!('client not in scope') unless context.client.name == 'amc' || context.client.name == 'amc-local' || context.client.name == 'amc-local2'
+  next decision.skip!('client not in scope') unless context.client.name == 'amc' || context.client.name == 'amc-local' || context.client.name == 'amc-mairu'
   next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
 
   groups = decision.claims.dig(:groups)
