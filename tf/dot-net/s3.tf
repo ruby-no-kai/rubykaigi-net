@@ -65,7 +65,7 @@ resource "aws_s3_object" "drive" {
   key              = "drive"
   content          = ""
   cache_control    = "max-age=0"
-  website_redirect = "https://drive.google.com/drive/folders/1rD0AougwZ5ttN87DUpGMaIJUl-LDC4z8?usp=drive_link"
+  website_redirect = "https://drive.google.com/drive/folders/1YHmS57Ne1_aqK2yXdIUnTTY7ODLIgwrE?usp=drive_link"
 }
 
 resource "aws_s3_object" "kanban" {
@@ -73,7 +73,7 @@ resource "aws_s3_object" "kanban" {
   key              = "kanban"
   content          = ""
   cache_control    = "max-age=0"
-  website_redirect = "https://github.com/orgs/ruby-no-kai/projects/6"
+  website_redirect = "https://github.com/orgs/ruby-no-kai/projects/13/views/1"
 }
 
 resource "aws_s3_object" "sheet" {

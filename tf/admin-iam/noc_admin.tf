@@ -150,6 +150,8 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "arn:aws:s3:::signage-dev-pub/*",
       "arn:aws:s3:::signage-prd-pub",
       "arn:aws:s3:::signage-prd-pub/*",
+      "arn:aws:s3:::rubykaigi-dot-net",
+      "arn:aws:s3:::rubykaigi-dot-net/*",
     ]
   }
 
