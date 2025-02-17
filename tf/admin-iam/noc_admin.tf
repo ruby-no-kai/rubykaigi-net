@@ -81,6 +81,11 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "sqs:*", # XXX: too excessive
       "transcribe:*",
 
+      "bedrock:InvokeModel",
+      "bedrock:InvokeModelWithResponseStream",
+      "bedrock:List*",
+      "bedrock:Get*",
+
       # k8s load-balancer-controller
       "cognito-idp:*",
       "waf-regional:*",
