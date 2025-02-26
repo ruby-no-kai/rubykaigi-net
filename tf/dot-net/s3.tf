@@ -82,7 +82,7 @@ resource "aws_s3_object" "sheet" {
   key              = each.value
   content          = ""
   cache_control    = "max-age=0"
-  website_redirect = "https://docs.google.com/spreadsheets/d/1pilZBGOs2SutEbymZSzt1QgyBzJVxRTLgZgcccUDauk/edit#gid=900835928"
+  website_redirect = "https://docs.google.com/spreadsheets/d/1VW_pFGfJyMiygNkj0xHJuHIj_bot1F2aa8HB7l2RpWY/edit?gid=900835928#gid=900835928"
 }
 
 resource "aws_s3_object" "assets" {
