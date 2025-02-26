@@ -1,3 +1,5 @@
+# See //tf/bastion for actual EC2 instance
+
 resource "aws_iam_role" "bastion" {
   name                 = "NwBastion"
   description          = "rubykaigi-nw aws_iam_role.bastion"
@@ -48,3 +50,16 @@ resource "aws_security_group_rule" "bastion_iperf3" {
   cidr_blocks       = ["0.0.0.0/0"]
   ipv6_cidr_blocks  = ["::/0"]
 }
+
+# for eic.tf
+resource "aws_security_group_rule" "bastion_egress" {
+  for_each          = toset(["22", "9922", "3389", "3306", "5432"])
+  security_group_id = aws_security_group.bastion.id
+  type              = "egress"
+  from_port         = tonumber(each.value)
+  to_port           = tonumber(each.value)
+  protocol          = "tcp"
+  cidr_blocks       = ["10.33.0.0/16"]
+  ipv6_cidr_blocks  = ["2001:df0:8500:ca00::/56", aws_vpc.main.ipv6_cidr_block]
+}
+
