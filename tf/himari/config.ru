@@ -86,7 +86,7 @@ use(Himari::Middlewares::Client,
   name: 'amc-mairu',
   id: 'a94519af-8c51-4f8b-af3a-a58130415096',
   secret_hash: 'b46b2dc7a429ebce84ad257d3bfab6608c40556e0384b7317a9d595c26fe813737749810bdfde5c62766d2750145d3a8', # sha384.hexdigest
-  redirect_uris: %w(http://127.0.0.1:[0-9]+/oauth2callback http://[::1]:[0-9]+/oauth2callback),
+  redirect_uris: ['http://127.0.0.1:16252/oauth2callback', 'http://127.0.0.1:16253/oauth2callback', %r{\Ahttp://127\.0\.0\.1:[0-9]+/oauth2callback\z},%r{\Ahttp://\[::1\]:[0-9]+/oauth2callback\z}],
   require_pkce: true,
 )
 use(Himari::Middlewares::Client,
