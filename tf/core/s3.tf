@@ -18,6 +18,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "infra" {
 
   bucket = aws_s3_bucket.infra.id
 
+  transition_default_minimum_object_size = "all_storage_classes_128K"
+
   rule {
     id     = "config"
     status = "Enabled"
