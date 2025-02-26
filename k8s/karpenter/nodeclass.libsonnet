@@ -29,7 +29,7 @@
     instanceProfile: 'NetEksKarpenterNode-rknet',
 
     tags: {
-      Project: 'rk24net',
+      Project: 'rk25net',
       Component: 'k8s',
       Role: 'kubelet',
       KarpenterNodeClass: $.metadata.name,

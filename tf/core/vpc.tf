@@ -315,7 +315,7 @@ resource "aws_eip" "nat-c" {
   domain = "vpc"
   tags = {
     Name    = "nat-c"
-    Project = "rk24net"
+    Project = "rk25net"
   }
 }
 resource "aws_nat_gateway" "nat-c" {
@@ -324,7 +324,7 @@ resource "aws_nat_gateway" "nat-c" {
   subnet_id     = aws_subnet.c_public.id
   tags = {
     Name    = "nat-c"
-    Project = "rk24net"
+    Project = "rk25net"
   }
 }
 resource "aws_route" "private_nat" {
@@ -357,7 +357,7 @@ resource "aws_eip" "nat-d" {
   domain = "vpc"
   tags = {
     Name      = "nat-d"
-    Project   = "rk24net"
+    Project   = "rk25net"
     Component = "core/vpc"
   }
 }
@@ -367,7 +367,7 @@ resource "aws_nat_gateway" "nat-d" {
   subnet_id     = aws_subnet.d_public.id
   tags = {
     Name      = "nat-d"
-    Project   = "rk24net"
+    Project   = "rk25net"
     Component = "core/vpc"
   }
 }
@@ -391,7 +391,7 @@ resource "aws_nat_gateway" "onpremises-c" {
   connectivity_type = "private"
   tags = {
     Name      = "onpremises-c"
-    Project   = "rk24net"
+    Project   = "rk25net"
     Component = "core/vpc"
   }
 }
@@ -401,7 +401,7 @@ resource "aws_nat_gateway" "onpremises-d" {
   connectivity_type = "private"
   tags = {
     Name      = "onpremises-d"
-    Project   = "rk24net"
+    Project   = "rk25net"
     Component = "core/vpc"
   }
 }

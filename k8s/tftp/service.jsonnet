@@ -11,7 +11,7 @@
       'service.beta.kubernetes.io/aws-load-balancer-healthcheck-port': '8080',
       'service.beta.kubernetes.io/aws-load-balancer-healthcheck-path': '/ping',
       'service.beta.kubernetes.io/aws-load-balancer-target-group-attributes': 'deregistration_delay.timeout_seconds=10,deregistration_delay.connection_termination.enabled=true',
-      'service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags': 'Project=rk24net,Component=tftp',
+      'service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags': 'Project=rk25net,Component=tftp',
     },
 
   },

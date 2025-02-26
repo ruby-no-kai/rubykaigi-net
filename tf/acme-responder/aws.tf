@@ -3,7 +3,7 @@ provider "aws" {
   allowed_account_ids = ["005216166247"]
   default_tags {
     tags = {
-      Project   = "rk24net"
+      Project   = "rk25net"
       Component = "acme-responder"
     }
   }

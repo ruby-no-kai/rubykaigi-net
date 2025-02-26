@@ -4,7 +4,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project   = "rk24net"
+      Project   = "rk25net"
       Component = "syslog"
     }
   }

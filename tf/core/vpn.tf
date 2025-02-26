@@ -42,7 +42,7 @@ resource "aws_vpn_connection" "rk24-nrt" {
 
   tags = {
     Name      = "rk24-nrt"
-    Project   = "rk24net"
+    Project   = "rk25net"
     Component = "core/vpc"
   }
 }
@@ -54,7 +54,7 @@ resource "aws_customer_gateway" "rk24-nrt" {
 
   tags = {
     Name      = "rk24-nrt"
-    Project   = "rk24net"
+    Project   = "rk25net"
     Component = "core/vpc"
   }
 
