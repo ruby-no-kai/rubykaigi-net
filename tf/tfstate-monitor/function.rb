@@ -150,28 +150,51 @@ module TfstateMonitor
           #list .cell-zero {
             background-color: #fc6262;
           }
+          #footer {
+            font-size: 90%;
+          }
+
+          .d-none {
+            display: none;
+          }
         </style>
       </head>
       <body data-cache="#{CGI.escape_html(JSON.generate(statuses.transform_values(&:as_json)))}">
-        <h1>tfstate-monitor</h1>
+        <header><h1>tfstate-monitor</h1></header>
 
+        <main>
         <table id="list">
         <tbody>
           #{
             statuses.each_value.sort_by(&:name).map do |status|
               <<~EOR
                 <tr>
-                  <td class="cell-name">#{CGI.escape_html(status.name)}</td>
+                  <td class="cell-name">
+                    #{CGI.escape_html(status.name)}
+                    <dl class="d-none tag-pairs">
+                      #{
+                        status.tag_pairs.map do |tag_pair_v|
+                          tag_pair = TagPair.new(**tag_pair_v)
+                          <<~EOR
+                            <dt>#{CGI.escape_html(tag_pair.project)}</dt>
+                            <dd>#{CGI.escape_html(tag_pair.component&.join(', ') || '')}</dd>
+                          EOR
+                        end.join("\n")
+                      }
+                    </dl>
+                  </td>
                   <td class="#{status.num_resources.zero? ? 'cell-zero' : 'cell-nonzero'}">#{status.num_resources}</td>
                   <td class="cell-cost">#{"%.2f" % [status.cost]}</td>
+                  <td class="cell-cost">#{"%.2f" % [status.cost * 30]}</td>
                 </tr>
               EOR
             end.join("\n")
           }
         </tbody>
         </table>
+        </main>
 
-        <footer>
+        <footer id='footer'>
           <p><small>Last updated at #{Time.now.xmlschema}</small><p>
           <p><small>Source: <a href="https://github.com/ruby-no-kai/rubykaigi-net/tree/master/tf/tfstate-monitor">rubykaigi-net//tf/tfstate-monitor</a></small></p>
         </footer>
