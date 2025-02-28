@@ -93,7 +93,7 @@ module TfstateMonitor
             end
           }.then { case _1[:or].size; when 0; nil; when 1; _1[:or].first; else _1; end },
         ].compact.tap { return 0 if _1.size == 1 },
-      }.then { _1[:and].size == 1 ? _1[:and].first : _1 }.tap { p(filter: _1) },
+      }.then { _1[:and].size == 1 ? _1[:and].first : _1 }.tap { puts(JSON.generate(key: status.key, filter: _1)) },
     )
     cur.results_by_time[0..-2].map(&:total).map do |total|
       total.fetch('NetAmortizedCost').amount.to_f
