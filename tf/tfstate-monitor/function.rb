@@ -32,6 +32,7 @@ module TfstateMonitor
 
     def project_and_component_tag_pairs
       tfstate.fetch('resources', []).flat_map do |resource|
+        next [] if resource['mode'] == 'data'
         resource['instances'].map do |instance|
           tags = (instance.dig('attributes', 'tags_all') || {}).merge(instance.dig('attributes', 'tags') || {})
           TagPair.new(
