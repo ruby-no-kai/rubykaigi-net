@@ -27,7 +27,9 @@ module TfstateMonitor
     end
     
     def num_resources
-      tfstate.fetch('resources', []).size
+      tfstate.fetch('resources', []).reject do |resource|
+        resource['mode'] == 'data'
+      end.size
     end
 
     def project_and_component_tag_pairs
