@@ -41,9 +41,8 @@ resource "aws_vpn_connection" "rk24-nrt" {
   tunnel2_phase2_lifetime_seconds      = local.vpn_ikev2_options.phase2_lifetime_seconds
 
   tags = {
-    Name      = "rk24-nrt"
-    Project   = "rk25net"
-    Component = "core/vpc"
+    Name      = "nrt"
+    Component = "core/vpn"
   }
 }
 
@@ -53,9 +52,8 @@ resource "aws_customer_gateway" "rk24-nrt" {
   type       = "ipsec.1"
 
   tags = {
-    Name      = "rk24-nrt"
-    Project   = "rk25net"
-    Component = "core/vpc"
+    Name      = "nrt"
+    Component = "core/vpn"
   }
 
   lifecycle {

@@ -358,7 +358,7 @@ resource "aws_eip" "nat-d" {
   tags = {
     Name      = "nat-d"
     Project   = "rk25net"
-    Component = "core/vpc"
+    Component = "core/nat"
   }
 }
 resource "aws_nat_gateway" "nat-d" {
@@ -368,7 +368,7 @@ resource "aws_nat_gateway" "nat-d" {
   tags = {
     Name      = "nat-d"
     Project   = "rk25net"
-    Component = "core/vpc"
+    Component = "core/nat"
   }
 }
 
@@ -392,7 +392,7 @@ resource "aws_nat_gateway" "onpremises-c" {
   tags = {
     Name      = "onpremises-c"
     Project   = "rk25net"
-    Component = "core/vpc"
+    Component = "core/nat"
   }
 }
 resource "aws_nat_gateway" "onpremises-d" {
@@ -402,7 +402,7 @@ resource "aws_nat_gateway" "onpremises-d" {
   tags = {
     Name      = "onpremises-d"
     Project   = "rk25net"
-    Component = "core/vpc"
+    Component = "core/nat"
   }
 }
 resource "aws_route" "onpremises-c_v4_default_nat" {

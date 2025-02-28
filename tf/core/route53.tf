@@ -1,5 +1,8 @@
 resource "aws_route53_zone" "rubykaigi-net_public" {
   name = "rubykaigi.net"
+  tags = {
+    Component = "core/dns"
+  }
 }
 
 resource "aws_route53_zone" "rubykaigi-net_private" {
@@ -7,6 +10,10 @@ resource "aws_route53_zone" "rubykaigi-net_private" {
 
   lifecycle {
     ignore_changes = [vpc]
+  }
+
+  tags = {
+    Component = "core/dns"
   }
 }
 
@@ -20,6 +27,10 @@ resource "aws_route53_zone" "ptr-10" {
 
   lifecycle {
     ignore_changes = [vpc]
+  }
+
+  tags = {
+    Component = "core/dns"
   }
 }
 
