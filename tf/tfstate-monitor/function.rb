@@ -105,6 +105,8 @@ module TfstateMonitor
     :name,
     :num_resources,
     :cost,
+    :tag_pairs,
+    :ts,
   ) do
     def as_json
       to_h
@@ -117,6 +119,8 @@ module TfstateMonitor
       name: status.name,
       num_resources: status.num_resources,
       cost: cost(status: status),
+      tag_pairs: status.project_and_component_tag_pairs.map(&:to_h),
+      ts: Time.now.to_i,
     )
   end
 
@@ -183,6 +187,8 @@ module TfstateMonitor
       cache_obj = @s3.get_object(bucket: OUTPUT_S3_BUCKET, key: OUTPUT_S3_KEY)
       j = JSON.parse(CGI.unescape_html(cache_obj.body.read.match(/data-cache="([^"]+)"/)&.[](1)))
       j.transform_values { RenderedStatus.new(**_1) }
+    rescue ArgumentError, Aws::S3::Errors::NoSuchKey
+      {}
     end
 
     # find key from EventBridge S3 notification or manual "key" parameter, othewise list all tfstate files
