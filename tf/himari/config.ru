@@ -267,6 +267,10 @@ use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, dec
   decision.allowed_claims.push(:roles)
 
   unless roles.empty?
+    # FIXME: refresh token!!!!
+    decision.lifetime.access_token = 3600 * 14
+    decision.lifetime.id_token = 3600
+
     next decision.allow!
   end
 
