@@ -32,3 +32,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "infra" {
     }
   }
 }
+
+resource "aws_s3_bucket_notification" "infra" {
+  bucket      = aws_s3_bucket.infra.id
+  eventbridge = true
+}

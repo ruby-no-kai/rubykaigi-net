@@ -80,6 +80,8 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "ssm:*",
       "sqs:*", # XXX: too excessive
       "transcribe:*",
+      "states:*",    # XXX: too excessive
+      "scheduler:*", # XXX: too excessive
 
       "bedrock:InvokeModel",
       "bedrock:InvokeModelWithResponseStream",
