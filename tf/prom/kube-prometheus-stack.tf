@@ -17,7 +17,7 @@ data "external" "kube-prometheus-stack-values" {
 }
 
 data "aws_lb_target_group" "common-prometheus" {
-  name = "rknw-common-prometheus"
+  name = "rknet-common-prometheus"
 }
 
 resource "kubernetes_manifest" "targetgroupbinding-prometheus" {
@@ -40,7 +40,7 @@ resource "kubernetes_manifest" "targetgroupbinding-prometheus" {
 }
 
 data "aws_lb_target_group" "common-alertmanager" {
-  name = "rknw-common-alertmanager"
+  name = "rknet-common-alertmanager"
 }
 
 resource "kubernetes_manifest" "targetgroupbinding-alertmanager" {

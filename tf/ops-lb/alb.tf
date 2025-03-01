@@ -1,5 +1,5 @@
 resource "aws_lb" "common" {
-  name               = "rknw-common"
+  name               = "rknet-common"
   load_balancer_type = "application"
   internal           = true
 
@@ -13,7 +13,7 @@ resource "aws_lb" "common" {
 
   access_logs {
     bucket  = "rk-aws-logs"
-    prefix  = "elb/rknw-common"
+    prefix  = "elb/rknet-common"
     enabled = true
   }
 }
@@ -36,20 +36,23 @@ resource "aws_lb_listener" "common-https" {
   load_balancer_arn = aws_lb.common.arn
   port              = 443
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
+  ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-Res-2021-06"
   certificate_arn   = data.aws_acm_certificate.rubykaigi-net.arn
   default_action {
     type = "fixed-response"
     fixed_response {
-      content_type = "text/plain"
-      message_body = "🏖️🏝️🌊!"
+      content_type = "text/html"
+      message_body = <<EOF
+      <!DOCTYPE html><html lang=en><head><meta charset=utf-8><body>
+      &#127818;&#x1F34A;?
+      EOF
       status_code  = 404
     }
   }
 }
 
 resource "aws_globalaccelerator_accelerator" "common" {
-  name            = "rknw-common-accel"
+  name            = "rknet-common-accel"
   ip_address_type = "DUAL_STACK"
   enabled         = true
 }
