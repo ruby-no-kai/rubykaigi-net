@@ -64,8 +64,8 @@ data "aws_iam_policy" "nocadmin-base" {
 }
 
 resource "aws_iam_role" "load-balancer-controller" {
-  name                 = "NwLoadBalancerController"
-  description          = "rubykaigi-net//k8s/aws_iam_role.load-balancer-controller"
+  name                 = "NetLoadBalancerController"
+  description          = "rubykaigi-net//tf/k8s: aws_iam_role.load-balancer-controller"
   assume_role_policy   = data.aws_iam_policy_document.load-balancer-controller-trust.json
   permissions_boundary = data.aws_iam_policy.nocadmin-base.arn
 }
