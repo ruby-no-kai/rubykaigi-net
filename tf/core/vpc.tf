@@ -389,6 +389,7 @@ resource "aws_nat_gateway" "onpremises-c" {
   count             = local.enable_onpremises_nat ? 1 : 0
   subnet_id         = aws_subnet.c_onpremises_link.id
   connectivity_type = "private"
+  private_ip        = cidrhost(aws_subnet.c_onpremises_link.cidr_block, -2)
   tags = {
     Name      = "onpremises-c"
     Project   = "rk25net"
@@ -399,6 +400,7 @@ resource "aws_nat_gateway" "onpremises-d" {
   count             = local.enable_onpremises_nat ? 1 : 0
   subnet_id         = aws_subnet.d_onpremises_link.id
   connectivity_type = "private"
+  private_ip        = cidrhost(aws_subnet.d_onpremises_link.cidr_block, -2)
   tags = {
     Name      = "onpremises-d"
     Project   = "rk25net"
