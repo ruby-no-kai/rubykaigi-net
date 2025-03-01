@@ -26,6 +26,11 @@ resource "helm_release" "karpenter" {
         "clusterName"       = module.cluster.config.name
         "interruptionQueue" = "Karpenter-${module.cluster.config.name}"
       }
+      "featureGates" = {
+        "spotToSpotConsolidation" = true
+      }
+      dnsPolicy = "Default" # Karpenter starts nodes for CoreDNS
+      replicas  = 1         # Fargate
       "controller" = {
         "resources" = {
           "requests" = {
