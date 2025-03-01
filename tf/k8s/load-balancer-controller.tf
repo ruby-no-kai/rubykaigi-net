@@ -9,6 +9,10 @@ resource "helm_release" "load-balancer-controller" {
   values = [
     jsonencode({
       "clusterName" = module.cluster.config.name
+      # Disable infer from IMDS, which would fail as now Karpenter sets httpPutResponseHopLimit=1 by default.
+      "region" = data.aws_region.current.name
+      "vpcId"  = data.aws_vpc.main.id
+
       # SA has to be created manually to enable eks pod iam role
       "serviceAccount" = {
         "name"   = kubernetes_service_account.load-balancer-controller.metadata.0.name
