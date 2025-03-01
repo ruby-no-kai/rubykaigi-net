@@ -41,7 +41,7 @@ resource "helm_release" "karpenter" {
       }
       "serviceAccount" = {
         "annotations" = {
-          "eks.amazonaws.com/role-arn" = "arn:aws:iam::005216166247:role/NetEksKarpenter-rknet"
+          "eks.amazonaws.com/role-arn" = replace(module.karpenter.node_role_arn, "Node-", "-")
         }
       }
     }),
