@@ -18,6 +18,11 @@ module "cluster" {
     }
   }
 
+  fargate_namespaces = toset([
+    "default-fargate", # dummy
+    # "kube-system",
+  ])
+
   endpoint_public_access = true
 
   aws_auth_role_map = [
