@@ -37,7 +37,10 @@ data "external" "bastion" {
 resource "aws_instance" "bastion" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t4g.micro"
-  subnet_id     = data.aws_subnet.main-public-c.id
+
+  subnet_id      = data.aws_subnet.main-public-c.id
+  private_ip     = cidrhost(data.aws_subnet.main-public-c.cidr_block, 10)
+  ipv6_addresses = [cidrhost(data.aws_subnet.main-public-c.ipv6_cidr_block, parseint("8ead", 16))]
 
   vpc_security_group_ids = [data.aws_security_group.default.id, data.aws_security_group.bastion.id]
   iam_instance_profile   = data.aws_iam_instance_profile.bastion.name
