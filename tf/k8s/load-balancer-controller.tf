@@ -56,6 +56,7 @@ resource "helm_release" "load-balancer-controller" {
       }
     }),
   ]
+  depends_on = [module.cluster] # make sure coredns is running
 }
 
 data "aws_iam_policy" "nocadmin-base" {
