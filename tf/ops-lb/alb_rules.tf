@@ -24,7 +24,11 @@ resource "aws_lb_listener_rule" "common-test" {
     type = "fixed-response"
     fixed_response {
       content_type = "text/html"
-      message_body = "<!DOCTYPE html><html lang=en><head><meta charset=utf-8><body><img src=\"https://img.sorah.jp/x/20220824_054329_Wx7mcpRweD.png\">"
+      message_body = <<EOF
+      <!DOCTYPE html><html lang=en><head><meta charset=utf-8><body>
+      <img src="https://img.sorah.jp/x/20220824_054329_Wx7mcpRweD.png"><br>
+      <img src="https://img.sorah.jp/x/20250301_191326_oCbZdRwS7M.png">
+      EOF
       status_code  = 200
     }
   }
