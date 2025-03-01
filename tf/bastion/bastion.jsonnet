@@ -1,6 +1,6 @@
 local cloud_config = (import '../cloudconfig.base.libsonnet') + {
   bootcmd: [
-    ['cloud-init-per', 'once', 'ssh-port', 'bash', '-c', 'echo Port 9922 >> /etc/ssh/sshd_config'],
+    ['cloud-init-per', 'once', 'ssh-port', 'bash', '-c', '( echo Port 9922; echo Port 22 ) >> /etc/ssh/sshd_config.d/90-rk-port.conf && systemctl daemon-reload'],
   ],
   packages: [
     'iperf3',
