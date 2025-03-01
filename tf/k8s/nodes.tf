@@ -1,6 +1,9 @@
 module "karpenter" {
-  #source = "github.com/cookpad/terraform-aws-eks//modules/karpenter?ref=943156dec7855fb3fd25f120b8fbdee42c9ae050"
-  source = "github.com/sorah/terraform-aws-eks//modules/karpenter?ref=tmp-2-29"
+  source = "github.com/cookpad/terraform-aws-eks//modules/karpenter?ref=70a90da1066f428a705b66a42266b6e482e818da"
+  #source = "github.com/sorah/terraform-aws-eks//modules/karpenter?ref=tmp-2-29"
+
+  v1beta = false
+  v1     = true
 
   cluster_config = module.cluster.config
   oidc_config    = module.cluster.oidc_config
@@ -10,7 +13,7 @@ module "karpenter" {
 resource "helm_release" "karpenter" {
   repository = "oci://public.ecr.aws/karpenter"
   chart      = "karpenter"
-  version    = "v0.34.0"
+  version    = "1.2.2"
 
   name = "karpenter"
 

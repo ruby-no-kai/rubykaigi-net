@@ -1,7 +1,7 @@
 resource "helm_release" "load-balancer-controller" {
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
-  version    = "1.7.1" # 2.7.0
+  version    = "1.11.0" # 2.11.0
 
   name      = "aws-load-balancer-controller"
   namespace = kubernetes_namespace.platform.metadata.0.name
@@ -88,11 +88,11 @@ resource "aws_iam_role_policy" "load-balancer-controller" {
 }
 
 data "http" "load-balancer-controller-policy" {
-  url = "https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/d0c13bf1576965a3b65fc09ebce94ed9f86833a2/docs/install/iam_policy.json"
+  url = "https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/refs/heads/main/docs/install/iam_policy.json"
 
   lifecycle {
     postcondition {
-      condition     = sha512(self.response_body) == "4060d7ffb2b476440950ffa908bee9b6ffbe5197e22e04a25b200a2da8f4ec23bbafbd07c3af922d38403309d27738aa624593566eb14b5dea2393e2d2d73f65"
+      condition     = sha512(self.response_body) == "0e2858449d1d284834c4776a6a8c40f5f20e8406e34c603447ec21f363d68a293bbff2a4c287afb04b991aee5aff6edbcfe5eda9ccfb66a8852bb32192ea18f9"
       error_message = "checksum mismatch"
     }
   }

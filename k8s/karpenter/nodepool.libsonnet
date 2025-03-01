@@ -1,5 +1,5 @@
 {
-  apiVersion: 'karpenter.sh/v1beta1',
+  apiVersion: 'karpenter.sh/v1',
   kind: 'NodePool',
   metadata: {
     name: error 'specify name',
@@ -13,7 +13,7 @@
         },
       },
       spec: {
-        nodeClassRef: { name: 'general' },
+        nodeClassRef: { name: 'general', group: 'karpenter.k8s.aws', kind: 'EC2NodeClass' },
 
         taints: [],
 
@@ -53,11 +53,13 @@
             memory: '300Mi',
           },
         },
+
+        expireAfter: '24h',
       },
     },
     disruption: {
-      consolidationPolicy: 'WhenUnderutilized',
-      expireAfter: '24h',
+      consolidationPolicy: 'WhenEmptyOrUnderutilized',
+      consolidateAfter: '1m',
       budgets: [
         { nodes: '30%' },
       ],
