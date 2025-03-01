@@ -1,12 +1,25 @@
 {
-   "apiVersion": "karpenter.k8s.aws/v1beta1",
+   "apiVersion": "karpenter.k8s.aws/v1",
    "kind": "EC2NodeClass",
    "metadata": {
       "name": "onpremises"
    },
    "spec": {
       "amiFamily": "Bottlerocket",
+      "amiSelectorTerms": [
+         {
+            "alias": "bottlerocket@latest"
+         }
+      ],
       "instanceProfile": "NetEksKarpenterNode-rknet",
+      "kubelet": {
+         "kubeReserved": {
+            "cpu": "70m",
+            "ephemeral-storage": "1Gi",
+            "memory": "300Mi"
+         },
+         "maxPods": 110
+      },
       "securityGroupSelectorTerms": [
          {
             "tags": {
@@ -27,7 +40,7 @@
          "Component": "k8s",
          "KarpenterNodeClass": "onpremises",
          "Project": "rk25net",
-         "Role": "kubelet"
+         "Role": "kubelet/onpremises"
       }
    }
 }

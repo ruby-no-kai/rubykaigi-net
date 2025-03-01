@@ -45,15 +45,6 @@
           },
         ],
 
-        kubelet: {
-          maxPods: $.max_pods,
-          kubeReserved: {
-            cpu: '70m',
-            'ephemeral-storage': '1Gi',
-            memory: '300Mi',
-          },
-        },
-
         expireAfter: '24h',
       },
     },
@@ -66,7 +57,6 @@
     },
   },
 
-  max_pods:: 110,
   instance_category:: ['t'],
   arch:: ['arm64'],
   capacity_type:: ['spot', 'on-demand'],  // spot is prioritized: https://karpenter.sh/docs/concepts/nodepools/#capacity-type

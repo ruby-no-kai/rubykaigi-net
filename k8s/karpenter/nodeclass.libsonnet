@@ -6,6 +6,7 @@
   },
   spec: {
     amiFamily: 'Bottlerocket',
+    amiSelectorTerms: [{ alias: 'bottlerocket@latest' }],
 
     subnetSelectorTerms: [
       {
@@ -31,10 +32,20 @@
     tags: {
       Project: 'rk25net',
       Component: 'k8s',
-      Role: 'kubelet',
+      Role: 'kubelet/%s' % $.metadata.name,
       KarpenterNodeClass: $.metadata.name,
+    },
+
+    kubelet: {
+      maxPods: $.max_pods,
+      kubeReserved: {
+        cpu: '70m',
+        'ephemeral-storage': '1Gi',
+        memory: '300Mi',
+      },
     },
   },
 
+  max_pods:: 110,
   subnet_tier:: 'private',
 }
