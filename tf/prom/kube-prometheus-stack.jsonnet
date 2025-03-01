@@ -1,6 +1,6 @@
 local volumeClaimTemplate(size) = {
   spec: {
-    storageClassName: 'gp2',
+    storageClassName: 'gp3',
     accessModes: ['ReadWriteOnce'],
     resources: {
       requests: {
