@@ -31,6 +31,14 @@ data "aws_iam_instance_profile" "bastion" {
   name = "NwBastion"
 }
 
+data "external" "bastion" {
+  program = ["../jsonnet.rb"]
+
+  query = {
+    path = "../bastion/bastion.jsonnet"
+  }
+}
+
 #resource "aws_instance" "bastion" {
 #  ami           = data.aws_ami.ubuntu.id
 #  instance_type = "t4g.nano"
@@ -40,7 +48,7 @@ data "aws_iam_instance_profile" "bastion" {
 #  iam_instance_profile   = data.aws_iam_instance_profile.bastion.name
 #  #key_name               = data.aws_key_pair.default.key_name
 #
-#  user_data = file("./bastion.yml")
+#  user_data = jsondecode(data.external.bastion.result.json).user_data
 #
 #  tags = {
 #    Name = "bastion"

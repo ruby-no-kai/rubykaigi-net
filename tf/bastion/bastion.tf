@@ -26,6 +26,14 @@ resource "aws_eip" "bastion" {
   domain = "vpc"
 }
 
+data "external" "bastion" {
+  program = ["../jsonnet.rb"]
+
+  query = {
+    path = "./bastion.jsonnet"
+  }
+}
+
 resource "aws_instance" "bastion" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t4g.micro"
@@ -35,7 +43,7 @@ resource "aws_instance" "bastion" {
   iam_instance_profile   = data.aws_iam_instance_profile.bastion.name
   #key_name               = data.aws_key_pair.default.key_name
 
-  user_data = file("./bastion.yml")
+  user_data = jsondecode(data.external.bastion.result.json).user_data
 
   tags = {
     Name = "bastion"

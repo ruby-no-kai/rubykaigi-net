@@ -31,6 +31,14 @@ data "aws_key_pair" "default" {
   key_name = "sorah-mulberry-rsa"
 }
 
+data "external" "wgbridger" {
+  program = ["../jsonnet.rb"]
+
+  query = {
+    path = "../cloudconfig.base.libsonnet"
+  }
+}
+
 resource "aws_instance" "wgbridger" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t4g.micro"
@@ -40,7 +48,7 @@ resource "aws_instance" "wgbridger" {
   iam_instance_profile   = "NwEc2Default"
   key_name               = data.aws_key_pair.default.key_name
 
-  user_data = file("./wgbridger.yml")
+  user_data = jsondecode(data.external.wgbridger.result.json).user_data
 
   tags = {
     Name = "wgbridger"
