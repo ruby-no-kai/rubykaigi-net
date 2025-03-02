@@ -28,10 +28,8 @@
               "/etc/unbound/unbound.conf",
               "-dd"
             ],
-            "env": [
-
-            ],
-            "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:ae5a0d23fd293e7e1437519b816480cd01dba5f2",
+            "env": [],
+            "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:d1e9b4c9ca3f068c5eae56e99b52a4dcd4f21110",
             "livenessProbe": {
               "failureThreshold": 2,
               "httpGet": {
@@ -175,9 +173,7 @@
               "--config-path",
               "/etc/envoy/envoy.json"
             ],
-            "env": [
-
-            ],
+            "env": [],
             "image": "envoyproxy/envoy:v1.29.3",
             "livenessProbe": {
               "failureThreshold": 2,
