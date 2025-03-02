@@ -2,11 +2,17 @@ resource "aws_lb" "nlb" {
   name               = "dns-cache-${substr(uuid(), 0, 10)}"
   internal           = true
   load_balancer_type = "network"
-  subnets            = [for s in local.nlb_subnets : s.id]
+
+  dynamic "subnet_mapping" {
+    for_each = tomap(local.nlb_subnets)
+    content {
+      subnet_id            = subnet_mapping.value.id
+      private_ipv4_address = cidrhost(subnet_mapping.value.cidr_block, 53)
+    }
+  }
 
   lifecycle {
-    create_before_destroy = true
-    ignore_changes        = [name]
+    ignore_changes = [name]
   }
 }
 
