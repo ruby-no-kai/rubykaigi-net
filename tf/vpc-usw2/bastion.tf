@@ -23,12 +23,20 @@ data "aws_ami" "ubuntu" {
   owners      = ["099720109477"] # Canonical
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server-*"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-arm64-server-*"]
   }
 }
 
 data "aws_iam_instance_profile" "bastion" {
   name = "NwBastion"
+}
+
+data "external" "bastion" {
+  program = ["../jsonnet.rb"]
+
+  query = {
+    path = "../bastion/bastion.jsonnet"
+  }
 }
 
 #resource "aws_instance" "bastion" {
@@ -40,7 +48,7 @@ data "aws_iam_instance_profile" "bastion" {
 #  iam_instance_profile   = data.aws_iam_instance_profile.bastion.name
 #  #key_name               = data.aws_key_pair.default.key_name
 #
-#  user_data = file("./bastion.yml")
+#  user_data = jsondecode(data.external.bastion.result.json).user_data
 #
 #  tags = {
 #    Name = "bastion"

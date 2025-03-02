@@ -7,8 +7,12 @@ data "aws_ami" "ubuntu" {
   }
 }
 
-resource "terraform_data" "acme_userdata" {
-  input = file("${path.module}/userdata.yml")
+data "external" "acme_userdata" {
+  program = ["../jsonnet.rb"]
+
+  query = {
+    path = "./userdata.jsonnet"
+  }
 }
 
 resource "aws_instance" "acme-responder" {
@@ -21,7 +25,7 @@ resource "aws_instance" "acme-responder" {
     aws_security_group.acme-responder.id,
   ]
 
-  user_data = terraform_data.acme_userdata.output
+  user_data = jsondecode(data.external.bastion.result.json).user_data
 
   ipv6_addresses = [
     "2406:da14:dfe:c0c0::30fe",
@@ -32,6 +36,6 @@ resource "aws_instance" "acme-responder" {
   }
   lifecycle {
     ignore_changes       = [ami]
-    replace_triggered_by = [terraform_data.acme_userdata]
+    replace_triggered_by = [user_data]
   }
 }

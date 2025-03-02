@@ -1,13 +1,15 @@
 resource "aws_instance" "bastion-onpremises" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t4g.micro"
-  subnet_id     = data.aws_subnet.main-onpremises-c.id
+
+  subnet_id  = data.aws_subnet.main-onpremises-c.id
+  private_ip = cidrhost(data.aws_subnet.main-onpremises-c.cidr_block, 10)
 
   vpc_security_group_ids = [data.aws_security_group.default.id, data.aws_security_group.bastion.id]
   iam_instance_profile   = data.aws_iam_instance_profile.bastion.name
   #key_name               = data.aws_key_pair.default.key_name
 
-  user_data = file("./bastion.yml")
+  user_data = jsondecode(data.external.bastion.result.json).user_data
 
   tags = {
     Name = "bastion-onpremises"

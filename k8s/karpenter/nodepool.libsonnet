@@ -1,5 +1,5 @@
 {
-  apiVersion: 'karpenter.sh/v1beta1',
+  apiVersion: 'karpenter.sh/v1',
   kind: 'NodePool',
   metadata: {
     name: error 'specify name',
@@ -13,7 +13,7 @@
         },
       },
       spec: {
-        nodeClassRef: { name: 'general' },
+        nodeClassRef: { name: 'general', group: 'karpenter.k8s.aws', kind: 'EC2NodeClass' },
 
         taints: [],
 
@@ -45,26 +45,18 @@
           },
         ],
 
-        kubelet: {
-          maxPods: $.max_pods,
-          kubeReserved: {
-            cpu: '70m',
-            'ephemeral-storage': '1Gi',
-            memory: '300Mi',
-          },
-        },
+        expireAfter: '24h',
       },
     },
     disruption: {
-      consolidationPolicy: 'WhenUnderutilized',
-      expireAfter: '24h',
+      consolidationPolicy: 'WhenEmptyOrUnderutilized',
+      consolidateAfter: '1m',
       budgets: [
         { nodes: '30%' },
       ],
     },
   },
 
-  max_pods:: 110,
   instance_category:: ['t'],
   arch:: ['arm64'],
   capacity_type:: ['spot', 'on-demand'],  // spot is prioritized: https://karpenter.sh/docs/concepts/nodepools/#capacity-type

@@ -24,7 +24,11 @@ resource "aws_lb_listener_rule" "common-test" {
     type = "fixed-response"
     fixed_response {
       content_type = "text/html"
-      message_body = "<!DOCTYPE html><html lang=en><head><meta charset=utf-8><body><img src=\"https://img.sorah.jp/x/20220824_054329_Wx7mcpRweD.png\">"
+      message_body = <<EOF
+      <!DOCTYPE html><html lang=en><head><meta charset=utf-8><body>
+      <img src="https://img.sorah.jp/x/20220824_054329_Wx7mcpRweD.png"><br>
+      <img src="https://img.sorah.jp/x/20250301_191326_oCbZdRwS7M.png">
+      EOF
       status_code  = 200
     }
   }
@@ -33,7 +37,7 @@ resource "aws_lb_listener_rule" "common-test" {
 ###
 
 resource "aws_lb_target_group" "common-prometheus" {
-  name        = "rknw-common-prometheus"
+  name        = "rknet-common-prometheus"
   port        = 9090
   protocol    = "HTTP"
   vpc_id      = data.aws_vpc.main.id
@@ -48,7 +52,7 @@ resource "aws_lb_target_group" "common-prometheus" {
 }
 
 resource "aws_lb_target_group" "common-alertmanager" {
-  name        = "rknw-common-alertmanager"
+  name        = "rknet-common-alertmanager"
   port        = 9093
   protocol    = "HTTP"
   vpc_id      = data.aws_vpc.main.id
@@ -63,7 +67,7 @@ resource "aws_lb_target_group" "common-alertmanager" {
 }
 
 resource "aws_lb_target_group" "common-grafana" {
-  name        = "rknw-common-grafana"
+  name        = "rknet-common-grafana"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = data.aws_vpc.main.id
@@ -150,7 +154,7 @@ resource "aws_lb_listener_rule" "common-grafana" {
 ###
 
 resource "aws_lb_target_group" "common-wlc" {
-  name        = "rknw-common-wlc"
+  name        = "rknet-common-wlc"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = data.aws_vpc.main.id

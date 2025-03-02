@@ -58,7 +58,7 @@ resource "kubernetes_secret" "grafana-admin" {
 }
 
 data "aws_lb_target_group" "common-grafana" {
-  name = "rknw-common-grafana"
+  name = "rknet-common-grafana"
 }
 
 resource "kubernetes_manifest" "targetgroupbinding-grafana" {

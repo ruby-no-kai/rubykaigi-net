@@ -18,7 +18,7 @@ data "aws_ami" "ubuntu" {
   owners      = ["099720109477"] # Canonical
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server-*"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-arm64-server-*"]
   }
 }
 
@@ -26,16 +26,27 @@ resource "aws_eip" "bastion" {
   domain = "vpc"
 }
 
+data "external" "bastion" {
+  program = ["../jsonnet.rb"]
+
+  query = {
+    path = "./bastion.jsonnet"
+  }
+}
+
 resource "aws_instance" "bastion" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t4g.micro"
-  subnet_id     = data.aws_subnet.main-public-c.id
+
+  subnet_id      = data.aws_subnet.main-public-c.id
+  private_ip     = cidrhost(data.aws_subnet.main-public-c.cidr_block, 10)
+  ipv6_addresses = [cidrhost(data.aws_subnet.main-public-c.ipv6_cidr_block, parseint("8ead", 16))]
 
   vpc_security_group_ids = [data.aws_security_group.default.id, data.aws_security_group.bastion.id]
   iam_instance_profile   = data.aws_iam_instance_profile.bastion.name
   #key_name               = data.aws_key_pair.default.key_name
 
-  user_data = file("./bastion.yml")
+  user_data = jsondecode(data.external.bastion.result.json).user_data
 
   tags = {
     Name = "bastion"

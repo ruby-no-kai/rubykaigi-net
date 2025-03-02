@@ -1,6 +1,6 @@
 module "cluster" {
-  #source = "github.com/cookpad/terraform-aws-eks?ref=943156dec7855fb3fd25f120b8fbdee42c9ae050"
-  source = "github.com/sorah/terraform-aws-eks?ref=tmp-2-29"
+  source = "github.com/cookpad/terraform-aws-eks?ref=70a90da1066f428a705b66a42266b6e482e818da"
+  #source = "github.com/sorah/terraform-aws-eks?ref=tmp-2-29"
 
   name = "rknet"
 
@@ -17,6 +17,11 @@ module "cluster" {
       "ap-northeast-1d" = data.aws_subnet.main-private-d.id
     }
   }
+
+  fargate_namespaces = toset([
+    "default-fargate", # dummy
+    # "kube-system",
+  ])
 
   endpoint_public_access = true
 

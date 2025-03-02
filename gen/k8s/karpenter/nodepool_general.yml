@@ -1,5 +1,5 @@
 {
-   "apiVersion": "karpenter.sh/v1beta1",
+   "apiVersion": "karpenter.sh/v1",
    "kind": "NodePool",
    "metadata": {
       "name": "general"
@@ -11,8 +11,8 @@
                "nodes": "30%"
             }
          ],
-         "consolidationPolicy": "WhenUnderutilized",
-         "expireAfter": "24h"
+         "consolidateAfter": "1m",
+         "consolidationPolicy": "WhenEmptyOrUnderutilized"
       },
       "template": {
          "metadata": {
@@ -21,15 +21,10 @@
             }
          },
          "spec": {
-            "kubelet": {
-               "kubeReserved": {
-                  "cpu": "70m",
-                  "ephemeral-storage": "1Gi",
-                  "memory": "300Mi"
-               },
-               "maxPods": 110
-            },
+            "expireAfter": "24h",
             "nodeClassRef": {
+               "group": "karpenter.k8s.aws",
+               "kind": "EC2NodeClass",
                "name": "general"
             },
             "requirements": [

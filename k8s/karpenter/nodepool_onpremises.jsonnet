@@ -8,7 +8,7 @@
       metadata+: {
       },
       spec+: {
-        nodeClassRef: { name: 'onpremises' },
+        nodeClassRef+: { name: 'onpremises' },
         taints+: [
           {
             key: 'dedicated',

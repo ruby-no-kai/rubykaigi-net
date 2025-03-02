@@ -1,6 +1,6 @@
 locals {
-  enable_nat            = false
-  enable_onpremises_nat = false
+  enable_nat            = true
+  enable_onpremises_nat = true
 }
 
 resource "aws_vpc" "main" {
@@ -327,29 +327,18 @@ resource "aws_nat_gateway" "nat-c" {
     Project = "rk25net"
   }
 }
-resource "aws_route" "private_nat" {
-  count                  = local.enable_nat ? 1 : 0
+resource "aws_route" "private_v4_default" {
   route_table_id         = aws_route_table.private.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat-c[0].id
+  nat_gateway_id         = local.enable_nat ? aws_nat_gateway.nat-c[0].id : null
+  network_interface_id   = local.enable_nat ? null : aws_network_interface.blackhole.id
 }
-resource "aws_route" "private_blackhole" {
-  count                  = !local.enable_nat ? 1 : 0
-  route_table_id         = aws_route_table.private.id
-  destination_cidr_block = "0.0.0.0/0"
-  network_interface_id   = aws_network_interface.blackhole.id
-}
-resource "aws_route" "private-c_v4_default_nat" {
-  count                  = local.enable_nat ? 1 : 0
+resource "aws_route" "private-c_v4_default" {
   route_table_id         = aws_route_table.private-c.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat-c[0].id
-}
-resource "aws_route" "private-c_v4_default_blackhole" {
-  count                  = !local.enable_nat ? 1 : 0
-  route_table_id         = aws_route_table.private-c.id
-  destination_cidr_block = "0.0.0.0/0"
-  network_interface_id   = aws_network_interface.blackhole.id
+  # https://github.com/hashicorp/terraform-provider-aws/issues/26804
+  network_interface_id = local.enable_nat ? null : aws_network_interface.blackhole.id
+  nat_gateway_id       = local.enable_nat ? aws_nat_gateway.nat-c[0].id : null
 }
 
 resource "aws_eip" "nat-d" {
@@ -372,23 +361,19 @@ resource "aws_nat_gateway" "nat-d" {
   }
 }
 
-resource "aws_route" "private-d_v4_default_nat" {
-  count                  = local.enable_nat ? 1 : 0
+resource "aws_route" "private-d_v4_default" {
   route_table_id         = aws_route_table.private-d.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat-d[0].id
-}
-resource "aws_route" "private-d_v4_default_blackhole" {
-  count                  = !local.enable_nat ? 1 : 0
-  route_table_id         = aws_route_table.private-d.id
-  destination_cidr_block = "0.0.0.0/0"
-  network_interface_id   = aws_network_interface.blackhole.id
+  # https://github.com/hashicorp/terraform-provider-aws/issues/26804
+  network_interface_id = local.enable_nat ? null : aws_network_interface.blackhole.id
+  nat_gateway_id       = local.enable_nat ? aws_nat_gateway.nat-d[0].id : null
 }
 
 resource "aws_nat_gateway" "onpremises-c" {
   count             = local.enable_onpremises_nat ? 1 : 0
   subnet_id         = aws_subnet.c_onpremises_link.id
   connectivity_type = "private"
+  private_ip        = cidrhost(aws_subnet.c_onpremises_link.cidr_block, -2)
   tags = {
     Name      = "onpremises-c"
     Project   = "rk25net"
@@ -399,35 +384,22 @@ resource "aws_nat_gateway" "onpremises-d" {
   count             = local.enable_onpremises_nat ? 1 : 0
   subnet_id         = aws_subnet.d_onpremises_link.id
   connectivity_type = "private"
+  private_ip        = cidrhost(aws_subnet.d_onpremises_link.cidr_block, -2)
   tags = {
     Name      = "onpremises-d"
     Project   = "rk25net"
     Component = "core/nat"
   }
 }
-resource "aws_route" "onpremises-c_v4_default_nat" {
-  count                  = local.enable_onpremises_nat ? 1 : 0
+resource "aws_route" "onpremises-c_v4_default" {
   route_table_id         = aws_route_table.onpremises-c.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.onpremises-c[0].id
-  #network_interface_id = aws_network_interface.blackhole.id
+  network_interface_id   = local.enable_nat ? null : aws_network_interface.blackhole.id
+  nat_gateway_id         = local.enable_nat ? aws_nat_gateway.onpremises-c[0].id : null
 }
-resource "aws_route" "onpremises-d_v4_default_nat" {
-  count                  = local.enable_onpremises_nat ? 1 : 0
+resource "aws_route" "onpremises-d_v4_default" {
   route_table_id         = aws_route_table.onpremises-d.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.onpremises-d[0].id
-  #network_interface_id = aws_network_interface.blackhole.id
-}
-resource "aws_route" "onpremises-c_v4_default_blackhole" {
-  count                  = !local.enable_onpremises_nat ? 1 : 0
-  route_table_id         = aws_route_table.onpremises-c.id
-  destination_cidr_block = "0.0.0.0/0"
-  network_interface_id   = aws_network_interface.blackhole.id
-}
-resource "aws_route" "onpremises-d_v4_default_blackhole" {
-  count                  = !local.enable_onpremises_nat ? 1 : 0
-  route_table_id         = aws_route_table.onpremises-d.id
-  destination_cidr_block = "0.0.0.0/0"
-  network_interface_id   = aws_network_interface.blackhole.id
+  network_interface_id   = local.enable_nat ? null : aws_network_interface.blackhole.id
+  nat_gateway_id         = local.enable_nat ? aws_nat_gateway.onpremises-d[0].id : null
 }
