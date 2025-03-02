@@ -106,6 +106,17 @@ resource "aws_subnet" "d_private" {
     "kubernetes.io/cluster/rknet"     = "shared"
   }
 }
+resource "aws_ec2_subnet_cidr_reservation" "c_private" {
+  subnet_id        = aws_subnet.c_private.id
+  cidr_block       = cidrsubnet(aws_subnet.c_private.cidr_block, 5, 0) # .0-.63
+  reservation_type = "explicit"
+}
+resource "aws_ec2_subnet_cidr_reservation" "d_private" {
+  subnet_id        = aws_subnet.d_private.id
+  cidr_block       = cidrsubnet(aws_subnet.d_private.cidr_block, 5, 0) # .0-.63
+  reservation_type = "explicit"
+}
+
 
 resource "aws_subnet" "c_onpremises" {
   availability_zone               = "ap-northeast-1c"
