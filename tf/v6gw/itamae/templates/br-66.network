@@ -1,0 +1,7 @@
+[Match]
+Name=br-66
+
+[Network]
+VRF=vrf-v6gw
+Address=<%= node.fetch('overlay_prefix').sub('::', "::#{node['ec2'].fetch('local-ipv4')}") %>
+IPForward=ipv6

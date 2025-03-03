@@ -1,0 +1,6 @@
+[NetDev]
+Name=br-66
+Kind=bridge
+
+[Bridge]
+STP=no
