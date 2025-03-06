@@ -96,6 +96,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
 
       "s3:ListAllMyBuckets",
       "s3:GetBucketLocation",
+      "s3:CreateBucket",
 
       "secretsmanager:*", # XXX: too excessive
 
