@@ -67,7 +67,7 @@
                         }
                      }
                   ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:9031c9c94b3f11f6b876b25c5715eb423cc71aea",
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:30b7ec4d26f186c4b7efd1c1729bffdc3b92fe80",
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {
