@@ -13,6 +13,9 @@
         'service.beta.kubernetes.io/aws-load-balancer-healthcheck-path': '/api/plugins.json',
         'service.beta.kubernetes.io/aws-load-balancer-target-group-attributes': 'deregistration_delay.timeout_seconds=10,deregistration_delay.connection_termination.enabled=true',
         'service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags': 'Project=rk25net,Component=syslog',
+        'service.beta.kubernetes.io/aws-load-balancer-subnets': 'subnet-03b83376cdff5f681,subnet-04459368f75060d34',
+        'service.beta.kubernetes.io/aws-load-balancer-private-ipv4-addresses': '10.33.136.14,10.33.152.14',
+
       },
     },
     spec: {
