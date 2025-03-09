@@ -41,6 +41,7 @@
          "KarpenterNodeClass": "onpremises",
          "Project": "rk25net",
          "Role": "kubelet/onpremises"
-      }
+      },
+      "userData": "[settings.container-registry.mirrors]\n\"docker.io\" = [\"https://mirror.gcr.io\"]\n"
    }
 }
