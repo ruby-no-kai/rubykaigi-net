@@ -67,7 +67,6 @@ local config = {
       'unwarned-reclaim-cycles': 5,
     },
 
-
     'option-data': [
       {
         name: 'domain-name-servers',
@@ -88,6 +87,11 @@ local config = {
     ],
 
     allocator: 'random',
+
+    'client-classes': [
+      import './config/class_pxe_ipxe.libsonnet',
+      import './config/class_pxe_uefi.libsonnet',
+    ],
 
     subnet4: [
       import './config/subnet_air.libsonnet',

@@ -10,7 +10,7 @@ local commit = '30b7ec4d26f186c4b7efd1c1729bffdc3b92fe80';
     },
   },
   spec: {
-    replicas: 3,
+    replicas: 1,
     selector: {
       matchLabels: { 'rubykaigi.org/app': 'kea4' },
     },

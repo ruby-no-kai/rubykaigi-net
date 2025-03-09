@@ -1,0 +1,4 @@
+#!ipxe
+
+set boot-dir ro/compute/ipxe/
+set menu-url ro/compute/menu.ipxe

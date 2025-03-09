@@ -1,0 +1,64 @@
+#!ipxe
+
+set menu-timeout 5000
+set submenu-timeout ${menu-timeout}
+isset ${menu-default} || set menu-default xyz
+
+:start
+item --gap --             ------------------------- Systems -----------------------------
+item --key U ubuntu       Install Ubuntu Server
+item --key l xyz          Go to netboot.xyz
+item --gap --             ------------------------- Tools -------------------------------
+item --key c config       Configure settings
+item --key / shell        Drop to iPXE shell
+item --key R reboot       Reboot computer
+item
+item --key x exit         Exit iPXE
+choose --timeout ${menu-timeout} --default ${menu-default} selected || goto cancel
+set menu-timeout 0
+goto ${selected}
+
+:cancel
+echo You cancelled the menu, dropping you to a shell
+
+:shell
+echo Type 'exit' to get the back to the menu
+shell
+set menu-timeout 0
+set submenu-timeout 0
+goto start
+
+:failed
+echo Booting failed, dropping to shell
+goto shell
+
+:reboot
+reboot
+
+:exit
+exit
+
+:config
+config
+goto start
+
+:back
+set submenu-timeout 0
+clear submenu-default
+goto start
+
+## Boot items
+
+:ubuntu
+echo Booting Ubuntu from iSCSI for ${initiator-iqn}
+kernel ro/compute/noble/vmlinuz autoinstall ip=dhcp url=https://tftp.rubykaigi.net/ro/compute/noble/ubuntu-24.04.2-live-server-amd64.iso ds=nocloud-net\;s=https://tftp.rubykaigi.net/ro/compute/noble/autoinstall/default/
+initrd ro/compute/noble/initrd
+boot || goto failed
+goto start
+
+goto start
+
+:xyz
+echo Redirecting to netboot.xyz
+chain --autofree https://boot.netboot.xyz || goto failed
+goto start

@@ -3,7 +3,7 @@ local commit = '9aa2ad08c61a0e5fbe298c6cd27e2f12652d6a7f';
   apiVersion: 'apps/v1',
   kind: 'Deployment',
   metadata: {
-    name: 's3tftpd',
+    name: 'tftp-s3tftpd',
     namespace: 'default',
     labels: {
       'rubykaigi.org/app': 'tftp-s3tftpd',
@@ -12,11 +12,11 @@ local commit = '9aa2ad08c61a0e5fbe298c6cd27e2f12652d6a7f';
   spec: {
     replicas: 1,
     selector: {
-      matchLabels: { 'rubykaigi.org/app': 's3tftpd' },
+      matchLabels: { 'rubykaigi.org/app': 'tftp-s3tftpd' },
     },
     template: {
       metadata: {
-        labels: { 'rubykaigi.org/app': 's3tftpd' },
+        labels: { 'rubykaigi.org/app': 'tftp-s3tftpd' },
       },
       spec: {
         serviceAccountName: 's3tftpd',
