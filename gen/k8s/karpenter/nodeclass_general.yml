@@ -41,6 +41,7 @@
          "KarpenterNodeClass": "general",
          "Project": "rk25net",
          "Role": "kubelet/general"
-      }
+      },
+      "userData": "[settings.container-registry.mirrors]\n\"docker.io\" = [\"https://mirror.gcr.io\"]\n"
    }
 }

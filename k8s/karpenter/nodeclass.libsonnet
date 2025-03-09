@@ -36,6 +36,11 @@
       KarpenterNodeClass: $.metadata.name,
     },
 
+    userData: |||
+      [settings.container-registry.mirrors]
+      "docker.io" = ["https://mirror.gcr.io"]
+    |||,
+
     kubelet: {
       maxPods: $.max_pods,
       kubeReserved: {
