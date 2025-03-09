@@ -1,9 +1,7 @@
 require 'open-uri'
 require 'yaml'
 
-cloud_config = YAML.safe_load(File.read("tf/bastion/bastion.yml"))
-
-user = cloud_config.fetch('users').find { _1['name'] == 'rk' }
+ssh_import_id = YAML.safe_load(File.read("data/ssh_import_ids.json"))
 
 is_set = !!ARGV.delete('--set')
 
@@ -19,7 +17,7 @@ else
   EOF
 end
 
-user.fetch('ssh_import_id').each do |x|
+ssh_import_id.each do |x|
   url = "https://github.com/#{x.sub(/^gh:/,'')}.keys"
   keys = URI.open(url, "r", &:read).each_line.map(&:chomp)
   nonrsa = keys.any? { _1.start_with?('ssh-ed25519') || _1.start_with?('ecdsa-') }
