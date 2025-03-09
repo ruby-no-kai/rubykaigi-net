@@ -1,12 +1,13 @@
 resource "aws_rds_cluster" "kea" {
-  cluster_identifier = "kea1"
+  cluster_identifier = "kea"
   engine             = "aurora-mysql"
-  engine_version     = "8.0.mysql_aurora.3.02.2"
+  engine_version     = "8.0.mysql_aurora.3.08.1"
 
   database_name = "kea"
 
-  master_username = "rk"
-  master_password = "himitsudayo"
+  master_username                     = "root"
+  manage_master_user_password         = true
+  iam_database_authentication_enabled = true
 
   db_subnet_group_name = "rk-private"
 
@@ -15,7 +16,7 @@ resource "aws_rds_cluster" "kea" {
   backup_retention_period = 2
   preferred_backup_window = "12:00-14:00"
 
-  final_snapshot_identifier = "kea-rk23-final"
+  final_snapshot_identifier = "kea-rk24-final"
 
   apply_immediately = true
 }
@@ -27,11 +28,12 @@ resource "aws_rds_cluster_instance" "kea-001" {
   instance_class     = "db.t4g.medium"
   engine             = aws_rds_cluster.kea.engine
   engine_version     = aws_rds_cluster.kea.engine_version
+  ca_cert_identifier = "rds-ca-ecc384-g1"
 }
 
 resource "aws_security_group" "kea-db" {
   name        = "kea-db"
-  description = "rubykaigi-nw tf/kea"
+  description = "rubykaigi-net//tf/kea"
   vpc_id      = data.aws_vpc.main.id
 }
 

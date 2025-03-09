@@ -116,6 +116,16 @@ resource "aws_ec2_subnet_cidr_reservation" "d_private" {
   cidr_block       = cidrsubnet(aws_subnet.d_private.cidr_block, 5, 0) # .0-.63
   reservation_type = "explicit"
 }
+resource "aws_ec2_subnet_cidr_reservation" "c_private2" {
+  subnet_id        = aws_subnet.c_private.id
+  cidr_block       = cidrsubnet(aws_subnet.c_private.cidr_block, 5 + 4, 64 / 4) # .64-.67
+  reservation_type = "explicit"
+}
+resource "aws_ec2_subnet_cidr_reservation" "d_private2" {
+  subnet_id        = aws_subnet.d_private.id
+  cidr_block       = cidrsubnet(aws_subnet.d_private.cidr_block, 5 + 4, 64 / 4) # .64-.67
+  reservation_type = "explicit"
+}
 
 
 resource "aws_subnet" "c_onpremises" {
