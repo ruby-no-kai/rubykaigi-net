@@ -39,6 +39,8 @@ resource "aws_lb_target_group" "s3tftpd" {
   connection_termination = true
   deregistration_delay   = 10
 
+  load_balancing_cross_zone_enabled = true
+
   health_check {
     protocol = "HTTP"
     port     = 8080
@@ -71,10 +73,25 @@ resource "kubernetes_manifest" "targetgroupbinding-tftp-s3tftpd" {
   }
 }
 
+##
+
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.nlb.arn
   port              = "80"
   protocol          = "TCP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.envoy.arn
+  }
+}
+resource "aws_lb_listener" "https" {
+  load_balancer_arn = aws_lb.nlb.arn
+  port              = "443"
+  protocol          = "TLS"
+  ssl_policy        = "ELBSecurityPolicy-TLS13-1-0-2021-06" # maximize compatibility
+  certificate_arn   = data.aws_acm_certificate.rubykaigi-net.arn
+  alpn_policy       = "HTTP1Only"
 
   default_action {
     type             = "forward"
@@ -91,6 +108,8 @@ resource "aws_lb_target_group" "envoy" {
 
   connection_termination = true
   deregistration_delay   = 10
+
+  load_balancing_cross_zone_enabled = true
 
   health_check {
     protocol = "HTTP"
