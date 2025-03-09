@@ -6,7 +6,7 @@ local commit = '9aa2ad08c61a0e5fbe298c6cd27e2f12652d6a7f';
     name: 's3tftpd',
     namespace: 'default',
     labels: {
-      'rubykaigi.org/app': 's3tftpd',
+      'rubykaigi.org/app': 'tftp-s3tftpd',
     },
   },
   spec: {

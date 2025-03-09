@@ -4,7 +4,9 @@
    "namespace": "default",
    "resources": [
       "./deployment.yml",
+      "./deployment_http.yml",
       "./service.yml",
-      "./serviceaccount.yml"
+      "./serviceaccount.yml",
+      "./configmap.yml"
    ]
 }

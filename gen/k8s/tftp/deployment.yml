@@ -3,7 +3,7 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "rubykaigi.org/app": "s3tftpd"
+         "rubykaigi.org/app": "tftp-s3tftpd"
       },
       "name": "s3tftpd",
       "namespace": "default"

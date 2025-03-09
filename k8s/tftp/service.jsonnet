@@ -1,31 +1,32 @@
-{
-  apiVersion: 'v1',
-  kind: 'Service',
-  metadata: {
-    name: 's3tftpd',
-    annotations: {
-      'service.beta.kubernetes.io/aws-load-balancer-nlb-target-type': 'ip',
-      'service.beta.kubernetes.io/aws-load-balancer-scheme': 'internal',
-      'service.beta.kubernetes.io/aws-load-balancer-manage-backend-security-group-rules': 'false',
-      'service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol': 'HTTP',
-      'service.beta.kubernetes.io/aws-load-balancer-healthcheck-port': '8080',
-      'service.beta.kubernetes.io/aws-load-balancer-healthcheck-path': '/ping',
-      'service.beta.kubernetes.io/aws-load-balancer-target-group-attributes': 'deregistration_delay.timeout_seconds=10,deregistration_delay.connection_termination.enabled=true',
-      'service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags': 'Project=rk25net,Component=tftp',
-      'service.beta.kubernetes.io/aws-load-balancer-subnets': 'subnet-03b83376cdff5f681,subnet-04459368f75060d34',
-      'service.beta.kubernetes.io/aws-load-balancer-private-ipv4-addresses': '10.33.136.69,10.33.152.69',
-
+[
+  {
+    apiVersion: 'v1',
+    kind: 'Service',
+    metadata: {
+      name: 'tftp-s3tftpd',
     },
-
-  },
-  spec: {
-    type: 'LoadBalancer',
-    loadBalancerClass: 'service.k8s.aws/nlb',
-    selector: {
-      'rubykaigi.org/app': 's3tftpd',
+    spec: {
+      selector: {
+        'rubykaigi.org/app': 'tftp-s3tftpd',
+      },
+      ports: [
+        { name: 'tftp', port: 69, targetPort: 'tftp', protocol: 'UDP' },
+      ],
     },
-    ports: [
-      { name: 'tftp', port: 69, targetPort: 'tftp', protocol: 'UDP' },
-    ],
   },
-}
+  {
+    apiVersion: 'v1',
+    kind: 'Service',
+    metadata: {
+      name: 'tftp-envoy',
+    },
+    spec: {
+      selector: {
+        'rubykaigi.org/app': 'tftp-envoy',
+      },
+      ports: [
+        { name: 'http', port: 80, targetPort: 'http', protocol: 'TCP' },
+      ],
+    },
+  },
+]
