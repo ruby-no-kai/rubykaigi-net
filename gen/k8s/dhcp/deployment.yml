@@ -67,7 +67,7 @@
                         }
                      }
                   ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:30b7ec4d26f186c4b7efd1c1729bffdc3b92fe80",
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:4a29478902b46da170cbce288b322765389c962a",
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {
@@ -110,6 +110,10 @@
                      {
                         "mountPath": "/config",
                         "name": "config"
+                     },
+                     {
+                        "mountPath": "/server-ids",
+                        "name": "server-ids"
                      }
                   ]
                }
@@ -141,6 +145,18 @@
                      "name": "kea-config"
                   },
                   "name": "config"
+               },
+               {
+                  "configMap": {
+                     "items": [
+                        {
+                           "key": "server-ids.json",
+                           "path": "server-ids.json"
+                        }
+                     ],
+                     "name": "kea-server-ids"
+                  },
+                  "name": "server-ids"
                }
             ]
          }

@@ -1,25 +1,17 @@
-resource "aws_lb" "nlb" {
-  name               = "tftp-${substr(uuid(), 0, 10)}"
-  internal           = true
-  load_balancer_type = "network"
-
-  dynamic "subnet_mapping" {
-    for_each = tomap(local.nlb_subnets)
-    content {
-      subnet_id            = subnet_mapping.value.id
-      private_ipv4_address = cidrhost(subnet_mapping.value.cidr_block, 69)
-    }
-  }
-
-  lifecycle {
-    ignore_changes = [name]
+# sharing nlb with dhcp
+data "terraform_remote_state" "dhcp" {
+  backend = "s3"
+  config = {
+    bucket = "rk-infra"
+    region = "ap-northeast-1"
+    key    = "terraform/nw-dhcp.tfstate"
   }
 }
 
 ###
 
 resource "aws_lb_listener" "tftp" {
-  load_balancer_arn = aws_lb.nlb.arn
+  load_balancer_arn = data.terraform_remote_state.dhcp.outputs.nlb_arn
   port              = "69"
   protocol          = "UDP"
 
@@ -76,7 +68,7 @@ resource "kubernetes_manifest" "targetgroupbinding-tftp-s3tftpd" {
 ##
 
 resource "aws_lb_listener" "http" {
-  load_balancer_arn = aws_lb.nlb.arn
+  load_balancer_arn = data.terraform_remote_state.dhcp.outputs.nlb_arn
   port              = "80"
   protocol          = "TCP"
 
@@ -86,7 +78,7 @@ resource "aws_lb_listener" "http" {
   }
 }
 resource "aws_lb_listener" "https" {
-  load_balancer_arn = aws_lb.nlb.arn
+  load_balancer_arn = data.terraform_remote_state.dhcp.outputs.nlb_arn
   port              = "443"
   protocol          = "TLS"
   ssl_policy        = "ELBSecurityPolicy-TLS13-1-0-2021-06" # maximize compatibility

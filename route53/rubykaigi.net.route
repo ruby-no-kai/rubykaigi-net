@@ -50,15 +50,12 @@ template 'rubykaigi.net-common' do
   ignore 'signage-prd-cf.rubykaigi.net'
 
   # FIXME: external-dns ni sitai
-  rrset 'dhcp.rubykaigi.net', 'CNAME' do
-    ttl 60
-    resource_records 'k8s-default-kea4-fc282aff9b-fea8a1f4b5e15f21.elb.ap-northeast-1.amazonaws.com'
-  end
   rrset 'syslog.rubykaigi.net', 'CNAME' do
     ttl 60
     resource_records 'k8s-default-fluentd-a3cdd7df91-d976e2fb503a524f.elb.ap-northeast-1.amazonaws.com'
   end
 
+  ignore 'dhcp.rubykaigi.net'
   ignore 'tftp.rubykaigi.net'
 
   # gen-hosts.rb overrides

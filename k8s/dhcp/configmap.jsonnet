@@ -80,10 +80,11 @@ local config = {
         name: 'domain-search',
         data: std.join(', ', consts.search_domains),
       },
-      // {
-      //   name: 'dhcp-server-identifier',
-      //   data: '__SERVER_ID__',
-      // },
+      // Set to NLB address
+      {
+        name: 'dhcp-server-identifier',
+        data: '__SERVER_ID__',
+      },
     ],
 
     allocator: 'random',
