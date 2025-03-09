@@ -5,8 +5,9 @@ set submenu-timeout ${menu-timeout}
 isset ${menu-default} || set menu-default xyz
 
 :start
+menu rubykaigi.net iPXE boot menu
 item --gap --             ------------------------- Systems -----------------------------
-item --key U ubuntu       Install Ubuntu Server
+item --key U ubuntu       Auto-install Ubuntu Server
 item --key l xyz          Go to netboot.xyz
 item --gap --             ------------------------- Tools -------------------------------
 item --key c config       Configure settings
@@ -50,9 +51,10 @@ goto start
 ## Boot items
 
 :ubuntu
-echo Booting Ubuntu from iSCSI for ${initiator-iqn}
-kernel ro/compute/noble/vmlinuz autoinstall ip=dhcp url=https://tftp.rubykaigi.net/ro/compute/noble/ubuntu-24.04.2-live-server-amd64.iso ds=nocloud-net\;s=https://tftp.rubykaigi.net/ro/compute/noble/autoinstall/default/
-initrd ro/compute/noble/initrd
+echo booting Ubuntu Server to install
+# https://bugs.launchpad.net/cloud-init/+bug/1937319
+kernel noble/vmlinuz autoinstall ip=dhcp iso-url=https://tftp.rubykaigi.net/ro/compute/noble/ubuntu-24.04.2-live-server-amd64.iso ds=nocloud-net;s=https://tftp.rubykaigi.net/ro/compute/noble/autoinstall/default/
+initrd noble/initrd
 boot || goto failed
 goto start
 

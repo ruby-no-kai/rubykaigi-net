@@ -3,6 +3,8 @@ local user_data = (import '../cloudconfig.base.libsonnet') + {
     ['cloud-init-per', 'once', 'ssh-port', 'bash', '-c', '( echo Port 9922; echo Port 22 ) >> /etc/ssh/sshd_config.d/90-rk-port.conf && systemctl daemon-reload'],
   ],
   packages: [
+    'iperf3',
+    'mtr',
   ],
 };
 local autoinstall = {
@@ -18,6 +20,7 @@ local autoinstall = {
       ethernets: {
         ethernet: {
           match: { name: 'en*' },
+          optional: true,
           dhcp4: true,
           'emit-lldp': true,
           wakeonlan: true,
@@ -37,16 +40,20 @@ local autoinstall = {
         },
       },
     },
+    packages: [
+      'ssh-import-id',
+      'openssh-server',
+    ],
     'user-data': user_data,
-    timezone: 'Etc/ETC',
+    timezone: 'Etc/UTC',
     updates: 'all',
     shutdown: 'reboot',
-    reporting: {
-      central: {
-        type: 'rsyslog',
-        destination: '@syslog.rubykaigi.net',
-      },
-    },
+    //reporting: {
+    //  central: {
+    //    type: 'rsyslog',
+    //    destination: '@syslog.rubykaigi.net',
+    //  },
+    //},
   },
 };
 

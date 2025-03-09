@@ -10,7 +10,7 @@ local consts = import './consts.libsonnet';
     },
     {
       name: 'boot-file-name',
-      data: 'ipxe.efi',
+      data: 'ro/compute/ipxe.efi',
     },
   ],
 }

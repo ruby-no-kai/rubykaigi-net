@@ -5,5 +5,6 @@
   ntp_servers: ['216.239.35.0', '216.239.35.4', '216.239.35.8', '216.239.35.12'],  // time.google.com
 
   tftp_server: '10.33.136.67',
+  syslog_server: '10.33.136.14',
   pxe_client_classes: ['pxe_ipxe', 'pxe_uefi'],
 }
