@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "app" {
       name      = "app"
       essential = true
 
-      image = "${aws_ecr_repository.app.repository_url}:5ca8de3ac184594089943423f796f9906df2fa98",
+      image = "${aws_ecr_repository.app.repository_url}:8804bcc3da47db2e8ca9fb5571ca07e948609fd8",
 
       environment = [
         {

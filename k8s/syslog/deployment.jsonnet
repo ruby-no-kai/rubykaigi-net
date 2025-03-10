@@ -1,4 +1,4 @@
-local commit = 'd1e9b4c9ca3f068c5eae56e99b52a4dcd4f21110';
+local commit = '68824faac156e2b757d51e5a663238f4a4a197de';
 {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
