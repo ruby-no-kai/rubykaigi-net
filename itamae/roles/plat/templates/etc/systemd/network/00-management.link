@@ -1,0 +1,7 @@
+<%- iface = node.dig(:plat, :interfaces, :management) -%>
+[Match]
+Path=<%= iface.fetch(:path) %>
+
+[Link]
+Name=<%= iface.fetch(:name) %>
+AlternativeNamesPolicy=mac
