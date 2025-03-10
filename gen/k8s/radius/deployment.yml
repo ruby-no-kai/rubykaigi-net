@@ -38,7 +38,7 @@
                         }
                      }
                   ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/radiusd:4ebf22aa0f75cea5183107dc5301cc91b89601e0",
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/radiusd:612189a5c08a498d4a2b9bc65f40c9b90b4737f9",
                   "name": "app",
                   "ports": [
                      {
@@ -75,7 +75,7 @@
                         "value": "maplenutbunny"
                      }
                   ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/freeradius-exporter:bf1b115eff0ec17dbc071416075fe99de4538d9b",
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/freeradius-exporter:2aafdbae055966c304e5afafa8d299f46b9b13ed",
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {

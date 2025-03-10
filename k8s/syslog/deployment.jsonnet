@@ -1,4 +1,3 @@
-local commit = '68824faac156e2b757d51e5a663238f4a4a197de';
 {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
@@ -32,7 +31,7 @@ local commit = '68824faac156e2b757d51e5a663238f4a4a197de';
                 memory: '192M',
               },
             },
-            image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/fluentd:%s', commit),
+            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/fluentd:68824faac156e2b757d51e5a663238f4a4a197de',
             args: ['--config', '/config/fluent.conf'],
             ports: [
               { name: 'syslog', containerPort: 5140, protocol: 'UDP' },

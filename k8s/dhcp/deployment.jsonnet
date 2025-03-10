@@ -1,4 +1,3 @@
-local commit = '5874556a63fb13193de9bd85698eab6698460306';
 {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
@@ -42,7 +41,7 @@ local commit = '5874556a63fb13193de9bd85698eab6698460306';
                 memory: '20M',
               },
             },
-            image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:%s', commit),
+            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:5874556a63fb13193de9bd85698eab6698460306',
             command: ['/bin/bash', '-e', '/app/run.sh'],
             ports: [
               { name: 'dhcp', containerPort: 67, protocol: 'UDP' },
