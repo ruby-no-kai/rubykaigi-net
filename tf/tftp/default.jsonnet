@@ -6,6 +6,14 @@ local user_data = (import '../cloudconfig.base.libsonnet') + {
     'iperf3',
     'mtr',
   ],
+  users+: [
+    super.users[0] {
+      // FIXME: ssh_import_id is flaky...
+      ssh_authorized_keys: [
+        'ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBACG1cKNR8SS4Dkm2wcia74RRmy9d7h62114MQd0H9zb1+1LxVa55Qqd8O232BH1i/fF/1o+eE3L5U7RCR8KUCuAXgFrF429BETaiiBnSErv5yrHJS5RTTjEhA1d9Ygk0o3Und6+90waBXAk2oPVP+OBNtYq1CraZQsXuqvlUtMrBnSTsQ== sorah-mulberry-ecdsa',
+      ],
+    },
+  ],
 };
 local autoinstall = {
   autoinstall: {
@@ -20,7 +28,6 @@ local autoinstall = {
       ethernets: {
         ethernet: {
           match: { name: 'en*' },
-          optional: true,
           dhcp4: true,
           'emit-lldp': true,
           wakeonlan: true,
@@ -48,7 +55,30 @@ local autoinstall = {
     timezone: 'Etc/UTC',
     updates: 'all',
     shutdown: 'reboot',
-    //reporting: {
+    'late-commands': [
+      // Wait for at least one network interface to be routable.
+      // Marking all interfaces 'optional' leads to ssh-import-id to fail, so instead we override systemd-networkd-wait-online.service.
+      [
+        'curtin',
+        'in-target',
+        '--',
+        'bash',
+        '-c',
+        |||
+          mkdir -p /etc/systemd/system/systemd-networkd-wait-online.service.d
+          cat <<-EOF >/etc/systemd/system/systemd-networkd-wait-online.service.d/90-netplan-overrides.conf
+          # rubykaigi-net//tf/tftp/default.jsonnet
+          [Unit]
+          ConditionPathIsSymbolicLink=/run/systemd/generator/network-online.target.wants/systemd-networkd-wait-online.service
+          [Service]
+          ExecStart=
+          ExecStart=/lib/systemd/systemd-networkd-wait-online --ipv4 --any -o routable --timeout=30
+          EOF
+        |||,
+      ],
+    ],
+    // NOTE: hidoi. https://img.sorah.jp/x/20250310_022803_n3hXRVez8R.png
+    // reporting: {
     //  central: {
     //    type: 'rsyslog',
     //    destination: '@syslog.rubykaigi.net',
