@@ -51,6 +51,14 @@ else
   end
 end
 
+file '/etc/systemd/networkd.conf.d/99-speedmeter.conf' do
+  content "[Network]\nSpeedMeter=yes\nSpeedMeterIntervalSec=10\n"
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+
 package 'systemd-resolved' do
   action :install
 end
