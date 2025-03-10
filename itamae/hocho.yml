@@ -1,0 +1,36 @@
+inventory_providers:
+  - file:
+      path: ./hosts.yml
+property_providers:
+  - add_default:
+      properties:
+        nopasswd_sudo: true
+        compress: false
+        preferred_driver: mitamae
+        alternate_ssh_options:
+          port: 22
+          user: root
+initializers:
+  - site.rb
+driver_options:
+  mitamae:
+    # mitamae_outdate_check_script: |
+    #   [ -x /usr/bin/mitamae ] && [ "_$(mitamae version)" != "_MItamae v1.8.0" ] ||
+    #   [ -x /usr/local/bin/mitamae ] && [ "_$(mitamae version)" != "_MItamae v1.7.2" ]
+    mitamae_prepare_script:
+      - |
+        if [ -e /etc/apt ]; then
+          set -ex
+          export DEBIAN_FRONTEND=noninteractive
+          if ! command -v curl >/dev/null; then
+            apt-get update
+            apt-get install -y curl ca-certificates
+          fi
+          if [ ! -e /etc/apt/sources.list.d/nekomit.list ]; then
+            . /etc/os-release
+            curl -Ssf https://sorah.jp/packaging/debian/C3FF3305.pub.txt -o /etc/apt/keyrings/nekomit.asc
+            echo "deb [signed-by=/etc/apt/keyrings/nekomit.asc] http://deb.nekom.it/ ${VERSION_CODENAME} main" >/etc/apt/sources.list.d/nekomit.list
+          fi
+          apt-get update
+          apt-get install -y mitamae
+        fi
