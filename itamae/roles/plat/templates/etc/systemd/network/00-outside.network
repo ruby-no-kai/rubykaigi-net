@@ -6,6 +6,8 @@ Name=<%= iface.fetch(:name) %>
 
 [Network]
 IPForward=yes
+LLDP=yes
+EmitLLDP=yes
 
 [Address]
 Address=<%= link4.fetch(:local) %>/32

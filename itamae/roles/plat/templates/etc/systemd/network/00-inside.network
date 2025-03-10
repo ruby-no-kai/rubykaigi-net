@@ -6,6 +6,8 @@ Name=<%= iface.fetch(:name) %>
 
 [Network]
 IPForward=yes
+LLDP=yes
+EmitLLDP=yes
 <%- unless node.dig(:plat, :interfaces, :management) -%>
 Gateway=<%= link4.fetch(:peer) %>
 Gateway=<%= link6.fetch(:peer) %>
