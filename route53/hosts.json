@@ -2306,6 +2306,30 @@
     },
     {
       "zone": "rubykaigi.net-private",
+      "name": "em0.nat-61.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.61"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "mgmt.nat-61.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "em0.nat-61.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "61.100.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "em0.nat-61.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
       "name": "nat-private.nat-61.venue.rubykaigi.net.",
       "type": "A",
       "records": [
@@ -2330,15 +2354,23 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "TBD.nat-61.venue.rubykaigi.net.",
+      "name": "enp1s0.nat-61.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.22.48"
+        "10.33.22.49"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "49.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "enp1s0.nat-61.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "TBD2.nat-61.venue.rubykaigi.net.",
+      "name": "enp2s0.nat-61.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.22.64"
@@ -2349,7 +2381,7 @@
       "name": "64.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD2.nat-61.venue.rubykaigi.net."
+        "enp2s0.nat-61.venue.rubykaigi.net."
       ]
     },
     {
@@ -2402,7 +2434,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "TBD.nat-61.venue.rubykaigi.net.",
+      "name": "enp1s0.nat-61.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca22:48::b"
@@ -2413,12 +2445,12 @@
       "name": "b.0.0.0.0.0.0.0.0.0.0.0.8.4.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.nat-61.venue.rubykaigi.net."
+        "enp1s0.nat-61.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "TBD2.nat-61.venue.rubykaigi.net.",
+      "name": "enp2s0.nat-61.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca22:64::a"
@@ -2429,7 +2461,7 @@
       "name": "a.0.0.0.0.0.0.0.0.0.0.0.4.6.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD2.nat-61.venue.rubykaigi.net."
+        "enp2s0.nat-61.venue.rubykaigi.net."
       ]
     },
     {
@@ -2472,6 +2504,30 @@
     },
     {
       "zone": "rubykaigi.net-private",
+      "name": "em0.nat-62.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.62"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "mgmt.nat-62.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "em0.nat-62.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "62.100.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "em0.nat-62.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
       "name": "nat-private.nat-62.venue.rubykaigi.net.",
       "type": "A",
       "records": [
@@ -2496,7 +2552,7 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "TBD.nat-62.venue.rubykaigi.net.",
+      "name": "enp1s0.nat-62.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.22.51"
@@ -2507,12 +2563,12 @@
       "name": "51.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.nat-62.venue.rubykaigi.net."
+        "enp1s0.nat-62.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "TBD2.nat-62.venue.rubykaigi.net.",
+      "name": "enp2s0.nat-62.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.22.66"
@@ -2523,7 +2579,7 @@
       "name": "66.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD2.nat-62.venue.rubykaigi.net."
+        "enp2s0.nat-62.venue.rubykaigi.net."
       ]
     },
     {
@@ -2576,7 +2632,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "TBD.nat-62.venue.rubykaigi.net.",
+      "name": "enp1s0.nat-62.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca22:50::b"
@@ -2587,12 +2643,12 @@
       "name": "b.0.0.0.0.0.0.0.0.0.0.0.0.5.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.nat-62.venue.rubykaigi.net."
+        "enp1s0.nat-62.venue.rubykaigi.net."
       ]
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "TBD2.nat-62.venue.rubykaigi.net.",
+      "name": "enp2s0.nat-62.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca22:66::a"
@@ -2603,7 +2659,7 @@
       "name": "a.0.0.0.0.0.0.0.0.0.0.0.6.6.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD2.nat-62.venue.rubykaigi.net."
+        "enp2s0.nat-62.venue.rubykaigi.net."
       ]
     },
     {

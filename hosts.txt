@@ -49,6 +49,8 @@ venue	mgmt	10.33.100.0/24	10.33.100.254	cs-01	irb.1000
 venue	mgmt	10.33.100.0/24	2001:df0:8500:cab0::1	cs-01	irb.1000
 venue	mgmt	10.33.100.0/24	10.33.100.2	as-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.10	wlc-01	svc
+venue	mgmt	10.33.100.0/24	10.33.100.61	nat-61	em0
+venue	mgmt	10.33.100.0/24	10.33.100.62	nat-62	em0
 venue	mgmt	10.33.100.0/24	10.33.100.100	es-tra-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.101	es-tra-02	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.105	es-trb-01	vlan1000
@@ -179,14 +181,14 @@ venue	link	10.33.22./31	2001:df0:8500:ca22:46::a
 venue	link	10.33.22./31	2001:df0:8500:ca22:46::b		
 					
 venue	link	10.33.22./31	10.33.22.48	er-01	ge-0/0/3
-venue	link	10.33.22./31	10.33.22.48	nat-61	TBD
+venue	link	10.33.22./31	10.33.22.49	nat-61	enp1s0
 venue	link	10.33.22./31	2001:df0:8500:ca22:48::a	er-01	ge-0/0/3
-venue	link	10.33.22./31	2001:df0:8500:ca22:48::b	nat-61	TBD
+venue	link	10.33.22./31	2001:df0:8500:ca22:48::b	nat-61	enp1s0
 					
 venue	link	10.33.22./31	10.33.22.50	er-02	ge-0/0/2
-venue	link	10.33.22./31	10.33.22.51	nat-62	TBD
+venue	link	10.33.22./31	10.33.22.51	nat-62	enp1s0
 venue	link	10.33.22./31	2001:df0:8500:ca22:50::a	er-02	ge-0/0/2
-venue	link	10.33.22./31	2001:df0:8500:ca22:50::b	nat-62	TBD
+venue	link	10.33.22./31	2001:df0:8500:ca22:50::b	nat-62	enp1s0
 					
 venue	link	10.33.22./31	10.33.22.52	er-01	ge-0/0/1.1
 venue	link	10.33.22./31	10.33.22.53	nat-41	Gi0.1
@@ -206,14 +208,14 @@ venue	link	10.33.22./31	10.33.22.61	cs-01	ge-0/0/22
 venue	link	10.33.22./31	10.33.22.62	nat-42	Gi1.0
 venue	link	10.33.22./31	10.33.22.63	cs-01	ge-1/0/22
 					
-venue	link	10.33.22./31	10.33.22.64	nat-61	TBD2
+venue	link	10.33.22./31	10.33.22.64	nat-61	enp2s0
 venue	link	10.33.22./31	10.33.22.65	cs-01	ge-0/0/21
-venue	link	10.33.22./31	2001:df0:8500:ca22:64::a	nat-61	TBD2
+venue	link	10.33.22./31	2001:df0:8500:ca22:64::a	nat-61	enp2s0
 venue	link	10.33.22./31	2001:df0:8500:ca22:64::b	cs-01	ge-0/0/21
 					
-venue	link	10.33.22./31	10.33.22.66	nat-62	TBD2
+venue	link	10.33.22./31	10.33.22.66	nat-62	enp2s0
 venue	link	10.33.22./31	10.33.22.67	cs-01	ge-1/0/21
-venue	link	10.33.22./31	2001:df0:8500:ca22:66::a	nat-62	TBD2
+venue	link	10.33.22./31	2001:df0:8500:ca22:66::a	nat-62	enp2s0
 venue	link	10.33.22./31	2001:df0:8500:ca22:66::b	cs-01	ge-1/0/21
 					
 hnd	link	10.33.22./31	10.33.22.68	br-01	ge-0/0/1.31
