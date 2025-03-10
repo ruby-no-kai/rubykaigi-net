@@ -44,3 +44,10 @@ template '/etc/bird/bird.conf.d/plat.conf' do
   mode '0640'
   notifies :reload, 'service[bird]'
 end
+
+template '/etc/sysctl.d/90-nf-timeout.conf' do
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :restart, 'service[systemd-sysctl]'
+end

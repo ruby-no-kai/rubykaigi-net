@@ -6,6 +6,10 @@ execute "systemctl daemon-reload" do
   action :nothing
 end
 
+service "systemd-sysctl" do
+  action :enable
+end
+
 node[:basedir] = File.expand_path('..', __FILE__)
 
 MItamae::RecipeContext.class_eval do
