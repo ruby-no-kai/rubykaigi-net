@@ -24,7 +24,20 @@ local domainName = 'mgmt.venue.rubykaigi.net';
     },
     {
       name: 'domain-search',
-      data: std.join(', ', [domainName, 'venue.rubykaigi.net'] + consts.search_domains),
+      data: std.join(', ', ['f.rubykaigi.net', domainName, 'venue.rubykaigi.net'] + consts.search_domains),
+    },
+  ],
+
+  reservations: [
+    {
+      hostname: 'nat-61-venue',
+      duid: '00:02:00:00:ba:2c:33:00:23',
+      'ip-address': '10.33.100.61',
+    },
+    {
+      hostname: 'nat-61-venue',
+      duid: '00:02:00:00:ba:2c:33:00:24',
+      'ip-address': '10.33.100.62',
     },
   ],
 }
