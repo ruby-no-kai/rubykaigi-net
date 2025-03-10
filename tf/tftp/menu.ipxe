@@ -7,8 +7,10 @@ isset ${menu-default} || set menu-default xyz
 :start
 menu rubykaigi.net iPXE boot menu
 item --gap --             ------------------------- Systems -----------------------------
-item --key U ubuntu       Auto-install Ubuntu Server
 item --key l xyz          Go to netboot.xyz
+item --key u ubuntu       Ubuntu Server
+item --key U ubuntui      (Auto-install) Ubuntu Server
+item --key a archiso      archiso
 item --gap --             ------------------------- Tools -------------------------------
 item --key c config       Configure settings
 item --key / shell        Drop to iPXE shell
@@ -50,14 +52,30 @@ goto start
 
 ## Boot items
 
-:ubuntu
-echo booting Ubuntu Server to install
+:ubuntui
+echo booting Ubuntu Server to autoinstall
+sleep 2
 # https://bugs.launchpad.net/cloud-init/+bug/1937319
 kernel noble/vmlinuz autoinstall ip=dhcp iso-url=https://tftp.rubykaigi.net/ro/compute/noble/ubuntu-24.04.2-live-server-amd64.iso ds=nocloud-net;s=https://tftp.rubykaigi.net/ro/compute/noble/autoinstall/default/
 initrd noble/initrd
 boot || goto failed
 goto start
 
+:ubuntu
+echo booting Ubuntu Server
+# https://bugs.launchpad.net/cloud-init/+bug/1937319
+kernel noble/vmlinuz ip=dhcp iso-url=https://tftp.rubykaigi.net/ro/compute/noble/ubuntu-24.04.2-live-server-amd64.iso
+initrd noble/initrd
+boot || goto failed
+goto start
+
+:archiso
+echo booting archiso
+set dir http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/iso/latest/arch/boot
+set params archiso_http_srv=http://ftp.tsukuba.wide.ad.jp/Linux/archlinux/iso/latest/ archisobasedir=arch cms_verify=y ip=dhcp net.ifnames=0
+kernel ${dir}/x86_64/vmlinuz-linux ${params}
+initrd ${dir}/x86_64/initramfs-linux.img
+boot || goto failed
 goto start
 
 :xyz
