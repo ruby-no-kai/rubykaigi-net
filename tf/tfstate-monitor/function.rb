@@ -88,9 +88,9 @@ module TfstateMonitor
                     tags: {
                       key: 'Component',
                       values: tag_pair.component,
-                    },
+                    }.then { _1[:values].empty? ? _1.slice(:key).merge(match_options: %w(ABSENT)) : _1 },
                   },
-                ].reject { _1[:tags][:values].empty? },
+                ].reject { _1[:tags][:values] && _1[:tags][:values].empty? },
               }.then { _1[:and].size == 1 ? _1[:and].first : _1 }
             end
           }.then { case _1[:or].size; when 0; nil; when 1; _1[:or].first; else _1; end },
