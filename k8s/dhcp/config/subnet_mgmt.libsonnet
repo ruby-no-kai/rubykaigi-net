@@ -8,6 +8,7 @@ local domainName = 'mgmt.venue.rubykaigi.net';
       pool: '10.33.100.200 - 10.33.100.250',
     },
   ],
+  'require-client-classes': consts.pxe_client_classes,
   'option-data': [
     {
       name: 'routers',

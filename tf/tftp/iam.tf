@@ -57,6 +57,7 @@ data "aws_iam_policy_document" "s3tftpd-policy" {
     ]
     resources = [
       "${aws_s3_bucket.tftp.arn}/ro/*",
+      "${aws_s3_bucket.tftp.arn}/tftpboot/*",
       "${aws_s3_bucket.tftp.arn}/ping",
     ]
     effect = "Allow"

@@ -67,7 +67,6 @@ local config = {
       'unwarned-reclaim-cycles': 5,
     },
 
-
     'option-data': [
       {
         name: 'domain-name-servers',
@@ -81,13 +80,19 @@ local config = {
         name: 'domain-search',
         data: std.join(', ', consts.search_domains),
       },
-      // {
-      //   name: 'dhcp-server-identifier',
-      //   data: '__SERVER_ID__',
-      // },
+      // Set to NLB address
+      {
+        name: 'dhcp-server-identifier',
+        data: '__SERVER_ID__',
+      },
     ],
 
     allocator: 'random',
+
+    'client-classes': [
+      import './config/class_pxe_ipxe.libsonnet',
+      import './config/class_pxe_uefi.libsonnet',
+    ],
 
     subnet4: [
       import './config/subnet_air.libsonnet',

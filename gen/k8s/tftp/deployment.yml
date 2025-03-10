@@ -3,22 +3,22 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "rubykaigi.org/app": "s3tftpd"
+         "rubykaigi.org/app": "tftp-s3tftpd"
       },
-      "name": "s3tftpd",
+      "name": "tftp-s3tftpd",
       "namespace": "default"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "rubykaigi.org/app": "s3tftpd"
+            "rubykaigi.org/app": "tftp-s3tftpd"
          }
       },
       "template": {
          "metadata": {
             "labels": {
-               "rubykaigi.org/app": "s3tftpd"
+               "rubykaigi.org/app": "tftp-s3tftpd"
             }
          },
          "spec": {

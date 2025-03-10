@@ -4,7 +4,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project   = "tftp"
+      Project   = "rk25net"
       Component = "tftp"
     }
   }
