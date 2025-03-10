@@ -1,0 +1,18 @@
+<%- iface = node.dig(:plat, :interfaces, :inside) -%>
+<%- link4 = iface.fetch(:link4) -%>
+<%- link6 = iface.fetch(:link6) -%>
+[Match]
+Name=<%= iface.fetch(:name) %>
+
+[Network]
+IPForward=yes
+Gateway=<%= link4.fetch(:peer) %>
+Gateway=<%= link6.fetch(:peer) %>
+
+[Address]
+Address=<%= link4.fetch(:local) %>/32
+Peer=<%= link4.fetch(:peer) %>/32
+
+[Address]
+Address=<%= link6.fetch(:local) %>/128
+Peer=<%= link6.fetch(:peer) %>/128

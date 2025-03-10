@@ -1,0 +1,14 @@
+<%-
+  addrs4 = node.dig(:plat, :interfaces, :loopback).fetch(:address4)
+  addrs6 = node.dig(:plat, :interfaces, :loopback).fetch(:address6)
+-%>
+[Match]
+Name=lo
+
+[Network]
+<%- addrs4.each do |addr| -%>
+Address=<%= addr %>/32
+<%- end -%>
+<%- addrs6.each do |addr| -%>
+Address=<%= addr %>/128
+<%- end -%>
