@@ -15,6 +15,8 @@ include_cookbook 'nftables'
 include_cookbook 'xlat'
 include_cookbook 'bird'
 
+package 'conntrack'
+
 %w[
   00-lo.network
   00-inside.network
