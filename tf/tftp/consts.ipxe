@@ -1,4 +1,4 @@
 #!ipxe
 
-set boot-dir http://tftp.rubykaigi.net/ro/compute/
-set menu-url http://tftp.rubykaigi.net/ro/compute/menu.ipxe
+set boot-dir https://tftp.rubykaigi.net/ro/compute/
+set menu-url https://tftp.rubykaigi.net/ro/compute/menu.ipxe

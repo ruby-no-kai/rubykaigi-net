@@ -4,7 +4,7 @@
 #dhcp || goto retry_dhcp
 #echo IP address: ${net0/ip} ; echo Subnet mask: ${net0/netmask}
 
-chain --autofree http://tftp.rubykaigi.net/ro/compute/consts.ipxe ||
+chain --autofree https://tftp.rubykaigi.net/ro/compute/consts.ipxe ||
 isset ${hostname} && chain --replace --autofree ${boot-dir}ipxe/hostname-${hostname}.ipxe ||
 isset ${uuid} && chain --replace --autofree ${boot-dir}ipxe/uuid-${uuid}.ipxe ||
 chain --replace --autofree ${boot-dir}ipxe/mac-${mac:hexraw}.ipxe ||
