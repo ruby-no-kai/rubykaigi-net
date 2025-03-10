@@ -76,6 +76,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "logs:*",
       "medialive:*",
       "rds:*",
+      "rds-db:connect", # XXX: too excessive
       "route53:*",
       "ssm:*",
       "sqs:*", # XXX: too excessive
