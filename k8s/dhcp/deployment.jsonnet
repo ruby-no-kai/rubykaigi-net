@@ -1,4 +1,4 @@
-local commit = '30b7ec4d26f186c4b7efd1c1729bffdc3b92fe80';
+local commit = '4a29478902b46da170cbce288b322765389c962a';
 {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
@@ -10,7 +10,7 @@ local commit = '30b7ec4d26f186c4b7efd1c1729bffdc3b92fe80';
     },
   },
   spec: {
-    replicas: 3,
+    replicas: 1,
     selector: {
       matchLabels: { 'rubykaigi.org/app': 'kea4' },
     },
@@ -58,6 +58,7 @@ local commit = '30b7ec4d26f186c4b7efd1c1729bffdc3b92fe80';
             ],
             volumeMounts: [
               { name: 'config', mountPath: '/config' },
+              { name: 'server-ids', mountPath: '/server-ids' },
             ],
             readinessProbe: { httpGet: { path: '/healthz', port: 10067, scheme: 'HTTP' } },
             livenessProbe: {
@@ -69,6 +70,7 @@ local commit = '30b7ec4d26f186c4b7efd1c1729bffdc3b92fe80';
         ],
         volumes: [
           { name: 'config', configMap: { name: 'kea-config', items: [{ key: 'kea-dhcp4.json', path: 'kea-dhcp4.json' }] } },
+          { name: 'server-ids', configMap: { name: 'kea-server-ids', items: [{ key: 'server-ids.json', path: 'server-ids.json' }] } },
         ],
       },
     },

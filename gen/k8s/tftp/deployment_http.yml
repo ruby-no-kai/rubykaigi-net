@@ -1,0 +1,92 @@
+{
+   "apiVersion": "apps/v1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "rubykaigi.org/app": "tftp-envoy"
+      },
+      "name": "tftp-envoy"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "rubykaigi.org/app": "tftp-envoy"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "rubykaigi.org/app": "tftp-envoy"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "args": [
+                     "--config-path",
+                     "/etc/envoy/envoy.json"
+                  ],
+                  "env": [
+                     {
+                        "name": "AWS_EC2_METADATA_DISABLED",
+                        "value": "true"
+                     }
+                  ],
+                  "image": "envoyproxy/envoy:v1.33.0",
+                  "livenessProbe": {
+                     "failureThreshold": 2,
+                     "httpGet": {
+                        "path": "/ready",
+                        "port": 9901,
+                        "scheme": "HTTP"
+                     },
+                     "periodSeconds": 3
+                  },
+                  "name": "envoy",
+                  "ports": [
+                     {
+                        "containerPort": 11080,
+                        "name": "http",
+                        "protocol": "TCP"
+                     },
+                     {
+                        "containerPort": 9901,
+                        "name": "admin"
+                     }
+                  ],
+                  "readinessProbe": {
+                     "httpGet": {
+                        "path": "/ready",
+                        "port": 9901,
+                        "scheme": "HTTP"
+                     }
+                  },
+                  "resources": {
+                     "requests": {
+                        "cpu": "5m",
+                        "memory": "64M"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/envoy",
+                        "name": "tftp-envoy",
+                        "readOnly": true
+                     }
+                  ]
+               }
+            ],
+            "serviceAccountName": "s3tftpd",
+            "volumes": [
+               {
+                  "configMap": {
+                     "name": "tftp-envoy"
+                  },
+                  "name": "tftp-envoy"
+               }
+            ]
+         }
+      }
+   }
+}
