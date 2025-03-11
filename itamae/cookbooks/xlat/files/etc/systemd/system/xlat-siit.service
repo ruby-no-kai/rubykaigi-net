@@ -7,5 +7,16 @@ Type=exec
 WorkingDirectory=/opt/xlat
 ExecStart=/usr/bin/bundle exec xlat-siit tun-siit 2001:df0:8500:ca61:ac:8200::/96 2001:df0:8500:ca64:a9:8200::/96
 
+DynamicUser=yes
+User=xlat
+CapabilityBoundingSet=CAP_NET_ADMIN
+AmbientCapabilities=CAP_NET_ADMIN
+LogsDirectory=xlat
+ProtectHome=yes
+ProtectProc=invisible
+DeviceAllow=/dev/net/tun
+IPAddressDeny=any
+SystemCallFilter=@system-service
+
 [Install]
 WantedBy=multi-user.target
