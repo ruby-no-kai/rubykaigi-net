@@ -6,3 +6,4 @@ node.reverse_merge!(
 )
 
 include_cookbook 'systemd-networkd'
+include_cookbook 'iproute2'

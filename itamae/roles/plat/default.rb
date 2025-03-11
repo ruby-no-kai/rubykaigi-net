@@ -31,6 +31,20 @@ package 'conntrack'
   end
 end
 
+if node.dig(:plat, :interfaces, :management)
+  %w[
+    00-management.network
+    00-management.link
+  ].each do |fname|
+    template "/etc/systemd/network/#{fname}" do
+      owner 'root'
+      group 'root'
+      mode '0644'
+      notifies :restart, 'service[systemd-networkd]'
+    end
+  end
+end
+
 template '/etc/nftables/plat.conf' do
   owner 'root'
   group 'root'
