@@ -1,5 +1,3 @@
-local commit_radiusd = '4ebf22aa0f75cea5183107dc5301cc91b89601e0';
-local commit_freeradius_exporter = 'bf1b115eff0ec17dbc071416075fe99de4538d9b';
 {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
@@ -43,7 +41,7 @@ local commit_freeradius_exporter = 'bf1b115eff0ec17dbc071416075fe99de4538d9b';
                 memory: '96M',
               },
             },
-            image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/radiusd:%s', commit_radiusd),
+            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/radiusd:612189a5c08a498d4a2b9bc65f40c9b90b4737f9',
             command: ['/run.sh'],
             ports: [
               { name: 'radius', containerPort: 1812, protocol: 'UDP' },
@@ -64,7 +62,7 @@ local commit_freeradius_exporter = 'bf1b115eff0ec17dbc071416075fe99de4538d9b';
                 memory: '10M',
               },
             },
-            image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/freeradius-exporter:%s', commit_freeradius_exporter),
+            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/freeradius-exporter:2aafdbae055966c304e5afafa8d299f46b9b13ed',
             command: ['/usr/local/bin/freeradius_exporter'],
             ports: [
               { name: 'prom', containerPort: 9812, protocol: 'TCP' },

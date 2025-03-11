@@ -1,4 +1,3 @@
-local commit = '68824faac156e2b757d51e5a663238f4a4a197de';
 {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
@@ -47,7 +46,7 @@ local commit = '68824faac156e2b757d51e5a663238f4a4a197de';
                 memory: '10M',
               },
             },
-            image: std.format('005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:%s', commit),
+            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:68824faac156e2b757d51e5a663238f4a4a197de',
             command: ['/usr/local/bin/healthz'],
             ports: [
               { name: 'healthz', containerPort: 8080, protocol: 'TCP' },
