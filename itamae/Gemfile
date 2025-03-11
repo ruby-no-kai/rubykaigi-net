@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gem 'hocho'
+gem 'bcrypt_pbkdf'
+gem 'ed25519'
+gem 'x25519'
+gem 'rbnacl'

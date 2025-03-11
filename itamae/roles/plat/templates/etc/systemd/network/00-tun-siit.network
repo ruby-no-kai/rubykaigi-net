@@ -1,0 +1,11 @@
+[Match]
+Name=tun-siit
+
+[Network]
+IPForward=yes
+LinkLocalAddressing=no
+
+[RoutingPolicyRule]
+Priority=100
+IncomingInterface=tun-siit
+Table=64
