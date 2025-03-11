@@ -36,5 +36,9 @@ local domainName = 'usr.venue.rubykaigi.net';
       name: 'domain-search',
       data: std.join(', ', consts.search_domains + [domainName, 'venue.rubykaigi.net']),
     },
+    {
+      name: 'v6-only-preferred',
+      data: '1800',
+    },
   ],
 }
