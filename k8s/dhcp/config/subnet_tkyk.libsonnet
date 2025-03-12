@@ -36,5 +36,9 @@ local domainName = 'test.tkyk.rubykaigi.net';
       name: 'domain-search',
       data: std.join(', ', [domainName, 'venue.rubykaigi.net'] + consts.search_domains),
     },
+    {
+      name: 'v6-only-preferred',
+      data: '1800',
+    },
   ],
 }
