@@ -31,6 +31,14 @@
                   ],
                   "env": [
                      {
+                        "name": "LEASE_DATABASE_NAME",
+                        "value": "kea"
+                     },
+                     {
+                        "name": "LEASE_DATABASE_HOST",
+                        "value": "kea1.db.apne1.rubykaigi.net"
+                     },
+                     {
                         "name": "LEASE_DATABASE_USER",
                         "valueFrom": {
                            "secretKeyRef": {
@@ -47,6 +55,14 @@
                               "name": "kea-mysql"
                            }
                         }
+                     },
+                     {
+                        "name": "HOSTS_DATABASE_NAME",
+                        "value": "kea"
+                     },
+                     {
+                        "name": "HOSTS_DATABASE_HOST",
+                        "value": "kea1.db.apne1.rubykaigi.net"
                      },
                      {
                         "name": "HOSTS_DATABASE_USER",

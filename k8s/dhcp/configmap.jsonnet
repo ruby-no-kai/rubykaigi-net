@@ -14,8 +14,8 @@ local config = {
 
     'lease-database': {
       type: 'mysql',
-      name: 'kea',
-      host: 'kea1.db.apne1.rubykaigi.net',
+      name: '__LEASE_DATABASE_NAME__',
+      host: '__LEASE_DATABASE_HOST__',
       user: '__LEASE_DATABASE_USER__',
       password: '__LEASE_DATABASE_PASSWORD__',
       'connect-timeout': 10,
@@ -26,8 +26,8 @@ local config = {
     //'hosts-database': {
     //  readonly: true,
     //  type: 'mysql',
-    //  name: 'kea',
-    //  host: 'kea1.db.apne1.rubykaigi.net',
+    //  name: '__HOSTS_DATABASE_NAME__',
+    //  host: '__HOSTS_DATABASE_HOST__',
     //  user: '__HOSTS_DATABASE_USER__',
     //  password: '__HOSTS_DATABASE_PASSWORD__',
     //  'connect-timeout': 10,
