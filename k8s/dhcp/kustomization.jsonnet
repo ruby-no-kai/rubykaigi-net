@@ -6,5 +6,6 @@
     './configmap.yml',
     './service.yml',
     './monitoring.yml',
+    './db-upgrade-job.yml',
   ],
 }
