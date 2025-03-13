@@ -1,6 +1,12 @@
 local consts = import './config/consts.libsonnet';
 local config = {
   Dhcp4: {
+    'hooks-libraries': [
+      {
+        library: '/app/kea-hooks/libdhcp_mysql.so',
+      },
+    ],
+
     'interfaces-config': {
       interfaces: ['*'],
       'dhcp-socket-type': 'udp',  // unicast only
