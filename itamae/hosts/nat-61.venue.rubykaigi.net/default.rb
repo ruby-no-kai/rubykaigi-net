@@ -14,7 +14,7 @@ node.reverse_merge!(
       },
       management: {
         name: 'me0',
-        path: '*-usb-0:2:1.0',
+        path: '*14.0-usb-0:*:1.0',
         duid: '00:00:ba:2c:33:00:23',
       },
       outside: {
