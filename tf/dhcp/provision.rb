@@ -19,6 +19,11 @@ begin
   client.query(%(grant all on `%`.* to 'rk'@'%'))
   client.query(%(alter user 'rk'@'%' require SSL))
 
+  client.query(%(drop user 'kea-admin')) rescue nil
+  client.query(%(create user 'kea-admin' identified with AWSAuthenticationPlugin as 'RDS'))
+  client.query(%(grant all on `kea`.* to 'kea-admin'@'%'))
+  client.query(%(alter user 'kea-admin'@'%' require SSL))
+
   client.query(%(drop user 'kea')) rescue nil
   client.query(%(create user 'kea'@'%' identified by '#{client.escape(ENV.fetch('TARGET_PASSWORD'))}'))
   client.query(%(grant all on kea.* to 'kea'@'%'))

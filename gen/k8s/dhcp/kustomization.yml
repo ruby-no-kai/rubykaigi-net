@@ -5,6 +5,7 @@
       "./deployment.yml",
       "./configmap.yml",
       "./service.yml",
-      "./monitoring.yml"
+      "./monitoring.yml",
+      "./db-upgrade-job.yml"
    ]
 }
