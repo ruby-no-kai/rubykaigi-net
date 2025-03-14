@@ -16,8 +16,8 @@ venue	lo	10.33.0.0/24	10.33.0.24	nat-62	lo
 venue	lo	10.33.0.0/24	2001:df0:8500:ca00::24	nat-62	lo
 venue	lo	10.33.0.0/24	10.33.0.30	cs-01	lo
 venue	lo	10.33.0.0/24	2001:df0:8500:ca00::30	cs-01	lo
-					
-					
+nrt	lo	10.33.0.0/24	10.33.0.72	recon-01	lo
+nrt	lo	10.33.0.0/24	2001:df0:8500:ca00::72	recon-01	lo
 					
 hnd	lo	10.33.0.0/24	10.33.0.151	tun-01	lo
 nrt	lo	10.33.0.0/24	10.33.0.152	tun-01	lo
@@ -54,12 +54,12 @@ venue	mgmt	10.33.100.0/24	10.33.100.62	nat-62	me0
 venue	mgmt	10.33.100.0/24	10.33.100.100	es-tra-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.101	es-tra-02	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.105	es-trb-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.110	es-re1-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.111		vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.116	es-ro6-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.120		vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.125	es-ro1-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.130		vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.110	es-trc-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.111	es-lb1-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.116	es-lb2-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.120	es-fb2-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.125	es-rbc-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.130	es-off-01	vlan1000
 					
 venue	mgmt	10.33.100.0/24	10.33.100.195	cloudprober-01	enp3s0
 					
@@ -228,15 +228,13 @@ nrt	link	10.33.22./31	10.33.22.73	tun-01	Gi2.31
 nrt	link	10.33.22./31	10.33.22.74	br-01	ge-0/0/1.32
 nrt	link	10.33.22./31	10.33.22.75	tun-01	Gi2.32
 					
+nrt	link	10.33.22./31	10.33.22.76	br-01	ge-0/0/2.1
+nrt	link	10.33.22./31	10.33.22.77	recon-01	Gi0.1
+nrt	link	10.33.22./31	2001:df0:8500:ca22:76::a	br-01	ge-0/0/2.1
+nrt	link	10.33.22./31	2001:df0:8500:ca22:76::b	recon-01	Gi0.1
 					
-					
-					
-					
-					
-					
-					
-					
-					
+nrt	link	10.33.22./31	10.33.22.78	br-01	ge-0/0/2.2
+nrt	link	10.33.22./31	10.33.22.79	recon-01	Gi0.2
 					
 					
 					
@@ -349,3 +347,5 @@ apne1	pa	192.50.220.160/29	2001:df0:8500:ca6d:53::c	resolver	az-c
 apne1	pa	192.50.220.160/29	2001:df0:8500:ca6d:53::d	resolver	az-d
 tkyk	pa	192.50.220.160/29	192.50.220.166	nat-69	nat
 tkyk	pa	192.50.220.160/29	192.50.220.167	nat-49	nat
+					
+nrt	pa	192.50.220.168/29	192.50.220.172	recon-01	gi0.1-nat
