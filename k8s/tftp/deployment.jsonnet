@@ -47,7 +47,9 @@
               },
             },
             image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:0295a7184621ccb740c486b5a6e517bf1aa1b3e7',
-            command: ['/usr/local/bin/healthz'],
+            env: [
+              { name: 'RUST_LOG', value: 'info' },
+            ],
             ports: [
               { name: 'healthz', containerPort: 8080, protocol: 'TCP' },
             ],
