@@ -48,7 +48,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
                   memory: '128M',
                 },
               },
-              image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:68824faac156e2b757d51e5a663238f4a4a197de',
+              image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:e1f9c57c4144a320e30e948642ddecf2f3500b99',
               args: ['-c', '/etc/unbound/unbound.conf', '-dd'],
               ports: [
                 { name: 'dns', containerPort: 10053, protocol: 'UDP' },

@@ -31,7 +31,7 @@
                 memory: '192M',
               },
             },
-            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/fluentd:68824faac156e2b757d51e5a663238f4a4a197de',
+            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/fluentd:e1f9c57c4144a320e30e948642ddecf2f3500b99',
             args: ['--config', '/config/fluent.conf'],
             ports: [
               { name: 'syslog', containerPort: 5140, protocol: 'UDP' },

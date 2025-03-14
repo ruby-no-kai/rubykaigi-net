@@ -46,7 +46,7 @@
                 memory: '10M',
               },
             },
-            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:68824faac156e2b757d51e5a663238f4a4a197de',
+            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:0295a7184621ccb740c486b5a6e517bf1aa1b3e7',
             command: ['/usr/local/bin/healthz'],
             ports: [
               { name: 'healthz', containerPort: 8080, protocol: 'TCP' },
