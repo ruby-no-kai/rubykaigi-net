@@ -11,6 +11,7 @@ node.reverse_merge!(
 
 include_role 'base'
 
+include_cookbook 'cpufreq'
 include_cookbook 'nftables'
 include_cookbook 'xlat'
 include_cookbook 'bird'
