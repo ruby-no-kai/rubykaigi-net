@@ -1,0 +1,45 @@
+{
+   "apiVersion": "monitoring.coreos.com/v1alpha1",
+   "kind": "ScrapeConfig",
+   "metadata": {
+      "labels": {
+         "release": "kube-prometheus-stack"
+      },
+      "name": "tito"
+   },
+   "spec": {
+      "metricsPath": "/prd/prometheus",
+      "params": { },
+      "relabelings": [
+         {
+            "replacement": "/prd/prometheus/$1",
+            "sourceLabels": [
+               "__address__"
+            ],
+            "targetLabel": "__metrics_path__"
+         },
+         {
+            "replacement": "rk-attendee-gate.s3.dualstack.us-west-2.amazonaws.com:443",
+            "targetLabel": "__address__"
+         },
+         {
+            "sourceLabels": [
+               "__param_target"
+            ],
+            "targetLabel": "instance"
+         }
+      ],
+      "scheme": "HTTPS",
+      "scrapeInterval": "60s",
+      "scrapeTimeout": "50s",
+      "staticConfigs": [
+         {
+            "targets": [
+               "rubykaigi/2024",
+               "rubykaigi/2025",
+               "rubykaigi/2025-party"
+            ]
+         }
+      ]
+   }
+}

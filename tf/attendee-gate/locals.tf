@@ -1,5 +1,5 @@
 locals {
-  app_ref    = "68824faac156e2b757d51e5a663238f4a4a197de-arm64"
+  app_ref    = "b3e9f767b1b55263f067d514f5197f7c4474620d-arm64"
   event_slug = "rubykaigi/2025"
   environment = {
     RACK_ENV   = "production"

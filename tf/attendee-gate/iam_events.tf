@@ -34,4 +34,13 @@ data "aws_iam_policy_document" "events" {
       aws_sfn_state_machine.generator.arn,
     ]
   }
+  statement {
+    effect = "Allow"
+    actions = [
+      "lambda:InvokeFunction",
+    ]
+    resources = [
+      aws_lambda_function.metrics.arn,
+    ]
+  }
 }

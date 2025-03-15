@@ -5,6 +5,7 @@
       "./blackbox.yml",
       "./snmp.yml",
       "./cloudprober.yml",
+      "./tito.yml",
       "./rules.yml"
    ]
 }

@@ -17,3 +17,27 @@ resource "aws_scheduler_schedule" "schedule" {
     })
   }
 }
+
+resource "aws_scheduler_schedule" "metrics" {
+  for_each = toset([
+    "rubykaigi/2024",
+    "rubykaigi/2025",
+    "rubykaigi/2025-party",
+  ])
+  name = "attendee-gate-metrics-${replace(each.value, "/", "-")}"
+
+  flexible_time_window {
+    mode = "OFF"
+  }
+  schedule_expression = "rate(5 minutes)"
+
+  target {
+    arn      = aws_lambda_function.metrics.arn
+    role_arn = aws_iam_role.events.arn
+    input = jsonencode({
+      bucket     = local.environment.S3_BUCKET,
+      key        = "prd/prometheus/${each.value}",
+      event_slug = each.value
+    })
+  }
+}

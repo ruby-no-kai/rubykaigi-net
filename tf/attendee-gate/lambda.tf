@@ -46,6 +46,29 @@ resource "aws_lambda_function" "generator" {
     }, local.environment)
   }
 }
+
+resource "aws_lambda_function" "metrics" {
+  function_name = "attendee-gate-metrics"
+
+  package_type  = "Image"
+  image_uri     = "${aws_ecr_repository.attendee-gate.repository_url}:${local.app_ref}"
+  architectures = ["arm64"]
+
+  image_config {
+    command = ["index.AttendeeGate::Handlers.generate_metrics"]
+  }
+
+  role = aws_iam_role.lambda.arn
+
+  memory_size = 256
+  timeout     = 60
+
+  environment {
+    variables = merge({
+    }, local.environment)
+  }
+}
+
 output "api_url" {
   value = "${aws_lambda_function_url.rack.function_url}validate"
 }
