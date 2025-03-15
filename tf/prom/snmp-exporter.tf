@@ -1,7 +1,7 @@
 resource "helm_release" "snmp-exporter" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-snmp-exporter"
-  version    = "5.1.0"
+  version    = "8.0.0"
 
   name = "snmp-exporter"
 

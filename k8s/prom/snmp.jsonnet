@@ -1,11 +1,11 @@
 local esws = [
-  'as-01.venue.rubykaigi.net',
-  'es-tra-01.venue.rubykaigi.net',
-  'es-tra-02.venue.rubykaigi.net',
-  'es-trb-01.venue.rubykaigi.net',
-  'es-ro1-01.venue.rubykaigi.net',
-  'es-ro6-01.venue.rubykaigi.net',
-  'es-re1-01.venue.rubykaigi.net',
+  //'as-01.venue.rubykaigi.net',
+  //'es-tra-01.venue.rubykaigi.net',
+  //'es-tra-02.venue.rubykaigi.net',
+  //'es-trb-01.venue.rubykaigi.net',
+  //'es-ro1-01.venue.rubykaigi.net',
+  //'es-ro6-01.venue.rubykaigi.net',
+  //'es-re1-01.venue.rubykaigi.net',
 
   'cs-99.tkyk.rubykaigi.net',
 ];
