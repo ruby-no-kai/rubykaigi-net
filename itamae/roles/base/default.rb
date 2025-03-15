@@ -7,3 +7,4 @@ node.reverse_merge!(
 
 include_cookbook 'systemd-networkd'
 include_cookbook 'iproute2'
+include_cookbook 'prometheus-node-exporter'

@@ -6,6 +6,7 @@
     './snmp.yml',
     './cloudprober.yml',
     './tito.yml',
+    './nat-6x.yml',
     './rules.yml',
   ],
 }

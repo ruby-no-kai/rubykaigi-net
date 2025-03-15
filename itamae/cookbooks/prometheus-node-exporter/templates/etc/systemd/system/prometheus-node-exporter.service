@@ -1,0 +1,26 @@
+[Unit]
+Description=Prometheus exporter for machine metrics
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+MemoryLimit=200M
+Restart=on-failure
+RestartSec=6s
+EnvironmentFile=-/etc/conf.d/prometheus-node-exporter
+RuntimeDirectory=prometheus-node-exporter
+RuntimeDirectory=prometheus-node-exporter/textfile
+ExecStart=/usr/bin/prometheus-node-exporter \
+<%- node[:prometheus][:node_exporter].fetch(:collectors).each do |c| -%>
+  --collector.<%= c %> \
+<%- end -%>
+  --collector.textfile.directory /run/prometheus-node-exporter/textfile \
+  --collector.systemd.unit-include "<%= node[:prometheus][:node_exporter][:systemd_unit_whitelist].join('|') %>"
+ExecReload=/bin/kill -HUP $MAINPID
+NoNewPrivileges=true
+ProtectHome=true
+ProtectSystem=strict
+
+[Install]
+WantedBy=multi-user.target

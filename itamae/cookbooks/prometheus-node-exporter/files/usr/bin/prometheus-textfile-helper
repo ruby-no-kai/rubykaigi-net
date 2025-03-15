@@ -1,0 +1,11 @@
+#!/bin/bash -e
+if [[ "$#" -lt 2 ]]; then
+  exit 1
+fi
+
+path="/run/prometheus-node-exporter/textfile/${1}.prom"
+newpath="${path}.new"
+shift
+
+( exec "$@" ) > ${newpath}
+mv ${newpath} ${path}

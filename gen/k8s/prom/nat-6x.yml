@@ -1,0 +1,33 @@
+{
+   "apiVersion": "monitoring.coreos.com/v1alpha1",
+   "kind": "ScrapeConfig",
+   "metadata": {
+      "labels": {
+         "release": "kube-prometheus-stack"
+      },
+      "name": "nat-6x"
+   },
+   "spec": {
+      "metricsPath": "/metrics",
+      "params": { },
+      "relabelings": [
+         {
+            "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)$",
+            "replacement": "$2",
+            "sourceLabels": [
+               "__address__"
+            ],
+            "targetLabel": "instance"
+         }
+      ],
+      "scrapeInterval": "20s",
+      "scrapeTimeout": "15s",
+      "staticConfigs": [
+         {
+            "targets": [
+               "me0.nat-61.venue.rubykaigi.net:9100"
+            ]
+         }
+      ]
+   }
+}
