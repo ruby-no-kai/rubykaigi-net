@@ -3,12 +3,13 @@ local cloud_config = (import '../cloudconfig.base.libsonnet') + {
     ['networkctl', 'reload'],
   ],
   write_files: [
-    //  # systemd in Ubuntu 22.04 has a bug of inability to set up Tunnel interfaces
-    // https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2037667
-    // - path: /etc/systemd/network/10-netplan-ens5.network.d/tun.conf
-    //  content: |
-    //    [Network]
-    //    Tunnel=tun
+    {
+      path: '/etc/systemd/network/10-netplan-ens5.network.d/tun.conf',
+      content: |||
+        [Network]
+        Tunnel=tun
+      |||,
+    },
     {
       path: '/etc/systemd/network/tun.netdev',
       content: |||

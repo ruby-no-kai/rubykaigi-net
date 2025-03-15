@@ -3,7 +3,7 @@ data "aws_ami" "ubuntu" {
   owners      = ["amazon"]
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server-*"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-arm64-server-*"]
   }
 }
 
@@ -12,6 +12,16 @@ data "external" "acme_userdata" {
 
   query = {
     path = "./userdata.jsonnet"
+  }
+}
+
+locals {
+  user_data = jsondecode(data.external.acme_userdata.result.json).user_data
+}
+
+resource "null_resource" "user-data" {
+  triggers = {
+    user_data = local.user_data
   }
 }
 
@@ -25,7 +35,7 @@ resource "aws_instance" "acme-responder" {
     aws_security_group.acme-responder.id,
   ]
 
-  user_data = jsondecode(data.external.bastion.result.json).user_data
+  user_data = local.user_data
 
   ipv6_addresses = [
     "2406:da14:dfe:c0c0::30fe",
@@ -36,6 +46,6 @@ resource "aws_instance" "acme-responder" {
   }
   lifecycle {
     ignore_changes       = [ami]
-    replace_triggered_by = [user_data]
+    replace_triggered_by = [null_resource.user-data]
   }
 }
