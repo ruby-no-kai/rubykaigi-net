@@ -26,6 +26,8 @@ local targets_hi = {
 
       'tun-99.tkyk.rubykaigi.net',
       'nat-49.tkyk.rubykaigi.net',
+
+      'recon-01.nrt.rubykaigi.net',
     ],
   },
   cisco_esw: {
