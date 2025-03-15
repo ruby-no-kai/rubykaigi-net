@@ -30,6 +30,16 @@ template 'rubykaigi.net-common' do
   ignore(/^cisco-capwap-controller\./i)
   ignore_under 'db.apne1.rubykaigi.net'
 
+  rrset 'resolver.rubykaigi.net', 'CAA' do
+    ttl 300
+    resource_records(
+      *[
+        'letsencrypt.org',
+        'amazonaws.com',
+        'ssl.com',
+       ].map {|cn| "0 issue \"#{cn}\"" }
+    )
+  end
   rrset 'resolver.rubykaigi.net', 'A' do
     ttl 300
     resource_records %w[192.50.220.164 192.50.220.165]
