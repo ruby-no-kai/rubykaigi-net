@@ -5,5 +5,4 @@ require 'vpc.route'
 require 'hosts.route'
 
 require 'rubykaigi.net.route'
-require 'nw.rubykaigi.org.route'
 require 'ptr.route'
