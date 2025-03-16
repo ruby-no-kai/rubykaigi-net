@@ -1,0 +1,24 @@
+GIT
+  remote: https://github.com/sorah/xlat
+  revision: fb6eae791f0cfb7649a10495a617ad3e7025b294
+  branch: main
+  specs:
+    xlat (0.1.0)
+      rb_sys (~> 0.9.102)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake-compiler-dock (1.9.1)
+    rb_sys (0.9.111)
+      rake-compiler-dock (= 1.9.1)
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  xlat!
+
+BUNDLED WITH
+   2.6.2
