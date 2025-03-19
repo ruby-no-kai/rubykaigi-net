@@ -23,6 +23,10 @@ local pod = (import './pod.libsonnet') {
       },
     },
     command: ['/bin/bash', '-e', '/app/run.sh'],
+    env+: [
+      { name: 'STORK_AGENT_LISTEN_PROMETHEUS_ONLY', value: 'true' },
+      { name: 'STORK_AGENT_SKIP_TLS_CERT_VERIFICATION', value: 'true' },
+    ],
     ports: [
       { name: 'dhcp', containerPort: 67, protocol: 'UDP' },
       { name: 'prom', containerPort: 9547 },

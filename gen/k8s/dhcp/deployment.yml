@@ -81,6 +81,14 @@
                               "name": "kea-mysql"
                            }
                         }
+                     },
+                     {
+                        "name": "STORK_AGENT_LISTEN_PROMETHEUS_ONLY",
+                        "value": "true"
+                     },
+                     {
+                        "name": "STORK_AGENT_SKIP_TLS_CERT_VERIFICATION",
+                        "value": "true"
                      }
                   ],
                   "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:e51596dd7b827a41941f584f7d062dd923170319",
