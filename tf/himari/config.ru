@@ -104,7 +104,7 @@ use(Himari::Middlewares::Client,
 use(Himari::Middlewares::Client,
   name: 'grafana',
   id: 'bc0d7e96-8bd9-3fea-357c-aea827e4353b',
-  secret_hash: '20582c92c1a1f5c2fdbb1fb88978d8b8e2217b5ea2fc701071770c21dbd1105d9f9968f1e3f5a19f7ab626c559c71ffa', # sha384.hexdigest
+  secret_hash: '9f1b50aa9f39717b3a69a87c69357368952fef01543b1bb69bd37ee048170442001dd733a5ad373b2d5478973f2d1c5a', # sha384.hexdigest
   redirect_uris: %w(
     https://grafana.rubykaigi.net/login/generic_oauth
   ),

@@ -1,12 +1,13 @@
 resource "aws_rds_cluster" "grafana" {
   cluster_identifier = "grafana1"
   engine             = "aurora-mysql"
-  engine_version     = "8.0.mysql_aurora.3.04.2"
+  engine_version     = "8.0.mysql_aurora.3.08.1"
 
   database_name = "grafana"
 
-  master_username = "rk"
-  master_password = "himitsudayo"
+  master_username                     = "root"
+  manage_master_user_password         = true
+  iam_database_authentication_enabled = true
 
   db_subnet_group_name = "rk-private"
 
@@ -27,11 +28,12 @@ resource "aws_rds_cluster_instance" "grafana-001" {
   instance_class     = "db.t4g.medium"
   engine             = aws_rds_cluster.grafana.engine
   engine_version     = aws_rds_cluster.grafana.engine_version
+  ca_cert_identifier = "rds-ca-ecc384-g1"
 }
 
 resource "aws_security_group" "grafana-db" {
   name        = "grafana-db"
-  description = "rubykaigi-nw tf/grafana"
+  description = "rubykaigi-net//tf/grafana"
   vpc_id      = data.aws_vpc.main.id
 }
 

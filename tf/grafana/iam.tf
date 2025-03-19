@@ -3,8 +3,8 @@ data "aws_iam_policy" "nocadmin-base" {
 }
 
 resource "aws_iam_role" "grafana" {
-  name                 = "NwGrafana"
-  description          = "k8s grafana"
+  name                 = "NetGrafana"
+  description          = "rubykaigi-net//tf/grafana"
   assume_role_policy   = data.aws_iam_policy_document.grafana-trust.json
   permissions_boundary = data.aws_iam_policy.nocadmin-base.arn
 }
@@ -66,8 +66,8 @@ data "aws_iam_policy_document" "grafana-policy" {
 }
 
 resource "aws_iam_role" "grafana-private" {
-  name                 = "NwGrafanaPrivate"
-  description          = "k8s grafana private"
+  name                 = "NetGrafanaPrivate"
+  description          = "rubykaigi-net//tf/grafana"
   assume_role_policy   = data.aws_iam_policy_document.grafana-chain-trust.json
   permissions_boundary = data.aws_iam_policy.nocadmin-base.arn
 }
@@ -104,8 +104,8 @@ data "aws_iam_policy_document" "grafana-private-policy" {
 }
 
 resource "aws_iam_role" "grafana-public" {
-  name                 = "NwGrafanaPublic"
-  description          = "k8s grafana public"
+  name                 = "NetGrafanaPublic"
+  description          = "rubykaigi-net//tf/grafana"
   assume_role_policy   = data.aws_iam_policy_document.grafana-chain-trust.json
   permissions_boundary = data.aws_iam_policy.nocadmin-base.arn
 }

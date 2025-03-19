@@ -1,14 +1,7 @@
-resource "random_uuid" "client_id" {
-}
-
-resource "random_id" "client_secret" {
-  byte_length = 32
-}
-
 locals {
   oidc_config = {
     enabled              = true
-    name                 = "RubyKaigi-StaffIdP"
+    name                 = "RubyKaigi Staff IdP"
     allow_sign_up        = true
     client_id            = "$__file{/var/run/secrets/oidc-client/client_id}"
     client_secret        = "$__file{/var/run/secrets/oidc-client/client_secret}"
@@ -19,9 +12,24 @@ locals {
     auth_url             = "https://idp.rubykaigi.net/oidc/authorize"
     token_url            = "https://idp.rubykaigi.net/public/oidc/token"
     api_url              = "https://idp.rubykaigi.net/public/oidc/userinfo"
+    use_pkce             = true
 
     role_attribute_path        = "contains(roles[*], 'admin') && 'GrafanaAdmin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'"
     allow_assign_grafana_admin = true
+  }
+}
+
+resource "random_id" "client_secret" {
+  byte_length = 32
+}
+data "external" "client_secret_sha384" {
+  program = ["ruby", "${path.module}/../sha384.rb"]
+  query   = { data = random_id.client_secret.id }
+}
+output "oidc_client" {
+  value = {
+    id          = "bc0d7e96-8bd9-3fea-357c-aea827e4353b"
+    secret_hash = data.external.client_secret_sha384.result.hexdigest
   }
 }
 
@@ -31,14 +39,7 @@ resource "kubernetes_secret" "oidc-client" {
   }
 
   data = {
-    client_id     = random_uuid.client_id.result
+    client_id     = "bc0d7e96-8bd9-3fea-357c-aea827e4353b"
     client_secret = random_id.client_secret.id
-  }
-}
-
-output "oidc_client" {
-  value = {
-    id     = local.oidc_config.client_id
-    secret = local.oidc_config.client_secret
   }
 }

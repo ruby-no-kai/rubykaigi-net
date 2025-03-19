@@ -1,6 +1,10 @@
+ephemeral "aws_ssm_parameter" "grafana-admin2" {
+  arn        = aws_ssm_parameter.grafana-admin.arn
+  depends_on = [helm_release.grafana]
+}
 provider "grafana" {
   url  = "https://grafana.rubykaigi.net/"
-  auth = "admin:${random_password.grafana-admin.result}"
+  auth = "admin:${ephemeral.aws_ssm_parameter.grafana-admin2.value}"
 }
 
 resource "grafana_organization" "rk-private" {

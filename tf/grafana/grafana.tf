@@ -1,7 +1,7 @@
 resource "helm_release" "grafana" {
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
-  version    = "7.3.9"
+  version    = "8.10.3"
 
   name = "grafana"
 
@@ -24,6 +24,7 @@ resource "helm_release" "grafana" {
   depends_on = [
     kubernetes_secret.grafana-admin,
     kubernetes_secret.oidc-client,
+    null_resource.rds-provision,
   ]
 }
 
@@ -39,9 +40,18 @@ data "external" "grafana-values" {
   }
 }
 
-resource "random_password" "grafana-admin" {
+ephemeral "random_password" "grafana-admin" {
   length  = 64
   special = false
+}
+resource "aws_ssm_parameter" "grafana-admin" {
+  name             = "/grafana/admin"
+  type             = "SecureString"
+  value_wo         = ephemeral.random_password.grafana-admin.result
+  value_wo_version = 1
+}
+ephemeral "aws_ssm_parameter" "grafana-admin" {
+  arn = aws_ssm_parameter.grafana-admin.arn
 }
 
 resource "kubernetes_secret" "grafana-admin" {
@@ -49,9 +59,10 @@ resource "kubernetes_secret" "grafana-admin" {
     name = "grafana-admin"
   }
 
-  data = {
+  data_wo_revision = 1
+  data_wo = {
     username = "admin"
-    password = random_password.grafana-admin.result
+    password = ephemeral.aws_ssm_parameter.grafana-admin.value
   }
 
   type = "kubernetes.io/basic-auth"
