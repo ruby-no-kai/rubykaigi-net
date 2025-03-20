@@ -12,7 +12,7 @@
     "params": {},
     "relabelings": [
       {
-        "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)$",
+        "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)(:.*)?$",
         "replacement": "$2",
         "sourceLabels": [
           "__address__"
@@ -46,7 +46,7 @@
     "params": {},
     "relabelings": [
       {
-        "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)$",
+        "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)(:.*)?$",
         "replacement": "$2",
         "sourceLabels": [
           "__address__"

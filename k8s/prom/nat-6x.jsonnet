@@ -31,7 +31,7 @@ local jobs = [
         {
           sourceLabels: ['__address__'],
           targetLabel: 'instance',
-          regex: '^(me0\\.)?(.+\\.rubykaigi\\.net)$',
+          regex: '^(me0\\.)?(.+\\.rubykaigi\\.net)(:.*)?$',
           replacement: '$2',
         },
       ],
