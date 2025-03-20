@@ -56,7 +56,7 @@ end
 template '/etc/bird/bird.conf.d/plat.conf' do
   owner 'root'
   group 'bird'
-  mode '0640'
+  mode '0644'
   notifies :reload, 'service[bird]'
 end
 
