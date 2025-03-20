@@ -23,6 +23,31 @@ resource "aws_ecr_lifecycle_policy" "unbound" {
 }
 
 
+resource "aws_ecr_repository" "dnsdist" {
+  name = "dnsdist"
+}
+
+resource "aws_ecr_lifecycle_policy" "dnsdist" {
+  repository = aws_ecr_repository.dnsdist.name
+  policy = jsonencode({
+    rules = [
+      {
+        rulePriority = 10
+        description  = "expire old images"
+        selection = {
+          tagStatus   = "any"
+          countType   = "imageCountMoreThan"
+          countNumber = 10
+        }
+        action = {
+          type = "expire"
+        }
+      }
+    ]
+  })
+}
+
+
 resource "aws_ecr_repository" "dnscollector" {
   name = "dnscollector"
 }

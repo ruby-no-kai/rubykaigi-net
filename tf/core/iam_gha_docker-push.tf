@@ -76,6 +76,7 @@ data "aws_iam_policy_document" "GhaDockerPush" {
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/fluentd",
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/unbound",
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/dnscollector",
+      "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/dnsdist",
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/rko-router",
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/radiusd",
       "arn:aws:ecr:ap-northeast-1:${data.aws_caller_identity.current.account_id}:repository/freeradius-exporter",
