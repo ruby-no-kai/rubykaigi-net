@@ -6,6 +6,25 @@ IPForward=yes
 LinkLocalAddressing=no
 
 [RoutingPolicyRule]
+Family=ipv4
 Priority=100
 IncomingInterface=tun-siit
 Table=64
+
+[RoutingPolicyRule]
+Family=ipv6
+Priority=100
+IncomingInterface=tun-siit
+Table=64
+
+[RoutingPolicyRule]
+Family=ipv4
+Priority=101
+IncomingInterface=tun-siit
+Type=blackhole
+
+[RoutingPolicyRule]
+Family=ipv6
+Priority=101
+IncomingInterface=tun-siit
+Type=blackhole
