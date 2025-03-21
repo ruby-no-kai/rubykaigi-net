@@ -108,3 +108,12 @@ resource "aws_s3_object" "aws" {
   cache_control    = "max-age=0"
   website_redirect = "https://scrapbox.io/rknet/AWS"
 }
+
+resource "aws_s3_object" "money" {
+  for_each         = toset(["money", "pay"])
+  bucket           = aws_s3_bucket.dot-net.id
+  key              = each.value
+  content          = ""
+  cache_control    = "max-age=0"
+  website_redirect = "https://docs.google.com/spreadsheets/d/1pk_bqb75ZAQKXbo7muQ4jp2GA5iRrcJl3r7fmentQ6c/edit?gid=0#gid=0"
+}
