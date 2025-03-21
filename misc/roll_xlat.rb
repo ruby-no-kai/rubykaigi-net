@@ -2,5 +2,5 @@
 require 'pathname'
 
 Dir.chdir Pathname(__dir__).join('../itamae/cookbooks/xlat/files/opt/xlat') do
-  system('bundle lock --update', exception: true)
+  system('bundle update', exception: true)
 end

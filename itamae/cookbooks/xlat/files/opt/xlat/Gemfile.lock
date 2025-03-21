@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/sorah/xlat
-  revision: 80b2eb847d6704c43f6b8ae02ca0bfe986e27e8f
+  revision: 17b5333d6de38612e5746cd291f0f138ddfd6043
   branch: main
   specs:
-    xlat (0.1.0)
+    xlat (0.1.0.alpha1)
       rb_sys (~> 0.9.102)
 
 GEM
