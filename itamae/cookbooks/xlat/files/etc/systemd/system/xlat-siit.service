@@ -5,7 +5,7 @@ Documentation=https://github.com/sorah/xlat
 [Service]
 Type=exec
 WorkingDirectory=/opt/xlat
-ExecStart=/usr/bin/bundle exec xlat-siit tun-siit 2001:df0:8500:ca61:ac:8200::/96 2001:df0:8500:ca64:a9:8200::/96
+ExecStart=/usr/bin/bundle exec xlat-siit --multiqueue 4 tun-siit 2001:df0:8500:ca61:ac:8200::/96 2001:df0:8500:ca64:a9:8200::/96
 
 DynamicUser=yes
 User=xlat
