@@ -34,6 +34,7 @@ local jobs = [
           regex: '^(me0\\.)?(.+\\.rubykaigi\\.net)(:.*)?$',
           replacement: '$2',
         },
+        import './relabel_instance_short.libsonnet',
       ],
       staticConfigs: [{
         targets: [

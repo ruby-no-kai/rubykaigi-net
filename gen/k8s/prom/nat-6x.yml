@@ -18,6 +18,14 @@
           "__address__"
         ],
         "targetLabel": "instance"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
       }
     ],
     "scrapeInterval": "20s",
@@ -53,6 +61,14 @@
           "__address__"
         ],
         "targetLabel": "instance"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
       }
     ],
     "scrapeInterval": "20s",
