@@ -14,6 +14,16 @@
                "_prometheus._http.cloudprober.rubykaigi.net"
             ]
          }
+      ],
+      "relabelings": [
+         {
+            "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+            "replacement": "$1",
+            "sourceLabels": [
+               "instance"
+            ],
+            "targetLabel": "instance_short"
+         }
       ]
    }
 }

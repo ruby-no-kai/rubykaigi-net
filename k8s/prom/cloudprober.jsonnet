@@ -8,6 +8,9 @@
     },
   },
   spec: {
+    relabelings: [
+      import './relabel_instance_short.libsonnet',
+    ],
     dnsSDConfigs: [{
       names: ['_prometheus._http.cloudprober.rubykaigi.net'],
     }],

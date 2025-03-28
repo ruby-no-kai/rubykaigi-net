@@ -126,6 +126,7 @@ local probes(name, targets, interval) =
             targetLabel: '__address__',
             replacement: 'snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116',
           },
+          import './relabel_instance_short.libsonnet',
         ],
         staticConfigs: [{
           targets: t.hosts,

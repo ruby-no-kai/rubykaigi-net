@@ -33,6 +33,14 @@
       {
         "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
         "targetLabel": "__address__"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
       }
     ],
     "scrapeInterval": "20s",
@@ -84,6 +92,14 @@
       {
         "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
         "targetLabel": "__address__"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
       }
     ],
     "scrapeInterval": "20s",
@@ -142,6 +158,14 @@
       {
         "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
         "targetLabel": "__address__"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
       }
     ],
     "scrapeInterval": "60s",
@@ -192,6 +216,14 @@
       {
         "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
         "targetLabel": "__address__"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
       }
     ],
     "scrapeInterval": "60s",
@@ -242,6 +274,14 @@
       {
         "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
         "targetLabel": "__address__"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
       }
     ],
     "scrapeInterval": "60s",
@@ -297,6 +337,14 @@
       {
         "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
         "targetLabel": "__address__"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
       }
     ],
     "scrapeInterval": "60s",
@@ -350,6 +398,14 @@
       {
         "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
         "targetLabel": "__address__"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
       }
     ],
     "scrapeInterval": "60s",
