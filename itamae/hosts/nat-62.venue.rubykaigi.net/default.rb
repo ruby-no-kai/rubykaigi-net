@@ -14,8 +14,8 @@ node.reverse_merge!(
       },
       management: {
         name: 'me0',
-        path: '*-usb-0:2:1.0',
-        duid: '00:00:ba:2c:33:00:23',
+        path: '*14.0-usb-0:*:1.0',
+        duid: '00:00:ba:2c:33:00:24',
       },
       outside: {
         name: 'enp1s0',
@@ -40,7 +40,7 @@ node.reverse_merge!(
         },
         link6: {
           local: '2001:df0:8500:ca22:66::a',
-          peer: '2001:df0:8500:ca22:67::b',
+          peer: '2001:df0:8500:ca22:66::b',
         },
       },
     },
