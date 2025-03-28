@@ -1,6 +1,6 @@
 local hosts = [
   'me0.nat-61.venue.rubykaigi.net',
-  // 'me0.nat-62.venue.rubykaigi.net',
+  'me0.nat-62.venue.rubykaigi.net',
 ];
 local jobs = [
   {

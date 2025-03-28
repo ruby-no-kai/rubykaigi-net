@@ -35,7 +35,7 @@ local domainName = 'mgmt.venue.rubykaigi.net';
       'ip-address': '10.33.100.61',
     },
     {
-      hostname: 'nat-61-venue',
+      hostname: 'nat-62-venue',
       duid: '00:02:00:00:ba:2c:33:00:24',
       'ip-address': '10.33.100.62',
     },

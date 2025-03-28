@@ -25,7 +25,8 @@
     "staticConfigs": [
       {
         "targets": [
-          "me0.nat-61.venue.rubykaigi.net:9100"
+          "me0.nat-61.venue.rubykaigi.net:9100",
+          "me0.nat-62.venue.rubykaigi.net:9100"
         ]
       }
     ]
@@ -59,7 +60,8 @@
     "staticConfigs": [
       {
         "targets": [
-          "me0.nat-61.venue.rubykaigi.net:9324"
+          "me0.nat-61.venue.rubykaigi.net:9324",
+          "me0.nat-62.venue.rubykaigi.net:9324"
         ]
       }
     ]
