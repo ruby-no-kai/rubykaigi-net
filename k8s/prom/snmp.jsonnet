@@ -17,7 +17,7 @@ local targets_hi = {
     hosts: [
       'tun-01.hnd.rubykaigi.net',
       'tun-01.nrt.rubykaigi.net',
-      // 'tun-01.itm.rubykaigi.net',
+      'tun-01.itm.rubykaigi.net',
       'tun-01.venue.rubykaigi.net',
       'tun-02.venue.rubykaigi.net',
       // 'tun-03.venue.rubykaigi.net',
@@ -64,7 +64,7 @@ local targets_lo = {
     hosts: [
       'br-01.hnd.rubykaigi.net',
       'br-01.nrt.rubykaigi.net',
-      // 'br-01.itm.rubykaigi.net',
+      'br-01.itm.rubykaigi.net',
 
       'er-01.venue.rubykaigi.net',
       'er-02.venue.rubykaigi.net',
