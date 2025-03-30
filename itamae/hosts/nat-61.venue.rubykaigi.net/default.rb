@@ -4,8 +4,8 @@ node.reverse_merge!(
   },
   plat: {
     nat64: {
-      outer_public: '192.50.220.162',
-      outer_private: '10.33.40.162',
+      outer_public: '192.50.220.162/32',
+      outer_private: '10.33.40.162/32',
     },
     interfaces: {
       loopback: {
