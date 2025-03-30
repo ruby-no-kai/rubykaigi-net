@@ -13,6 +13,16 @@
     apiVersion: 'v1',
     kind: 'ConfigMap',
     metadata: {
+      name: 'dnsdist-config',
+    },
+    data: {
+      'dnsdist.lua': importstr './config/dnsdist.lua',
+    },
+  },
+  {
+    apiVersion: 'v1',
+    kind: 'ConfigMap',
+    metadata: {
       name: 'envoy-config',
     },
     data: {

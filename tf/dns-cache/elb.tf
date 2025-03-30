@@ -73,10 +73,11 @@ resource "kubernetes_manifest" "targetgroupbinding-dns-cache-dns" {
 
 ###
 
+# dot & doq
 resource "aws_lb_listener" "dns-tls" {
   load_balancer_arn = aws_lb.nlb.arn
   port              = "853"
-  protocol          = "TCP"
+  protocol          = "TCP_UDP"
 
   default_action {
     type             = "forward"
@@ -88,7 +89,7 @@ resource "aws_lb_target_group" "dns-tls" {
   name        = "dns-cache-dns-${substr(uuid(), 0, 10)}"
   target_type = "ip"
   port        = local.dns_cache_dns_tls_target_port
-  protocol    = "TCP"
+  protocol    = "TCP_UDP"
   vpc_id      = data.aws_vpc.main.id
 
   connection_termination = true

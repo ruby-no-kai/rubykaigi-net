@@ -53,7 +53,6 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               ports: [
                 { name: 'dns', containerPort: 10053, protocol: 'UDP' },
                 { name: 'dns-tcp', containerPort: 10053, protocol: 'TCP' },
-                { name: 'dns-tls', containerPort: 10853, protocol: 'TCP' },
                 { name: 'dns-h2', containerPort: 10443, protocol: 'TCP' },
                 { name: 'prom', containerPort: 9167 },
               ],
@@ -75,12 +74,48 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
                 periodSeconds: 3,
               },
             },
+            {
+              name: 'dnsdist',
+              resources: {
+                requests: {
+                  cpu: '5m',
+                  memory: '32M',
+                },
+              },
+              image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/dnsdist:be372f5f14d6211a6aa46643c4a389fb64455246',
+              args: ['-C', '/etc/dnsdist/dnsdist.lua', '--supervised', '--disable-syslog', '--verbose'],
+              ports: [
+                { name: 'dns-tls', containerPort: 10853, protocol: 'TCP' },
+                { name: 'dns-quic', containerPort: 10853, protocol: 'UDP' },
+                { name: 'prom-dnsdist', containerPort: 9823 },
+              ],
+              env: [
+              ],
+              volumeMounts: [
+                { name: 'dnsdist-config', mountPath: '/etc/dnsdist', readOnly: true },
+                { name: 'tls-cert', mountPath: '/secrets/tls-cert', readOnly: true },
+              ],
+              readinessProbe: {
+                httpGet: { path: '/jsonstat?command=stats', port: 9823, scheme: 'HTTP' },
+              },
+              livenessProbe: {
+                httpGet: { path: '/jsonstat?command=stats', port: 9823, scheme: 'HTTP' },
+                failureThreshold: 2,
+                periodSeconds: 3,
+              },
+            },
           ],
           volumes: [
             {
               name: 'unbound-config',
               configMap: {
                 name: 'unbound-config',
+              },
+            },
+            {
+              name: 'dnsdist-config',
+              configMap: {
+                name: 'dnsdist-config',
               },
             },
             {
