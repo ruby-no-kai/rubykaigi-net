@@ -22,6 +22,19 @@
           runAsUser: 9999,
           fsGroup: 9999,
         },
+        topologySpreadConstraints: [
+          {
+            maxSkew: 1,
+            topologyKey: 'topology.kubernetes.io/zone',
+            whenUnsatisfiable: 'DoNotSchedule',
+            labelSelector: {
+              matchLabels: { 'rubykaigi.org/app': 'syslog-fluentd' },
+            },
+            matchLabelKeys: [
+              'pod-template-hash',
+            ],
+          },
+        ],
         containers: [
           {
             name: 'fluentd',

@@ -84,6 +84,21 @@
                "runAsUser": 9999
             },
             "serviceAccountName": "syslog",
+            "topologySpreadConstraints": [
+               {
+                  "labelSelector": {
+                     "matchLabels": {
+                        "rubykaigi.org/app": "syslog-fluentd"
+                     }
+                  },
+                  "matchLabelKeys": [
+                     "pod-template-hash"
+                  ],
+                  "maxSkew": 1,
+                  "topologyKey": "topology.kubernetes.io/zone",
+                  "whenUnsatisfiable": "DoNotSchedule"
+               }
+            ],
             "volumes": [
                {
                   "configMap": {
