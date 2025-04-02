@@ -7,10 +7,6 @@ local domainName = 'usr.venue.rubykaigi.net';
     {
       pool: '10.33.65.0 - 10.33.71.255',
       'option-data': [
-        {
-          name: 'domain-name-servers',
-          data: std.join(', ', consts.dns_resolvers_usr),
-        },
       ],
     },
     {
@@ -35,6 +31,10 @@ local domainName = 'usr.venue.rubykaigi.net';
     {
       name: 'domain-search',
       data: std.join(', ', consts.search_domains + [domainName, 'venue.rubykaigi.net']),
+    },
+    {
+      name: 'domain-name-servers',
+      data: std.join(', ', consts.dns_resolvers_usr),
     },
     {
       name: 'v6-only-preferred',
