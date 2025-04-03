@@ -17,6 +17,10 @@ local domainName = 'test.tkyk.rubykaigi.net';
           name: 'domain-name-servers',
           data: std.join(', ', std.reverse(consts.dns_resolvers_usr)),
         },
+        {
+          name: 'v4-dnr',
+          data: consts.dnr(std.reverse(consts.dns_resolvers_usr)),
+        },
       ],
     },
   ],
@@ -36,6 +40,10 @@ local domainName = 'test.tkyk.rubykaigi.net';
     {
       name: 'domain-name-servers',
       data: std.join(', ', consts.dns_resolvers_usr),
+    },
+    {
+      name: 'v4-dnr',
+      data: consts.dnr(consts.dns_resolvers_usr),
     },
     {
       name: 'v6-only-preferred',

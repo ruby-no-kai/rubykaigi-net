@@ -7,4 +7,9 @@
   tftp_server: '10.33.136.67',
   syslog_server: '10.33.136.14',
   pxe_client_classes: ['pxe_ipxe', 'pxe_uefi'],
+
+  dnr: function(resolvers) std.strReplace(std.join(' | ', [
+    '1, resolver.rubykaigi.net., @IPS@, alpn=h3\\,h2 dohpath=/dns-query{?dns}',
+    '2, resolver.rubykaigi.net., @IPS@, alpn=dot',
+  ]), '@IPS@', std.join(' ', resolvers)),
 }
