@@ -52,7 +52,7 @@ local pod = (import './pod.libsonnet') {
     },
   },
   spec: {
-    replicas: 1,
+    replicas: 3,
     selector: {
       matchLabels: { 'rubykaigi.org/app': 'kea4' },
     },
