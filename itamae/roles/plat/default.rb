@@ -13,6 +13,7 @@ include_role 'base'
 
 include_cookbook 'cpufreq'
 include_cookbook 'nftables'
+include_cookbook 'xtables'
 include_cookbook 'xlat'
 include_cookbook 'bird'
 
