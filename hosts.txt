@@ -49,6 +49,7 @@ venue	mgmt	10.33.100.0/24	10.33.100.254	cs-01	irb.1000
 venue	mgmt	10.33.100.0/24	2001:df0:8500:cab0::1	cs-01	irb.1000
 venue	mgmt	10.33.100.0/24	10.33.100.2	as-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.10	wlc-01	svc
+venue	mgmt	10.33.100.0/24	10.33.100.50	show-01	enp11s0f0
 venue	mgmt	10.33.100.0/24	10.33.100.61	nat-61	me0
 venue	mgmt	10.33.100.0/24	10.33.100.62	nat-62	me0
 venue	mgmt	10.33.100.0/24	10.33.100.100	es-tra-01	vlan1000
@@ -180,9 +181,9 @@ venue	link	10.33.22./31	10.33.22.47
 venue	link	10.33.22./31	2001:df0:8500:ca22:46::a		
 venue	link	10.33.22./31	2001:df0:8500:ca22:46::b		
 					
-venue	link	10.33.22./31	10.33.22.48	er-01	ge-0/0/3
+venue	link	10.33.22./31	10.33.22.48	er-01	ge-0/0/2
 venue	link	10.33.22./31	10.33.22.49	nat-61	enp1s0
-venue	link	10.33.22./31	2001:df0:8500:ca22:48::a	er-01	ge-0/0/3
+venue	link	10.33.22./31	2001:df0:8500:ca22:48::a	er-01	ge-0/0/2
 venue	link	10.33.22./31	2001:df0:8500:ca22:48::b	nat-61	enp1s0
 					
 venue	link	10.33.22./31	10.33.22.50	er-02	ge-0/0/2
@@ -235,6 +236,21 @@ nrt	link	10.33.22./31	2001:df0:8500:ca22:76::b	recon-01	Gi0.1
 					
 nrt	link	10.33.22./31	10.33.22.78	br-01	ge-0/0/2.2
 nrt	link	10.33.22./31	10.33.22.79	recon-01	Gi0.2
+					
+venue	link	10.33.22./31	10.33.22.80	er-01	ge-0/0/3
+venue	link	10.33.22./31	10.33.22.81	show-01	TBD_port4
+venue	link	10.33.22./31	2001:df0:8500:ca22:80::a	er-01	ge-0/0/3
+venue	link	10.33.22./31	2001:df0:8500:ca22:80::b	show-01	TBD_port4
+					
+venue	link	10.33.22./31	10.33.22.82	er-02	ge-0/0/3
+venue	link	10.33.22./31	10.33.22.83	show-01	TBD_port8
+venue	link	10.33.22./31	2001:df0:8500:ca22:82::a	er-02	ge-0/0/3
+venue	link	10.33.22./31	2001:df0:8500:ca22:82::b	show-01	TBD_port8
+					
+venue	link	10.33.22./31	10.33.22.84	cs-01	ge-1/0/15
+venue	link	10.33.22./31	10.33.22.85	show-01	TBD_port5
+venue	link	10.33.22./31	2001:df0:8500:ca22:84::a	cs-01	ge-1/0/15
+venue	link	10.33.22./31	2001:df0:8500:ca22:84::b	show-01	TBD_port5
 					
 					
 					
@@ -349,3 +365,4 @@ tkyk	pa	192.50.220.160/29	192.50.220.166	nat-69	nat
 tkyk	pa	192.50.220.160/29	192.50.220.167	nat-49	nat
 					
 nrt	pa	192.50.220.168/29	192.50.220.172	recon-01	gi0.1-nat
+venue	pa	192.50.220.168/29	192.50.220.175	show-01	lo
