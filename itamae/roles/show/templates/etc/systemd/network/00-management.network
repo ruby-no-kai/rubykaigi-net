@@ -1,0 +1,23 @@
+<%- iface = node.dig(:show, :interfaces, :management) -%>
+[Match]
+Name=<%= iface.fetch(:name) %>
+
+[Network]
+IPForward=no
+IPv6AcceptRA=yes
+DHCP=ipv4
+LLDP=yes
+EmitLLDP=yes
+LinkLocalAddressing=yes
+
+[DHCPv4]
+SendHostname=yes
+UseDNS=yes
+UseMTU=yes
+ClientIdentifier=duid
+DUIDType=vendor
+DUIDRawData=<%= iface.fetch(:duid) %>
+
+[IPv6AcceptRA]
+UseDNS=yes
+UseMTU=yes
