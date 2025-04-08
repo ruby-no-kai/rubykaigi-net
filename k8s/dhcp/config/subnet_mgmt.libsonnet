@@ -30,6 +30,11 @@ local domainName = 'mgmt.venue.rubykaigi.net';
 
   reservations: [
     {
+      hostname: 'show-01-venue',
+      duid: '00:02:00:00:ba:2c:33:00:75',
+      'ip-address': '10.33.100.50',
+    },
+    {
       hostname: 'nat-61-venue',
       duid: '00:02:00:00:ba:2c:33:00:23',
       'ip-address': '10.33.100.61',
