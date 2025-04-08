@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+require 'shellwords'
+require 'json'
+
+config = JSON.parse(File.read('/etc/rk-show.json'))
+
+def cmd(*args)
+  puts "$ #{args.shelljoin}"
+  system(*args, exception: true)
+  raise "Command failed: #{args.join(' ')}" unless $?.success?
+end
+
+VethDefinition = Data.define(:name, :peer_name, :peer_ns, :sbr_table, :peer_addr4, :peer_addr6)
+
+veths = [
+  VethDefinition.new(
+    name: 'veth_c0',
+    peer_name: 'veth_c1',
+    peer_ns: 'showc',
+    peer_addr4: config.dig('addresses', 'client4_internal'),
+    peer_addr6: config.dig('addresses', 'client6_internal'),
+    sbr_table: 100,
+  ),
+  VethDefinition.new(
+    name: 'veth_s0',
+    peer_name: 'veth_s1',
+    peer_ns: 'shows',
+    sbr_table: 101,
+    peer_addr4: config.dig('addresses', 'server4_internal'),
+    peer_addr6: config.dig('addresses', 'server6_internal'),
+  ),
+]
+
+veths.each do |veth|
+  unless File.exist?("/run/netns/#{veth.peer_ns}")
+    cmd("ip", "netns", "add", veth.peer_ns)
+    cmd("ip", "netns", "exec", veth.peer_ns, "ip", "link", "set", "lo", "up")
+  end
+  unless File.exist?("/sys/class/net/#{veth.name}")
+    cmd("ip", "link", "add", veth.name, "type", "veth", "peer", "name", veth.peer_name)
+    cmd("ip", "link", "set", veth.name, "up")
+
+    cmd("ip", "link", "set", veth.peer_name, "netns", veth.peer_ns)
+    cmd("ip", "netns", "exec", veth.peer_ns, "ip", "link", "set", veth.peer_name, "up")
+
+    cmd("ip", "netns", "exec", veth.peer_ns, "ip", "address", "add", "fe80::b/64", "dev", veth.peer_name)
+    cmd("ip", "address", "add", "fe80::a/64", "dev", veth.name)
+
+    cmd("ip", "netns", "exec", veth.peer_ns, "ip", "nexthop", "add", "id", "100", "via", "fe80::a", "dev", veth.peer_name)
+    cmd("ip", "netns", "exec", veth.peer_ns, "ip", "route", "add", "0/0", "nhid", "100")
+    cmd("ip", "netns", "exec", veth.peer_ns, "ip", "route", "add", "::/0",  "nhid", "100")
+  end
+
+  if IO.popen(['ip', 'rule', 'list', 'priority', veth.sbr_table.to_s], &:read).empty?
+    cmd("ip", "rule", "add", "iif", veth.name, "lookup", veth.sbr_table.to_s, "priority", veth.sbr_table.to_s)
+  end
+  if IO.popen(['ip', '-6', 'rule', 'list', 'priority', veth.sbr_table.to_s], &:read).empty?
+    cmd("ip", "-6", "rule", "add", "iif", veth.name, "lookup", veth.sbr_table.to_s, "priority", veth.sbr_table.to_s)
+  end
+
+  lo_addr  = IO.popen(['ip' ,'netns', 'exec', veth.peer_ns, 'ip', 'address', 'show', 'dev', 'lo'], &:read)
+  unless lo_addr.include?("inet #{veth.peer_addr4}/32")
+    cmd("ip", "netns", "exec", veth.peer_ns, "ip", "address", "add", "#{veth.peer_addr4}/32", "scope", "global", "dev", "lo")
+  end
+  unless lo_addr.include?("inet6 #{veth.peer_addr6}/128")
+    cmd("ip", "netns", "exec", veth.peer_ns, "ip", "address", "add", "#{veth.peer_addr6}/128", "dev", "lo")
+  end
+end

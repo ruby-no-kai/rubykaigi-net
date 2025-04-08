@@ -1,0 +1,11 @@
+[Unit]
+Description=rk-ensure-veth
+Before=systemd-networkd.socket systemd-networks.service bird.service network-pre.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/rk-ensure-veth
+
+[Install]
+WantedBy=multi-user.target
