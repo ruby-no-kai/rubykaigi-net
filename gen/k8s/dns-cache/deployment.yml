@@ -52,11 +52,6 @@
                 "protocol": "TCP"
               },
               {
-                "containerPort": 10853,
-                "name": "dns-tls",
-                "protocol": "TCP"
-              },
-              {
                 "containerPort": 10443,
                 "name": "dns-h2",
                 "protocol": "TCP"
@@ -98,6 +93,68 @@
                 "readOnly": true
               }
             ]
+          },
+          {
+            "args": [
+              "-C",
+              "/etc/dnsdist/dnsdist.lua",
+              "--supervised",
+              "--disable-syslog",
+              "--verbose"
+            ],
+            "env": [],
+            "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/dnsdist:be372f5f14d6211a6aa46643c4a389fb64455246",
+            "livenessProbe": {
+              "failureThreshold": 2,
+              "httpGet": {
+                "path": "/jsonstat?command=stats",
+                "port": 9823,
+                "scheme": "HTTP"
+              },
+              "periodSeconds": 3
+            },
+            "name": "dnsdist",
+            "ports": [
+              {
+                "containerPort": 10853,
+                "name": "dns-tls",
+                "protocol": "TCP"
+              },
+              {
+                "containerPort": 10853,
+                "name": "dns-quic",
+                "protocol": "UDP"
+              },
+              {
+                "containerPort": 9823,
+                "name": "prom-dnsdist"
+              }
+            ],
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/jsonstat?command=stats",
+                "port": 9823,
+                "scheme": "HTTP"
+              }
+            },
+            "resources": {
+              "requests": {
+                "cpu": "5m",
+                "memory": "32M"
+              }
+            },
+            "volumeMounts": [
+              {
+                "mountPath": "/etc/dnsdist",
+                "name": "dnsdist-config",
+                "readOnly": true
+              },
+              {
+                "mountPath": "/secrets/tls-cert",
+                "name": "tls-cert",
+                "readOnly": true
+              }
+            ]
           }
         ],
         "nodeSelector": {
@@ -131,6 +188,12 @@
               "name": "unbound-config"
             },
             "name": "unbound-config"
+          },
+          {
+            "configMap": {
+              "name": "dnsdist-config"
+            },
+            "name": "dnsdist-config"
           },
           {
             "name": "tls-cert",
