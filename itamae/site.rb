@@ -1,3 +1,5 @@
+include_recipe './helpers'
+
 execute "apt-get update" do
   action :nothing
 end
