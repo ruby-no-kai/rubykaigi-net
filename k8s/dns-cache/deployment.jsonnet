@@ -51,8 +51,6 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/unbound:e1f9c57c4144a320e30e948642ddecf2f3500b99',
               args: ['-c', '/etc/unbound/unbound.conf', '-dd'],
               ports: [
-                { name: 'dns', containerPort: 10053, protocol: 'UDP' },
-                { name: 'dns-tcp', containerPort: 10053, protocol: 'TCP' },
                 { name: 'dns-h2', containerPort: 10443, protocol: 'TCP' },
                 { name: 'prom', containerPort: 9167 },
               ],
@@ -85,6 +83,8 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/dnsdist:be372f5f14d6211a6aa46643c4a389fb64455246',
               args: ['-C', '/etc/dnsdist/dnsdist.lua', '--supervised', '--disable-syslog', '--verbose'],
               ports: [
+                { name: 'dns', containerPort: 10053, protocol: 'UDP' },
+                { name: 'dns-tcp', containerPort: 10053, protocol: 'TCP' },
                 { name: 'dns-tls', containerPort: 10853, protocol: 'TCP' },
                 { name: 'dns-quic', containerPort: 10853, protocol: 'UDP' },
                 { name: 'prom-dnsdist', containerPort: 9823 },

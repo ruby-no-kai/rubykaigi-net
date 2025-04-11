@@ -42,16 +42,6 @@
             "name": "unbound",
             "ports": [
               {
-                "containerPort": 10053,
-                "name": "dns",
-                "protocol": "UDP"
-              },
-              {
-                "containerPort": 10053,
-                "name": "dns-tcp",
-                "protocol": "TCP"
-              },
-              {
                 "containerPort": 10443,
                 "name": "dns-h2",
                 "protocol": "TCP"
@@ -115,6 +105,16 @@
             },
             "name": "dnsdist",
             "ports": [
+              {
+                "containerPort": 10053,
+                "name": "dns",
+                "protocol": "UDP"
+              },
+              {
+                "containerPort": 10053,
+                "name": "dns-tcp",
+                "protocol": "TCP"
+              },
               {
                 "containerPort": 10853,
                 "name": "dns-tls",

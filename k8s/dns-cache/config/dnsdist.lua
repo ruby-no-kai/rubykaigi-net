@@ -3,7 +3,14 @@ key_path = '/secrets/tls-cert/tls.key'
 
 newServer(
    {
-      address = '127.0.0.1:10053',
+      address = '127.0.0.1:9053',
+      maxInFlight = 1000,
+   }
+)
+
+addLocal(
+   '0.0.0.0:10053',
+   {
       maxInFlight = 1000,
    }
 )
