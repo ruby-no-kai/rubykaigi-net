@@ -81,7 +81,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
                 },
               },
               image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/dnsdist:be372f5f14d6211a6aa46643c4a389fb64455246',
-              args: ['-C', '/etc/dnsdist/dnsdist.lua', '--supervised', '--disable-syslog', '--verbose'],
+              args: ['-C', '/etc/dnsdist/dnsdist.lua', '--supervised', '--disable-syslog'],
               ports: [
                 { name: 'dns', containerPort: 10053, protocol: 'UDP' },
                 { name: 'dns-tcp', containerPort: 10053, protocol: 'TCP' },
