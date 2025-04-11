@@ -1,5 +1,5 @@
 module TemplateHelpers
-  # Embed IPv4 address of CIDR in Pref64::/n
+  # Embed IPv4 address or CIDR in Pref64::/n
   def embed_v4(pref64n, v4)
     v4addr, v4prefixlen = v4.split(?/, 2)
     v6prefixlen = v4prefixlen.to_i + 96 if v4prefixlen
