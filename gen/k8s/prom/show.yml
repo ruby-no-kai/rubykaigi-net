@@ -1,0 +1,84 @@
+{
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "show"
+  },
+  "spec": {
+    "metricsPath": "/metrics",
+    "params": {},
+    "relabelings": [
+      {
+        "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)(:.*)?$",
+        "replacement": "$2",
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
+      }
+    ],
+    "scrapeInterval": "10s",
+    "scrapeTimeout": "9s",
+    "staticConfigs": [
+      {
+        "targets": [
+          "show-01.venue.rubykaigi.net:9100"
+        ]
+      }
+    ]
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "show-bird"
+  },
+  "spec": {
+    "metricsPath": "/metrics",
+    "params": {},
+    "relabelings": [
+      {
+        "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)(:.*)?$",
+        "replacement": "$2",
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
+      }
+    ],
+    "scrapeInterval": "10s",
+    "scrapeTimeout": "9s",
+    "staticConfigs": [
+      {
+        "targets": [
+          "show-01.venue.rubykaigi.net:9324"
+        ]
+      }
+    ]
+  }
+}
+---
