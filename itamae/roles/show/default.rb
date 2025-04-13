@@ -14,6 +14,9 @@ include_cookbook 'ruby'
 include_cookbook 'nftables'
 include_cookbook 'bird'
 
+package 'iperf3'
+package 'tmux'
+
 file '/etc/rk-show.json' do
   content "#{JSON.pretty_generate(node.fetch(:show))}\n"
   owner 'root'
