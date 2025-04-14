@@ -15,6 +15,20 @@
       }
     },
     {
+      "name": "lo.br-01.itm.rubykaigi.net",
+      "ip": "10.33.0.3",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.tun-01.itm.rubykaigi.net",
+      "ip": "10.33.0.153",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
       "name": "lo.br-01.nrt.rubykaigi.net",
       "ip": "10.33.0.2",
       "labels": {
@@ -64,6 +78,20 @@
       }
     },
     {
+      "name": "lo.nat-61.venue.rubykaigi.net",
+      "ip": "10.33.0.23",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.nat-62.venue.rubykaigi.net",
+      "ip": "10.33.0.24",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
       "name": "lo.tun-01.venue.rubykaigi.net",
       "ip": "10.33.0.161",
       "labels": {
@@ -73,6 +101,13 @@
     {
       "name": "lo.tun-02.venue.rubykaigi.net",
       "ip": "10.33.0.162",
+      "labels": {
+        "network": "private"
+      }
+    },
+    {
+      "name": "lo.tun-03.venue.rubykaigi.net",
+      "ip": "10.33.0.163",
       "labels": {
         "network": "private"
       }
@@ -106,13 +141,6 @@
       }
     },
     {
-      "name": "vlan1000.es-ro1-01.venue.rubykaigi.net",
-      "ip": "10.33.100.125",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
       "name": "vlan1000.es-ro6-01.venue.rubykaigi.net",
       "ip": "10.33.100.116",
       "labels": {
@@ -138,6 +166,27 @@
       "ip": "10.33.100.105",
       "labels": {
         "network": "private"
+      }
+    },
+    {
+      "name": "ge-0-0-5.br-01.hnd.rubykaigi.net",
+      "ip": "192.50.220.153",
+      "labels": {
+        "network": "public"
+      }
+    },
+    {
+      "name": "ge-0-0-5.br-01.nrt.rubykaigi.net",
+      "ip": "192.50.220.155",
+      "labels": {
+        "network": "public"
+      }
+    },
+    {
+      "name": "ge-0-0-5.br-01.transit.rubykaigi.net",
+      "ip": "192.50.220.157",
+      "labels": {
+        "network": "public"
       }
     }
   ]
