@@ -1,5 +1,25 @@
 {
   "resource": [
-
+    {
+      "name": "br-01.hnd.dualstack.rubykaigi.net",
+      "ip": "2001:0df0:8500:ca00::1",
+      "labels": {
+        "network": "public"
+      }
+    },
+    {
+      "name": "br-01.itm.dualstack.rubykaigi.net",
+      "ip": "2001:0df0:8500:ca00::3",
+      "labels": {
+        "network": "public"
+      }
+    },
+    {
+      "name": "br-01.nrt.dualstack.rubykaigi.net",
+      "ip": "2001:0df0:8500:ca00::2",
+      "labels": {
+        "network": "public"
+      }
+    }
   ]
 }

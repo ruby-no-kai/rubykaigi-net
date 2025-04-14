@@ -37,8 +37,8 @@ TARGETS = [
   {
     zone: 'Z05547502KT77L0O53UWK',
     network: '2001:0df0:8500:ca00::/56',
-    targets: %w[
-      /\A[\w-]+\.br-01\./,
+    targets: [
+      /\Abr-01\.[\w-]+\.dualstack\./,
     ],
     labels: {
       network: 'public',
@@ -92,6 +92,7 @@ TARGETS.each do |h|
       rrsets.each do |rrset|
         name = rrset.name.sub(/.\z/, '')
         next unless t === name
+        next if /recon/ =~ name
 
         if rrset.resource_records.empty?
           warn "#{name} has no static #{rrtype} records"
