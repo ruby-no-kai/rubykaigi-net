@@ -11,6 +11,10 @@ local jobs = [
     port:: 9324,
     metadata+: { name: 'nat-6x-bird' },
   },
+  {
+    port:: 9466,
+    metadata+: { name: 'nat-6x-conntrack' },
+  },
 ];
 [
   {

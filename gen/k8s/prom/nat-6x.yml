@@ -84,3 +84,46 @@
   }
 }
 ---
+{
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "nat-6x-conntrack"
+  },
+  "spec": {
+    "metricsPath": "/metrics",
+    "params": {},
+    "relabelings": [
+      {
+        "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)(:.*)?$",
+        "replacement": "$2",
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
+      }
+    ],
+    "scrapeInterval": "20s",
+    "scrapeTimeout": "15s",
+    "staticConfigs": [
+      {
+        "targets": [
+          "me0.nat-61.venue.rubykaigi.net:9466",
+          "me0.nat-62.venue.rubykaigi.net:9466"
+        ]
+      }
+    ]
+  }
+}
+---

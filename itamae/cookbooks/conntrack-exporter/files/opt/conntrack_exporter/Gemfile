@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+git 'https://github.com/hanazuki/conntrack_exporter' do
+  gem 'conntrack_exporter'
+end
+
+git 'https://github.com/hanazuki/nl' do
+  gem 'ynl'
+  gem 'nl'
+end

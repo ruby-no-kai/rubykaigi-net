@@ -16,6 +16,7 @@ include_cookbook 'nftables'
 include_cookbook 'xtables'
 include_cookbook 'xlat'
 include_cookbook 'bird'
+include_cookbook 'conntrack-exporter'
 
 package 'conntrack'
 
