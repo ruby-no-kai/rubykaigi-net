@@ -3,6 +3,7 @@ local domainName = 'usr.venue.rubykaigi.net';
 {
   id: 400,
   subnet: '10.33.64.0/20',
+  'require-client-classes': ['legacy'],
   pools: [
     {
       pool: '10.33.65.0 - 10.33.71.255',

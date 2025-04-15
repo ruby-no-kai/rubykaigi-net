@@ -98,6 +98,7 @@ local config = {
     'client-classes': [
       import './config/class_pxe_ipxe.libsonnet',
       import './config/class_pxe_uefi.libsonnet',
+      import './config/class_legacy.libsonnet',
     ],
 
     subnet4: [
