@@ -92,7 +92,7 @@ TARGETS.each do |h|
       rrsets.each do |rrset|
         name = rrset.name.sub(/.\z/, '')
         next unless t === name
-        next if /recon/ =~ name
+        next if /recon|as-01|tun-03/ =~ name  # rk25
 
         if rrset.resource_records.empty?
           warn "#{name} has no static #{rrtype} records"
