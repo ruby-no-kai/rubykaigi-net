@@ -3,7 +3,7 @@ local domainName = 'usr.venue.rubykaigi.net';
 {
   id: 400,
   subnet: '10.33.64.0/20',
-  'require-client-classes': ['legacy'],
+  'require-client-classes': ['main_ssid'],
   pools: [
     {
       pool: '10.33.65.0 - 10.33.71.255',
@@ -36,10 +36,6 @@ local domainName = 'usr.venue.rubykaigi.net';
     {
       name: 'domain-name-servers',
       data: std.join(', ', consts.dns_resolvers_usr),
-    },
-    {
-      name: 'v6-only-preferred',
-      data: '1800',
     },
   ],
 }
