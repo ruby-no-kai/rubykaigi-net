@@ -59,6 +59,12 @@ local config = {
         severity: 'WARN',
         output_options: [{ output: 'stdout' }],
       },
+      // {
+      //   name: 'kea-dhcp4.eval',
+      //   severity: 'DEBUG',
+      //   output_options: [{ output: 'stdout' }],
+      //   debuglevel: 55,
+      // },
     ],
 
     'valid-lifetime': 1200,
