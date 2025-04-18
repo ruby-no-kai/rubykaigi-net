@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/hanazuki/conntrack_exporter
-  revision: 564d365f2fed04ac94ea15ac6c375950ad64db19
+  revision: eee58236ac9d90d5591f85b34e936b17ffeb5158
   specs:
     conntrack_exporter (0.1.0)
       prometheus-client
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/hanazuki/nl
-  revision: f22660cb976b024e56fd7664219c437b32444e55
+  revision: 92119cb2f684a45bf9631cf2b963782d45891812
   specs:
     nl (0.1.0)
     ynl (0.1.0)
