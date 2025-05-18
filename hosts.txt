@@ -328,12 +328,15 @@ nrt	link		2001:df0:8500:ca22:6622::a	br-01	ip-0/0/0.662
 apne1	link		2001:df0:8500:ca22:6622::b	v6gw-d01	ip-0/0/0.662
 					
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.10	es-99	vlan30
-tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.15	wlc-99	mgmt
+tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.15	wlc-90	management
+tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.16	wlc-99	svc
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.195	cloudprober-01	enp1s0
 tkyk	tkyk-mgmt	10.33.30.0/24	10.33.30.254	cs-99	vlan30
 tkyk	tkyk-mgmt	10.33.30.0/24	2001:df0:8500:ca30::1	cs-99	vlan30
 tkyk	tkyk-usr	10.33.31.0/24	10.33.31.254	cs-99	vlan31
 tkyk	tkyk-usr	10.33.31.0/24	2001:df0:8500:ca31::1	cs-99	vlan31
+tkyk	tkyk-air	10.33.32.0/24	10.33.32.2	wlc-99	management
+tkyk	tkyk-air	10.33.32.0/24	10.33.32.254	cs-99	vlan32
 					
 transit	pa	192.50.220.152/29	192.50.220.152	mahiru-kmc	enp1s0f0
 transit	pa	192.50.220.152/29	2001:df0:8500:ca2a::a	mahiru-kmc	enp1s0f0
