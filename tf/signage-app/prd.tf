@@ -1,3 +1,6 @@
+locals {
+  captioner_enabled = true
+}
 module "prd" {
   source = "github.com/ruby-no-kai/signage-app//tf"
   #source = "/home/sorah/git/github.com/ruby-no-kai/signage-app/tf"
@@ -20,7 +23,7 @@ module "prd" {
 
   github_actions_subs = ["repo:ruby-no-kai/signage-app:environment:prd"]
 
-  captioner_enabled = false
+  captioner_enabled = local.captioner_enabled
   captioner_params = {
     vpc_id                            = data.aws_vpc.main.id
     ec2_security_group_ids            = [data.aws_security_group.default.id, aws_security_group.captioner.id]
@@ -29,7 +32,8 @@ module "prd" {
     medialive_subnet_id_1             = data.aws_subnet.main-public-c.id
     medialive_subnet_id_2             = data.aws_subnet.main-public-d.id
     medialive_security_group_ids      = [data.aws_security_group.default.id, aws_security_group.medialive.id]
-    medialive_role_arn                = data.aws_iam_role.MediaLiveAccessRole.arn
+    medialive_s3_bucket               = aws_s3_bucket.live.bucket
+    medialive_s3_prefix               = "rk25/"
     ssh_import_ids                    = jsondecode(file("${path.module}/../../data/ssh_import_ids.json"))
   }
   captioner_channels = {
@@ -48,6 +52,8 @@ module "prd" {
   }
 
   callback_urls = toset([])
+
+  ssm_parameter_path_prefix = "/signage/prd/"
 }
 
 resource "aws_route53_record" "prd" {
@@ -65,7 +71,7 @@ resource "aws_route53_record" "prd" {
 
 resource "random_pet" "prd-stream-key" {
   keepers = {
-    doggo = "doggo"
+    doggo = "rk25"
   }
 }
 
@@ -76,14 +82,24 @@ resource "random_id" "prd_client_secret" {
 #  value = random_id.dev_client_secret.id
 #}
 
-resource "aws_route53_record" "prd-captioner" {
-  for_each = { for zone in local.rubykaigi_net_zones : zone => module.prd.captioner_ip_address if module.prd.captioner_ip_address != null }
-  zone_id  = each.key
-  name     = "captioner.apne1.rubykaigi.net."
-  type     = "A"
-  ttl      = 60
+resource "aws_route53_record" "prd-captioner-public" {
+  count   = local.captioner_enabled ? 1 : 0
+  zone_id = data.aws_route53_zone.rubykaigi-net_public.zone_id
+  name    = "captioner.apne1.rubykaigi.net."
+  type    = "A"
+  ttl     = 60
   records = [
-    each.value,
+    module.prd.captioner_ip_address,
+  ]
+}
+resource "aws_route53_record" "prd-captioner-private" {
+  count   = local.captioner_enabled ? 1 : 0
+  zone_id = data.aws_route53_zone.rubykaigi-net_private.zone_id
+  name    = "captioner.apne1.rubykaigi.net."
+  type    = "A"
+  ttl     = 60
+  records = [
+    module.prd.captioner_ip_address,
   ]
 }
 

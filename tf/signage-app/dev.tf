@@ -21,6 +21,8 @@ module "dev" {
   cloudfront_log_prefix = "cf/signage-dev.rubykaigi.org/"
 
   manage_config_in_s3 = false
+
+  ssm_parameter_path_prefix = "/signage/dev/"
 }
 
 resource "aws_route53_record" "dev" {
