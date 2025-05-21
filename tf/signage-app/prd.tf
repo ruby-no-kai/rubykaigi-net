@@ -1,5 +1,5 @@
 locals {
-  captioner_enabled = true
+  captioner_enabled = false
 }
 module "prd" {
   source = "github.com/ruby-no-kai/signage-app//tf"
