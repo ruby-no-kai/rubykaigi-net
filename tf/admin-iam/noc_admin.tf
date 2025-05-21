@@ -238,6 +238,7 @@ data "aws_iam_policy_document" "NocAdmin_iam-with-boundary" {
     actions = [
       "iam:AttachRolePolicy",
       "iam:CreateRole",
+      "iam:DeleteRole",
       "iam:DeleteRolePolicy",
       "iam:DetachRolePolicy",
       "iam:PutRolePermissionsBoundary",
