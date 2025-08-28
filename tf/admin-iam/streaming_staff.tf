@@ -100,5 +100,9 @@ data "aws_iam_policy_document" "StreamingStaff" {
     ]
     resources = ["*"]
   }
+}
 
+resource "aws_iam_role_policy_attachment" "StreamingStaff_AWSManagementConsoleBasicUserAccess" {
+  role       = aws_iam_role.StreamingStaff.name
+  policy_arn = data.aws_iam_policy.AWSManagementConsoleBasicUserAccess.arn
 }
