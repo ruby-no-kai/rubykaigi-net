@@ -39,6 +39,11 @@ resource "aws_iam_role_policy" "KaigiStaff_StreamingStaff" {
   policy = data.aws_iam_policy_document.StreamingStaff.json
 }
 
+resource "aws_iam_role_policy_attachment" "KaigiStaff_AWSManagementConsoleBasicUserAccess" {
+  role       = aws_iam_role.KaigiStaff.name
+  policy_arn = data.aws_iam_policy.AWSManagementConsoleBasicUserAccess.arn
+}
+
 #resource "aws_iam_role_policy" "KaigiStaff" {
 #  role   = aws_iam_role.KaigiStaff.name
 #  policy = data.aws_iam_policy_document.KaigiStaff.json

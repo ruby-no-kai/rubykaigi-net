@@ -45,6 +45,10 @@ resource "aws_iam_policy" "NocAdminBase" {
 }
 
 data "aws_iam_policy_document" "NocAdminBase" {
+  source_policy_documents = [
+    data.aws_iam_policy.AWSManagementConsoleBasicUserAccess.policy,
+  ]
+
   statement {
     effect = "Allow"
     actions = [
@@ -254,4 +258,8 @@ data "aws_iam_policy_document" "NocAdmin_iam-with-boundary" {
       values = [aws_iam_policy.NocAdminBase.arn]
     }
   }
+}
+
+data "aws_iam_policy" "AWSManagementConsoleBasicUserAccess" {
+  arn = "arn:aws:iam::aws:policy/AWSManagementConsoleBasicUserAccess"
 }
