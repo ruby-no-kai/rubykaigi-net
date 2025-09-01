@@ -1,5 +1,5 @@
 module "karpenter" {
-  source = "github.com/cookpad/terraform-aws-eks//modules/karpenter?ref=70a90da1066f428a705b66a42266b6e482e818da"
+  source = "github.com/cookpad/terraform-aws-eks//modules/karpenter?ref=f1c76b6d998a994bfd04f6fb20c04c95a98a6be7" # 1.32.0
   #source = "github.com/sorah/terraform-aws-eks//modules/karpenter?ref=tmp-2-29"
 
   v1beta = false
@@ -13,7 +13,7 @@ module "karpenter" {
 resource "helm_release" "karpenter" {
   repository = "oci://public.ecr.aws/karpenter"
   chart      = "karpenter"
-  version    = "1.2.2"
+  version    = "1.6.2"
 
   name = "karpenter"
 
