@@ -78,3 +78,7 @@ resource "aws_route53_record" "kea1-db-apne1-rubykaigi-net" {
     "${aws_rds_cluster.kea.endpoint}.",
   ]
 }
+
+output "rds_endpoint" {
+  value = aws_rds_cluster.kea.endpoint
+}
