@@ -44,7 +44,7 @@ resource "aws_lb_listener" "common-https" {
       content_type = "text/html"
       message_body = <<EOF
       <!DOCTYPE html><html lang=en><head><meta charset=utf-8><body>
-      &#127818;&#x1F34A;?
+      &#x1F688;&#x1F30C;
       EOF
       status_code  = 404
     }
