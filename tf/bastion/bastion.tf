@@ -51,6 +51,7 @@ resource "aws_instance" "bastion" {
   tags = {
     Name = "bastion"
   }
+  depends_on = [null_resource.s3-authorized-keys]
   lifecycle {
     ignore_changes = [ami]
   }

@@ -1,5 +1,5 @@
 local cloud_config = (import '../cloudconfig.base.libsonnet') + {
-  runcmd: [
+  runcmd+: [
     ['networkctl', 'reload'],
   ],
   write_files: [

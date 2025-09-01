@@ -17,7 +17,7 @@
     },
   ],
 
-  runcmd: [
+  runcmd+: [
     ['systemctl', 'daemon-reload'],
     ['systemctl', 'enable', '--now', 'cloudprober.service'],
   ],
