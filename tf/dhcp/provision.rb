@@ -1,6 +1,12 @@
-require 'trilogy'
+require 'bundler/inline'
+gemfile do
+  source 'https://rubygems.org'
+  gem 'trilogy'
+  gem 'bigdecimal' # https://github.com/trilogy-libraries/trilogy/commit/6b4e12410d9cdcbe07454b0b8af888972f578b1c
+end
 require 'tempfile'
 require 'open-uri'
+
 begin
   forwarder = spawn(*%w(ssh -N -L), "127.0.0.1:13366:#{ENV.fetch('RDS_HOST')}:#{ENV.fetch('RDS_PORT')}", 'bastion.rubykaigi.net')
   warn  "127.0.0.1:13366:#{ENV.fetch('RDS_HOST')}:#{ENV.fetch('RDS_PORT')}"
