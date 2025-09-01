@@ -36,7 +36,8 @@ begin
   client.query(%(flush privileges))
   client.close
 
-  sql = URI.open('https://raw.githubusercontent.com/isc-projects/kea/Kea-2.4.1/src/share/database/scripts/mysql/dhcpdb_create.mysql', 'r', &:read)
+  # Kea-3.1.1
+  sql = URI.open('https://raw.githubusercontent.com/isc-projects/kea/f89b3898b3f6eab670e08067582d3256a99cad79/src/share/database/scripts/mysql/dhcpdb_create.mysql', 'r', &:read)
   tempfile = Tempfile.new
   tempfile.write(sql)
   tempfile.flush

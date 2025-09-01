@@ -3,7 +3,7 @@ local db_name = 'kea';
 {
   app_container:: {
     name: 'app',
-    image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:51581786f11aa752c34bac1f0bedb44556a8a2ed',
+    image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:0d9cc84dd9a3c9d4354b3c55887245959f389773',
     env: [
       { name: 'LEASE_DATABASE_NAME', value: db_name },
       { name: 'LEASE_DATABASE_HOST', value: db_host },
