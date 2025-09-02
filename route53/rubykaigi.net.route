@@ -60,10 +60,13 @@ template 'rubykaigi.net-common' do
   ignore 'signage-dev-cf.rubykaigi.net'
   ignore 'signage-prd-cf.rubykaigi.net'
 
-  # FIXME: external-dns ni sitai
-  rrset 'syslog.rubykaigi.net', 'CNAME' do
+  rrset 'syslog.rubykaigi.net', 'A' do
     ttl 60
-    resource_records 'k8s-default-fluentd-a3cdd7df91-d976e2fb503a524f.elb.ap-northeast-1.amazonaws.com'
+    # //k8s/syslog/service.jsonnet
+    resource_records %w(
+      10.33.136.14
+      10.33.152.14
+    )
   end
 
   ignore 'dhcp.rubykaigi.net'
