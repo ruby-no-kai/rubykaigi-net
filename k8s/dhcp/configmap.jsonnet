@@ -40,6 +40,12 @@ local config = {
         'socket-type': 'unix',
         'socket-name': '/var/run/kea/dhcp4.sock',
       },
+      // TODO: Enable this once stork-agent supports kea-dhcp4 http control-socket (due to kea-ctrl-agent deprecation)
+      // {
+      //   'socket-type': 'http',
+      //   'socket-address': '127.0.0.1',
+      //   'socket-port': 10080,
+      // },
     ],
 
     loggers: [
