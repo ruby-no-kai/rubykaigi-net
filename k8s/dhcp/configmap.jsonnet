@@ -35,10 +35,12 @@ local config = {
     //  'reconnect-wait-time': 2000,
     //},
 
-    'control-socket': {
-      'socket-type': 'unix',
-      'socket-name': '/run/kea/dhcp4.sock',
-    },
+    'control-sockets': [
+      {
+        'socket-type': 'unix',
+        'socket-name': '/var/run/kea/dhcp4.sock',
+      },
+    ],
 
     loggers: [
       {
