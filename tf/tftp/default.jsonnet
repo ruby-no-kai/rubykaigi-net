@@ -6,14 +6,6 @@ local user_data = (import '../cloudconfig.base.libsonnet') + {
     'iperf3',
     'mtr',
   ],
-  users+: [
-    super.users[0] {
-      // FIXME: ssh_import_id is flaky...
-      ssh_authorized_keys: [
-        'ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBACG1cKNR8SS4Dkm2wcia74RRmy9d7h62114MQd0H9zb1+1LxVa55Qqd8O232BH1i/fF/1o+eE3L5U7RCR8KUCuAXgFrF429BETaiiBnSErv5yrHJS5RTTjEhA1d9Ygk0o3Und6+90waBXAk2oPVP+OBNtYq1CraZQsXuqvlUtMrBnSTsQ== sorah-mulberry-ecdsa',
-      ],
-    },
-  ],
 };
 local autoinstall = {
   autoinstall: {

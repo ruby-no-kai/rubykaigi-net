@@ -92,7 +92,7 @@ use(Himari::Middlewares::Client,
 use(Himari::Middlewares::Client,
   name: 'ops-lb',
   id: 'edfd99bd-b6a4-39ce-d2db-1e7b237295fd',
-  secret_hash: '9c0783501d0ca6188c7521ef95bca3631af75e33555fbad93e322f2fbccd77fe3c91b23e80ffd5ac0119566d95512bdd', # sha384.hexdigest
+  secret_hash: '1e41175f1168b597447641d66f8e444b7edd80ca124d7a178529164e8ce38148cd7df4068df604c84da27a308a193331', # sha384.hexdigest
   # terraform output -json oidc_client | ruby -rdigest -rjson -e 'puts Digest::SHA384.hexdigest(JSON.parse($<.read)["secret"])'
   redirect_uris: %w(
     https://test.rubykaigi.net/oauth2/idpresponse

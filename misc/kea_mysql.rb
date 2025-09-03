@@ -1,9 +1,21 @@
 #!/usr/bin/env ruby
+require 'bundler/inline'
+gemfile do
+  source 'https://rubygems.org'
+  gem 'aws-sdk-rds'
+  gem 'aws-sdk-s3'
+  gem 'rexml'
+end
 require 'thread'
 require 'socket'
-require 'aws-sdk-rds'
 require 'open-uri'
-EP = 'kea.cluster-ckdkc1trpp8e.ap-northeast-1.rds.amazonaws.com'
+require 'json'
+
+EP = begin
+  Aws::S3::Client.new(region: 'ap-northeast-1').get_object(bucket: 'rk-infra', key: 'terraform/nw-dhcp.tfstate')
+    .then { JSON.parse(_1.body.read) }
+    .then { _1.fetch('outputs').fetch('rds_endpoint').fetch('value') }
+ end
 BASTION =  'bastion.rubykaigi.net'
 USER = 'rk'
 CA_BUNDLE = 'https://truststore.pki.rds.amazonaws.com/ap-northeast-1/ap-northeast-1-bundle.pem'

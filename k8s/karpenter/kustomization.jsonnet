@@ -6,5 +6,6 @@
     './nodeclass_onpremises.yml',
     './nodepool_general.yml',
     './nodepool_onpremises.yml',
+    './ebs_gp3.yml',
   ],
 }

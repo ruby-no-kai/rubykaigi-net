@@ -1,5 +1,5 @@
 module "cluster" {
-  source = "github.com/cookpad/terraform-aws-eks?ref=70a90da1066f428a705b66a42266b6e482e818da"
+  source = "github.com/cookpad/terraform-aws-eks?ref=f1c76b6d998a994bfd04f6fb20c04c95a98a6be7" # 1.32.0
   #source = "github.com/sorah/terraform-aws-eks?ref=tmp-2-29"
 
   name = "rknet"

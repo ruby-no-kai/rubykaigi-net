@@ -46,7 +46,7 @@
                 memory: '10M',
               },
             },
-            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:0295a7184621ccb740c486b5a6e517bf1aa1b3e7',
+            image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:51581786f11aa752c34bac1f0bedb44556a8a2ed',
             env: [
               { name: 'RUST_LOG', value: 'info' },
             ],

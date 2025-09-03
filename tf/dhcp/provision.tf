@@ -31,21 +31,14 @@ resource "kubernetes_secret_v1" "kea-mysql" {
   depends_on = [null_resource.rds-provision]
 }
 
-resource "null_resource" "bundle-install" {
-  triggers = {
-    lockdgst = filesha256("${path.module}/Gemfile.lock")
-  }
-  provisioner "local-exec" {
-    command = "bundle install"
-  }
-}
+
 resource "null_resource" "rds-provision" {
   triggers = {
     rds_cluster_id = aws_rds_cluster.kea.id
     epoch          = 3
   }
   provisioner "local-exec" {
-    command = "bundle exec ruby provision.rb"
+    command = "ruby provision.rb"
     environment = {
       RDS_HOST        = aws_rds_cluster.kea.endpoint
       RDS_PORT        = aws_rds_cluster.kea.port
@@ -55,5 +48,5 @@ resource "null_resource" "rds-provision" {
     }
   }
 
-  depends_on = [null_resource.bundle-install, aws_rds_cluster_instance.kea-001]
+  depends_on = [aws_rds_cluster_instance.kea-001]
 }
