@@ -1,7 +1,7 @@
 resource "helm_release" "cloudwatch-exporter-apne1" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-cloudwatch-exporter"
-  version    = "0.26.0"
+  version    = "0.28.1" # 0.16.0
 
   name = "cloudwatch-exporter-apne1"
 
@@ -32,7 +32,7 @@ data "external" "cloudwatch-exporter-config-apne1" {
 resource "helm_release" "cloudwatch-exporter-apne1hi" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-cloudwatch-exporter"
-  version    = "0.26.0"
+  version    = "0.28.1" # 0.16.0
 
   name = "cloudwatch-exporter-apne1hi"
 
