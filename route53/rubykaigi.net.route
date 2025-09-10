@@ -29,6 +29,7 @@ template 'rubykaigi.net-common' do
     ttl 60
     resource_records(
       '"v=spf1 -all"',
+      '"MS=ms85322562"',
     )
   end
 
