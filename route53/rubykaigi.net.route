@@ -4,8 +4,40 @@
 # Use Terraform as much as possible.
 
 template 'rubykaigi.net-common' do
-  ignore 'rubykaigi.net.'
-  ignore '_dmarc.rubykaigi.net.'
+  rrset "rubykaigi.net.", "A" do
+    dns_name("d3tsts1uyuh9og.cloudfront.net.", evaluate_target_health: true)
+  end
+
+  rrset "rubykaigi.net.", "AAAA" do
+    dns_name("d3tsts1uyuh9og.cloudfront.net.", evaluate_target_health: true)
+  end
+
+  rrset "rubykaigi.net.", "CAA" do
+    ttl 60
+    resource_records(
+      '0 issue "letsencrypt.org"',
+      '0 issue "amazonaws.com"',
+    )
+  end
+
+  rrset "rubykaigi.net.", "MX" do
+    ttl 60
+    resource_records "0 ."
+  end
+
+  rrset "rubykaigi.net.", "TXT" do
+    ttl 60
+    resource_records(
+      '"v=spf1 -all"',
+    )
+  end
+
+  rrset "_dmarc.rubykaigi.net.", "TXT" do
+    ttl 60
+    resource_records(
+      '"v=DMARC1; p=reject"',
+    )
+  end
 
   ignore 'takeout-app-origin.rubykaigi.net.'
   ignore 'rko-router.rubykaigi.net.' # ruby-no-kai/rubykaigi.org//tf
