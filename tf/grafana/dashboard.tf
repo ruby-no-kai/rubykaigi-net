@@ -47,4 +47,12 @@ resource "aws_s3_object" "dashboard-backup" {
 
   content      = replace(data.grafana_dashboard.dashboard-backup[each.key].config_json, "/\"uid\":\"${grafana_data_source.prometheus.uid}\"/", "\"uid\":\"$${DS_PROMETHEUS}\"")
   content_type = "application/json"
+
+  provisioner "local-exec" {
+    when        = destroy
+    command     = <<-EOT
+    aws s3 cp "s3://rk-infra/grafana/backup/current/$${NAME}.json" "s3://rk-infra/grafana/backup/last/$${NAME}.json"
+    EOT
+    environment = { NAME = each.key }
+  }
 }
