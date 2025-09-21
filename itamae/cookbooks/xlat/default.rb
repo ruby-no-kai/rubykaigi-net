@@ -1,5 +1,7 @@
 include_cookbook 'ruby'
 package 'git'
+package 'pkgconf'
+package 'libffi-dev'
 
 # migration
 execute 'rm -rf /opt/xlat' do
