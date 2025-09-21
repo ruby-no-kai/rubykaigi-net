@@ -37,4 +37,12 @@ local domainName = 'mgmt.tkyk.rubykaigi.net';
       data: std.join(', ', [domainName, 'venue.rubykaigi.net'] + consts.search_domains),
     },
   ],
+
+  reservations: [
+    {
+      hostname: 'nat-69-tkykmgmt',
+      duid: '00:02:00:00:ba:2c:33:09:29',
+      'ip-address': '10.33.30.69',
+    },
+  ],
 }

@@ -9,6 +9,11 @@ node.reverse_merge!(
         address4: %w[10.33.0.206],
         address6: %w[2001:df0:8500:ca00::206],
       },
+      management: {
+        name: 'me0',
+        path: 'pci-0000:06:00.0',
+        duid: '00:00:ba:2c:33:09:29',
+      },
       outside: {
         name: 'enp1s0',
         local_as: 65096,
