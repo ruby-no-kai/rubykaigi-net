@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/sorah/xlat
-  revision: fa62bfe3fc5fbec203dc519b0273d78ce271c91e
+  revision: 1e94eed1593597be644f1d3ac6240a50f734a7a1
   branch: main
   specs:
     xlat (0.1.0.alpha1)
