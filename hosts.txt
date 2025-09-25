@@ -52,14 +52,11 @@ venue	mgmt	10.33.100.0/24	10.33.100.10	wlc-01	svc
 venue	mgmt	10.33.100.0/24	10.33.100.50	show-01	enp11s0f0
 venue	mgmt	10.33.100.0/24	10.33.100.61	nat-61	me0
 venue	mgmt	10.33.100.0/24	10.33.100.62	nat-62	me0
-venue	mgmt	10.33.100.0/24	10.33.100.100	es-tra-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.101	es-tra-02	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.105	es-trb-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.110	es-trc-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.111	es-lb1-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.116	es-lb2-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.120	es-fb2-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.125	es-rbc-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.100	es-red-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.101	es-red-02	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.110	es-blu-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.120	es-exp-01	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.125	es-lb5-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.130	es-off-01	vlan1000
 					
 venue	mgmt	10.33.100.0/24	10.33.100.195	cloudprober-01	enp3s0
