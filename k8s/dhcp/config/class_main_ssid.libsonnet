@@ -1,7 +1,7 @@
 local consts = import './consts.libsonnet';
 {
   name: 'main_ssid',
-  test: "split(relay4[2].hex, ':', 2) == 'RubyKaigi 2025'",
+  test: "split(relay4[2].hex, ':', 2) == 'Kaigi on Rails 2025'",
   'only-if-required': true,
   'option-data': [
     {
