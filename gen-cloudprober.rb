@@ -3,11 +3,16 @@
 # Generate cloudprober targets JSON from Route53.
 # Run `./gen-cloudporber.rb --apply` to apply.
 
-require 'ipaddr'
-require 'json'
-require 'pathname'
-require 'resolv'
-require 'aws-sdk-route53'
+require 'bundler/inline'
+gemfile do
+  source 'https://rubygems.org'
+  gem 'aws-sdk-route53'
+  gem 'ipaddr'
+  gem 'json'
+  gem 'pathname'
+  gem 'resolv'
+  gem 'rexml'
+end
 
 TARGETS = [
   {
