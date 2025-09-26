@@ -23,8 +23,8 @@ TARGETS = [
       /\Amanagement\.wlc-[\w-]+\.venue\./,
       /\Airb-1000\.cs-[\w-]+\.venue\./,
       /\Avlan1000\.[ae]s-[\w-]+\.venue\./,
-      /\Age-0-0-0-\d+\.br-[\w-]+\.(?:hnd|nrt|itm|venue)\./,
-      /\Age-0-0-5-\d+\.er-[\w-]+\.venue\./,
+      /\Age-0-0-0-\d0\.br-[\w-]+\.(?:hnd|nrt|itm|venue)\./, # etherip-ipsec
+      /\Age-0-0-5-\d0\.er-[\w-]+\.venue\./, # etherip-ipsec
     ],
     labels: {
       network: 'private',

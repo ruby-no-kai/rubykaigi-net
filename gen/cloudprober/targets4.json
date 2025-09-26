@@ -169,22 +169,8 @@
       }
     },
     {
-      "name": "ge-0-0-0-11.br-01.hnd.rubykaigi.net",
-      "ip": "10.33.22.16",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
       "name": "ge-0-0-0-20.br-01.hnd.rubykaigi.net",
       "ip": "10.33.22.18",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "ge-0-0-0-21.br-01.hnd.rubykaigi.net",
-      "ip": "10.33.22.20",
       "labels": {
         "network": "private"
       }
@@ -197,22 +183,8 @@
       }
     },
     {
-      "name": "ge-0-0-0-11.br-01.itm.rubykaigi.net",
-      "ip": "10.33.22.32",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
       "name": "ge-0-0-0-20.br-01.itm.rubykaigi.net",
       "ip": "10.33.22.34",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "ge-0-0-0-21.br-01.itm.rubykaigi.net",
-      "ip": "10.33.22.36",
       "labels": {
         "network": "private"
       }
@@ -225,22 +197,8 @@
       }
     },
     {
-      "name": "ge-0-0-0-11.br-01.nrt.rubykaigi.net",
-      "ip": "10.33.22.24",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
       "name": "ge-0-0-0-20.br-01.nrt.rubykaigi.net",
       "ip": "10.33.22.26",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "ge-0-0-0-21.br-01.nrt.rubykaigi.net",
-      "ip": "10.33.22.28",
       "labels": {
         "network": "private"
       }
@@ -253,36 +211,8 @@
       }
     },
     {
-      "name": "ge-0-0-0-98.br-01.nrt.rubykaigi.net",
-      "ip": "10.33.22.200",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "ge-0-0-0-99.br-01.nrt.rubykaigi.net",
-      "ip": "10.33.22.202",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "ge-0-0-5-1.er-01.venue.rubykaigi.net",
-      "ip": "10.33.22.166",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
       "name": "ge-0-0-5-10.er-01.venue.rubykaigi.net",
       "ip": "10.33.22.15",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "ge-0-0-5-11.er-01.venue.rubykaigi.net",
-      "ip": "10.33.22.17",
       "labels": {
         "network": "private"
       }
@@ -295,29 +225,8 @@
       }
     },
     {
-      "name": "ge-0-0-5-21.er-01.venue.rubykaigi.net",
-      "ip": "10.33.22.25",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
       "name": "ge-0-0-5-30.er-01.venue.rubykaigi.net",
       "ip": "10.33.22.31",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "ge-0-0-5-31.er-01.venue.rubykaigi.net",
-      "ip": "10.33.22.33",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "ge-0-0-5-1.er-02.venue.rubykaigi.net",
-      "ip": "10.33.22.168",
       "labels": {
         "network": "private"
       }
@@ -330,13 +239,6 @@
       }
     },
     {
-      "name": "ge-0-0-5-11.er-02.venue.rubykaigi.net",
-      "ip": "10.33.22.21",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
       "name": "ge-0-0-5-20.er-02.venue.rubykaigi.net",
       "ip": "10.33.22.27",
       "labels": {
@@ -344,22 +246,8 @@
       }
     },
     {
-      "name": "ge-0-0-5-21.er-02.venue.rubykaigi.net",
-      "ip": "10.33.22.29",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
       "name": "ge-0-0-5-30.er-02.venue.rubykaigi.net",
       "ip": "10.33.22.35",
-      "labels": {
-        "network": "private"
-      }
-    },
-    {
-      "name": "ge-0-0-5-31.er-02.venue.rubykaigi.net",
-      "ip": "10.33.22.37",
       "labels": {
         "network": "private"
       }
