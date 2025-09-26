@@ -59,6 +59,16 @@
           },
         },
         {
+          alert: 'LinkIsSlow',
+          expr: 'ifSpeed < 1000000000 and ifSpeed > 0 and ifOperStatus == 1 and ifAdminStatus == 1',
+          labels: {
+            severity: 'critical',
+          },
+          annotations: {
+            summary: '{{$labels.instance}} {{$labels.ifName}} ({{$labels.ifAlias}}): Link speed < 1 Gbps',
+          },
+        },
+        {
           alert: 'BGPPeerDown',
           expr: 'bgpPeerState{bgpPeerState="established"} < 1',
           labels: {
