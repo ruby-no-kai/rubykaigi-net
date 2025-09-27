@@ -62,6 +62,13 @@ template '/etc/bird/bird.conf.d/plat.conf' do
   notifies :reload, 'service[bird]'
 end
 
+template '/etc/modules-load.d/nf-conntrack.conf' do
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :restart, 'service[systemd-modules-load]'
+end
+
 template '/etc/sysctl.d/90-nf-conntrack.conf' do
   owner 'root'
   group 'root'
