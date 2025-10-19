@@ -1,6 +1,6 @@
 locals {
-  enable_nat            = true
-  enable_onpremises_nat = true
+  enable_nat            = false
+  enable_onpremises_nat = false
 }
 
 resource "aws_vpc" "main" {
