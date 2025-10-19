@@ -6,14 +6,15 @@
 
 locals {
   grafana_dashboards = {
-    "bird_rs"    = {},
-    "dhcp"       = {},
-    "dns"        = {},
-    "location"   = {},
-    "overview"   = {},
-    "ping"       = {},
-    "prometheus" = {},
-    "v6mostly"   = {},
+    "bird_rs"             = {},
+    "dhcp"                = {},
+    "dns"                 = {},
+    "location"            = {},
+    "overview"            = {},
+    "ping"                = {},
+    "prometheus"          = {},
+    "v6mostly"            = {},
+    "circuit_and_tunnels" = {},
   }
 }
 
@@ -27,8 +28,9 @@ data "aws_s3_object" "dashboard" {
 resource "grafana_dashboard" "dashboard" {
   for_each = local.grafana_dashboards
 
-  config_json = replace(data.aws_s3_object.dashboard[each.key].body, "/\\$${DS_PROMETHEUS}/", grafana_data_source.prometheus.uid)
+  config_json = replace(coalesce(data.aws_s3_object.dashboard[each.key].body, "{}\n"), "/\\$${DS_PROMETHEUS}/", grafana_data_source.prometheus.uid)
 
+  depends_on = [helm_release.grafana, aws_security_group_rule.grafana-db_k8s-node]
   lifecycle {
     ignore_changes = [config_json]
   }
@@ -37,6 +39,8 @@ resource "grafana_dashboard" "dashboard" {
 data "grafana_dashboard" "dashboard-backup" {
   for_each = local.grafana_dashboards
   uid      = grafana_dashboard.dashboard[each.key].uid
+
+  depends_on = [helm_release.grafana, aws_security_group_rule.grafana-db_k8s-node]
 }
 
 resource "aws_s3_object" "dashboard-backup" {

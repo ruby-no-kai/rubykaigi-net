@@ -10,6 +10,7 @@ provider "grafana" {
 resource "grafana_organization" "rk-private" {
   name       = "RubyKaigi (ひみつだよ)"
   admin_user = "admin"
+  depends_on = [helm_release.grafana, aws_security_group_rule.grafana-db_k8s-node]
 }
 
 resource "grafana_data_source" "prometheus" {
@@ -18,6 +19,7 @@ resource "grafana_data_source" "prometheus" {
   url  = "http://prometheus-operated.default.svc.cluster.local:9090"
 
   is_default = true
+  depends_on = [helm_release.grafana, aws_security_group_rule.grafana-db_k8s-node]
 }
 
 resource "grafana_data_source" "alertmanager" {
@@ -28,6 +30,8 @@ resource "grafana_data_source" "alertmanager" {
   json_data_encoded = jsonencode({
     implementation = "prometheus",
   })
+
+  depends_on = [helm_release.grafana, aws_security_group_rule.grafana-db_k8s-node]
 }
 
 resource "grafana_data_source" "cloudwatch" {
@@ -39,6 +43,8 @@ resource "grafana_data_source" "cloudwatch" {
     defaultRegion = "ap-northeast-1",
     assumeRoleArn = aws_iam_role.grafana-public.arn,
   })
+
+  depends_on = [helm_release.grafana, aws_security_group_rule.grafana-db_k8s-node]
 }
 
 resource "grafana_data_source" "prometheus-private" {
@@ -49,6 +55,8 @@ resource "grafana_data_source" "prometheus-private" {
   url  = "http://prometheus-operated.default.svc.cluster.local:9090"
 
   is_default = true
+
+  depends_on = [helm_release.grafana, aws_security_group_rule.grafana-db_k8s-node]
 }
 
 resource "grafana_data_source" "cloudwatch-private" {
@@ -62,4 +70,6 @@ resource "grafana_data_source" "cloudwatch-private" {
     defaultRegion = "ap-northeast-1",
     assumeRoleArn = aws_iam_role.grafana-private.arn,
   })
+
+  depends_on = [helm_release.grafana, aws_security_group_rule.grafana-db_k8s-node]
 }

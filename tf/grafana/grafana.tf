@@ -22,9 +22,13 @@ resource "helm_release" "grafana" {
   ]
 
   depends_on = [
+    kubernetes_secret_v1.grafana-mysql,
     kubernetes_secret.grafana-admin,
     kubernetes_secret.oidc-client,
     null_resource.rds-provision,
+    aws_security_group_rule.grafana-db_k8s-node,
+    aws_route53_record.grafana1-db-apne1-rubykaigi-net,
+    kubernetes_manifest.targetgroupbinding-grafana,
   ]
 }
 
