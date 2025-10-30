@@ -65,7 +65,7 @@ resource "aws_s3_object" "drive" {
   key              = "drive"
   content          = ""
   cache_control    = "max-age=0"
-  website_redirect = "https://drive.google.com/drive/folders/1YHmS57Ne1_aqK2yXdIUnTTY7ODLIgwrE?usp=drive_link"
+  website_redirect = "https://drive.google.com/drive/folders/1XzRt9D824SukP6c6VoHvkCJwt34E-urY?usp=drive_link" # 2026
 }
 
 resource "aws_s3_object" "kanban" {
@@ -82,7 +82,7 @@ resource "aws_s3_object" "sheet" {
   key              = each.value
   content          = ""
   cache_control    = "max-age=0"
-  website_redirect = "https://docs.google.com/spreadsheets/d/1VW_pFGfJyMiygNkj0xHJuHIj_bot1F2aa8HB7l2RpWY/edit?gid=900835928#gid=900835928"
+  website_redirect = "https://docs.google.com/spreadsheets/d/1XRidKWuDwCumtGbLLgl8D19KjUDs5zNZLLRKtc0UfV0/edit" # 2026
 }
 
 resource "aws_s3_object" "assets" {
