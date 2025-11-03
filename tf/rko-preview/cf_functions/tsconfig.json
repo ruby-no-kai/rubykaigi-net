@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "preserve",
+    "lib": ["es2015"],
+    "sourceMap": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
+

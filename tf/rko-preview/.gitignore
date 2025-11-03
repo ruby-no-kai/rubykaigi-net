@@ -1,0 +1,4 @@
+node_modules/
+cf_functions/src/**/*.js
+cf_functions/src/**/*.js.map
+*.tsbuildinfo
