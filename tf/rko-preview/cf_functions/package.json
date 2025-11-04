@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@types/aws-cloudfront-function": "^1.0.6",
+    "typescript": "^5.9.3"
+  }
+}
