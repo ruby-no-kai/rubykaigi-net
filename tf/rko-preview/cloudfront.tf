@@ -2,7 +2,7 @@ data "aws_cloudfront_origin_request_policy" "Managed-CORS-S3Origin" {
   name = "Managed-CORS-S3Origin"
 }
 data "aws_cloudfront_cache_policy" "Managed-CachingOptimized" {
-  name = "Managed-CachingDisabled"
+  name = "Managed-CachingOptimized"
 }
 
 moved {
