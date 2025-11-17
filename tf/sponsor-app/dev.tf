@@ -1,10 +1,10 @@
 module "dev" {
-  source = "../../../sponsor-app/tfmod"
+  source = "../../../sponsor-app/tf"
 
   providers = {
-    aws       = aws
-    aws.use1  = aws.use1
-    aws.apne1 = aws.apne1
+    aws            = aws
+    aws.cloudfront = aws.use1
+    aws.files      = aws.apne1
   }
 
   environment               = "dev"

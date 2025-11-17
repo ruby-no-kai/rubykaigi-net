@@ -1,10 +1,10 @@
 module "prd" {
-  source = "../../../sponsor-app/tfmod"
+  source = "../../../sponsor-app/tf"
 
   providers = {
-    aws       = aws
-    aws.use1  = aws.use1
-    aws.apne1 = aws.apne1
+    aws            = aws
+    aws.cloudfront = aws.use1
+    aws.files      = aws.apne1
   }
 
   environment               = "production"
@@ -16,10 +16,10 @@ module "prd" {
   s3_bucket_name  = "rk-sponsorship-files-prd"
   s3_cors_origins = ["https://sponsorships.rubykaigi.org"]
 
-  enable_cloudfront = true
-  enable_sqs        = true
-  enable_apprunner  = true
-  enable_amc_oidc   = false
+  enable_cloudfront       = true
+  enable_sqs              = true
+  enable_apprunner        = true
+  enable_amc_oidc         = false
   enable_shared_resources = true
 
   app_domain            = "sponsorships.rubykaigi.org"
