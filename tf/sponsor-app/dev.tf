@@ -23,8 +23,8 @@ module "dev" {
 
   enable_cloudfront       = false
   enable_sqs              = false
-  enable_apprunner        = false
-  enable_amc_oidc         = true
+  enable_app              = false
+  amc_oidc_domain         = "amc.rubykaigi.net"
   enable_shared_resources = false
 
   github_actions_sub = "repo:ruby-no-kai/sponsor-app:ref:refs/heads/master"

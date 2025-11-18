@@ -18,8 +18,8 @@ module "prd" {
 
   enable_cloudfront       = true
   enable_sqs              = true
-  enable_apprunner        = true
-  enable_amc_oidc         = false
+  enable_app              = true
+  amc_oidc_domain         = null
   enable_shared_resources = true
 
   app_domain            = "sponsorships.rubykaigi.org"
