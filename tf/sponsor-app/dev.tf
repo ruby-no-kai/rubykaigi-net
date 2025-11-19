@@ -7,12 +7,10 @@ module "dev" {
     aws.files      = aws.apne1
   }
 
-  environment               = "dev"
-  name                      = "dev"
-  service_name              = "sponsor-app-dev"
-  sqs_name_suffix           = "dev"
-  iam_role_prefix           = "SponsorAppDev"
-  iam_apprunner_access_name = "AppraSponsorAppDev"
+  environment     = "dev"
+  name            = "dev"
+  sqs_name_suffix = "dev"
+  iam_role_prefix = "SponsorAppDev"
 
   s3_bucket_name = "rk-sponsorship-files-dev"
   s3_cors_origins = [

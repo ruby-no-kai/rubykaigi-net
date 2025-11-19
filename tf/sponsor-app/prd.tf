@@ -7,12 +7,10 @@ module "prd" {
     aws.files      = aws.apne1
   }
 
-  environment               = "production"
-  name                      = "prd"
-  service_name              = "sponsor-app"
-  sqs_name_suffix           = "prd"
-  iam_role_prefix           = "SponsorApp"
-  iam_apprunner_access_name = "AppraSponsorApp"
+  environment     = "production"
+  name            = "prd"
+  sqs_name_suffix = "prd"
+  iam_role_prefix = "SponsorApp"
 
   s3_bucket_name  = "rk-sponsorship-files-prd"
   s3_cors_origins = ["https://sponsorships.rubykaigi.org"]
