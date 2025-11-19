@@ -8,6 +8,7 @@ module "dev" {
   }
 
   environment               = "dev"
+  name                      = "dev"
   service_name              = "sponsor-app-dev"
   sqs_name_suffix           = "dev"
   iam_role_prefix           = "SponsorAppDev"
@@ -23,9 +24,10 @@ module "dev" {
 
   enable_cloudfront       = false
   enable_sqs              = false
-  enable_apprunner        = false
-  enable_amc_oidc         = true
+  enable_app              = false
+  amc_oidc_domain         = "amc.rubykaigi.net"
   enable_shared_resources = false
+  ssm_parameter_prefix    = "/sponsor-app-dev/"
 
   github_actions_sub = "repo:ruby-no-kai/sponsor-app:ref:refs/heads/master"
 }
