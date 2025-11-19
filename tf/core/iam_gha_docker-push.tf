@@ -88,4 +88,15 @@ data "aws_iam_policy_document" "GhaDockerPush" {
       "arn:aws:ecr:us-west-2:${data.aws_caller_identity.current.account_id}:repository/attendee-gate",
     ]
   }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:PutObject",
+    ]
+    resources = [
+      "arn:aws:s3:::rk-tftp/ro/lambda/function-url-utils/*",
+    ]
+  }
+
 }
