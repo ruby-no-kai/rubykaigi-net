@@ -8,6 +8,7 @@ module "prd" {
   }
 
   environment               = "production"
+  name                      = "prd"
   service_name              = "sponsor-app"
   sqs_name_suffix           = "prd"
   iam_role_prefix           = "SponsorApp"
@@ -21,6 +22,7 @@ module "prd" {
   enable_app              = true
   amc_oidc_domain         = null
   enable_shared_resources = true
+  ssm_parameter_prefix    = "/sponsor-app/"
 
   app_domain            = "sponsorships.rubykaigi.org"
   certificate_arn       = data.aws_acm_certificate.use1-sponsorships-rk-o.arn
