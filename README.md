@@ -16,10 +16,14 @@ https://scrapbox.io/rknet/AWS
 
 Want to know RubyKaigi Wi-Fi behind the scenes? You may love the following articles.
 
+- Overall
+  - [RubyKaigi NOC 近況 2025 \- Speaker Deck](https://speakerdeck.com/sorah/rubykaigi2025wifi)
 - L3 Backbone
   - [RubyKaigi 2023 Wi\-Fi: 足回り徹底解説 \- クックパッド開発者ブログ](https://techlife.cookpad.com/entry/2023/05/31/113000)
-- IPv6-Mostly
+- IPv6-mostly
   - [RubyKaigi 2025で使用したSIITのRuby実装について \- KMC活動ブログ](https://blog.kmc.gr.jp/entry/2025/05/13/130055)
+  - [The Mystery of CLAT on Apple devices: Findings from Conference Wi\-Fi at RubyKaigi \| blog\.sorah](https://blog.sorah.jp/2025/11/04/mystery-of-clat-on-apple-devices)
+    - [macOSのCLAT実装の謎 \- KMC活動ブログ](https://blog.kmc.gr.jp/entry/2025/09/25/171710)
 - DNS Resolver
   - [RubyKaigi 2023でのセキュアなDNSリゾルバの運用 ― DNS\-over\-HTTPSとDDR \- KMC活動ブログ](https://blog.kmc.gr.jp/entry/2023/05/10/165300)
     - [RubyKaigi 2023でのセキュアなDNSリゾルバの運用 / Secure DNS Resolver at RubyKaigi 2023 \- Speaker Deck](https://speakerdeck.com/hanazuki/secure-dns-resolver-at-rubykaigi-2023)
