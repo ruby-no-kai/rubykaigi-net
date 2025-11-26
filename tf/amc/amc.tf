@@ -1,5 +1,5 @@
 module "amc" {
-  source = "github.com/sorah/himari2amc?ref=c3aef162c21a8e23e0a8e07f1720eb26896cca2f"
+  source = "github.com/sorah/himari2amc?ref=bad517c33c3c28a7d3cb9d67c510a974b04efa49"
   #source = "/home/sorah/git/github.com/sorah/himari2amc"
 
   name                       = "amc"
