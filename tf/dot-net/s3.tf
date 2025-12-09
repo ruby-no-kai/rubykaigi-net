@@ -115,5 +115,5 @@ resource "aws_s3_object" "money" {
   key              = each.value
   content          = ""
   cache_control    = "max-age=0"
-  website_redirect = "https://docs.google.com/spreadsheets/d/1pk_bqb75ZAQKXbo7muQ4jp2GA5iRrcJl3r7fmentQ6c/edit?gid=0#gid=0"
+  website_redirect = "https://docs.google.com/spreadsheets/d/1xJl8uuY7XM1vbUdS2eZ0f2xr1bX_pXIp-hjzofIFI6c/edit?gid=0#gid=0"
 }
