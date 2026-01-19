@@ -23,6 +23,19 @@ resource "aws_route53_record" "dot-net-alias-a" {
   }
 }
 
+resource "aws_route53_record" "dot-net-alias-https" {
+  for_each = local.rubykaigi_net_zones
+  name     = "rubykaigi.net."
+  zone_id  = each.value
+  type     = "HTTPS"
+  alias {
+    name    = aws_cloudfront_distribution.dot-net.domain_name
+    zone_id = "Z2FDTNDATAQYW2" # CloudFront https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html
+    //
+    evaluate_target_health = true
+  }
+}
+
 data "aws_route53_zone" "rubykaigi-net_public" {
   name         = "rubykaigi.net."
   private_zone = false
