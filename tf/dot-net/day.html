@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="rk:start-date" content="2026-04-22">
+  <meta name="rk:event-name" content="RubyKaigi 2026">
   <title>RubyKaigi Day</title>
   <style>
     :root {
@@ -140,23 +141,31 @@
 </head>
 <body>
   <div class="main-display">
-    <div class="day-label">RubyKaigi</div>
+    <div class="day-label" id="day-label"></div>
     <div class="day-number" id="day-number">Day 0</div>
   </div>
 
   <div class="reference">
-    <table>
-      <tr>
+    <table id="ref-table">
+      <tr data-day="-1">
         <th>Day -1</th>
         <td id="ref-day-1"></td>
       </tr>
-      <tr>
+      <tr data-day="0">
         <th>Day 0 (Setup)</th>
         <td id="ref-day0"></td>
       </tr>
-      <tr>
+      <tr data-day="1">
         <th>Day 1</th>
         <td id="ref-day1"></td>
+      </tr>
+      <tr id="ref-today-row">
+        <th id="ref-today-label">Day N (Today)</th>
+        <td id="ref-today-date"></td>
+      </tr>
+      <tr id="ref-selected-row" hidden>
+        <th id="ref-selected-label">Day N</th>
+        <td id="ref-selected-date"></td>
       </tr>
     </table>
   </div>
@@ -178,10 +187,18 @@
 
       const day1Input = document.getElementById('day1-date');
       const currentInput = document.getElementById('current-date');
+      const dayLabelEl = document.getElementById('day-label');
       const dayNumberEl = document.getElementById('day-number');
       const refDay1El = document.getElementById('ref-day1');
       const refDay0El = document.getElementById('ref-day0');
       const refDayMinus1El = document.getElementById('ref-day-1');
+      const refTodayRow = document.getElementById('ref-today-row');
+      const refTodayLabel = document.getElementById('ref-today-label');
+      const refTodayDate = document.getElementById('ref-today-date');
+      const refSelectedRow = document.getElementById('ref-selected-row');
+      const refSelectedLabel = document.getElementById('ref-selected-label');
+      const refSelectedDate = document.getElementById('ref-selected-date');
+      const refTable = document.getElementById('ref-table');
 
       function parseLocalDate(dateStr) {
         const [year, month, day] = dateStr.split('-').map(Number);
@@ -223,6 +240,27 @@
         return diffDays + 1;
       }
 
+      function updateTodayRow() {
+        const metaEl = document.querySelector('meta[name="rk:start-date"]');
+        if (!metaEl) return;
+
+        const day1Date = parseLocalDate(metaEl.getAttribute('content'));
+        const today = todayInJST();
+        const todayDayNum = calculateDayNumber(day1Date, today);
+
+        refTodayLabel.textContent = `Day ${todayDayNum} (Today)`;
+        refTodayDate.textContent = formatDisplayDate(today);
+        refTodayRow.dataset.day = todayDayNum;
+
+        sortRefTable();
+      }
+
+      function sortRefTable() {
+        const rows = Array.from(refTable.querySelectorAll('tr'));
+        rows.sort((a, b) => parseInt(a.dataset.day, 10) - parseInt(b.dataset.day, 10));
+        rows.forEach(row => refTable.appendChild(row));
+      }
+
       function updateQueryParam(dateStr) {
         const url = new URL(window.location);
         url.search = '';
@@ -237,6 +275,9 @@
         const currentDate = parseLocalDate(currentInput.value);
 
         const dayNum = calculateDayNumber(day1Date, currentDate);
+        const eventNameEl = document.querySelector('meta[name="rk:event-name"]');
+        const eventName = eventNameEl ? eventNameEl.getAttribute('content') : 'RubyKaigi';
+        dayLabelEl.textContent = `${currentInput.value} is ${eventName}`;
         dayNumberEl.textContent = `Day ${dayNum}`;
 
         const day0Date = addDays(day1Date, -1);
@@ -245,6 +286,19 @@
         refDay1El.textContent = formatDisplayDate(day1Date);
         refDay0El.textContent = formatDisplayDate(day0Date);
         refDayMinus1El.textContent = formatDisplayDate(dayMinus1Date);
+
+        const today = todayInJST();
+        const todayStr = formatDate(today);
+        if (currentInput.value !== todayStr) {
+          refSelectedLabel.textContent = `Day ${dayNum}`;
+          refSelectedDate.textContent = formatDisplayDate(currentDate);
+          refSelectedRow.dataset.day = dayNum;
+          refSelectedRow.hidden = false;
+        } else {
+          refSelectedRow.hidden = true;
+        }
+
+        sortRefTable();
       }
 
       function onUserChange() {
@@ -310,6 +364,7 @@
         day1Input.addEventListener('change', onUserChange);
         currentInput.addEventListener('change', onUserChange);
 
+        updateTodayRow();
         update();
       }
 
