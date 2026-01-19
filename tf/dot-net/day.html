@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="rk:start-date" content="2026-04-22">
+  <title>RubyKaigi Day</title>
+  <style>
+    :root {
+      --color-bg: #f5f5f5;
+      --color-text: #1a1a1a;
+      --color-text-muted: #666;
+      --color-border: #ccc;
+      --color-input-bg: #fff;
+      --color-accent: #cc342d;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #1a1a2e;
+        --color-text: #eaeaea;
+        --color-text-muted: #888;
+        --color-border: #444;
+        --color-input-bg: #2a2a3e;
+        --color-accent: #cc342d;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .main-display {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .day-label {
+      font-size: 1.5rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .day-number {
+      font-size: 8rem;
+      font-weight: bold;
+      color: var(--color-accent);
+      line-height: 1;
+    }
+
+    .reference {
+      margin-bottom: 2rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .control-group label {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+
+    .control-group input[type="date"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      background-color: var(--color-input-bg);
+      color: var(--color-text);
+    }
+
+    .reference table {
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .reference th,
+    .reference td {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--color-border);
+    }
+
+    .reference th {
+      color: var(--color-text-muted);
+      font-weight: normal;
+      text-align: left;
+    }
+
+    .reference td {
+      color: var(--color-text);
+      text-align: left;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        justify-content: flex-start;
+        padding-bottom: 2rem;
+      }
+
+      .main-display {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .day-number {
+        font-size: 5rem;
+      }
+
+      .controls {
+        gap: 1rem;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-display">
+    <div class="day-label">RubyKaigi</div>
+    <div class="day-number" id="day-number">Day 0</div>
+  </div>
+
+  <div class="reference">
+    <table>
+      <tr>
+        <th>Day -1</th>
+        <td id="ref-day-1"></td>
+      </tr>
+      <tr>
+        <th>Day 0 (Setup)</th>
+        <td id="ref-day0"></td>
+      </tr>
+      <tr>
+        <th>Day 1</th>
+        <td id="ref-day1"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="controls">
+    <div class="control-group">
+      <label for="current-date">Date</label>
+      <input type="date" id="current-date">
+    </div>
+    <div class="control-group">
+      <label for="day1-date">Day 1</label>
+      <input type="date" id="day1-date">
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+      const day1Input = document.getElementById('day1-date');
+      const currentInput = document.getElementById('current-date');
+      const dayNumberEl = document.getElementById('day-number');
+      const refDay1El = document.getElementById('ref-day1');
+      const refDay0El = document.getElementById('ref-day0');
+      const refDayMinus1El = document.getElementById('ref-day-1');
+
+      function parseLocalDate(dateStr) {
+        const [year, month, day] = dateStr.split('-').map(Number);
+        return new Date(year, month - 1, day);
+      }
+
+      function formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+      function formatDisplayDate(date) {
+        return date.toLocaleDateString(undefined, {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+      }
+
+      function addDays(date, days) {
+        const result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+      }
+
+      function calculateDayNumber(day1Date, currentDate) {
+        const diffTime = currentDate.getTime() - day1Date.getTime();
+        const diffDays = Math.floor(diffTime / MS_PER_DAY);
+        return diffDays + 1;
+      }
+
+      function updateQueryParam(dateStr) {
+        const url = new URL(window.location);
+        url.search = '';
+        url.searchParams.set('date', dateStr);
+        history.replaceState(null, '', url);
+      }
+
+      function update() {
+        const day1Date = parseLocalDate(day1Input.value);
+        const currentDate = parseLocalDate(currentInput.value);
+
+        const dayNum = calculateDayNumber(day1Date, currentDate);
+        dayNumberEl.textContent = `Day ${dayNum}`;
+
+        const day0Date = addDays(day1Date, -1);
+        const dayMinus1Date = addDays(day1Date, -2);
+
+        refDay1El.textContent = formatDisplayDate(day1Date);
+        refDay0El.textContent = formatDisplayDate(day0Date);
+        refDayMinus1El.textContent = formatDisplayDate(dayMinus1Date);
+      }
+
+      function onUserChange() {
+        update();
+        updateQueryParam(currentInput.value);
+      }
+
+      function parseQueryParams() {
+        const metaEl = document.querySelector('meta[name="rk:start-date"]');
+        const defaultDay1 = metaEl ? metaEl.getAttribute('content') : formatDate(new Date());
+        const day1Date = parseLocalDate(defaultDay1);
+
+        const url = new URL(window.location);
+        const params = url.searchParams;
+        const search = url.search.slice(1);
+
+        // Check for shorthand formats and normalize
+        if (search && !search.includes('=')) {
+          const dateMatch = search.match(/^(\d{4}-\d{2}-\d{2})$/);
+          const dayMatch = search.match(/^(-?\d+)$/);
+
+          if (dateMatch) {
+            url.search = '';
+            url.searchParams.set('date', dateMatch[1]);
+            history.replaceState(null, '', url);
+            return { day1: defaultDay1, current: dateMatch[1] };
+          } else if (dayMatch) {
+            const dayNum = parseInt(dayMatch[1], 10);
+            url.search = '';
+            url.searchParams.set('day', dayNum.toString());
+            history.replaceState(null, '', url);
+            const targetDate = addDays(day1Date, dayNum - 1);
+            return { day1: defaultDay1, current: formatDate(targetDate) };
+          }
+        }
+
+        // Handle ?day=N parameter
+        if (params.has('day')) {
+          const dayNum = parseInt(params.get('day'), 10);
+          if (!isNaN(dayNum)) {
+            const targetDate = addDays(day1Date, dayNum - 1);
+            return { day1: defaultDay1, current: formatDate(targetDate) };
+          }
+        }
+
+        // Handle ?date=YYYY-MM-DD parameter
+        if (params.has('date')) {
+          const dateStr = params.get('date');
+          if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+            return { day1: defaultDay1, current: dateStr };
+          }
+        }
+
+        return { day1: defaultDay1, current: formatDate(new Date()) };
+      }
+
+      function init() {
+        const { day1, current } = parseQueryParams();
+
+        day1Input.value = day1;
+        currentInput.value = current;
+
+        day1Input.addEventListener('change', onUserChange);
+        currentInput.addEventListener('change', onUserChange);
+
+        update();
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
