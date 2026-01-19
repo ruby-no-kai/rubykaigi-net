@@ -109,6 +109,13 @@ use(Himari::Middlewares::Client,
     https://grafana.rubykaigi.net/login/generic_oauth
   ),
 )
+use(Himari::Middlewares::Client,
+  name: 'saml-local',
+  id: '9812cf00-db34-4937-b840-2abd01b1e6ce',
+  secret_hash: '1adc3bbdf4e49fbed6f4991f9c2171341221c50db439ddc29971d5a2376cc312e7948faba1843f74b81e2d44435f4f69', # sha384.hexdigest
+  redirect_uris: %w(http://localhost:3000/auth/himari/callback  https://civilian-improvement-noble-reader.trycloudflare.com/auth/himari/callback),
+  require_pkce: true,
+)
 
 use(Himari::Middlewares::Client,
   name: 'signage-prd',
@@ -303,7 +310,27 @@ use(Himari::Middlewares::AuthorizationRule, name: 'signage-app') do |context, de
   decision.skip!('no roles assigned')
 end
 
+use(Himari::Middlewares::AuthorizationRule, name: 'saml-local') do |context, decision|
+  next decision.skip!('client not in scope') unless context.client.name == 'saml-local'
+  next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
 
+  role = nil
+  groups = decision.claims.dig(:groups)
+  if groups.include?('ruby-no-kai/rk-noc') || groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk24-orgz')
+    role = :user
+  end
+
+  decision.claims[:role] = role
+  decision.allowed_claims.push(:role)
+
+  if role
+    decision.lifetime.access_token = 3600
+    decision.lifetime.id_token = 3600
+    next decision.allow!
+  end
+
+  decision.skip!('no roles assigned')
+end
 
 run Himari::App
 
