@@ -3,7 +3,7 @@ provider "aws" {
   allowed_account_ids = ["005216166247"]
   default_tags {
     tags = {
-      Project   = "rk25net"
+      Project   = "rk26net"
       Component = "dns-cache"
     }
   }

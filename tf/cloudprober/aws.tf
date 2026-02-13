@@ -4,7 +4,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project   = "rk25net"
+      Project   = "rk26net"
       Component = "cloudprober"
     }
   }
