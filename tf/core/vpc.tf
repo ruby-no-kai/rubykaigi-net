@@ -336,7 +336,7 @@ resource "aws_eip" "nat-c" {
   domain = "vpc"
   tags = {
     Name    = "nat-c"
-    Project = "rk25net"
+    Project = "rk26net"
   }
 }
 resource "aws_nat_gateway" "nat-c" {
@@ -345,7 +345,7 @@ resource "aws_nat_gateway" "nat-c" {
   subnet_id     = aws_subnet.c_public.id
   tags = {
     Name    = "nat-c"
-    Project = "rk25net"
+    Project = "rk26net"
   }
 }
 resource "aws_route" "private_v4_default" {
@@ -367,7 +367,7 @@ resource "aws_eip" "nat-d" {
   domain = "vpc"
   tags = {
     Name      = "nat-d"
-    Project   = "rk25net"
+    Project   = "rk26net"
     Component = "core/nat"
   }
 }
@@ -377,7 +377,7 @@ resource "aws_nat_gateway" "nat-d" {
   subnet_id     = aws_subnet.d_public.id
   tags = {
     Name      = "nat-d"
-    Project   = "rk25net"
+    Project   = "rk26net"
     Component = "core/nat"
   }
 }
@@ -397,7 +397,7 @@ resource "aws_nat_gateway" "onpremises-c" {
   private_ip        = cidrhost(aws_subnet.c_onpremises_link.cidr_block, -2)
   tags = {
     Name      = "onpremises-c"
-    Project   = "rk25net"
+    Project   = "rk26net"
     Component = "core/nat"
   }
 }
@@ -408,7 +408,7 @@ resource "aws_nat_gateway" "onpremises-d" {
   private_ip        = cidrhost(aws_subnet.d_onpremises_link.cidr_block, -2)
   tags = {
     Name      = "onpremises-d"
-    Project   = "rk25net"
+    Project   = "rk26net"
     Component = "core/nat"
   }
 }

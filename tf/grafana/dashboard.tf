@@ -22,7 +22,7 @@ data "aws_s3_object" "dashboard" {
   for_each = local.grafana_dashboards
 
   bucket = "rk-infra"
-  key    = "grafana/backup/rk25net/${each.key}.json"
+  key    = "grafana/backup/rk26net/${each.key}.json"
 }
 
 resource "grafana_dashboard" "dashboard" {
