@@ -77,7 +77,7 @@
                               "value": "kea-admin"
                            }
                         ],
-                        "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:0d9cc84dd9a3c9d4354b3c55887245959f389773",
+                        "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/kea:02a8fc80e747a92083540960aab407f098ba0092",
                         "name": "app",
                         "resources": {
                            "requests": {
