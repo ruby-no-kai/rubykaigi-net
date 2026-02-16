@@ -241,10 +241,9 @@
       }
 
       function updateTodayRow() {
-        const metaEl = document.querySelector('meta[name="rk:start-date"]');
-        if (!metaEl) return;
+        if (!day1Input.value) return;
 
-        const day1Date = parseLocalDate(metaEl.getAttribute('content'));
+        const day1Date = parseLocalDate(day1Input.value);
         const today = todayInJST();
         const todayDayNum = calculateDayNumber(day1Date, today);
 
@@ -303,6 +302,7 @@
 
       function onUserChange() {
         update();
+        updateTodayRow();
         updateQueryParam(currentInput.value);
       }
 
