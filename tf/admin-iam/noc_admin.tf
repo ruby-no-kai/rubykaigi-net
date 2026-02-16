@@ -68,6 +68,8 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "ec2-instance-connect:*",
       "ec2:*",
       "ecr:*",
+      "ecr-public:GetAuthorizationToken",
+      "sts:GetServiceBearerToken",
       "ecs:*",
       "eks:*",
       "elasticloadbalancing:*",
@@ -192,6 +194,8 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "arn:aws:lambda:ap-northeast-1:005216166247:function:amc-*",
       "arn:aws:lambda:ap-northeast-1:005216166247:function:himari-prd-*",
       "arn:aws:ecr:ap-northeast-1:005216166247:repository/himari-*",
+      "arn:aws:iam::005216166247:role/LambdaSkopeoCopyUnrestricted",
+      "arn:aws:lambda:ap-northeast-1:005216166247:function:skopeo-copy-unrestricted",
     ]
   }
   statement {
