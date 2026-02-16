@@ -32,6 +32,22 @@ resource "aws_iam_role_policy" "lambda" {
   policy = data.aws_iam_policy_document.lambda.json
 }
 
+resource "aws_iam_role" "lambda-unrestricted" {
+  name               = "LambdaSkopeoCopyUnrestricted"
+  description        = "rubykaigi-net//tf/skopeo-copy (unrestricted, no permissions boundary)"
+  assume_role_policy = data.aws_iam_policy_document.lambda-trust.json
+}
+
+resource "aws_iam_role_policy_attachment" "lambda-unrestricted-AWSLambdaBasicExecutionRole" {
+  role       = aws_iam_role.lambda-unrestricted.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+resource "aws_iam_role_policy" "lambda-unrestricted" {
+  role   = aws_iam_role.lambda-unrestricted.name
+  policy = data.aws_iam_policy_document.lambda.json
+}
+
 data "aws_iam_policy_document" "lambda" {
   statement {
     effect = "Allow"

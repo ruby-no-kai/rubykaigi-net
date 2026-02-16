@@ -3,7 +3,7 @@ module "himari_functions" {
   source = "github.com/sorah/himari//himari-aws/lambda/terraform/functions"
 
   iam_role_arn = module.himari_iam.role_arn
-  image_url    = module.himari_image.image.url
+  image_url    = jsondecode(aws_lambda_invocation.skopeo-copy-himari-lambda.result).image_url
 
   dynamodb_table_name  = local.dynamodb_table_name
   function_name_prefix = "himari-prd"
