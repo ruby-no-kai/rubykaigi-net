@@ -61,7 +61,7 @@
                         "value": "info"
                      }
                   ],
-                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:51581786f11aa752c34bac1f0bedb44556a8a2ed",
+                  "image": "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:924bebe030149dbd0f0a3c9d1b9e331cc8d02be9",
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {
