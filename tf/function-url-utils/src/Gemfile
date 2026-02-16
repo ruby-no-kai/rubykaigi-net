@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gem 'apigatewayv2_rack'
+gem 'sinatra'
+
+gem 'httpx'
+gem 'nokogiri'
