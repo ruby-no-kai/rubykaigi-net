@@ -3,7 +3,7 @@ locals {
   service_account_name = "cert-manager"
 }
 
-resource "kubernetes_namespace" "cert-manager" {
+resource "kubernetes_namespace_v1" "cert-manager" {
   metadata {
     name = local.namespace
   }
@@ -12,7 +12,7 @@ resource "kubernetes_namespace" "cert-manager" {
 resource "helm_release" "cert-manager" {
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
-  version    = "1.18.2"
+  version    = "1.19.3"
 
   name      = "cert-manager"
   namespace = local.namespace
@@ -28,8 +28,8 @@ resource "helm_release" "cert-manager" {
   ]
 
   depends_on = [
-    kubernetes_namespace.cert-manager,
-    kubernetes_service_account.cert-manager,
+    kubernetes_namespace_v1.cert-manager,
+    kubernetes_service_account_v1.cert-manager,
   ]
 }
 
@@ -41,7 +41,7 @@ data "external" "cert-manager-values" {
   }
 }
 
-resource "kubernetes_service_account" "cert-manager" {
+resource "kubernetes_service_account_v1" "cert-manager" {
   metadata {
     name      = local.service_account_name
     namespace = local.namespace
@@ -53,6 +53,6 @@ resource "kubernetes_service_account" "cert-manager" {
   automount_service_account_token = true
 
   depends_on = [
-    kubernetes_namespace.cert-manager,
+    kubernetes_namespace_v1.cert-manager,
   ]
 }
