@@ -1,7 +1,7 @@
 resource "helm_release" "kube-prometheus-stack" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-prometheus-stack"
-  version    = "69.8.2"
+  version    = "82.0.2"
 
   name = "kube-prometheus-stack"
 
@@ -62,16 +62,16 @@ resource "kubernetes_manifest" "targetgroupbinding-alertmanager" {
   }
 }
 
-resource "kubernetes_secret" "alertmanager-slack-webhook" {
+resource "kubernetes_secret_v1" "alertmanager-slack-webhook" {
   metadata {
     name = "alertmanager-slack-webhook"
   }
 
-  data = {
-    url = data.aws_ssm_parameter.slack-webhook-url.value
+  data_wo = {
+    url = ephemeral.aws_ssm_parameter.slack-webhook-url.value
   }
 }
 
-data "aws_ssm_parameter" "slack-webhook-url" {
-  name = "/misc/network-slack-webhook-url"
+ephemeral "aws_ssm_parameter" "slack-webhook-url" {
+  arn = "arn:aws:ssm:ap-northeast-1:005216166247:parameter/misc/network-slack-webhook-url"
 }

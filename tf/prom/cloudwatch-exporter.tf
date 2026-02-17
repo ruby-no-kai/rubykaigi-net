@@ -113,7 +113,7 @@ data "aws_iam_policy_document" "cloudwatch-exporter-policy" {
   }
 }
 
-resource "kubernetes_service_account" "cloudwatch-exporter" {
+resource "kubernetes_service_account_v1" "cloudwatch-exporter" {
   metadata {
     name = "cloudwatch-exporter"
     annotations = {
