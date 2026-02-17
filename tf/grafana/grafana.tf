@@ -1,7 +1,7 @@
 resource "helm_release" "grafana" {
-  repository = "https://grafana.github.io/helm-charts"
+  repository = "https://grafana-community.github.io/helm-charts"
   chart      = "grafana"
-  version    = "8.10.3"
+  version    = "11.1.7"
 
   name = "grafana"
 
@@ -23,8 +23,8 @@ resource "helm_release" "grafana" {
 
   depends_on = [
     kubernetes_secret_v1.grafana-mysql,
-    kubernetes_secret.grafana-admin,
-    kubernetes_secret.oidc-client,
+    kubernetes_secret_v1.grafana-admin,
+    kubernetes_secret_v1.oidc-client,
     null_resource.rds-provision,
     aws_security_group_rule.grafana-db_k8s-node,
     aws_route53_record.grafana1-db-apne1-rubykaigi-net,
@@ -58,7 +58,7 @@ ephemeral "aws_ssm_parameter" "grafana-admin" {
   arn = aws_ssm_parameter.grafana-admin.arn
 }
 
-resource "kubernetes_secret" "grafana-admin" {
+resource "kubernetes_secret_v1" "grafana-admin" {
   metadata {
     name = "grafana-admin"
   }

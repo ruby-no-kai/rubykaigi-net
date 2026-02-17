@@ -33,7 +33,7 @@ output "oidc_client" {
   }
 }
 
-resource "kubernetes_secret" "oidc-client" {
+resource "kubernetes_secret_v1" "oidc-client" {
   metadata {
     name = "grafana-oidc-client"
   }
