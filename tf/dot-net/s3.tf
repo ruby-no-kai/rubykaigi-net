@@ -68,6 +68,33 @@ resource "aws_s3_object" "drive" {
   website_redirect = "https://drive.google.com/drive/folders/1XzRt9D824SukP6c6VoHvkCJwt34E-urY?usp=drive_link" # 2026
 }
 
+resource "aws_s3_object" "github" {
+  for_each         = toset(["github", "git", "repo", "repository"])
+  bucket           = aws_s3_bucket.dot-net.id
+  key              = each.value
+  content          = ""
+  cache_control    = "max-age=0"
+  website_redirect = "https://github.com/ruby-no-kai/rubykaigi-net"
+}
+
+resource "aws_s3_object" "issues" {
+  for_each         = toset(["issues"])
+  bucket           = aws_s3_bucket.dot-net.id
+  key              = each.value
+  content          = ""
+  cache_control    = "max-age=0"
+  website_redirect = "https://github.com/ruby-no-kai/rubykaigi-net/issues"
+}
+
+resource "aws_s3_object" "apps" {
+  for_each         = toset(["apps"])
+  bucket           = aws_s3_bucket.dot-net.id
+  key              = each.value
+  content          = ""
+  cache_control    = "max-age=0"
+  website_redirect = "https://github.com/ruby-no-kai/rubykaigi-net-apps"
+}
+
 resource "aws_s3_object" "kanban" {
   bucket           = aws_s3_bucket.dot-net.id
   key              = "kanban"
