@@ -18,17 +18,17 @@ locals {
   }
 }
 
-data "aws_s3_object" "dashboard" {
+data "aws_s3_object" "dashboard-restore" {
   for_each = local.grafana_dashboards
 
   bucket = "rk-infra"
-  key    = "grafana/backup/rk26net/${each.key}.json"
+  key    = "grafana/backup/rk25net/${each.key}.json" # should point to the last Kaigi !!
 }
 
 resource "grafana_dashboard" "dashboard" {
   for_each = local.grafana_dashboards
 
-  config_json = replace(coalesce(data.aws_s3_object.dashboard[each.key].body, "{}\n"), "/\\$${DS_PROMETHEUS}/", grafana_data_source.prometheus.uid)
+  config_json = replace(coalesce(data.aws_s3_object.dashboard-restore[each.key].body, "{}\n"), "/\\$${DS_PROMETHEUS}/", grafana_data_source.prometheus.uid)
 
   depends_on = [helm_release.grafana, aws_security_group_rule.grafana-db_k8s-node]
   lifecycle {

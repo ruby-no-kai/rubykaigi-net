@@ -16,7 +16,7 @@ resource "aws_rds_cluster" "grafana" {
   backup_retention_period = 2
   preferred_backup_window = "12:00-14:00"
 
-  final_snapshot_identifier = "grafana-rk25kor-final"
+  final_snapshot_identifier = "grafana-rk26-final"
 
   apply_immediately = true
 }
