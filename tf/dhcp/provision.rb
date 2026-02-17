@@ -2,7 +2,6 @@ require 'bundler/inline'
 gemfile do
   source 'https://rubygems.org'
   gem 'trilogy'
-  gem 'bigdecimal' # https://github.com/trilogy-libraries/trilogy/commit/6b4e12410d9cdcbe07454b0b8af888972f578b1c
 end
 require 'tempfile'
 require 'open-uri'
@@ -36,8 +35,8 @@ begin
   client.query(%(flush privileges))
   client.close
 
-  # Kea-3.1.1
-  sql = URI.open('https://raw.githubusercontent.com/isc-projects/kea/f89b3898b3f6eab670e08067582d3256a99cad79/src/share/database/scripts/mysql/dhcpdb_create.mysql', 'r', &:read)
+  # Kea-3.1.5
+  sql = URI.open('https://raw.githubusercontent.com/isc-projects/kea/65714e0ccbce5da75a9771e43d18fcfd6abddd25/src/share/database/scripts/mysql/dhcpdb_create.mysql', 'r', &:read)
   tempfile = Tempfile.new
   tempfile.write(sql)
   tempfile.flush

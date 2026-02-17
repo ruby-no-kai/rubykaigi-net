@@ -1,4 +1,4 @@
-resource "kubernetes_service_account" "kea" {
+resource "kubernetes_service_account_v1" "kea" {
   metadata {
     name      = "kea"
     namespace = "default"

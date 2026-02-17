@@ -83,7 +83,7 @@ resource "kubernetes_manifest" "targetgroupbinding-dhcp-kea4" {
 }
 
 # For choose_dhcp_server_id.rb
-resource "kubernetes_config_map" "server-ids" {
+resource "kubernetes_config_map_v1" "server-ids" {
   metadata {
     name      = "kea-server-ids"
     namespace = "default"
