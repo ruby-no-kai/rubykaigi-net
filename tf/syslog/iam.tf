@@ -72,7 +72,7 @@ data "aws_iam_policy_document" "fluentd-cwlogs-policy" {
   }
 }
 
-resource "kubernetes_service_account" "syslog" {
+resource "kubernetes_service_account_v1" "syslog" {
   metadata {
     name      = "syslog"
     namespace = "default"
