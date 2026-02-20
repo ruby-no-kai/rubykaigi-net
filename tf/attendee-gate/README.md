@@ -25,10 +25,13 @@ def validate(email:, code:)
   ).tap(&:raise_for_status).json
 end
 
+
+p validate(email: 'attendee@test.invalid', code: 'ABCD-1')
+#=> {"meta"=>{"db"=>{"epoch"=>1, "finger"=>"...", "created_at"=>1741285189}}, "result"=>"ok",
+#    "ticket"=>{"release"=>"Attendee"}}
+
 p validate(email: 'unexist@test.invalid', code: 'TEST-1')
 #=> {"meta"=>{"db"=>{"epoch"=>1, "finger"=>"...", "created_at"=>1741285189}}, "result"=>"not_found"}
-p validate(email: 'attendee@test.invalid', code: 'ABCD-1')
-#=> {"meta"=>{"db"=>{"epoch"=>1, "finger"=>"...", "created_at"=>1741285189}}, "result"=>"ok"}
 p validate(email: 'partial@test.invalid', code: 'TEST-1')
 #=> {"meta"=>{"db"=>{"epoch"=>1, "finger"=>"...", "created_at"=>1741285189}}, "result"=>"code_mismatch"}
 p validate(email: 'unexist@test.invalid', code: 'ABCD-1')
