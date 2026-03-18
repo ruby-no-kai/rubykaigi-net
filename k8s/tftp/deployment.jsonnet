@@ -28,7 +28,7 @@
                 memory: '64M',
               },
             },
-            image: 'ghcr.io/hanazuki/s3tftpd:0.6.1',
+            image: 'ghcr.io/hanazuki/s3tftpd:0.6.2',
             args: ['--blocksize=1300', 's3://rk-tftp/'],
             ports: [
               { name: 'tftp', containerPort: 69, protocol: 'UDP' },

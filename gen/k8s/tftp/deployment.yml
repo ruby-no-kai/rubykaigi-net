@@ -38,7 +38,7 @@
                         "value": "ap-northeast-1"
                      }
                   ],
-                  "image": "ghcr.io/hanazuki/s3tftpd:0.6.1",
+                  "image": "ghcr.io/hanazuki/s3tftpd:0.6.2",
                   "name": "app",
                   "ports": [
                      {
