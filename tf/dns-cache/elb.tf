@@ -11,6 +11,8 @@ resource "aws_lb" "nlb" {
     }
   }
 
+  security_groups = [aws_security_group.nlb.id]
+
   lifecycle {
     ignore_changes = [name]
   }
@@ -129,6 +131,7 @@ resource "kubernetes_manifest" "targetgroupbinding-dns-cache-dns-tls" {
 
 ###
 
+# DoH/2 and /3
 resource "aws_lb_listener" "dns-https" {
   load_balancer_arn = aws_lb.nlb.arn
   port              = "443"
