@@ -1,6 +1,8 @@
+ec2 = !!(node[:ec2][:'instance-type'] rescue nil)
+
 node.reverse_merge!(
   dns: {
-    servers: %w[192.50.220.164 192.50.220.165],
+    servers: ec2 ? [] : %w[192.50.220.164 192.50.220.165],
     search_domains: %w[f.rubykaigi.net],
   },
 )

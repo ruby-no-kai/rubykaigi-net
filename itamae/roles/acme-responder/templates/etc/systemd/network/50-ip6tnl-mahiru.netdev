@@ -1,0 +1,10 @@
+[NetDev]
+Name=ip6tnl-mahiru
+Kind=ip6tnl
+
+[Tunnel]
+Independent=yes
+Local=<%= node[:acme_responder][:underlay][:address6] %>
+Remote=2409:10:f00:400:5::eb96
+Mode=any
+EncapsulationLimit=none

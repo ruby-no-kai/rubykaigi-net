@@ -1,0 +1,23 @@
+<%-
+  addrs4 = node.dig(:acme_responder, :overlay, :address4)
+  addrs6 = node.dig(:acme_responder, :overlay, :address6)
+-%>
+[Match]
+Name=lo
+<%- [*addrs4, *addrs6].each do |addr| -%>
+
+[Address]
+Address=<%= addr %>
+
+[RoutingPolicyRule]
+Priority=100
+From=<%= addr %>
+Table=80
+<%- end -%>
+<%- [*addrs6].each do |addr| -%>
+
+[Route]
+Destination=<%= addr %>
+Type=local
+Table=local
+<%- end -%>
