@@ -9,15 +9,6 @@ file '/etc/default/prometheus-bird-exporter' do
   notifies :restart, 'service[prometheus-bird-exporter.service]'
 end
 
-service 'bird' do
-  action [:enable, :start]
-end
-
-service 'prometheus-bird-exporter.service' do
-  action [:enable, :start]
-end
-
-
 directory '/etc/bird' do
   owner 'root'
   group 'bird'
@@ -35,4 +26,12 @@ template '/etc/bird/bird.conf' do
   group 'bird'
   mode '0644'
   notifies :reload, 'service[bird]'
+end
+
+service 'bird' do
+  action [:enable, :start]
+end
+
+service 'prometheus-bird-exporter.service' do
+  action [:enable, :start]
 end

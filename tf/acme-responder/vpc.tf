@@ -16,3 +16,18 @@ data "aws_subnet" "main-public-c" {
     values = ["public"]
   }
 }
+
+data "aws_subnet" "main-public-d" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.main.id]
+  }
+  filter {
+    name   = "availability-zone"
+    values = ["ap-northeast-1d"]
+  }
+  filter {
+    name   = "tag:Tier"
+    values = ["public"]
+  }
+}

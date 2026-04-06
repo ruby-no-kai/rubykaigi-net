@@ -1,0 +1,11 @@
+[Match]
+Name=ip6tnl-rola
+
+[Link]
+RequiredForOnline=no
+
+[Network]
+IPv6AcceptRA=no
+
+[Address]
+Address=fe80::b/64

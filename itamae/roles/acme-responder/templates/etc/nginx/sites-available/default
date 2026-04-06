@@ -1,0 +1,29 @@
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  resolver [fd00:ec2::253];
+
+  root /dev/null;
+
+  location / {
+    return 444;
+  }
+
+  location /healthz {
+    return 200 "It works!";
+  }
+
+  location /.well-known/acme-challenge/ {
+    limit_except GET HEAD {
+      deny all;
+    }
+    set $s3 rubykaigi-public.s3.dualstack.ap-northeast-1.amazonaws.com;
+    rewrite ^(/.*)$ /rknet/acme-http-01$1 break;
+    proxy_pass https://$s3;
+    proxy_set_header Host $proxy_host;
+    proxy_ssl_server_name on;
+    proxy_ssl_verify on;
+    proxy_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
+  }
+}
