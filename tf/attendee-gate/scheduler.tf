@@ -20,9 +20,7 @@ resource "aws_scheduler_schedule" "schedule" {
 
 resource "aws_scheduler_schedule" "metrics" {
   for_each = toset([
-    "rubykaigi/2024",
-    "rubykaigi/2025",
-    "rubykaigi/2025-party",
+    "rubykaigi/2026",
   ])
   name = "attendee-gate-metrics-${replace(each.value, "/", "-")}"
 
