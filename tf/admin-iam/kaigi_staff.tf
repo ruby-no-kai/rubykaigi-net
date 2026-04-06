@@ -33,6 +33,10 @@ data "aws_iam_policy_document" "KaigiStaff-trust" {
   }
 }
 
+resource "aws_iam_role_policy" "KaigiStaff_KaigiStaff" {
+  role   = aws_iam_role.KaigiStaff.name
+  policy = data.aws_iam_policy_document.KaigiStaff.json
+}
 
 resource "aws_iam_role_policy" "KaigiStaff_StreamingStaff" {
   role   = aws_iam_role.KaigiStaff.name
@@ -44,18 +48,43 @@ resource "aws_iam_role_policy_attachment" "KaigiStaff_AWSManagementConsoleBasicU
   policy_arn = data.aws_iam_policy.AWSManagementConsoleBasicUserAccess.arn
 }
 
-#resource "aws_iam_role_policy" "KaigiStaff" {
-#  role   = aws_iam_role.KaigiStaff.name
-#  policy = data.aws_iam_policy_document.KaigiStaff.json
-#}
-#
-#data "aws_iam_policy_document" "KaigiStaff" {
-#  statement {
-#    effect = "Allow"
-#    actions = [
-#
-#    ]
-#    resources = ["*"]
-#  }
-#
-#}
+data "aws_iam_policy_document" "KaigiStaff" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:GetBucketLocation",
+      "s3:ListAllMyBuckets",
+    ]
+    resources = ["*"]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:PutObject",
+      "s3:ListBucket",
+      "s3:Get*"
+    ]
+    resources = ["arn:aws:s3:::rubykaigi-public", "arn:aws:s3:::rubykaigi-public/*"]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "cloudfront:ListDistribution",
+      "cloudfront:ListDistribution*",
+    ]
+    resources = ["*"]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "cloudfront:GetDistribution*",
+      "cloudfront:GetInvalidation*",
+      "cloudfront:CreateInvalidation*",
+      "cloudfront:Update*",
+    ]
+    resources = [
+      "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/E2WEWQCYU12GVD", # rubykaigi.org (rko-router)
+      "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/E3FY4LG7LBB19V", # storage.rubykaigi.org
+    ]
+  }
+}
