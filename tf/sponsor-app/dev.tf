@@ -17,6 +17,7 @@ module "dev" {
     "http://localhost:13000",
     "http://localhost:13010",
     "http://localhost:3000",
+    "http://sponsor-app.localhost:1355",
     "https://amc.rubykaigi.net",
   ]
 
