@@ -1,7 +1,7 @@
 resource "aws_rds_cluster" "grafana" {
   cluster_identifier = "grafana1"
   engine             = "aurora-mysql"
-  engine_version     = "8.0.mysql_aurora.3.10.0"
+  engine_version     = "8.0.mysql_aurora.3.10.3"
 
   database_name = "grafana"
 
