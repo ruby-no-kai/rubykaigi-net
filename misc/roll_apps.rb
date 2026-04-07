@@ -6,12 +6,13 @@ gemfile do
   gem 'aws-sdk-ecr'
 end
 
+FILES = %W[k8s/**/*.{j,lib}sonnet tf/**/*.tf]
 REGISTRIES = %w[005216166247]
 TAG_RE = %r{(?<registry>\d+)\.dkr\.ecr\.(?<region>[\w-]+)\.amazonaws\.com/(?<repository>[\w/-]+):\K(?<tag>[0-9a-f]{40})}
 
 @ecr = Hash.new {|h, region| h[region] = Aws::ECR::Client.new(region:) }
 
-Pathname(__dir__).glob('../k8s/**/*.{j,lib}sonnet') do |path|
+Pathname(__dir__).parent.glob(FILES) do |path|
   content = path.read
 
   updated = content.gsub!(TAG_RE) do
