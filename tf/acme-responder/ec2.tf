@@ -37,7 +37,6 @@ resource "aws_instance" "acme-responder-apne1c" {
 
   user_data = local.user_data
 
-  associate_public_ip_address = false
   ipv6_addresses = [
     cidrhost(data.aws_subnet.main-public-c.ipv6_cidr_block, 4294945854) # 0xFFFF_AC3E
   ]
@@ -86,7 +85,6 @@ resource "aws_instance" "acme-responder-apne1d" {
 
   user_data = local.user_data
 
-  associate_public_ip_address = false
   ipv6_addresses = [
     cidrhost(data.aws_subnet.main-public-d.ipv6_cidr_block, 4294945854) # 0xFFFF_AC3E
   ]
