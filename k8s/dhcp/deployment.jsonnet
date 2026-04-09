@@ -19,7 +19,7 @@ local pod = (import './pod.libsonnet') {
     resources: {
       requests: {
         cpu: '5m',
-        memory: '20M',
+        memory: '40M',
       },
     },
     command: ['/bin/bash', '-e', '/app/run.sh'],

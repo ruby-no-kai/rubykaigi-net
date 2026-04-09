@@ -139,7 +139,7 @@
             "resources": {
               "requests": {
                 "cpu": "5m",
-                "memory": "32M"
+                "memory": "48M"
               }
             },
             "volumeMounts": [
@@ -273,7 +273,7 @@
             "resources": {
               "requests": {
                 "cpu": "5m",
-                "memory": "32M"
+                "memory": "64M"
               }
             },
             "volumeMounts": [

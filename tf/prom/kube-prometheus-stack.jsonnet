@@ -14,6 +14,12 @@ local volumeClaimTemplate(size) = {
 {
   cleanPrometheusOperatorObjectNames: true,
   prometheusOperator: {
+    resources: {
+      requests: {
+        cpu: '10m',
+        memory: '50M',
+      },
+    },
   },
   prometheus: {
     prometheusSpec: {
@@ -109,7 +115,7 @@ local volumeClaimTemplate(size) = {
     resources: {
       requests: {
         cpu: '5m',
-        memory: '16M',
+        memory: '30M',
       },
     },
     tolerations: [
@@ -135,6 +141,13 @@ local volumeClaimTemplate(size) = {
   kubeScheduler: { enabled: false },
 
   'kube-state-metrics': {
+    resources: {
+      requests: {
+        cpu: '5m',
+        memory: '30M',
+      },
+    },
+
     metricLabelsAllowlist: [
       'nodes=[kubernetes.io/arch,topology.kubernetes.io/region,topology.kubernetes.io/zone,node-group.k8s.cookpad.com/name]',
       'pods=[pod-template-hash,rubykaigi.org/app]',

@@ -89,7 +89,7 @@
                   "resources": {
                      "requests": {
                         "cpu": "5m",
-                        "memory": "10M"
+                        "memory": "20M"
                      }
                   }
                }

@@ -44,4 +44,20 @@ module "cluster" {
       ]
     },
   ]
+
+  vpc_cni_configuration_values = jsonencode({
+    "resources" = {
+      "requests" = {
+        "memory" = "64M",
+      },
+    },
+  })
+
+  kube_proxy_configuration_values = jsonencode({
+    "resources" = {
+      "requests" = {
+        "memory" = "64M",
+      },
+    },
+  })
 }

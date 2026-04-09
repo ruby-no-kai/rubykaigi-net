@@ -77,7 +77,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               resources: {
                 requests: {
                   cpu: '5m',
-                  memory: '32M',
+                  memory: '48M',
                 },
               },
               image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/dnsdist:74f566cb8a666dfbf20bdbbdfed0df92065ab685',
@@ -167,7 +167,7 @@ local tls_cert_secret = 'cert-resolver-rubykaigi-net';
               resources: {
                 requests: {
                   cpu: '5m',
-                  memory: '32M',
+                  memory: '64M',
                 },
               },
               image: 'envoyproxy/envoy:v1.29.3',

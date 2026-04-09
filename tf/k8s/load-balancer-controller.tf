@@ -53,7 +53,13 @@ resource "helm_release" "load-balancer-controller" {
             }
           ]
         }
-      }
+      },
+      "resources" = {
+        "requests" = {
+          "cpu"    = "10m",
+          "memory" = "64M",
+        },
+      },
     }),
   ]
   depends_on = [module.cluster] # make sure coredns is running

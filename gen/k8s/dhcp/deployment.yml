@@ -127,7 +127,7 @@
                   "resources": {
                      "requests": {
                         "cpu": "5m",
-                        "memory": "20M"
+                        "memory": "40M"
                      }
                   },
                   "volumeMounts": [

@@ -39,6 +39,12 @@ local placeholder = function(name)
             {
               name: 'pause',
               image: 'public.ecr.aws/eks-distro/kubernetes/pause:3.9',
+              resources: {
+                requests: {
+                  cpu: '5m',
+                  memory: '20M',
+                },
+              },
             },
           ],
         },

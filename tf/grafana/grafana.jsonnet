@@ -4,7 +4,7 @@ function(args)
     resources: {
       requests: {
         cpu: '256m',
-        memory: '256M',
+        memory: '350M',
       },
     },
     topologySpreadConstraints: [

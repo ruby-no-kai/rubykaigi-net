@@ -43,7 +43,7 @@
             resources: {
               requests: {
                 cpu: '5m',
-                memory: '10M',
+                memory: '20M',
               },
             },
             image: '005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/s3tftpd-healthz:924bebe030149dbd0f0a3c9d1b9e331cc8d02be9',

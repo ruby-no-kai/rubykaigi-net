@@ -2,7 +2,7 @@
   resources: {
     requests: {
       cpu: '32m',
-      memory: '32M',
+      memory: '40M',
     },
   },
   extraArgs: [

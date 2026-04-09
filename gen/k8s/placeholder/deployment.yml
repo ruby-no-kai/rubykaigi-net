@@ -27,7 +27,13 @@
         "containers": [
           {
             "image": "public.ecr.aws/eks-distro/kubernetes/pause:3.9",
-            "name": "pause"
+            "name": "pause",
+            "resources": {
+              "requests": {
+                "cpu": "5m",
+                "memory": "20M"
+              }
+            }
           }
         ],
         "priorityClassName": "placeholder",
@@ -82,7 +88,13 @@
         "containers": [
           {
             "image": "public.ecr.aws/eks-distro/kubernetes/pause:3.9",
-            "name": "pause"
+            "name": "pause",
+            "resources": {
+              "requests": {
+                "cpu": "5m",
+                "memory": "20M"
+              }
+            }
           }
         ],
         "nodeSelector": {
