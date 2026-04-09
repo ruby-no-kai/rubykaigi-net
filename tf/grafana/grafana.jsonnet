@@ -26,6 +26,25 @@ function(args)
     plugins: [
       'knightss27-weathermap-panel',
     ],
+    extraInitContainers: [
+      {
+        name: 'install-hanazuki-weathermap-panel',
+        image: 'public.ecr.aws/docker/library/busybox:1',
+        command: ['sh', '-c'],
+        args: [
+          'wget -O /tmp/plugin.zip https://github.com/hanazuki/grafana-weathermap/releases/download/v0.1.6/hanazuki-weathermap-panel-0.1.6.zip && unzip /tmp/plugin.zip -d /var/lib/grafana/plugins/',
+        ],
+        volumeMounts: [
+          {
+            name: 'storage',
+            mountPath: '/var/lib/grafana',
+          },
+        ],
+      },
+    ],
+    env: {
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: 'hanazuki-weathermap-panel',
+    },
     admin: {
       existingSecret: 'grafana-admin',
       userKey: 'username',
