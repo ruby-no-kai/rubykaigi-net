@@ -46,6 +46,10 @@ module "cluster" {
   ]
 
   vpc_cni_configuration_values = jsonencode({
+    "env" = {
+      "ENABLE_PREFIX_DELEGATION" = "true",
+      "WARM_PREFIX_TARGET"       = "1",
+    },
     "resources" = {
       "requests" = {
         "memory" = "64M",
