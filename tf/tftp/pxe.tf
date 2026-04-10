@@ -15,29 +15,6 @@ resource "aws_s3_object" "ipxe" {
   content_type = "text/plain"
 }
 
-#resource "aws_s3_object" "grub-cfg" {
-#  bucket  = aws_s3_bucket.tftp.id
-#  key     = "tftpboot/grub/grub.cfg"
-#  content = <<-EOF
-#    set timeout=2
-#    loadfont unicode
-#    set menu_color_normal=white/black
-#    set menu_color_highlight=black/light-gray
-#    if [ -s "$${prefix}/system/$${net_default_mac}" ]; then
-#      source "$${prefix}/system/$${net_default_mac}"
-#      echo "Machine specific grub config file $${prefix}/system/$${net_default_mac} loaded"
-#    fi
-#
-#    menuentry "Auto install Ubuntu Server (noble)" {
-#      set gfxpayload=keep
-#      linux   /ro/compute/noble/vmlinuz autoinstall ip=dhcp url=https://tftp.rubykaigi.net/ro/compute/noble/ubuntu-24.04.2-live-server-amd64.iso ds=nocloud-net\;s=https://tftp.rubykaigi.net/ro/compute/noble/autoinstall/default/ ---
-#      initrd  /ro/compute/noble/initrd
-#    }
-#  EOF
-#
-#  content_type = "text/plain"
-#}
-
 data "external" "default-cloud-config-user" {
   program = ["../jsonnet.rb"]
 
@@ -54,6 +31,19 @@ resource "aws_s3_object" "default-cloud-config-user" {
 resource "aws_s3_object" "default-cloud-config-meta" {
   bucket       = aws_s3_bucket.tftp.id
   key          = "ro/compute/noble/autoinstall/default/meta-data"
+  content      = ""
+  content_type = "text/plain"
+}
+
+resource "aws_s3_object" "resolute-cloud-config-user" {
+  bucket       = aws_s3_bucket.tftp.id
+  key          = "ro/compute/resolute/autoinstall/default/user-data"
+  content      = jsondecode(data.external.default-cloud-config-user.result.json).user_data
+  content_type = "text/cloud-config"
+}
+resource "aws_s3_object" "resolute-cloud-config-meta" {
+  bucket       = aws_s3_bucket.tftp.id
+  key          = "ro/compute/resolute/autoinstall/default/meta-data"
   content      = ""
   content_type = "text/plain"
 }
