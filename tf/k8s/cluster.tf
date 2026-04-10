@@ -45,6 +45,26 @@ module "cluster" {
     },
   ]
 
+  coredns_configuration_values = jsonencode({
+    "autoScaling" = { "enabled" = true },
+    "topologySpreadConstraints" = [
+      {
+        "labelSelector" = {
+          "matchLabels" = {
+            "eks.amazonaws.com/component" = "coredns",
+            "k8s-app"                     = "kube-dns",
+          },
+        },
+        "matchLabelKeys" = [
+          "pod-template-hash",
+        ],
+        "maxSkew"           = 1,
+        "topologyKey"       = "topology.kubernetes.io/zone",
+        "whenUnsatisfiable" = "ScheduleAnyway",
+      }
+    ],
+  })
+
   vpc_cni_configuration_values = jsonencode({
     "env" = {
       "ENABLE_PREFIX_DELEGATION" = "true",
@@ -54,6 +74,27 @@ module "cluster" {
       "requests" = {
         "memory" = "64M",
       },
+    },
+  })
+
+  ebs_csi_configuration_values = jsonencode({
+    "controller" = {
+      "topologySpreadConstraints" = [
+        {
+          "labelSelector" = {
+            "matchLabels" = {
+              "eks.amazonaws.com/component" = "csi-driver",
+              "app"                         = "ebs-csi-controller",
+            },
+          },
+          "matchLabelKeys" = [
+            "pod-template-hash",
+          ],
+          "maxSkew"           = 1,
+          "topologyKey"       = "topology.kubernetes.io/zone",
+          "whenUnsatisfiable" = "ScheduleAnyway",
+        }
+      ],
     },
   })
 

@@ -18,48 +18,27 @@ resource "helm_release" "load-balancer-controller" {
         "name"   = kubernetes_service_account.load-balancer-controller.metadata.0.name
         "create" = false
       }
-      "affinity" = {
-        "podAntiAffinity" = {
-          "preferredDuringSchedulingIgnoredDuringExecution" = [
-            {
-              "weight" = 100
-              "podAffinityTerm" = {
-                "topologyKey" = "topology.kubernetes.io/zone"
-                "labelSelector" = {
-                  "matchExpressions" = [
-                    {
-                      "key"      = "app.kubernetes.io/name"
-                      "operator" = "In"
-                      "values"   = ["aws-load-balancer-controller"]
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "weight" = 50
-              "podAffinityTerm" = {
-                "topologyKey" = "kubernetes.io/hostname"
-                "labelSelector" = {
-                  "matchExpressions" = [
-                    {
-                      "key"      = "app.kubernetes.io/name"
-                      "operator" = "In"
-                      "values"   = ["aws-load-balancer-controller"]
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        }
-      },
       "resources" = {
         "requests" = {
           "cpu"    = "10m",
           "memory" = "64M",
         },
       },
+      "topologySpreadConstraints" = [
+        {
+          "labelSelector" = {
+            "matchLabels" = {
+              "app.kubernetes.io/name" = "aws-load-balancer-controller",
+            },
+          },
+          "matchLabelKeys" = [
+            "pod-template-hash",
+          ],
+          "maxSkew"           = 1,
+          "topologyKey"       = "topology.kubernetes.io/zone",
+          "whenUnsatisfiable" = "ScheduleAnyway",
+        }
+      ],
     }),
   ]
   depends_on = [module.cluster] # make sure coredns is running
