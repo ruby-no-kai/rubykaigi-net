@@ -9,6 +9,17 @@
 require 'ipaddr'
 
 is_full = ARGV.delete('--full')
+is_shutdown = ARGV.delete('--shutdown')
+
+if ARGV.empty?
+  abort <<~EOS
+    Usage: #{$0} [--full] [--shutdown] <peer_address1> <peer_address2> ...
+    --full: Generate full configuration (including lines without '*')
+    --shutdown: Generate negates for shutdown (instead of no shutdown)
+
+    Example: #{$0} 2001:db8:1::1/64 2001:db8:2::1/64
+  EOS
+end
 
 peer_address_chars = ('a'..'f').to_a + ('0'..'9').to_a
 peer_addresses = ARGV.map.with_index { |arg,i| 
@@ -29,7 +40,6 @@ SITE_TUNS = [
   SiteTun.new(2, 'nrt', 'fe80::a%GigaEthernet0.0', 'GigaEthernet0.0'),
   SiteTun.new(3, 'itm', 'fe80::a%GigaEthernet0.0', 'GigaEthernet0.0'),
 ]
-
 
 negates = []
 SITE_TUNS.each do |site_tun|
@@ -91,8 +101,17 @@ SITE_TUNS.each do |site_tun|
   negates << nil
 end
 
-puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+if is_shutdown
+  puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  puts "!!!!!              SHUTDOWN               !!!!!!"
+  puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
-puts negates.join("\n")
+  puts negates.join("\n")
+else
+  puts "! --shutdown to generate negates for shutdown"
+end
+
+unless is_full
+  puts "! --full to generate full configuration"
+end
+
