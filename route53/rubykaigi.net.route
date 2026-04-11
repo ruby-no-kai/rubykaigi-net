@@ -42,6 +42,8 @@ template 'rubykaigi.net-common' do
 
   ignore 'takeout-app-origin.rubykaigi.net.'
   ignore 'rko-router.rubykaigi.net.' # ruby-no-kai/rubykaigi.org//tf
+  ignore 'rko-preview.rubykaigi.net.' # tf/rko-preview/acm.tf
+  ignore_under 'rko-preview.rubykaigi.net.' # tf/rko-preview/acm.tf
 
   ignore(/_acme-challenge/)
   ignore '_66c28117835ab26e5f882e6866d2e00a.rubykaigi.net.'
