@@ -1,5 +1,16 @@
+require 'bundler/inline'
+gemfile do
+  source 'https://rubygems.org'
+  gem 'aws-sdk-ssm'
+end
+
 require 'open-uri'
 require 'yaml'
+
+@ssm = Aws::SSM::Client.new(region: 'ap-northeast-1')
+password_arn =  'arn:aws:ssm:ap-northeast-1:005216166247:parameter/noc/rk_password_hash'
+password_hash = @ssm.get_parameter(name: password_arn, with_decryption: true).parameter.value
+password_project = @ssm.list_tags_for_resource(resource_type: 'Parameter', resource_id: password_arn).tag_list.find { _1.key == 'Project' }&.value || 'unknown'
 
 ssh_import_id = YAML.safe_load(File.read("data/ssh_import_ids.json"))
 
@@ -10,10 +21,17 @@ if is_set
   puts "edit system login user rk authentication"
 else
   puts <<~EOF
+    ## Load with `load replace terminal`
     system {
+      root-authentication {
+        /* rk for #{password_project} - rkroot is rkroot user */
+        encrypted-password "#{password_hash}";
+      }
       login {
         user rk {
-          authentication {
+          replace: authentication {
+            /* #{password_project} */
+            encrypted-password "#{password_hash}";
   EOF
 end
 
