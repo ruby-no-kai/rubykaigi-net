@@ -1,11 +1,11 @@
 local esws = [
   //'as-01.venue.rubykaigi.net',
-  'es-red-01.venue.rubykaigi.net',
-  'es-red-02.venue.rubykaigi.net',
-  'es-blu-01.venue.rubykaigi.net',
-  'es-exp-01.venue.rubykaigi.net',
-  'es-lb5-01.venue.rubykaigi.net',
-  'es-off-01.venue.rubykaigi.net',
+  // 'es-red-01.venue.rubykaigi.net',
+  // 'es-red-02.venue.rubykaigi.net',
+  // 'es-blu-01.venue.rubykaigi.net',
+  // 'es-exp-01.venue.rubykaigi.net',
+  // 'es-lb5-01.venue.rubykaigi.net',
+  // 'es-off-01.venue.rubykaigi.net',
 
   'cs-99.tkyk.rubykaigi.net',
 ];
@@ -28,6 +28,14 @@ local targets_hi = {
       'nat-49.tkyk.rubykaigi.net',
 
       'recon-01.nrt.rubykaigi.net',
+    ],
+  },
+  awplus: {
+    modules: ['if_mib'],
+    auth: 'public',
+    hosts: [
+      'xs-01.venue.rubykaigi.net',
+      'xs-02.venue.rubykaigi.net',
     ],
   },
   cisco_esw: {
