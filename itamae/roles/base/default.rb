@@ -1,4 +1,4 @@
-ec2 = !!(node[:ec2][:'instance-type'] rescue nil)
+ec2 = !!(node[:hocho_ec2])
 
 node.reverse_merge!(
   dns: {
