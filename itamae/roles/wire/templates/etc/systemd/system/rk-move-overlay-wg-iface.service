@@ -1,0 +1,10 @@
+[Unit]
+Description=rk-move-overlay-wg-iface
+After=systemd-nspawn@overlay.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rk-move-overlay-wg-iface
+
+[Install]
+WantedBy=systemd-nspawn@overlay.service
