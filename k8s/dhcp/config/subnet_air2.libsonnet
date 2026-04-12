@@ -1,30 +1,18 @@
-local consts = import './consts.libsonnet';
+local parent = import './subnet_air.libsonnet';
+local parentDomainName = 'air.venue.rubykaigi.net';
 local domainName = 'air2.venue.rubykaigi.net';
-{
+parent {
   id: 20102,
   subnet: '10.33.122.0/24',
   pools: [
-    {
-      pool: '10.33.122.150 - 10.33.122.250',
-    },
+    { pool: '10.33.122.150 - 10.33.122.250' },
   ],
-  'option-data': [
-    {
-      name: 'routers',
-      data: '10.33.122.254',
-    },
-    {
-      name: 'domain-name-servers',
-      data: std.join(', ', consts.dns_resolvers_usr),
-    },
-    {
-      name: 'domain-name',
-      data: domainName,
-    },
-    {
-      name: 'domain-search',
-      //data: std.join(', ', [domainName, 'venue.rubykaigi.net'] + consts.search_domains),
-      data: std.join(', ', [domainName]),
-    },
-  ],
+  'option-data': std.map(
+    function(o)
+      if o.name == 'routers' then o { data: '10.33.122.254' }
+      else if o.name == 'domain-name' then o { data: domainName }
+      else if o.name == 'domain-search' then o { data: std.strReplace(o.data, parentDomainName, domainName) }
+      else o,
+    super['option-data'],
+  ),
 }
