@@ -16,14 +16,14 @@ venue	lo	10.33.0.0/24	10.33.0.24	nat-62	lo
 venue	lo	10.33.0.0/24	2001:df0:8500:ca00::24	nat-62	lo
 venue	lo	10.33.0.0/24	10.33.0.30	cs-01	lo
 venue	lo	10.33.0.0/24	2001:df0:8500:ca00::30	cs-01	lo
-venue	lo	10.33.0.0/24	10.33.0.201	wire-01	lo
-venue	lo	10.33.0.0/24	2001:df0:8500:ca00::201	wire-01	lo
-venue	lo	10.33.0.0/24	10.33.0.202	wire-02	lo
-venue	lo	10.33.0.0/24	2001:df0:8500:ca00::202	wire-02	lo
-venue	lo	10.33.0.0/24	10.33.0.203	wire-03	lo
-venue	lo	10.33.0.0/24	2001:df0:8500:ca00::203	wire-03	lo
-venue	lo	10.33.0.0/24	10.33.0.204	wire-04	lo
-venue	lo	10.33.0.0/24	2001:df0:8500:ca00::204	wire-04	lo
+venue	lo	10.33.0.0/24	10.33.0.41	wire-01	lo
+venue	lo	10.33.0.0/24	2001:df0:8500:ca00::41	wire-01	lo
+venue	lo	10.33.0.0/24	10.33.0.42	wire-02	lo
+venue	lo	10.33.0.0/24	2001:df0:8500:ca00::42	wire-02	lo
+venue	lo	10.33.0.0/24	10.33.0.43	wire-03	lo
+venue	lo	10.33.0.0/24	2001:df0:8500:ca00::43	wire-03	lo
+venue	lo	10.33.0.0/24	10.33.0.44	wire-04	lo
+venue	lo	10.33.0.0/24	2001:df0:8500:ca00::44	wire-04	lo
 nrt	lo	10.33.0.0/24	10.33.0.72	recon-01	lo
 nrt	lo	10.33.0.0/24	2001:df0:8500:ca00::72	recon-01	lo
 					
