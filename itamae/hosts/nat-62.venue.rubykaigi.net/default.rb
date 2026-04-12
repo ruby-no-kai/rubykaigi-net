@@ -48,3 +48,4 @@ node.reverse_merge!(
 )
 
 include_role 'plat'
+include_cookbook 'bluetooth-getty'
