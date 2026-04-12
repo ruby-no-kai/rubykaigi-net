@@ -70,8 +70,14 @@ resource "kubernetes_secret_v1" "alertmanager-slack-webhook" {
   data_wo = {
     url = ephemeral.aws_ssm_parameter.slack-webhook-url.value
   }
+  data_wo_revision = data.aws_ssm_parameter.slack-webhook-url.version
+}
+
+data "aws_ssm_parameter" "slack-webhook-url" {
+  name            = "/misc/network-slack-webhook-url:1"
+  with_decryption = false
 }
 
 ephemeral "aws_ssm_parameter" "slack-webhook-url" {
-  arn = "arn:aws:ssm:ap-northeast-1:005216166247:parameter/misc/network-slack-webhook-url"
+  arn = data.aws_ssm_parameter.slack-webhook-url.arn
 }
