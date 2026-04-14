@@ -4,7 +4,7 @@ LinkJournal=try-host
 PrivateUsers=no
 
 [Files]
-ReadOnly=yes
+#ReadOnly=yes
 
 [Network]
 Private=yes
