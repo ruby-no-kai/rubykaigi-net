@@ -39,3 +39,5 @@ end
 service 'rk-move-overlay-wg-iface.service' do
   action [:enable]
 end
+
+# $ sudo systemd-creds decrypt --name network.wireguard.private.default /etc/wire.key -|wg pubkey

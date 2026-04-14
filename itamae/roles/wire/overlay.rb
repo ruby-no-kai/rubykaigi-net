@@ -49,6 +49,18 @@ template '/var/lib/machines/overlay/etc/systemd/network/00-overlay.network' do
   mode '0644'
 end
 
+template '/var/lib/machines/overlay/etc/systemd/system/open-ddns.timer' do
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+template '/var/lib/machines/overlay/etc/systemd/system/open-ddns.service' do
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
 execute 'chroot /var/lib/machines/overlay systemctl enable systemd-networkd.service' do
   not_if 'chroot /var/lib/machines/overlay systemctl is-enabled systemd-networkd.service'
 end
@@ -65,8 +77,22 @@ execute 'chroot /var/lib/machines/overlay systemctl enable network-online.target
   not_if 'chroot /var/lib/machines/overlay systemctl is-enabled network-online.target'
 end
 
+execute 'chroot /var/lib/machines/overlay systemctl enable open-ddns.timer' do
+  not_if 'chroot /var/lib/machines/overlay systemctl is-enabled open-ddns.timer'
+end
+
+execute 'chroot /var/lib/machines/overlay systemctl enable open-ddns.service' do
+  not_if 'chroot /var/lib/machines/overlay systemctl is-enabled open-ddns.service'
+end
+
+
 link '/var/lib/machines/overlay/etc/localtime' do
   to '/usr/share/zoneinfo/UTC'
+  force true
+end
+
+execute 'echo -n | sudo systemd-creds encrypt --name open-ddns-key --with-key="host+tpm2" - /etc/open-ddns-key.key' do
+  not_if 'test -e /etc/open-ddns-key.key'
 end
 
 service 'systemd-nspawn@overlay.service' do

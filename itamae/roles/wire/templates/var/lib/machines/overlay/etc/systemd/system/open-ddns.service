@@ -1,0 +1,12 @@
+[Unit]
+Description=open-ddns
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/curl -sf --url-query @%d/open-ddns-key https://ddnsapi-v6.open.ad.jp/api/renew/
+ImportCredential=open-ddns-key
+
+[Install]
+WantedBy=multi-user.target

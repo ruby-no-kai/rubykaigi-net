@@ -5,6 +5,7 @@ PrivateUsers=no
 
 [Files]
 #ReadOnly=yes
+BindReadOnly=/etc/ssl
 
 [Network]
 Private=yes
