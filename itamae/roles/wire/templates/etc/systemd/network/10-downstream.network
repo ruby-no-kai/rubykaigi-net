@@ -1,8 +1,8 @@
-<%- iface =  @attr -%>
-<%- link4 = iface.fetch(:link4) -%>
-<%- link6 = iface.fetch(:link6) -%>
+<%- downstream = node.dig(:wire, :interfaces).fetch(:downstream) -%>
+<%- link4 = downstream[:link4] -%>
+<%- link6 = downstream[:link6] -%>
 [Match]
-Name=<%= @name %>
+Name=<%= downstream.fetch(:name) %>
 
 [Network]
 IPv4Forwarding=yes
@@ -11,11 +11,15 @@ IPv4ReversePathFilter=no
 LLDP=yes
 EmitLLDP=yes
 
+<%- if link4 -%>
 [Address]
 Address=<%= link4.fetch(:local) %>/32
 Peer=<%= link4.fetch(:peer) %>/32
 Scope=link
 
+<%- end -%>
+<%- if link6 -%>
 [Address]
 Address=<%= link6.fetch(:local) %>/128
 Peer=<%= link6.fetch(:peer) %>/128
+<%- end -%>

@@ -14,6 +14,7 @@ include_cookbook 'ruby'
 
 include_cookbook 'cpufreq'
 include_cookbook 'nftables'
+include_cookbook 'bird'
 
 package 'wireguard-tools'
 
@@ -43,6 +44,22 @@ if node.dig(:wire, :interfaces, :management)
   end
 end
 
+if node.dig(:wire, :interfaces, :downstream)
+  template '/etc/systemd/network/10-downstream.network' do
+    owner 'root'
+    group 'root'
+    mode '0644'
+    notifies :run, 'execute[networkctl reload]'
+  end
+end
+
+template '/etc/systemd/networkd.conf.d/10-forwarding.conf' do
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :restart, 'service[systemd-networkd]'
+end
+
 file "/etc/wire.json" do
   content "#{JSON.pretty_generate(node[:wire])}\n"
   owner 'root'
@@ -67,9 +84,9 @@ template '/etc/nftables/wire.conf' do
   notifies :reload, 'service[nftables]'
 end
 
-# template '/etc/bird/bird.conf.d/plat.conf' do
-#   owner 'root'
-#   group 'bird'
-#   mode '0644'
-#   notifies :reload, 'service[bird]'
-# end
+template '/etc/bird/bird.conf.d/wire.conf' do
+  owner 'root'
+  group 'bird'
+  mode '0644'
+  notifies :reload, 'service[bird]'
+end

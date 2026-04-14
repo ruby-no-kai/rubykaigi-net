@@ -19,16 +19,16 @@ node.reverse_merge!(
       },
       downstream: {
         name: 'enp2s0',
-        # local_as: 65026,
-        # peer_as: 65030,
-        # link4: {
-        #   local: '10.33.22.64',
-        #   peer: '10.33.22.65',
-        # },
-        # link6: {
-        #   local: '2001:df0:8500:ca22:64::a',
-        #   peer: '2001:df0:8500:ca22:64::b',
-        # },
+        local_as: 65088,
+        peer_as: 65030,
+        link4: {
+          local: '10.33.22.45',
+          peer: '10.33.22.44',
+        },
+        link6: {
+          local: '2001:df0:8500:ca22:44::b',
+          peer: '2001:df0:8500:ca22:44::a',
+        },
       },
     },
     tunnels: {
@@ -36,6 +36,8 @@ node.reverse_merge!(
         listen_port: 8703,
         peer_endpoint: 'rknet-wire-03.i.open.ad.jp:8701',
         peer_public_key: 'lJuF/78NB3DJpFIErUopDfgiBDopSC5OrHN8xYCCbRg=',
+        local_as: 65088,
+        peer_as: 65088,
         link4: {
           local: '10.33.22.90',
           peer: '10.33.22.91',
