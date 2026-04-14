@@ -5,7 +5,6 @@ Name=<%= node.dig(:wire, :interfaces, :overlay).fetch(:name) %>
 RequiredForOnline=routable
 
 [Network]
-DHCP=ipv6
 IPv6AcceptRA=yes
 IPv4Forwarding=off
 IPv6Forwarding=off
@@ -14,6 +13,7 @@ IPv6Forwarding=off
 
 [IPv6AcceptRA]
 Token=<%= node.dig(:wire, :interfaces, :overlay).fetch(:ipv6_token) %>
+DHCPv6Client=yes
 
 [DHCPv6]
 UseDNS=yes
