@@ -2,6 +2,7 @@
 Description=open-ddns
 
 [Timer]
+OnUnitActiveSec=5min
 OnStartupSec=5min
 RandomizedDelaySec=1min
 
