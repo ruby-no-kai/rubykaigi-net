@@ -65,6 +65,10 @@ execute 'chroot /var/lib/machines/overlay systemctl enable network-online.target
   not_if 'chroot /var/lib/machines/overlay systemctl is-enabled network-online.target'
 end
 
+link '/var/lib/machines/overlay/etc/localtime' do
+  to '/usr/share/zoneinfo/UTC'
+end
+
 service 'systemd-nspawn@overlay.service' do
   action [:enable, :start]
 end
