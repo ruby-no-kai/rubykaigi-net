@@ -17,9 +17,20 @@ puts "Waiting for overlay network to be online"
 system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect /lib/systemd/systemd-networkd-wait-online --ipv6 -o routable --dns), exception: true)
 
 # Reconfigure tunnels to populate Endpoint= where DNS name is specified
+#tunnel_ifaces.each do |iface|
+#  puts "Reconfiguring #{iface} in overlay"
+#  system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect networkctl reconfigure), iface)
+#end
+puts "Reconfiguring wg interfaces for Endpoint="
 tunnel_ifaces.each do |iface|
-  puts "Reconfiguring #{iface} in overlay"
-  system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect networkctl reconfigure), iface)
+  system(*%w(touch), "/var/lib/machines/overlay/etc/systemd/network/10-#{iface}.netdev", exception: true)
+end
+system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect networkctl reload), exception: true)
+
+puts "Sleeping 3 seconds"
+sleep 3
+tunnel_ifaces.each do |iface|
+  system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect wg show), iface)
 end
 
 leader = IO.popen(%w(machinectl show -p Leader --value overlay), 'r', &:read)
