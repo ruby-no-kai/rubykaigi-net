@@ -13,7 +13,7 @@ include_role 'base'
 include_cookbook 'ruby'
 
 include_cookbook 'cpufreq'
-#include_cookbook 'nftables'
+include_cookbook 'nftables'
 
 package 'wireguard-tools'
 
@@ -60,13 +60,13 @@ end
 
 
 
-# template '/etc/nftables/plat.conf' do
-#   owner 'root'
-#   group 'root'
-#   mode '0644'
-#   notifies :reload, 'service[nftables]'
-# end
-# 
+template '/etc/nftables/wire.conf' do
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :reload, 'service[nftables]'
+end
+
 # template '/etc/bird/bird.conf.d/plat.conf' do
 #   owner 'root'
 #   group 'bird'

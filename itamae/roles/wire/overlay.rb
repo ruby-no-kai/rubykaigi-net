@@ -4,7 +4,7 @@ execute 'mmdebstrap for overlay' do
   command <<~EOF
     set -xe
     mmdebstrap \
-      --include=dbus,libpam-systemd,libnss-systemd,systemd,systemd-resolved,iproute2,iputils-ping,curl,wireguard-tools \
+      --include=dbus,libpam-systemd,libnss-systemd,systemd,systemd-resolved,iproute2,iputils-ping,curl,wireguard-tools,tcpdump,nftables \
       --dpkgopt='path-exclude=/usr/share/man/*' \
       --dpkgopt='path-include=/usr/share/man/man[1-9]/*' \
       --dpkgopt='path-exclude=/usr/share/locale/*' \
@@ -83,6 +83,21 @@ end
 
 execute 'chroot /var/lib/machines/overlay systemctl enable open-ddns.service' do
   not_if 'chroot /var/lib/machines/overlay systemctl is-enabled open-ddns.service'
+end
+
+execute 'systemctl --machine overlay reload nftables' do
+  action :nothing
+end
+
+template '/var/lib/machines/overlay/etc/nftables.conf' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  # notifies :run, 'execute[systemctl --machine overlay reload nftables]'
+end
+
+execute 'chroot /var/lib/machines/overlay systemctl enable nftables.service' do
+  not_if 'chroot /var/lib/machines/overlay systemctl is-enabled nftables.service'
 end
 
 
