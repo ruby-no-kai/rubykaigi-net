@@ -87,4 +87,9 @@ data "aws_iam_policy_document" "KaigiStaff" {
       "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/E3FY4LG7LBB19V", # storage.rubykaigi.org
     ]
   }
+  statement {
+    effect    = "Allow"
+    actions   = ["sts:AssumeRole", "sts:TagSession"]
+    resources = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/SignageDeveloper"]
+  }
 }

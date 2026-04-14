@@ -259,12 +259,14 @@ use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, dec
     roles.push('arn:aws:iam::005216166247:role/SponsorAppDev') 
   end
   if groups.include?('ruby-no-kai/rk-noc')
-    roles.push('arn:aws:iam::005216166247:role/NocAdmin') 
-    roles.push('arn:aws:iam::005216166247:role/SponsorAppDev') 
+    roles.push('arn:aws:iam::005216166247:role/NocAdmin')
+    roles.push('arn:aws:iam::005216166247:role/SponsorAppDev')
+    roles.push('arn:aws:iam::005216166247:role/SignageDeveloper')
   end
   if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk26-orgz')
     roles.push('arn:aws:iam::005216166247:role/KaigiStaff')
-    roles.push('arn:aws:iam::005216166247:role/SponsorAppDev') 
+    roles.push('arn:aws:iam::005216166247:role/SponsorAppDev')
+    roles.push('arn:aws:iam::005216166247:role/SignageDeveloper')
   end
 
   if groups.include?('kaigionrails/infra')

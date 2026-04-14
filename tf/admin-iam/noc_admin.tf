@@ -176,6 +176,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
     resources = [
       "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/TakeoutUser",
       "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/TakeoutUserDev",
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/SignageDeveloper",
     ]
   }
 
