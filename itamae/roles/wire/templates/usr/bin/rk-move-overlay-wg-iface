@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+require 'json'
+
+config = JSON.parse(File.read('/etc/wire.json'))
+tunnel_ifaces = config.fetch('tunnels', {}).keys.sort
+
+puts "Waiting for overlay container to be online"
+10.times do |i|
+  if system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect id))
+    break
+  else
+    sleep 2
+  end
+end
+puts "Waiting for overlay network to be online"
+system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect /lib/systemd/systemd-networkd-wait-online --ipv6 -o routable --dns), exception: true)
+
+# Reconfigure tunnels to populate Endpoint= where DNS name is specified
+tunnel_ifaces.each do |iface|
+  puts "Reconfiguring #{iface} in overlay"
+  system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect networkctl reconfigure), iface)
+end
+
+leader = IO.popen(%w(machinectl show -p Leader --value overlay), 'r', &:read)
+puts "Leader PID: #{leader.inspect}"
+leader_i = leader.to_i
+raise "Failed to get leader PID" if leader_i <= 0
+
+FileUtils.mkdir_p '/var/run/netns'
+FileUtils.rm_f '/var/run/netns/overlay' rescue nil
+FileUtils.ln_s "/proc/#{leader_i}/ns/net", "/var/run/netns/overlay"
+
+system(*%w(ip netns exec overlay ip link), exception: true)
+
+tunnel_ifaces.each do |iface|
+  if File.exist?(File.join("/", "sys", "class", "net", iface))
+    puts "Interface #{iface} already exists"
+    system(*%w(ip link delete ), iface, exception: true)
+  end
+  puts "Acquiring #{iface}"
+  system(*%w(ip netns exec overlay ip link set), iface, *%w(netns 1), exception: true)
+end

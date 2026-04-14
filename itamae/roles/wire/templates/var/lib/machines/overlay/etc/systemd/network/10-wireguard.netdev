@@ -1,0 +1,15 @@
+[NetDev]
+Name=<%= @name %>
+Kind=wireguard
+
+[WireGuard]
+ListenPort=<%= @attr.fetch(:listen_port) %>
+PrivateKey=<%= @attr.fetch(:private_key, "@network.wireguard.private.default") %>
+
+[WireGuardPeer]
+<%- if @attr[:peer_endpoint] -%>
+Endpoint=<%= @attr.fetch(:peer_endpoint) %>
+<%- end -%>
+PublicKey=<%= @attr.fetch(:peer_public_key) %>
+AllowedIPs=<%= @attr.fetch(:peer_allowed_ips, %w(0.0.0.0/0 ::/0)).join(", ") %>
+PersistentKeepalive=<%= @attr.fetch(:persistent_keepalive, 25) %>

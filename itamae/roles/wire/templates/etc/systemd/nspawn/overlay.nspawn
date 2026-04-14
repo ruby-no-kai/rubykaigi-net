@@ -1,0 +1,11 @@
+[Exec]
+Hostname=overlay
+LinkJournal=try-host
+PrivateUsers=no
+
+[Files]
+ReadOnly=yes
+
+[Network]
+Private=yes
+Interface=<%= node.dig(:wire, :interfaces, :overlay).fetch(:name) %>

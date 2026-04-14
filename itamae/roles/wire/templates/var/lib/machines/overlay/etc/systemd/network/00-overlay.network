@@ -1,0 +1,19 @@
+[Match]
+Name=<%= node.dig(:wire, :interfaces, :overlay).fetch(:name) %>
+
+[Link]
+RequiredForOnline=routable
+
+[Network]
+DHCP=ipv6
+IPv6AcceptRA=yes
+IPv4Forwarding=off
+IPv6Forwarding=off
+
+<%= node.fetch(:wire).fetch(:tunnels, {}).each_key.map { |name| "Tunnel=#{name}" }.join("\n") %>
+
+[IPv6AcceptRA]
+Token=<%= node.dig(:wire, :interfaces, :overlay).fetch(:ipv6_token) %>
+
+[DHCPv6]
+UseDNS=yes
