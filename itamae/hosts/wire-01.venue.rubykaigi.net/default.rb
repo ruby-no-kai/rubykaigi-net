@@ -35,7 +35,7 @@ node.reverse_merge!(
       wg_wire03: {
         listen_port: 8703,
         peer_endpoint: 'rknet-wire-03.i.open.ad.jp:8701',
-        peer_public_key: 'TADiMxPz1fqm5LjWH44/Q1kpt9XkAyl+umB8OEJgoGA=', # dummy
+        peer_public_key: 'lJuF/78NB3DJpFIErUopDfgiBDopSC5OrHN8xYCCbRg=',
         link4: {
           local: '10.33.22.90',
           peer: '10.33.22.91',
