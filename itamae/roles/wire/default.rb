@@ -12,7 +12,7 @@ node.reverse_merge!(
 include_role 'base'
 include_cookbook 'ruby'
 
-include_cookbook 'cpufreq'
+#include_cookbook 'cpufreq'
 include_cookbook 'nftables'
 include_cookbook 'bird'
 
@@ -31,10 +31,9 @@ package 'wireguard-tools'
 end
 
 if node.dig(:wire, :interfaces, :management)
-  %w[
-    00-management.network
-    00-management.link
-  ].each do |fname|
+  files = %w[00-management.network]
+  files << '00-management.link' if node.dig(:wire, :interfaces, :management, :path)
+  files.each do |fname|
     template "/etc/systemd/network/#{fname}" do
       owner 'root'
       group 'root'

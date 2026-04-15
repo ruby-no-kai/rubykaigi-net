@@ -1,6 +1,7 @@
 <%- iface =  @attr -%>
 <%- link4 = iface.fetch(:link4) -%>
 <%- link6 = iface.fetch(:link6) -%>
+<%- kernel_table = node.dig(:wire, :kernel_route_table) -%>
 [Match]
 Name=<%= @name %>
 
@@ -19,3 +20,25 @@ Scope=link
 [Address]
 Address=<%= link6.fetch(:local) %>/128
 Peer=<%= link6.fetch(:peer) %>/128
+<%- if kernel_table -%>
+
+[RoutingPolicyRule]
+IncomingInterface=<%= @name %>
+Table=<%= kernel_table %>
+Priority=<%= @rule_priority_base + 0 %>
+
+[RoutingPolicyRule]
+OutgoingInterface=<%= @name %>
+Table=<%= kernel_table %>
+Priority=<%= @rule_priority_base + 1 %>
+
+[RoutingPolicyRule]
+From=<%= link4.fetch(:local) %>/32
+Table=<%= kernel_table %>
+Priority=<%= @rule_priority_base + 2 %>
+
+[RoutingPolicyRule]
+From=<%= link6.fetch(:local) %>/128
+Table=<%= kernel_table %>
+Priority=<%= @rule_priority_base + 3 %>
+<%- end -%>

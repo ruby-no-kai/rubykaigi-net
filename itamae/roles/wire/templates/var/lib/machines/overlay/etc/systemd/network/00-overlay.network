@@ -1,10 +1,14 @@
+<%- overlay = node.dig(:wire, :interfaces, :overlay) -%>
 [Match]
-Name=<%= node.dig(:wire, :interfaces, :overlay).fetch(:name) %>
+Name=<%= overlay.fetch(:name) %>
 
 [Link]
 RequiredForOnline=routable
 
 [Network]
+<%- if overlay[:dhcpv4] -%>
+DHCP=ipv4
+<%- end -%>
 IPv6AcceptRA=yes
 IPv4Forwarding=off
 IPv6Forwarding=off
@@ -12,8 +16,14 @@ IPv6Forwarding=off
 <%= node.fetch(:wire).fetch(:tunnels, {}).each_key.map { |name| "Tunnel=#{name}" }.join("\n") %>
 
 [IPv6AcceptRA]
-Token=<%= node.dig(:wire, :interfaces, :overlay).fetch(:ipv6_token) %>
+Token=<%= overlay.fetch(:ipv6_token) %>
 DHCPv6Client=yes
 
 [DHCPv6]
 UseDNS=yes
+<%- if overlay[:dhcpv4] -%>
+
+[DHCPv4]
+UseDNS=yes
+UseRoutes=yes
+<%- end -%>

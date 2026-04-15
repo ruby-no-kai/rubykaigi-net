@@ -14,7 +14,7 @@ puts "Waiting for overlay container to be online"
   end
 end
 puts "Waiting for overlay network to be online"
-system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect /lib/systemd/systemd-networkd-wait-online --ipv6 -o routable --dns), exception: true)
+system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect /lib/systemd/systemd-networkd-wait-online -o routable --dns), exception: true)
 
 # Reconfigure tunnels to populate Endpoint= where DNS name is specified
 #tunnel_ifaces.each do |iface|

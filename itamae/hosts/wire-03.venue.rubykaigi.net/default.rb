@@ -16,6 +16,7 @@ node.reverse_merge!(
       overlay: {
         name: 'enp3s0',
         ipv6_token: 'static:::8888:cccc:0:1',
+        dhcpv4: true,
       },
       downstream: {
         name: 'enp2s0',
@@ -45,6 +46,21 @@ node.reverse_merge!(
         link6: {
           local: '2001:df0:8500:ca22:90::b',
           peer: '2001:df0:8500:ca22:90::a',
+        },
+      },
+      wg_wire99: {
+        listen_port: 8799,
+        peer_endpoint: 'ep.wire.rubykaigi.net:8703',
+        peer_public_key: 'txcw4lC+WltZeGd6lmCm6vIN8uXtKZHCi3pPuxJ+8x4=',
+        local_as: 65031,
+        peer_as: 65088,
+        link4: {
+          local: '10.33.22.151',
+          peer: '10.33.22.150',
+        },
+        link6: {
+          local: '2001:df0:8500:ca22:150::b',
+          peer: '2001:df0:8500:ca22:150::a',
         },
       },
     },

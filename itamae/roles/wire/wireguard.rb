@@ -1,4 +1,4 @@
-node.fetch(:wire).fetch(:tunnels).each do |name, attr|
+node.fetch(:wire).fetch(:tunnels).each_with_index do |(name, attr), i|
   template "/var/lib/machines/overlay/etc/systemd/network/10-#{name}.netdev" do
     source 'templates/var/lib/machines/overlay/etc/systemd/network/10-wireguard.netdev'
     owner 'root'
@@ -18,6 +18,7 @@ node.fetch(:wire).fetch(:tunnels).each do |name, attr|
     variables(
       name: name,
       attr: attr,
+      rule_priority_base: 1000 + i * 10,
     )
     notifies :run, 'execute[networkctl reload]'
   end
