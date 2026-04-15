@@ -3292,7 +3292,7 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "TBD.wire-01.venue.rubykaigi.net.",
+      "name": "wg-wire03.wire-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.22.90"
@@ -3303,7 +3303,15 @@
       "name": "90.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-01.venue.rubykaigi.net."
+        "wg-wire03.wire-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "wg-wire04.wire-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.92"
       ]
     },
     {
@@ -3311,7 +3319,7 @@
       "name": "92.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-01.venue.rubykaigi.net."
+        "wg-wire04.wire-01.venue.rubykaigi.net."
       ]
     },
     {
@@ -3356,7 +3364,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "TBD.wire-01.venue.rubykaigi.net.",
+      "name": "wg-wire03.wire-01.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca22:90::a"
@@ -3367,7 +3375,15 @@
       "name": "a.0.0.0.0.0.0.0.0.0.0.0.0.9.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-01.venue.rubykaigi.net."
+        "wg-wire03.wire-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "wg-wire04.wire-01.venue.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:92::a"
       ]
     },
     {
@@ -3375,7 +3391,7 @@
       "name": "a.0.0.0.0.0.0.0.0.0.0.0.2.9.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-01.venue.rubykaigi.net."
+        "wg-wire04.wire-01.venue.rubykaigi.net."
       ]
     },
     {
@@ -3458,7 +3474,7 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "TBD.wire-02.venue.rubykaigi.net.",
+      "name": "wg-wire03.wire-02.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.22.94"
@@ -3469,7 +3485,15 @@
       "name": "94.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-02.venue.rubykaigi.net."
+        "wg-wire03.wire-02.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "wg-wire04.wire-02.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.96"
       ]
     },
     {
@@ -3477,7 +3501,7 @@
       "name": "96.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-02.venue.rubykaigi.net."
+        "wg-wire04.wire-02.venue.rubykaigi.net."
       ]
     },
     {
@@ -3522,7 +3546,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "TBD.wire-02.venue.rubykaigi.net.",
+      "name": "wg-wire03.wire-02.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca22:94::a"
@@ -3533,7 +3557,15 @@
       "name": "a.0.0.0.0.0.0.0.0.0.0.0.4.9.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-02.venue.rubykaigi.net."
+        "wg-wire03.wire-02.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "wg-wire04.wire-02.venue.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:96::a"
       ]
     },
     {
@@ -3541,7 +3573,7 @@
       "name": "a.0.0.0.0.0.0.0.0.0.0.0.6.9.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-02.venue.rubykaigi.net."
+        "wg-wire04.wire-02.venue.rubykaigi.net."
       ]
     },
     {
@@ -3584,7 +3616,7 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "TBD.wire-03.venue.rubykaigi.net.",
+      "name": "wg-wire01.wire-03.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.22.91"
@@ -3595,7 +3627,15 @@
       "name": "91.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-03.venue.rubykaigi.net."
+        "wg-wire01.wire-03.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "wg-wire02.wire-03.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.95"
       ]
     },
     {
@@ -3603,7 +3643,23 @@
       "name": "95.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-03.venue.rubykaigi.net."
+        "wg-wire02.wire-03.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "enp2s0.wire-03.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.196"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "196.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "enp2s0.wire-03.venue.rubykaigi.net."
       ]
     },
     {
@@ -3632,7 +3688,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "TBD.wire-03.venue.rubykaigi.net.",
+      "name": "wg-wire01.wire-03.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca22:90::b"
@@ -3643,7 +3699,15 @@
       "name": "b.0.0.0.0.0.0.0.0.0.0.0.0.9.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-03.venue.rubykaigi.net."
+        "wg-wire01.wire-03.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "wg-wire02.wire-03.venue.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:94::b"
       ]
     },
     {
@@ -3651,7 +3715,23 @@
       "name": "b.0.0.0.0.0.0.0.0.0.0.0.4.9.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-03.venue.rubykaigi.net."
+        "wg-wire02.wire-03.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "enp2s0.wire-03.venue.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:196::a"
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "a.0.0.0.0.0.0.0.0.0.0.0.6.9.1.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "enp2s0.wire-03.venue.rubykaigi.net."
       ]
     },
     {
@@ -3694,7 +3774,7 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "TBD.wire-04.venue.rubykaigi.net.",
+      "name": "wg-wire01.wire-04.venue.rubykaigi.net.",
       "type": "A",
       "records": [
         "10.33.22.93"
@@ -3705,7 +3785,15 @@
       "name": "93.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-04.venue.rubykaigi.net."
+        "wg-wire01.wire-04.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "wg-wire02.wire-04.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.97"
       ]
     },
     {
@@ -3713,7 +3801,93 @@
       "name": "97.22.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-04.venue.rubykaigi.net."
+        "wg-wire02.wire-04.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "enp2s0.wire-04.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.198"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "198.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "enp2s0.wire-04.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "50.0.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "as-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "as-01.venue.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.0.50"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "as-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.0.50"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "as-01-venue.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "as-01.venue.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "lo.as-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.0.50"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "ge-0-0-22.as-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.197"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "197.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "ge-0-0-22.as-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "ge-0-0-23.as-01.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.22.199"
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "199.22.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "ge-0-0-23.as-01.venue.rubykaigi.net."
       ]
     },
     {
@@ -3742,7 +3916,7 @@
     },
     {
       "zone": "rubykaigi.net-common",
-      "name": "TBD.wire-04.venue.rubykaigi.net.",
+      "name": "wg-wire01.wire-04.venue.rubykaigi.net.",
       "type": "AAAA",
       "records": [
         "2001:df0:8500:ca22:92::b"
@@ -3753,7 +3927,15 @@
       "name": "b.0.0.0.0.0.0.0.0.0.0.0.2.9.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-04.venue.rubykaigi.net."
+        "wg-wire01.wire-04.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "wg-wire02.wire-04.venue.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:96::b"
       ]
     },
     {
@@ -3761,7 +3943,23 @@
       "name": "b.0.0.0.0.0.0.0.0.0.0.0.6.9.0.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
       "type": "PTR",
       "records": [
-        "TBD.wire-04.venue.rubykaigi.net."
+        "wg-wire02.wire-04.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "enp2s0.wire-04.venue.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:198::a"
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "a.0.0.0.0.0.0.0.0.0.0.0.8.9.1.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "enp2s0.wire-04.venue.rubykaigi.net."
       ]
     },
     {
@@ -6880,6 +7078,46 @@
       "type": "PTR",
       "records": [
         "TBD-port5.show-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "as-01.venue.dualstack.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:196::b"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "ge-0-0-22.as-01.venue.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:196::b"
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "b.0.0.0.0.0.0.0.0.0.0.0.6.9.1.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "ge-0-0-22.as-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-common",
+      "name": "ge-0-0-23.as-01.venue.rubykaigi.net.",
+      "type": "AAAA",
+      "records": [
+        "2001:df0:8500:ca22:198::b"
+      ]
+    },
+    {
+      "zone": "ptr-ip6",
+      "name": "b.0.0.0.0.0.0.0.0.0.0.0.8.9.1.0.2.2.a.c.0.0.5.8.0.f.d.0.1.0.0.2.ip6.arpa.",
+      "type": "PTR",
+      "records": [
+        "ge-0-0-23.as-01.venue.rubykaigi.net."
       ]
     },
     {
