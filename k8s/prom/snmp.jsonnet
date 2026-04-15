@@ -93,6 +93,7 @@ local targets_lo = {
     auth: 'public',
     hosts: [
       'cs-01.venue.rubykaigi.net',
+      'as-01.venue.rubykaigi.net',
     ],
   },
   cisco_esw: {

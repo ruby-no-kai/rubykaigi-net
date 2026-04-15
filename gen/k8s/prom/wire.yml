@@ -1,0 +1,90 @@
+{
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "wire"
+  },
+  "spec": {
+    "metricsPath": "/metrics",
+    "params": {},
+    "relabelings": [
+      {
+        "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)(:.*)?$",
+        "replacement": "$2",
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
+      }
+    ],
+    "scrapeInterval": "20s",
+    "scrapeTimeout": "15s",
+    "staticConfigs": [
+      {
+        "targets": [
+          "me0.wire-01.venue.rubykaigi.net:9100",
+          "me0.wire-02.venue.rubykaigi.net:9100",
+          "me0.wire-03.venue.rubykaigi.net:9100",
+          "me0.wire-04.venue.rubykaigi.net:9100"
+        ]
+      }
+    ]
+  }
+}
+---
+{
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
+  "metadata": {
+    "labels": {
+      "release": "kube-prometheus-stack"
+    },
+    "name": "wire-bird"
+  },
+  "spec": {
+    "metricsPath": "/metrics",
+    "params": {},
+    "relabelings": [
+      {
+        "regex": "^(me0\\.)?(.+\\.rubykaigi\\.net)(:.*)?$",
+        "replacement": "$2",
+        "sourceLabels": [
+          "__address__"
+        ],
+        "targetLabel": "instance"
+      },
+      {
+        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
+        "replacement": "$1",
+        "sourceLabels": [
+          "instance"
+        ],
+        "targetLabel": "instance_short"
+      }
+    ],
+    "scrapeInterval": "20s",
+    "scrapeTimeout": "15s",
+    "staticConfigs": [
+      {
+        "targets": [
+          "me0.wire-01.venue.rubykaigi.net:9324",
+          "me0.wire-02.venue.rubykaigi.net:9324",
+          "me0.wire-03.venue.rubykaigi.net:9324",
+          "me0.wire-04.venue.rubykaigi.net:9324"
+        ]
+      }
+    ]
+  }
+}
+---

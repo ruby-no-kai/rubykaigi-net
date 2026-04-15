@@ -411,7 +411,8 @@
     "staticConfigs": [
       {
         "targets": [
-          "cs-01.venue.rubykaigi.net"
+          "cs-01.venue.rubykaigi.net",
+          "as-01.venue.rubykaigi.net"
         ]
       }
     ]

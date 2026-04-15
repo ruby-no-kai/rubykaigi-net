@@ -7,6 +7,7 @@
     './cloudprober.yml',
     './tito.yml',
     './nat-6x.yml',
+    './wire.yml',
     './show.yml',
     './rules.yml',
   ],
