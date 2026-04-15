@@ -19,16 +19,16 @@ node.reverse_merge!(
       },
       downstream: {
         name: 'enp2s0',
-        # local_as: 65026,
-        # peer_as: 65030,
-        # link4: {
-        #   local: '10.33.22.64',
-        #   peer: '10.33.22.65',
-        # },
-        # link6: {
-        #   local: '2001:df0:8500:ca22:64::a',
-        #   peer: '2001:df0:8500:ca22:64::b',
-        # },
+        local_as: 65088,
+        peer_as: 65031,
+        link4: {
+          local: '10.33.22.196',
+          peer: '10.33.22.197',
+        },
+        link6: {
+          local: '2001:df0:8500:ca22:196::a',
+          peer: '2001:df0:8500:ca22:196::b',
+        },
       },
     },
     tunnels: {
