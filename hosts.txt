@@ -409,3 +409,18 @@ tkyk	pa	192.50.220.160/29	192.50.220.167	nat-49	nat
 					
 nrt	pa	192.50.220.168/29	192.50.220.172	recon-01	gi0.1-nat
 venue	pa	192.50.220.168/29	192.50.220.175	show-01	lo
+
+venue	mgmt2	10.33.120.0/24	10.33.120.80	rk-srn19a1	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.81	rk-srn19a2	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.82	rk-srnp19a1	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.83	rk-srnp19a2	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.84	rk-srnp19a3	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.85	rk-srnp19a4	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.86	rk-srnp19a5	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.87	rk-srnp19a6	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.88	rk-srnp19a7	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.89	rk-srnp19a8	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.90	rk-srhp25a1	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.91	rk-srhp25a2	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.92	rk-srhp25a3	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.93	rk-srhp25a4	venue2-vlan1000

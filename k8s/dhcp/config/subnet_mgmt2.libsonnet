@@ -15,5 +15,16 @@ parent {
       else o,
     super['option-data'],
   ),
-  reservations: [],
+  reservations: [
+    { hostname: 'rk-srn19a1', 'ip-address': '10.33.120.80' },
+    { hostname: 'rk-srn19a2', 'ip-address': '10.33.120.81' },
+    { hostname: 'rk-srnp19a1', 'ip-address': '10.33.120.82' },
+    { hostname: 'rk-srnp19a2', 'ip-address': '10.33.120.83' },
+    { hostname: 'rk-srnp19a3', 'ip-address': '10.33.120.84' },
+    { hostname: 'rk-srnp19a4', 'ip-address': '10.33.120.85' },
+    { hostname: 'rk-srnp19a5', 'ip-address': '10.33.120.86' },
+    { hostname: 'rk-srnp19a6', 'ip-address': '10.33.120.87' },
+    { hostname: 'rk-srnp19a7', 'ip-address': '10.33.120.88' },
+    { hostname: 'rk-srnp19a8', 'ip-address': '10.33.120.89' },
+  ],
 }
