@@ -298,6 +298,28 @@ use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, dec
 end
 
 use(Himari::Middlewares::AuthorizationRule, name: 'signage-app') do |context, decision|
+  next decision.skip!('client not in scope') unless context.client.name == 'signage-dev'
+  next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
+
+  groups = decision.claims.dig(:groups)
+  role = []
+
+  if groups.include?('//signage-vendor')
+    role ||= :admin
+  end
+
+  decision.claims[:role] = role
+  decision.allowed_claims.push(:role)
+
+  if role
+    decision.lifetime.access_token = 3600 * 20
+    decision.lifetime.id_token = 3600 * 20
+    next decision.allow!
+  end
+
+  decision.skip!('no roles assigned')
+end
+use(Himari::Middlewares::AuthorizationRule, name: 'signage-app') do |context, decision|
   next decision.skip!('client not in scope') unless context.client.name == 'signage-dev' || context.client.name == 'signage-prd'
   next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
 
