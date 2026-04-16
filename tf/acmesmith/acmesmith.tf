@@ -81,6 +81,11 @@ resource "kubernetes_role_v1" "acmesmith" {
     resources  = ["secrets"]
     verbs      = ["get", "list", "watch", "create", "update", "patch", "delete"]
   }
+  rule {
+    api_groups = ["apps"]
+    resources  = ["deployments"]
+    verbs      = ["get", "list", "patch", "update"]
+  }
 }
 
 resource "kubernetes_role_binding_v1" "acmesmith" {
