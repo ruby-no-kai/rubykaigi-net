@@ -297,7 +297,7 @@ use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, dec
   decision.skip!('no roles assigned')
 end
 
-use(Himari::Middlewares::AuthorizationRule, name: 'signage-app') do |context, decision|
+use(Himari::Middlewares::AuthorizationRule, name: 'signage-app-dev') do |context, decision|
   next decision.skip!('client not in scope') unless context.client.name == 'signage-dev'
   next decision.skip!('provider not in scope') unless context.user_data[:provider] == 'github'
 
