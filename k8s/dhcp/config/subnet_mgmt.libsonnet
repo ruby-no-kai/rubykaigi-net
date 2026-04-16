@@ -64,5 +64,9 @@ local domainName = 'mgmt.venue.rubykaigi.net';
     { 'client-id': "'rk-srnp19a6'", 'ip-address': '10.33.100.87' },
     { 'client-id': "'rk-srnp19a7'", 'ip-address': '10.33.100.88' },
     { 'client-id': "'rk-srnp19a8'", 'ip-address': '10.33.100.89' },
+    { 'client-id': "'rk-srhp25a1'", 'ip-address': '10.33.100.90' },
+    { 'client-id': "'rk-srhp25a2'", 'ip-address': '10.33.100.91' },
+    { 'client-id': "'rk-srhp25a3'", 'ip-address': '10.33.100.92' },
+    { 'client-id': "'rk-srhp25a4'", 'ip-address': '10.33.100.93' },
   ],
 }

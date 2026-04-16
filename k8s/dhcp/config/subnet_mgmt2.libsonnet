@@ -26,5 +26,9 @@ parent {
     { 'client-id': "'rk-srnp19a6'", 'ip-address': '10.33.120.87' },
     { 'client-id': "'rk-srnp19a7'", 'ip-address': '10.33.120.88' },
     { 'client-id': "'rk-srnp19a8'", 'ip-address': '10.33.120.89' },
+    { 'client-id': "'rk-srhp25a1'", 'ip-address': '10.33.120.90' },
+    { 'client-id': "'rk-srhp25a2'", 'ip-address': '10.33.120.91' },
+    { 'client-id': "'rk-srhp25a3'", 'ip-address': '10.33.120.92' },
+    { 'client-id': "'rk-srhp25a4'", 'ip-address': '10.33.120.93' },
   ],
 }
