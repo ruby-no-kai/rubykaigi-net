@@ -24,11 +24,13 @@ Peer=<%= link6.fetch(:peer) %>/128
 
 [RoutingPolicyRule]
 IncomingInterface=<%= @name %>
+Family=both
 Table=<%= kernel_table %>
 Priority=<%= @rule_priority_base + 0 %>
 
 [RoutingPolicyRule]
 OutgoingInterface=<%= @name %>
+Family=both
 Table=<%= kernel_table %>
 Priority=<%= @rule_priority_base + 1 %>
 
@@ -41,4 +43,5 @@ Priority=<%= @rule_priority_base + 2 %>
 From=<%= link6.fetch(:local) %>/128
 Table=<%= kernel_table %>
 Priority=<%= @rule_priority_base + 3 %>
+
 <%- end -%>
