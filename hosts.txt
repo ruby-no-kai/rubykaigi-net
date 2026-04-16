@@ -295,6 +295,24 @@ venue	link	10.33.22./31	10.33.22.97	wire-04	wg-wire02
 venue	link	10.33.22./31	2001:df0:8500:ca22:96::a	wire-02	wg-wire04
 venue	link	10.33.22./31	2001:df0:8500:ca22:96::b	wire-04	wg-wire02
 					
+apne1	link	10.33.22./31	10.33.22.150	wire-99	wg-wire03
+venue	link	10.33.22./31	10.33.22.151	wire-03	wg-wire99
+apne1	link	10.33.22./31	2001:df0:8500:ca22:150::a	wire-99	wg-wire03
+venue	link	10.33.22./31	2001:df0:8500:ca22:150::b	wire-03	wg-wire99
+apne1	link	10.33.22./31	10.33.22.152	wire-99	wg-wire01
+venue	link	10.33.22./31	10.33.22.153	wire-01	wg-wire99
+apne1	link	10.33.22./31	2001:df0:8500:ca22:152::a	wire-99	wg-wire01
+venue	link	10.33.22./31	2001:df0:8500:ca22:152::b	wire-01	wg-wire99
+					
+apne1	link	10.33.22./31	10.33.22.154	wire-99	wg-wire04
+venue	link	10.33.22./31	10.33.22.155	wire-04	wg-wire99
+apne1	link	10.33.22./31	2001:df0:8500:ca22:154::a	wire-99	wg-wire04
+venue	link	10.33.22./31	2001:df0:8500:ca22:154::b	wire-04	wg-wire99
+apne1	link	10.33.22./31	10.33.22.156	wire-99	wg-wire02
+venue	link	10.33.22./31	10.33.22.157	wire-02	wg-wire99
+apne1	link	10.33.22./31	2001:df0:8500:ca22:156::a	wire-99	wg-wire02
+venue	link	10.33.22./31	2001:df0:8500:ca22:156::b	wire-02	wg-wire99
+					
 hnd	link	10.33.22./31	10.33.22.150	tun-01	tun52.0
 nrt	link	10.33.22./31	10.33.22.151	tun-01	tun51.0
 nrt	link	10.33.22./31	10.33.22.152	tun-01	tun53.0
