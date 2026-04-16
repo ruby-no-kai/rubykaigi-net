@@ -180,6 +180,10 @@ use(Himari::Middlewares::ClaimsRule, name: 'github-oauth-teams') do |context, de
     .map { |team| "#{team.fetch('organization').fetch('login')}/#{team.fetch('slug')}" }
     .select { |login_slug| teams_in_scope.any? { |s| s === login_slug } }
 
+  if %w(osyoyu se4weed).include?(context.auth[:info][:nickname]) && Time.now < Time.new(2026,4,30,0,0,0)
+    teams.push('//signage-vendor')
+  end
+
   next decision.skip!("no teams in scope") if teams.empty?
 
   # claims
@@ -262,15 +266,21 @@ use(Himari::Middlewares::AuthorizationRule, name: 'amc-github') do |context, dec
     roles.push('arn:aws:iam::005216166247:role/NocAdmin')
     roles.push('arn:aws:iam::005216166247:role/SponsorAppDev')
     roles.push('arn:aws:iam::005216166247:role/SignageDeveloper')
+    roles.push('arn:aws:iam::005216166247:role/SignageDeveloper2')
   end
   if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk26-orgz')
     roles.push('arn:aws:iam::005216166247:role/KaigiStaff')
     roles.push('arn:aws:iam::005216166247:role/SponsorAppDev')
     roles.push('arn:aws:iam::005216166247:role/SignageDeveloper')
+    roles.push('arn:aws:iam::005216166247:role/SignageDeveloper2')
   end
 
   if groups.include?('kaigionrails/infra')
     roles.push('arn:aws:iam::861452569180:role/OrganizationAccountAccessRole')
+  end
+
+  if groups.include?('//signage-vendor')
+    roles.push('arn:aws:iam::005216166247:role/SignageDeveloper2')
   end
 
   decision.claims[:roles] = roles.uniq

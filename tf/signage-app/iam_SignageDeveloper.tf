@@ -131,6 +131,34 @@ data "aws_iam_policy_document" "SignageDeveloper" {
       "arn:aws:iot:ap-northeast-1:${data.aws_caller_identity.current.account_id}:topic/signage-prd/downlink/*",
     ]
   }
+
+
+  statement {
+    effect  = "Allow"
+    actions = ["s3:GetObject", "s3:ListBucket", "s3:GetBucketLocation"]
+    resources = [
+      "arn:aws:s3:::signage-dev-pub",
+      "arn:aws:s3:::signage-dev-pub/*",
+      "arn:aws:s3:::signage-prd-pub",
+      "arn:aws:s3:::signage-prd-pub/*",
+    ]
+  }
+  statement {
+    effect  = "Allow"
+    actions = ["s3:ListAllMyBuckets"]
+    resources = [
+      "*"
+    ]
+  }
+  statement {
+    effect  = "Allow"
+    actions = ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"]
+    resources = [
+      "arn:aws:s3:::signage-dev-pub/dynamic/*",
+      "arn:aws:s3:::signage-prd-pub/dynamic/*",
+    ]
+  }
+
 }
 
 data "aws_kms_key" "ssm" {
