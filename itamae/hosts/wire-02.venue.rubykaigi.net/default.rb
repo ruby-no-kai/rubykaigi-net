@@ -19,7 +19,7 @@ node.reverse_merge!(
       },
       downstream: {
         name: 'enp2s0',
-        local_as: 65088,
+        local_as: 65081,
         peer_as: 65030,
         link4: {
           local: '10.33.22.47',
@@ -36,8 +36,8 @@ node.reverse_merge!(
         listen_port: 8703,
         peer_endpoint: 'rknet-wire-03.i.open.ad.jp:8702',
         peer_public_key: 'lJuF/78NB3DJpFIErUopDfgiBDopSC5OrHN8xYCCbRg=',
-        local_as: 65088,
-        peer_as: 65088,
+        local_as: 65081,
+        peer_as: 65082,
         link4: {
           local: '10.33.22.94',
           peer: '10.33.22.95',
@@ -51,8 +51,8 @@ node.reverse_merge!(
         listen_port: 8704,
         peer_endpoint: 'rknet-wire-04.i.open.ad.jp:8702',
         peer_public_key: 'nmAg3RJdbKNiOjCt85iZGs6jFqPpMkHWLpgbhGVw0zo=',
-        local_as: 65088,
-        peer_as: 65088,
+        local_as: 65081,
+        peer_as: 65082,
         link4: {
           local: '10.33.22.96',
           peer: '10.33.22.97',
@@ -66,8 +66,8 @@ node.reverse_merge!(
         listen_port: 8799,
         peer_endpoint: 'ep.wire.rubykaigi.net:8702',
         peer_public_key: 'txcw4lC+WltZeGd6lmCm6vIN8uXtKZHCi3pPuxJ+8x4=',
-        local_as: 65088,
-        peer_as: 65088,
+        local_as: 65081,
+        peer_as: 65080,
         link4: {
           local: '10.33.22.157',
           peer: '10.33.22.156',
