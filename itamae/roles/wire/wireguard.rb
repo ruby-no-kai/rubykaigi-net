@@ -37,8 +37,4 @@ template '/etc/systemd/system/rk-move-overlay-wg-iface.service' do
   notifies :run, 'execute[systemctl daemon-reload]', :immediately
 end
 
-service 'rk-move-overlay-wg-iface.service' do
-  action [:enable]
-end
-
 # $ sudo systemd-creds decrypt --name network.wireguard.private.default /etc/wire.key -|wg pubkey
