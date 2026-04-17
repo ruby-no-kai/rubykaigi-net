@@ -28,7 +28,7 @@ node.reverse_merge!(
         listen_port: 8703,
         peer_public_key: 'lJuF/78NB3DJpFIErUopDfgiBDopSC5OrHN8xYCCbRg=',
         local_as: 65088,
-        peer_as: 65031,
+        peer_as: 65031, # FIXME:
         link4: {
           local: '10.33.22.150',
           peer: '10.33.22.151',
@@ -66,6 +66,21 @@ node.reverse_merge!(
         link6: {
           local: '2001:df0:8500:ca22:156::a',
           peer: '2001:df0:8500:ca22:156::b',
+        },
+      },
+      wg_wire04: {
+        listen_port: 8704,
+        peer_endpoint: 'rknet-wire-04.i.open.ad.jp:8799',
+        peer_public_key: 'nmAg3RJdbKNiOjCt85iZGs6jFqPpMkHWLpgbhGVw0zo=',
+        local_as: 65088,
+        peer_as: 65088,
+        link4: {
+          local: '10.33.22.154',
+          peer: '10.33.22.155',
+        },
+        link6: {
+          local: '2001:df0:8500:ca22:154::a',
+          peer: '2001:df0:8500:ca22:154::b',
         },
       },
     },

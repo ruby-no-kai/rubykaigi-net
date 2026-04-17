@@ -47,6 +47,21 @@ node.reverse_merge!(
           peer: '2001:df0:8500:ca22:94::b',
         },
       },
+      wg_wire04: {
+        listen_port: 8704,
+        peer_endpoint: 'rknet-wire-04.i.open.ad.jp:8702',
+        peer_public_key: 'nmAg3RJdbKNiOjCt85iZGs6jFqPpMkHWLpgbhGVw0zo=',
+        local_as: 65088,
+        peer_as: 65088,
+        link4: {
+          local: '10.33.22.96',
+          peer: '10.33.22.97',
+        },
+        link6: {
+          local: '2001:df0:8500:ca22:96::a',
+          peer: '2001:df0:8500:ca22:96::b',
+        },
+      },
       wg_wire99: {
         listen_port: 8799,
         peer_endpoint: 'ep.wire.rubykaigi.net:8702',
