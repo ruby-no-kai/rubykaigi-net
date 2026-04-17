@@ -29,7 +29,7 @@ end
 
 execute "rm -rf /etc/netplan && netplan generate" do
   only_if "test -e /etc/netplan"
-  notifies :restart, 'service[systemd-networkd]'
+  notifies :restart, 'service[systemd-networkd]' if node[:systemd_networkd][:migrate_netplan]
 end
 
 directory '/etc/systemd/networkd.conf.d' do
