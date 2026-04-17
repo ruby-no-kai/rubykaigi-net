@@ -1,4 +1,4 @@
-local user_data = (import '../cloudconfig.base.libsonnet') + {
+local user_data = (import '../cloudconfig.base.libsonnet') + (import '../cloudconfig.mirror.libsonnet') {
   bootcmd: [
     ['cloud-init-per', 'once', 'ssh-port', 'bash', '-c', '( echo Port 9922; echo Port 22 ) >> /etc/ssh/sshd_config.d/90-rk-port.conf && systemctl daemon-reload'],
   ],
