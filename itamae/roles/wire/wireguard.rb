@@ -1,6 +1,6 @@
 node.fetch(:wire).fetch(:tunnels).each_with_index do |(name, attr), i|
-  template "/var/lib/machines/overlay/etc/systemd/network/10-#{name}.netdev" do
-    source 'templates/var/lib/machines/overlay/etc/systemd/network/10-wireguard.netdev'
+  template "/var/lib/machines/underlay/etc/systemd/network/10-#{name}.netdev" do
+    source 'templates/var/lib/machines/underlay/etc/systemd/network/10-wireguard.netdev'
     owner 'root'
     group 'root'
     mode '0644'

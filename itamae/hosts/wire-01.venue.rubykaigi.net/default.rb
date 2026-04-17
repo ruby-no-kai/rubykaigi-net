@@ -13,7 +13,7 @@ node.reverse_merge!(
         path: '*14.0-usb-0:*:1.0',
         duid: '00:00:ba:2c:33:00:41',
       },
-      overlay: {
+      underlay: {
         name: 'enp3s0',
         ipv6_token: 'static:::8888:aaaa:0:1',
       },

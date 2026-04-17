@@ -1,5 +1,5 @@
 [Exec]
-Hostname=overlay
+Hostname=underlay
 LinkJournal=try-host
 PrivateUsers=no
 
@@ -9,4 +9,4 @@ BindReadOnly=/etc/ssl
 
 [Network]
 Private=yes
-Interface=<%= node.dig(:wire, :interfaces, :overlay).fetch(:name) %>
+Interface=<%= node.dig(:wire, :interfaces, :underlay).fetch(:name) %>

@@ -5,44 +5,44 @@ require 'json'
 config = JSON.parse(File.read('/etc/wire.json'))
 tunnel_ifaces = config.fetch('tunnels', {}).keys.sort
 
-puts "Waiting for overlay container to be online"
+puts "Waiting for underlay container to be online"
 10.times do |i|
-  if system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect id))
+  if system(*%w(systemd-run --machine underlay --wait --quiet --pipe --collect id))
     break
   else
     sleep 2
   end
 end
-puts "Waiting for overlay network to be online"
-system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect /lib/systemd/systemd-networkd-wait-online -o routable --dns), exception: true)
+puts "Waiting for underlay network to be online"
+system(*%w(systemd-run --machine underlay --wait --quiet --pipe --collect /lib/systemd/systemd-networkd-wait-online -o routable --dns), exception: true)
 
 # Reconfigure tunnels to populate Endpoint= where DNS name is specified
 #tunnel_ifaces.each do |iface|
-#  puts "Reconfiguring #{iface} in overlay"
-#  system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect networkctl reconfigure), iface)
+#  puts "Reconfiguring #{iface} in underlay"
+#  system(*%w(systemd-run --machine underlay --wait --quiet --pipe --collect networkctl reconfigure), iface)
 #end
 puts "Reconfiguring wg interfaces for Endpoint="
 tunnel_ifaces.each do |iface|
-  system(*%w(touch), "/var/lib/machines/overlay/etc/systemd/network/10-#{iface}.netdev", exception: true)
+  system(*%w(touch), "/var/lib/machines/underlay/etc/systemd/network/10-#{iface}.netdev", exception: true)
 end
-system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect networkctl reload), exception: true)
+system(*%w(systemd-run --machine underlay --wait --quiet --pipe --collect networkctl reload), exception: true)
 
 puts "Sleeping 3 seconds"
 sleep 3
 tunnel_ifaces.each do |iface|
-  system(*%w(systemd-run --machine overlay --wait --quiet --pipe --collect wg show), iface)
+  system(*%w(systemd-run --machine underlay --wait --quiet --pipe --collect wg show), iface)
 end
 
-leader = IO.popen(%w(machinectl show -p Leader --value overlay), 'r', &:read)
+leader = IO.popen(%w(machinectl show -p Leader --value underlay), 'r', &:read)
 puts "Leader PID: #{leader.inspect}"
 leader_i = leader.to_i
 raise "Failed to get leader PID" if leader_i <= 0
 
 FileUtils.mkdir_p '/var/run/netns'
-FileUtils.rm_f '/var/run/netns/overlay' rescue nil
-FileUtils.ln_s "/proc/#{leader_i}/ns/net", "/var/run/netns/overlay"
+FileUtils.rm_f '/var/run/netns/underlay' rescue nil
+FileUtils.ln_s "/proc/#{leader_i}/ns/net", "/var/run/netns/underlay"
 
-system(*%w(ip netns exec overlay ip link), exception: true)
+system(*%w(ip netns exec underlay ip link), exception: true)
 
 tunnel_ifaces.each do |iface|
   if File.exist?(File.join("/", "sys", "class", "net", iface))
@@ -50,5 +50,5 @@ tunnel_ifaces.each do |iface|
     system(*%w(ip link delete ), iface, exception: true)
   end
   puts "Acquiring #{iface}"
-  system(*%w(ip netns exec overlay ip link set), iface, *%w(netns 1), exception: true)
+  system(*%w(ip netns exec underlay ip link set), iface, *%w(netns 1), exception: true)
 end

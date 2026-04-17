@@ -67,10 +67,10 @@ file "/etc/wire.json" do
 end
 
 include_recipe './key.rb'
-include_recipe './overlay.rb'
+include_recipe './underlay.rb'
 include_recipe './wireguard.rb'
 
-service 'systemd-nspawn@overlay.service' do
+service 'systemd-nspawn@underlay.service' do
   action [:enable, :start]
 end
 

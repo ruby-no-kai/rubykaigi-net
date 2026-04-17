@@ -13,7 +13,7 @@ node.reverse_merge!(
         name: 'ens5',
         duid: '00:00:ba:2c:33:00:49',
       },
-      overlay: {
+      underlay: {
         name: 'ens6',
         ipv6_token: 'static:::8888:9999:0:1',
         dhcpv4: true,
