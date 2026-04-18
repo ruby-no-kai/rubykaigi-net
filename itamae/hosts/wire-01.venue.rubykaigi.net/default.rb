@@ -19,7 +19,7 @@ node.reverse_merge!(
       },
       downstream: {
         name: 'enp2s0',
-        local_as: 65088,
+        local_as: 65081,
         peer_as: 65030,
         link4: {
           local: '10.33.22.45',
