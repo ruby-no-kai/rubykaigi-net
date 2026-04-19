@@ -23,6 +23,7 @@ local domainName = 'mgmt.tkyk.rubykaigi.net';
       ],
     },
   ],
+  'require-client-classes': consts.pxe_client_classes,
   'option-data': [
     {
       name: 'routers',
