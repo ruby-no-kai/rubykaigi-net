@@ -16,6 +16,8 @@ venue	lo	10.33.0.0/24	10.33.0.24	nat-62	lo
 venue	lo	10.33.0.0/24	2001:df0:8500:ca00::24	nat-62	lo
 venue	lo	10.33.0.0/24	10.33.0.30	cs-01	lo
 venue	lo	10.33.0.0/24	2001:df0:8500:ca00::30	cs-01	lo
+nrt	lo	10.33.0.0/24	10.33.0.32	test-cs-01	lo		2026
+nrt	lo	10.33.0.0/24	2001:df0:8500:ca00::32	test-cs-01	lo		2026
 venue	lo	10.33.0.0/24	10.33.0.41	wire-01	lo
 venue	lo	10.33.0.0/24	2001:df0:8500:ca00::41	wire-01	lo
 venue	lo	10.33.0.0/24	10.33.0.42	wire-02	lo
@@ -78,6 +80,7 @@ venue	mgmt	10.33.100.0/24	10.33.100.90	rk-srhp25a1	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.91	rk-srhp25a2	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.92	rk-srhp25a3	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.93	rk-srhp25a4	vlan1000
+venue	mgmt	10.33.100.0/24	10.33.100.94	rk-srnp25a1	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.100	es-tra-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.101	es-tra-02	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.105	es-trb-01	vlan1000
@@ -312,6 +315,11 @@ apne1	link	10.33.22./31	10.33.22.156	wire-99	wg-wire02
 venue	link	10.33.22./31	10.33.22.157	wire-02	wg-wire99
 apne1	link	10.33.22./31	2001:df0:8500:ca22:156::a	wire-99	wg-wire02
 venue	link	10.33.22./31	2001:df0:8500:ca22:156::b	wire-02	wg-wire99
+
+nrt	link	10.33.22./31	10.33.22.158	br-01	ge-0/0/3
+nrt	link	10.33.22./31	10.33.22.159	test-cs-01	ge-0/0/23
+nrt	link	10.33.22./31	2001:df0:8500:ca22:158::a	br-01	ge-0/0/3
+nrt	link	10.33.22./31	2001:df0:8500:ca22:158::b	test-cs-01	ge-0/0/23
 					
 hnd	link	10.33.22./31	10.33.22.150	tun-01	tun52.0
 nrt	link	10.33.22./31	10.33.22.151	tun-01	tun51.0
@@ -442,3 +450,4 @@ venue	mgmt2	10.33.120.0/24	10.33.120.90	rk-srhp25a1	venue2-vlan1000
 venue	mgmt2	10.33.120.0/24	10.33.120.91	rk-srhp25a2	venue2-vlan1000
 venue	mgmt2	10.33.120.0/24	10.33.120.92	rk-srhp25a3	venue2-vlan1000
 venue	mgmt2	10.33.120.0/24	10.33.120.93	rk-srhp25a4	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.94	rk-srnp25a1	venue2-vlan1000
