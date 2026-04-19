@@ -11,6 +11,7 @@ resource "aws_security_group_rule" "k8s-node_tftp" {
     "10.33.1.0/24",   # life
     "10.33.2.0/24",   # air
     "10.33.100.0/24", # mgmt
+    "10.33.30.0/24",  # tkykmgmt
   ]
 }
 resource "aws_security_group_rule" "k8s-node_tftp-healthz" {
