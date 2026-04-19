@@ -45,5 +45,15 @@ local domainName = 'mgmt.tkyk.rubykaigi.net';
       duid: '00:02:00:00:ba:2c:33:09:29',
       'ip-address': '10.33.30.69',
     },
+    {
+      hostname: 'cloudprober-01-tkykmgmt',
+      duid: '00:02:00:00:ba:2c:33:09:c1',
+      'ip-address': '10.33.30.190',
+    },
+    {
+      hostname: 'cloudprober-02-tkykmgmt',
+      duid: '00:02:00:00:ba:2c:33:09:c2',
+      'ip-address': '10.33.30.191',
+    },
   ],
 }

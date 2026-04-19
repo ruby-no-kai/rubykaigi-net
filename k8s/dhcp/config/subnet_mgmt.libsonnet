@@ -55,5 +55,15 @@ local domainName = 'mgmt.venue.rubykaigi.net';
       duid: '00:02:00:00:ba:2c:33:00:24',
       'ip-address': '10.33.100.62',
     },
+    {
+      hostname: 'cloudprober-01-venue',
+      duid: '00:02:00:00:ba:2c:33:09:c1',
+      'ip-address': '10.33.100.190',
+    },
+    {
+      hostname: 'cloudprober-02-venue',
+      duid: '00:02:00:00:ba:2c:33:09:c2',
+      'ip-address': '10.33.100.191',
+    },
   ] + assetTagReservations('10.33.100'),
 }
