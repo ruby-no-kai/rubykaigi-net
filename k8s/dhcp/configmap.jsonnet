@@ -124,6 +124,7 @@ local config = {
       import './config/subnet_tkyk.libsonnet',
       import './config/subnet_tkykmgmt.libsonnet',
       import './config/subnet_tkykair.libsonnet',
+      import './config/subnet_testmgmt.libsonnet',
       import './config/subnet_hot_usr.libsonnet',
       import './config/subnet_mgmt2.libsonnet',
       import './config/subnet_life2.libsonnet',

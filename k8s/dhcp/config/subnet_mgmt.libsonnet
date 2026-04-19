@@ -1,4 +1,5 @@
 local consts = import './consts.libsonnet';
+local assetTagReservations = import './reservations_asset_tag.libsonnet';
 local domainName = 'mgmt.venue.rubykaigi.net';
 {
   id: 1000,
@@ -54,19 +55,5 @@ local domainName = 'mgmt.venue.rubykaigi.net';
       duid: '00:02:00:00:ba:2c:33:00:24',
       'ip-address': '10.33.100.62',
     },
-    { 'client-id': "'rk-srn19a1'", 'ip-address': '10.33.100.80' },
-    { 'client-id': "'rk-srn19a2'", 'ip-address': '10.33.100.81' },
-    { 'client-id': "'rk-srnp19a1'", 'ip-address': '10.33.100.82' },
-    { 'client-id': "'rk-srnp19a2'", 'ip-address': '10.33.100.83' },
-    { 'client-id': "'rk-srnp19a3'", 'ip-address': '10.33.100.84' },
-    { 'client-id': "'rk-srnp19a4'", 'ip-address': '10.33.100.85' },
-    { 'client-id': "'rk-srnp19a5'", 'ip-address': '10.33.100.86' },
-    { 'client-id': "'rk-srnp19a6'", 'ip-address': '10.33.100.87' },
-    { 'client-id': "'rk-srnp19a7'", 'ip-address': '10.33.100.88' },
-    { 'client-id': "'rk-srnp19a8'", 'ip-address': '10.33.100.89' },
-    { 'client-id': "'rk-srhp25a1'", 'ip-address': '10.33.100.90' },
-    { 'client-id': "'rk-srhp25a2'", 'ip-address': '10.33.100.91' },
-    { 'client-id': "'rk-srhp25a3'", 'ip-address': '10.33.100.92' },
-    { 'client-id': "'rk-srhp25a4'", 'ip-address': '10.33.100.93' },
-  ],
+  ] + assetTagReservations('10.33.100'),
 }

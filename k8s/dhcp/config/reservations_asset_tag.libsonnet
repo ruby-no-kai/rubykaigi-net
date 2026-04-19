@@ -1,0 +1,17 @@
+function(prefix) [
+  { 'client-id': "'rk-srn19a1'", 'ip-address': prefix + '.80' },
+  { 'client-id': "'rk-srn19a2'", 'ip-address': prefix + '.81' },
+  { 'client-id': "'rk-srnp19a1'", 'ip-address': prefix + '.82' },
+  { 'client-id': "'rk-srnp19a2'", 'ip-address': prefix + '.83' },
+  { 'client-id': "'rk-srnp19a3'", 'ip-address': prefix + '.84' },
+  { 'client-id': "'rk-srnp19a4'", 'ip-address': prefix + '.85' },
+  { 'client-id': "'rk-srnp19a5'", 'ip-address': prefix + '.86' },
+  { 'client-id': "'rk-srnp19a6'", 'ip-address': prefix + '.87' },
+  { 'client-id': "'rk-srnp19a7'", 'ip-address': prefix + '.88' },
+  { 'client-id': "'rk-srnp19a8'", 'ip-address': prefix + '.89' },
+  { 'client-id': "'rk-srhp25a1'", 'ip-address': prefix + '.90' },
+  { 'client-id': "'rk-srhp25a2'", 'ip-address': prefix + '.91' },
+  { 'client-id': "'rk-srhp25a3'", 'ip-address': prefix + '.92' },
+  { 'client-id': "'rk-srhp25a4'", 'ip-address': prefix + '.93' },
+  { 'client-id': "'rk-srnp25a1'", 'ip-address': prefix + '.94' },
+]
