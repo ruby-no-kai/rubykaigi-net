@@ -7494,7 +7494,7 @@
     },
     {
       "zone": "ptr-10",
-      "name": "195.100.33.10.in-addr.arpa.",
+      "name": "190.100.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
         "cloudprober-01.venue.rubykaigi.net."
@@ -7505,7 +7505,7 @@
       "name": "cloudprober-01.venue.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.195"
+        "10.33.100.190"
       ]
     },
     {
@@ -7513,7 +7513,7 @@
       "name": "cloudprober-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.195"
+        "10.33.100.190"
       ]
     },
     {
@@ -7524,10 +7524,10 @@
     },
     {
       "zone": "rubykaigi.net-private",
-      "name": "enp3s0.cloudprober-01.venue.rubykaigi.net.",
+      "name": "enp1s0.cloudprober-01.venue.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.100.195"
+        "10.33.100.190"
       ]
     },
     {
@@ -7535,7 +7535,53 @@
       "name": "mgmt.cloudprober-01.venue.rubykaigi.net.",
       "type": "CNAME",
       "records": [
-        "enp3s0.cloudprober-01.venue.rubykaigi.net."
+        "enp1s0.cloudprober-01.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "191.100.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "cloudprober-02.venue.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "cloudprober-02.venue.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.191"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "cloudprober-02.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.191"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "cloudprober-02-venue.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "cloudprober-02.venue.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "enp1s0.cloudprober-02.venue.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.100.191"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "mgmt.cloudprober-02.venue.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "enp1s0.cloudprober-02.venue.rubykaigi.net."
       ]
     },
     {
@@ -8168,7 +8214,7 @@
     },
     {
       "zone": "ptr-10",
-      "name": "195.30.33.10.in-addr.arpa.",
+      "name": "190.30.33.10.in-addr.arpa.",
       "type": "PTR",
       "records": [
         "cloudprober-01.tkyk.rubykaigi.net."
@@ -8179,7 +8225,7 @@
       "name": "cloudprober-01.tkyk.dualstack.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.30.195"
+        "10.33.30.190"
       ]
     },
     {
@@ -8187,7 +8233,7 @@
       "name": "cloudprober-01.tkyk.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.30.195"
+        "10.33.30.190"
       ]
     },
     {
@@ -8201,7 +8247,7 @@
       "name": "enp1s0.cloudprober-01.tkyk.rubykaigi.net.",
       "type": "A",
       "records": [
-        "10.33.30.195"
+        "10.33.30.190"
       ]
     },
     {
@@ -8210,6 +8256,52 @@
       "type": "CNAME",
       "records": [
         "enp1s0.cloudprober-01.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "ptr-10",
+      "name": "191.30.33.10.in-addr.arpa.",
+      "type": "PTR",
+      "records": [
+        "cloudprober-02.tkyk.rubykaigi.net."
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "cloudprober-02.tkyk.dualstack.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.30.191"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "cloudprober-02.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.30.191"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "cloudprober-02-tkyk.f.rubykaigi.net.",
+      "type": "CNAME",
+      "records": "cloudprober-02.tkyk.rubykaigi.net."
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "enp1s0.cloudprober-02.tkyk.rubykaigi.net.",
+      "type": "A",
+      "records": [
+        "10.33.30.191"
+      ]
+    },
+    {
+      "zone": "rubykaigi.net-private",
+      "name": "tkyk-mgmt.cloudprober-02.tkyk.rubykaigi.net.",
+      "type": "CNAME",
+      "records": [
+        "enp1s0.cloudprober-02.tkyk.rubykaigi.net."
       ]
     },
     {
