@@ -329,7 +329,7 @@ use(Himari::Middlewares::AuthorizationRule, name: 'signage-app') do |context, de
   if groups.include?('ruby-no-kai/rk-noc')
     role ||= :admin
   end
-  if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk24-orgz')
+  if groups.include?('ruby-no-kai/rk-orgz') || groups.include?('ruby-no-kai/rk26-orgz')
     role ||= :admin
   end
 
