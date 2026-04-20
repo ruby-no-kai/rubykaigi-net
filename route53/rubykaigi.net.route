@@ -147,5 +147,8 @@ hosted_zone "rubykaigi.net.", "Z05547502KT77L0O53UWK" do
   include_template "rubykaigi.net-common"
   include_template "rubykaigi.net-private"
 
-
+  rrset 'test-es-01.nrt.rubykaigi.net.', 'A' do
+    ttl 300
+    resource_records '10.33.90.94'
+  end
 end
