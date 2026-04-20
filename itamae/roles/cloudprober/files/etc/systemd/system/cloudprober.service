@@ -1,0 +1,13 @@
+[Unit]
+Description=cloudprober: active monitoring daemon
+Documentation=https://cloudprober.org/docs/
+
+[Service]
+Type=exec
+Restart=always
+DynamicUser=yes
+Group=docker
+ExecStart=/bin/docker run -i --rm --network=host --mount=type=bind,src=/etc/cloudprober.cfg,dst=/etc/cloudprober.cfg,ro --cap-add=NET_RAW ghcr.io/hanazuki/cloudprober:v0.12.6-1 --config_file=/etc/cloudprober.cfg
+
+[Install]
+WantedBy=multi-user.target
