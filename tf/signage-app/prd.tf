@@ -1,5 +1,5 @@
 locals {
-  captioner_enabled = false
+  captioner_enabled = true
 }
 module "prd" {
   source = "github.com/ruby-no-kai/signage-app//tf"
@@ -71,7 +71,7 @@ resource "aws_route53_record" "prd" {
 
 resource "random_pet" "prd-stream-key" {
   keepers = {
-    doggo = "rk25"
+    doggo = "rk26"
   }
 }
 
