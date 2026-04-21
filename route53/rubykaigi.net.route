@@ -151,4 +151,19 @@ hosted_zone "rubykaigi.net.", "Z05547502KT77L0O53UWK" do
     ttl 300
     resource_records '10.33.90.94'
   end
+  
+  rrset 'es-con-01.venue.rubykaigi.net.', 'CNAME' do
+    ttl 300
+    resource_records 'rk-srnp19a1.venue.rubykaigi.net.'
+  end
+
+  rrset 'es-fh1-01.venue.rubykaigi.net.', 'CNAME' do
+    ttl 300
+    resource_records 'rk-srnp25a4.venue.rubykaigi.net.'
+  end
+
+  rrset 'es-fh2-01.venue.rubykaigi.net.', 'CNAME' do
+    ttl 300
+    resource_records 'rk-srnp25a2.venue.rubykaigi.net.'
+  end
 end
