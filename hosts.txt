@@ -444,3 +444,5 @@ venue	mgmt2	10.33.120.0/24	10.33.120.91	rk-srhp25a2	venue2-vlan1000
 venue	mgmt2	10.33.120.0/24	10.33.120.92	rk-srhp25a3	venue2-vlan1000
 venue	mgmt2	10.33.120.0/24	10.33.120.93	rk-srhp25a4	venue2-vlan1000
 venue	mgmt2	10.33.120.0/24	10.33.120.94	rk-srnp25a1	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.190	cloudprober-01	venue2-vlan1000
+venue	mgmt2	10.33.120.0/24	10.33.120.191	cloudprober-02	venue2-vlan1000
