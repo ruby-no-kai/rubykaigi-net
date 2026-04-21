@@ -186,6 +186,11 @@ hosted_zone "rubykaigi.net.", "Z05547502KT77L0O53UWK" do
     resource_records 'rk-srhp25a2.venue.rubykaigi.net.'
   end
 
+  rrset 'es-are-01.venue.rubykaigi.net.', 'CNAME' do
+    ttl 300
+    resource_records 'venue2-vlan1000.rk-srhp25a3.venue.rubykaigi.net.'
+  end
+
   rrset 'es-are-03.venue.rubykaigi.net.', 'CNAME' do
     ttl 300
     resource_records 'venue2-vlan1000.rk-srhp25a1.venue.rubykaigi.net.'
