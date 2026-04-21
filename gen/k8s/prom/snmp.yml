@@ -106,6 +106,19 @@
     "staticConfigs": [
       {
         "targets": [
+          "es-tra-01.venue.rubykaigi.net",
+          "es-tra-02.venue.rubykaigi.net",
+          "es-trb-01.venue.rubykaigi.net",
+          "es-trc-01.venue.rubykaigi.net",
+          "es-lb1-01.venue.rubykaigi.net",
+          "es-lb2-01.venue.rubykaigi.net",
+          "es-fh1-01.venue.rubykaigi.net",
+          "es-fh2-01.venue.rubykaigi.net",
+          "es-ara-01.venue.rubykaigi.net",
+          "es-ara-02.venue.rubykaigi.net",
+          "es-ara-03.venue.rubykaigi.net",
+          "es-bug-01.venue.rubykaigi.net",
+          "es-con-01.venue.rubykaigi.net",
           "cs-99.tkyk.rubykaigi.net"
         ]
       }
@@ -232,6 +245,19 @@
     "staticConfigs": [
       {
         "targets": [
+          "es-tra-01.venue.rubykaigi.net",
+          "es-tra-02.venue.rubykaigi.net",
+          "es-trb-01.venue.rubykaigi.net",
+          "es-trc-01.venue.rubykaigi.net",
+          "es-lb1-01.venue.rubykaigi.net",
+          "es-lb2-01.venue.rubykaigi.net",
+          "es-fh1-01.venue.rubykaigi.net",
+          "es-fh2-01.venue.rubykaigi.net",
+          "es-ara-01.venue.rubykaigi.net",
+          "es-ara-02.venue.rubykaigi.net",
+          "es-ara-03.venue.rubykaigi.net",
+          "es-bug-01.venue.rubykaigi.net",
+          "es-con-01.venue.rubykaigi.net",
           "cs-99.tkyk.rubykaigi.net"
         ]
       }
