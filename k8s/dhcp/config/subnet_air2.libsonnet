@@ -1,6 +1,6 @@
 local parent = import './subnet_air.libsonnet';
 local parentDomainName = 'air.venue.rubykaigi.net';
-local domainName = 'air2.venue.rubykaigi.net';
+local domainName = 'air.venue.rubykaigi.net';
 parent {
   id: 20102,
   subnet: '10.33.122.0/24',
