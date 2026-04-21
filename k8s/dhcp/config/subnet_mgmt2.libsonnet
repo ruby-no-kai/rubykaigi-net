@@ -15,5 +15,18 @@ parent {
       else o,
     super['option-data'],
   ),
-  reservations: (import './reservations_asset_tag.libsonnet')('10.33.120'),
+  reservations:
+    [
+      {
+        hostname: 'cloudprober-01-venue',
+        duid: '00:02:00:00:ba:2c:33:09:c1',
+        'ip-address': '10.33.120.190',
+      },
+      {
+        hostname: 'cloudprober-02-venue',
+        duid: '00:02:00:00:ba:2c:33:09:c2',
+        'ip-address': '10.33.120.191',
+      },
+
+    ] + (import './reservations_asset_tag.libsonnet')('10.33.120'),
 }
