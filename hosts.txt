@@ -81,15 +81,6 @@ venue	mgmt	10.33.100.0/24	10.33.100.91	rk-srhp25a2	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.92	rk-srhp25a3	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.93	rk-srhp25a4	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.94	rk-srnp25a1	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.100	es-tra-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.101	es-tra-02	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.105	es-trb-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.110	es-trc-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.111	es-lb1-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.116	es-lb2-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.120	es-fb2-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.125	es-rbc-01	vlan1000
-venue	mgmt	10.33.100.0/24	10.33.100.130	es-off-01	vlan1000
 venue	mgmt	10.33.100.0/24	10.33.100.190	cloudprober-01	enp1s0
 venue	mgmt	10.33.100.0/24	10.33.100.191	cloudprober-02	enp1s0
 					
