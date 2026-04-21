@@ -34,7 +34,6 @@ module "prd" {
     medialive_security_group_ids      = [data.aws_security_group.default.id, aws_security_group.medialive.id]
     medialive_s3_bucket               = aws_s3_bucket.live.bucket
     medialive_s3_prefix               = "rk25/"
-    ssh_import_ids                    = jsondecode(file("${path.module}/../../data/ssh_import_ids.json"))
   }
   captioner_channels = {
     a = {

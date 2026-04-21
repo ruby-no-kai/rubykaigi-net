@@ -42,6 +42,7 @@ resource "aws_security_group_rule" "medialive_ingress" {
     "10.33.1.0/24",
     "10.33.21.0/24",
     "10.33.100.0/24",
+    "10.33.123.0/24", # venue2 cast rk26
   ]
 }
 
