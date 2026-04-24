@@ -43,11 +43,6 @@
 
     kubelet: {
       maxPods: $.max_pods,
-      kubeReserved: {
-        cpu: '70m',
-        'ephemeral-storage': '1Gi',
-        memory: '500Mi',
-      },
     },
   },
 

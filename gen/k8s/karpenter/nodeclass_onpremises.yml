@@ -13,11 +13,6 @@
       ],
       "instanceProfile": "NetEksKarpenterNode-rknet",
       "kubelet": {
-         "kubeReserved": {
-            "cpu": "70m",
-            "ephemeral-storage": "1Gi",
-            "memory": "500Mi"
-         },
          "maxPods": 110
       },
       "securityGroupSelectorTerms": [
