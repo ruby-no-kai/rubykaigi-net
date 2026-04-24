@@ -46,7 +46,7 @@
       kubeReserved: {
         cpu: '70m',
         'ephemeral-storage': '1Gi',
-        memory: '300Mi',
+        memory: '500Mi',
       },
     },
   },
