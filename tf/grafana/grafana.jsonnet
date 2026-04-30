@@ -32,7 +32,7 @@ function(args)
         image: 'public.ecr.aws/docker/library/busybox:1',
         command: ['sh', '-c'],
         args: [
-          'wget -O /tmp/plugin.zip https://github.com/hanazuki/grafana-weathermap/releases/download/v%(version)s/hanazuki-weathermap-panel-%(version)s.zip && unzip /tmp/plugin.zip -d /var/lib/grafana/plugins/' % { version: '0.1.13' },
+          'wget -O /tmp/plugin.zip https://github.com/hanazuki/grafana-weathermap/releases/download/v%(version)s/hanazuki-weathermap-panel-%(version)s.zip && unzip /tmp/plugin.zip -d /var/lib/grafana/plugins/' % { version: '0.1.15' },
         ],
         volumeMounts: [
           {
