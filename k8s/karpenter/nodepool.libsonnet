@@ -57,7 +57,7 @@
     },
   },
 
-  instance_category:: ['t'],
+  instance_category:: ['t', 'm'],
   arch:: ['arm64'],
   capacity_type:: ['spot', 'on-demand'],  // spot is prioritized: https://karpenter.sh/docs/concepts/nodepools/#capacity-type
   excluded_instance_types:: [
