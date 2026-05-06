@@ -1,5 +1,5 @@
 locals {
-  image = "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/acmesmith:aec356de54ac789e482af0043cdd002b4e5ba9ab"
+  image = "005216166247.dkr.ecr.ap-northeast-1.amazonaws.com/acmesmith:fe83993cab51662cf5be27f802b8cf126631556d"
 
   hosted_zones = [data.aws_route53_zone.rubykaigi_net]
   hosted_zone_map = {
@@ -123,7 +123,7 @@ resource "kubernetes_job_v1" "new-account" {
           name  = "acmesmith"
           image = local.image
           args = [
-            "new-account",
+            "new-account", "--ensure",
             "-c", "/config/acmesmith/acmesmith.yml",
             "mailto:info@rubykaigi.org",
           ]
@@ -212,7 +212,7 @@ resource "kubernetes_job_v1" "order-resolver-rubykaigi-net" {
           name  = "acmesmith"
           image = local.image
           args = [
-            "order",
+            "order", "--ensure",
             "-c", "/config/acmesmith/acmesmith.yml",
             "--key-type", "ec", "--elliptic-curve", "prime256v1",
             "resolver.rubykaigi.net",
