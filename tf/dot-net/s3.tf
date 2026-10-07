@@ -65,7 +65,7 @@ resource "aws_s3_object" "drive" {
   key              = "drive"
   content          = ""
   cache_control    = "max-age=0"
-  website_redirect = "https://drive.google.com/drive/folders/1XzRt9D824SukP6c6VoHvkCJwt34E-urY?usp=drive_link" # 2026
+  website_redirect = "https://drive.google.com/drive/folders/1an6ij5uheYXBxoCKBL33UBty3Rpqtxhx?usp=drive_link" # 2027
 }
 
 resource "aws_s3_object" "github" {
@@ -142,5 +142,5 @@ resource "aws_s3_object" "money" {
   key              = each.value
   content          = ""
   cache_control    = "max-age=0"
-  website_redirect = "https://docs.google.com/spreadsheets/d/1xJl8uuY7XM1vbUdS2eZ0f2xr1bX_pXIp-hjzofIFI6c/edit?gid=0#gid=0"
+  website_redirect = "https://docs.google.com/spreadsheets/d/1JEXnvDS7ApODO7Gt4nH-be78R2dDaYeKn-0WgG3taBw/edit?gid=0#gid=0" # 2027
 }
