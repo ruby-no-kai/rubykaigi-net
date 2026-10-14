@@ -32,3 +32,21 @@ resource "aws_ssm_parameter" "ssh-key" {
   value_wo         = "dummy"
   value_wo_version = 1
 }
+
+# Regular expressions of values to hide from redacted configurations, kept out of this repository.
+# Set each with `aws ssm put-parameter --overwrite`.
+resource "aws_ssm_parameter" "redact-pattern" {
+  for_each = toset([
+    "nrt-ngnx",
+    "nrt-ngnn",
+    "hnd-ngnx",
+    "hnd-ngnn",
+    "itm-ngn",
+    "hnd-uplink",
+  ])
+
+  name             = "/glazed/prd/redact-pattern/${each.key}"
+  type             = "String"
+  value_wo         = "dummy"
+  value_wo_version = 1
+}

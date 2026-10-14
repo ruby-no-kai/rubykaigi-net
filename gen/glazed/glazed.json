@@ -168,7 +168,70 @@
                   "name": "/glazed/prd/hmac-key"
                 }
               },
-              "mode": "MODE_HMAC"
+              "mode": "MODE_HMAC",
+              "secrets": [
+                {
+                  "note": "nrt-ngnx",
+                  "ref": {
+                    "ssm": {
+                      "name": "/glazed/prd/redact-pattern/nrt-ngnx"
+                    }
+                  },
+                  "regexp": true
+                },
+                {
+                  "note": "nrt-ngnn",
+                  "ref": {
+                    "ssm": {
+                      "name": "/glazed/prd/redact-pattern/nrt-ngnn"
+                    }
+                  },
+                  "regexp": true
+                },
+                {
+                  "note": "hnd-ngnx",
+                  "ref": {
+                    "ssm": {
+                      "name": "/glazed/prd/redact-pattern/hnd-ngnx"
+                    }
+                  },
+                  "regexp": true
+                },
+                {
+                  "note": "hnd-ngnn",
+                  "ref": {
+                    "ssm": {
+                      "name": "/glazed/prd/redact-pattern/hnd-ngnn"
+                    }
+                  },
+                  "regexp": true
+                },
+                {
+                  "note": "itm-ngn",
+                  "ref": {
+                    "ssm": {
+                      "name": "/glazed/prd/redact-pattern/itm-ngn"
+                    }
+                  },
+                  "regexp": true
+                },
+                {
+                  "note": "hnd-uplink",
+                  "ref": {
+                    "ssm": {
+                      "name": "/glazed/prd/redact-pattern/hnd-uplink"
+                    }
+                  },
+                  "regexp": true
+                },
+                {
+                  "note": "caf-no",
+                  "ref": {
+                    "value": "CAF\\d{10}"
+                  },
+                  "regexp": true
+                }
+              ]
             },
             "storage": "redacted"
           }

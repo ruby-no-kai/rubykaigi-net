@@ -9,6 +9,10 @@ local node(dialect, name, site) = {
 local ssm(name) = { ssm: { name: '/glazed/prd/%s' % name } };
 // NEC IX and AireOS log in with a password (AireOS inside the SSH session); Junos with a key.
 local password = { password: ssm('password') };
+// Regular expressions hidden from redacted configurations; tf/glazed holds the sensitive ones.
+local redactPattern(note) = { ref: ssm('redact-pattern/%s' % note), regexp: true, note: note };
+local redactPatternInline(note, pattern) = { ref: { value: pattern }, regexp: true, note: note };
+
 local junos(name, site) = node('junos', name, site) + {
   params: { junos_license: 'false' },
   transport_options: { ssh: { keys: [{ raw: ssm('ssh-key') }], keys_only: true } },
@@ -54,7 +58,16 @@ local wlc(name, site) = node('wlc', name, site) + password;
             output: 'redacted',
             storage: 'redacted',
             // Base64, such as from `openssl rand -base64 32`. Keep it stable: a new key changes every digest at once.
-            redaction: { mode: 'MODE_HMAC', hmac_key: ssm('hmac-key') },
+            redaction: {
+              mode: 'MODE_HMAC',
+              hmac_key: ssm('hmac-key'),
+              secrets: [
+                redactPattern(note)
+                for note in ['nrt-ngnx', 'nrt-ngnn', 'hnd-ngnx', 'hnd-ngnn', 'itm-ngn', 'hnd-uplink']
+              ] + [
+                redactPatternInline('caf-no', 'CAF\\d{10}'),
+              ],
+            },
           },
         },
       ],

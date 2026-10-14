@@ -71,10 +71,13 @@ data "aws_iam_policy_document" "LambdaGlazed" {
     actions = [
       "ssm:GetParameter",
     ]
-    resources = [
-      aws_ssm_parameter.password.arn,
-      aws_ssm_parameter.hmac-key.arn,
-      aws_ssm_parameter.ssh-key.arn,
-    ]
+    resources = concat(
+      [
+        aws_ssm_parameter.password.arn,
+        aws_ssm_parameter.hmac-key.arn,
+        aws_ssm_parameter.ssh-key.arn,
+      ],
+      [for p in aws_ssm_parameter.redact-pattern : p.arn],
+    )
   }
 }
