@@ -1,0 +1,179 @@
+{
+  "inventory": [
+    {
+      "inline": {
+        "defaults": {
+          "username": "glazed"
+        },
+        "nodes": [
+          {
+            "dialect": "junos",
+            "host": "br-01.hnd.rubykaigi.net",
+            "name": "br-01.hnd",
+            "params": {
+              "junos_license": "false"
+            },
+            "transport_options": {
+              "ssh": {
+                "keys": [
+                  {
+                    "raw": {
+                      "ssm": {
+                        "name": "/glazed/prd/ssh-key"
+                      }
+                    }
+                  }
+                ],
+                "keys_only": true
+              }
+            }
+          },
+          {
+            "dialect": "junos",
+            "host": "br-01.nrt.rubykaigi.net",
+            "name": "br-01.nrt",
+            "params": {
+              "junos_license": "false"
+            },
+            "transport_options": {
+              "ssh": {
+                "keys": [
+                  {
+                    "raw": {
+                      "ssm": {
+                        "name": "/glazed/prd/ssh-key"
+                      }
+                    }
+                  }
+                ],
+                "keys_only": true
+              }
+            }
+          },
+          {
+            "dialect": "junos",
+            "host": "br-01.itm.rubykaigi.net",
+            "name": "br-01.itm",
+            "params": {
+              "junos_license": "false"
+            },
+            "transport_options": {
+              "ssh": {
+                "keys": [
+                  {
+                    "raw": {
+                      "ssm": {
+                        "name": "/glazed/prd/ssh-key"
+                      }
+                    }
+                  }
+                ],
+                "keys_only": true
+              }
+            }
+          },
+          {
+            "dialect": "nec_ix",
+            "host": "tun-01.hnd.rubykaigi.net",
+            "name": "tun-01.hnd",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "nec_ix",
+            "host": "tun-01.nrt.rubykaigi.net",
+            "name": "tun-01.nrt",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "nec_ix",
+            "host": "tun-01.itm.rubykaigi.net",
+            "name": "tun-01.itm",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "orchestrator": {
+    "state": {
+      "sqlite": {
+        "key": "state.sqlite3",
+        "storage": "state"
+      }
+    },
+    "workflows": {
+      "backup": {
+        "debounce": {
+          "delay_seconds": 60,
+          "max_wait_seconds": 600
+        },
+        "lease_seconds": 1800,
+        "schedule": {
+          "interval_seconds": 900,
+          "retry_interval_seconds": 60
+        }
+      }
+    }
+  },
+  "storages": {
+    "raw": {
+      "s3": {
+        "bucket": "rk-infra",
+        "prefix": "glazed/raw/"
+      }
+    },
+    "redacted": {
+      "s3": {
+        "bucket": "rk-infra",
+        "prefix": "glazed/redacted/"
+      }
+    },
+    "state": {
+      "s3": {
+        "bucket": "rk-infra",
+        "prefix": "glazed/state/"
+      }
+    }
+  },
+  "workflows": {
+    "backup": {
+      "steps": [
+        {
+          "fetch": {
+            "output": "raw",
+            "storage": "raw"
+          },
+          "name": "fetch"
+        },
+        {
+          "name": "redact",
+          "redact": {
+            "input": "raw",
+            "output": "redacted",
+            "redaction": {
+              "hmac_key": {
+                "ssm": {
+                  "name": "/glazed/prd/hmac-key"
+                }
+              },
+              "mode": "MODE_HMAC"
+            },
+            "storage": "redacted"
+          }
+        }
+      ]
+    }
+  }
+}
