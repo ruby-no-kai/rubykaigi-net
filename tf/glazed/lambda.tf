@@ -12,12 +12,16 @@ resource "aws_lambda_function" "glazed" {
   timeout     = 300
 
   vpc_config {
-    subnet_ids         = data.aws_subnets.private.ids
-    security_group_ids = [aws_security_group.glazed.id]
+    subnet_ids                  = data.aws_subnets.private.ids
+    security_group_ids          = [aws_security_group.glazed.id]
+    ipv6_allowed_for_dual_stack = true
   }
 
   environment {
     variables = {
+      # S3 and SSM over IPv6 through the egress-only gateway, which stays up while NAT is off
+      AWS_USE_DUALSTACK_ENDPOINT = "true"
+
       GLAZED_CONFIG_S3_BUCKET = aws_s3_object.config.bucket
       GLAZED_CONFIG_S3_KEY    = aws_s3_object.config.key
       GLAZED_CONFIG_S3_DIGEST = filebase64sha256(local.config_path)
