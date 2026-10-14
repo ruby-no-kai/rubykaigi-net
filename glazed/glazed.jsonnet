@@ -65,7 +65,7 @@ local wlc(name, site) = node('wlc', name, site) + password;
     state: { sqlite: { storage: 'state', key: 'state.sqlite3' } },
     workflows: {
       backup: {
-        schedule: { interval_seconds: 86400, retry_interval_seconds: 1800 },
+        schedule: { interval_seconds: 900, retry_interval_seconds: 60 },
         debounce: { delay_seconds: 60, max_wait_seconds: 600 },
         lease_seconds: 1800,
       },

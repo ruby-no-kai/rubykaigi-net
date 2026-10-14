@@ -121,8 +121,8 @@
         },
         "lease_seconds": 1800,
         "schedule": {
-          "interval_seconds": 86400,
-          "retry_interval_seconds": 1800
+          "interval_seconds": 900,
+          "retry_interval_seconds": 60
         }
       }
     }
