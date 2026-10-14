@@ -1,0 +1,168 @@
+PATH
+  remote: /home/sorah/git/github.com/sorah/glazed/glazed-aws
+  specs:
+    glazed-aws (0.1.0)
+      aws-sdk-s3
+      aws-sdk-ssm
+      dry-cli
+      glazed
+
+PATH
+  remote: /home/sorah/git/github.com/sorah/glazed/glazed
+  specs:
+    glazed (0.1.0)
+      dry-cli
+      google-protobuf
+      httpx
+      logger
+      net-ssh
+      net-telnet
+      protovalidate (>= 0.1.0.beta3, < 0.2)
+      sqlite3 (>= 2.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    aws-eventstream (1.4.0)
+    aws-partitions (1.1295.0)
+    aws-sdk-core (3.257.0)
+      aws-eventstream (~> 1, >= 1.3.0)
+      aws-partitions (~> 1, >= 1.992.0)
+      aws-sigv4 (~> 1.9)
+      base64
+      bigdecimal
+      jmespath (~> 1, >= 1.6.1)
+      logger
+      rexml (~> 3.4, >= 3.4.2)
+    aws-sdk-kms (1.132.0)
+      aws-sdk-core (~> 3, >= 3.256.0)
+      aws-sigv4 (~> 1.5)
+    aws-sdk-s3 (1.233.2)
+      aws-sdk-core (~> 3, >= 3.256.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.5)
+    aws-sdk-ssm (1.223.0)
+      aws-sdk-core (~> 3, >= 3.256.0)
+      aws-sigv4 (~> 1.5)
+    aws-sigv4 (1.12.1)
+      aws-eventstream (~> 1, >= 1.0.2)
+    base64 (0.3.0)
+    bcrypt_pbkdf (1.1.2)
+    bigdecimal (4.1.3)
+    dry-cli (1.4.1)
+    ed25519 (1.4.0)
+    google-protobuf (4.36.2)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-aarch64-linux-gnu)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-aarch64-linux-musl)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-x86_64-linux-gnu)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-x86_64-linux-musl)
+      bigdecimal
+      rake (~> 13.3)
+    http-2 (1.2.3)
+    httpx (1.8.4)
+      http-2 (>= 1.2.0)
+    jmespath (1.6.2)
+    logger (1.7.0)
+    mini_portile2 (2.8.9)
+    net-ssh (7.3.6)
+    net-telnet (0.2.0)
+    protovalidate (0.1.0.beta3)
+      google-protobuf (>= 4.31)
+      rb_sys (~> 0.9.130)
+    protovalidate (0.1.0.beta3-aarch64-linux-gnu)
+      google-protobuf (>= 4.31)
+    protovalidate (0.1.0.beta3-aarch64-linux-musl)
+      google-protobuf (>= 4.31)
+    protovalidate (0.1.0.beta3-arm-linux-gnu)
+      google-protobuf (>= 4.31)
+    protovalidate (0.1.0.beta3-x86_64-linux-gnu)
+      google-protobuf (>= 4.31)
+    protovalidate (0.1.0.beta3-x86_64-linux-musl)
+      google-protobuf (>= 4.31)
+    rake (13.4.2)
+    rake-compiler-dock (1.12.0)
+    rb_sys (0.9.130)
+      rake-compiler-dock (= 1.12.0)
+    rexml (3.4.4)
+    sqlite3 (2.10.0)
+      mini_portile2 (~> 2.8.0)
+    sqlite3 (2.10.0-aarch64-linux-gnu)
+    sqlite3 (2.10.0-aarch64-linux-musl)
+    sqlite3 (2.10.0-arm-linux-gnu)
+    sqlite3 (2.10.0-x86_64-linux-gnu)
+    sqlite3 (2.10.0-x86_64-linux-musl)
+    x25519 (1.0.11)
+
+PLATFORMS
+  aarch64-linux
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  ruby
+  x86_64-linux
+  x86_64-linux-gnu
+  x86_64-linux-musl
+
+DEPENDENCIES
+  bcrypt_pbkdf
+  ed25519
+  glazed!
+  glazed-aws!
+  x25519
+
+CHECKSUMS
+  aws-eventstream (1.4.0) sha256=116bf85c436200d1060811e6f5d2d40c88f65448f2125bc77ffce5121e6e183b
+  aws-partitions (1.1295.0) sha256=455d034f45760a39dbc99e92fdcd494c4faf1bdc4dd5352bb9041bd75f40c24f
+  aws-sdk-core (3.257.0) sha256=a92ad19c7ff668cec6688ee3200ee562da80647a3bbeed9fda02e8b0ca6492c6
+  aws-sdk-kms (1.132.0) sha256=094b0097bb3be9d5c1ac87e971ca7f5aebb746801dfb5f0f576480bf98dca69c
+  aws-sdk-s3 (1.233.2) sha256=b138737a0de8b02f163ae47a9fc184ac98fc9b90926237c7d7af716a14ea1221
+  aws-sdk-ssm (1.223.0) sha256=6e6239f1844b0fb6447ea2d460ed59b00c257299b8f54f97bf712e73c11dda85
+  aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
+  base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
+  bcrypt_pbkdf (1.1.2) sha256=c2414c23ce66869b3eb9f643d6a3374d8322dfb5078125c82792304c10b94cf6
+  bigdecimal (4.1.3) sha256=61ebe1e5e559bdc3cc6f2c0ee7f427321fc838f59611c294356eb04d6e21cf66
+  bundler (4.0.19) sha256=b48056e4c77fb3853cc47775b5447ede44aaa4f53c32f168014ab4fe86587d47
+  dry-cli (1.4.1) sha256=b8015bb76c708aa8705a36faf694973e75eeeffca39b89c8e172dc6f66a7d874
+  ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506
+  glazed (0.1.0)
+  glazed-aws (0.1.0)
+  google-protobuf (4.36.2) sha256=2f8daff50ae14aad36ab0ccdcf284065fa71d726c444efe114e6db82ffe62494
+  google-protobuf (4.36.2-aarch64-linux-gnu) sha256=c3279ec6eaa59f6ed6276eda2a33cffb4306471183ab79a332e698b8564f5169
+  google-protobuf (4.36.2-aarch64-linux-musl) sha256=0772c9dde1e6dce9a6b44d1d35c28c29adee99d9bd6aff5e21840daeb22161ce
+  google-protobuf (4.36.2-x86_64-linux-gnu) sha256=d25a820873e423f1d209ae8c672a4a28b019e2429debd0901d26670a0b4e14db
+  google-protobuf (4.36.2-x86_64-linux-musl) sha256=0fa17686c896da96a60a705e56ddc7d4ff56413f52787c655bd4c9fb33ffe14f
+  http-2 (1.2.3) sha256=f4e3a7000e9a8ab97595f09eac44c6ec10a2aa438360758124df0ca5bcb280d4
+  httpx (1.8.4) sha256=1782ecde81eb4e961ad8735ec74a6fec8e60efeaa4592c6b2f55d72e19aaeca8
+  jmespath (1.6.2) sha256=238d774a58723d6c090494c8879b5e9918c19485f7e840f2c1c7532cf84ebcb1
+  logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
+  mini_portile2 (2.8.9) sha256=0cd7c7f824e010c072e33f68bc02d85a00aeb6fce05bb4819c03dfd3c140c289
+  net-ssh (7.3.6) sha256=3364dedce752b9f5221e12ae970880d871a8e733e4730e4b9bd89e0b6808ce4b
+  net-telnet (0.2.0) sha256=253007c0f8dc3fd66e569d53ebbce5ef6e94d6246ab9c04d73a7629b0eebd39a
+  protovalidate (0.1.0.beta3) sha256=0da8c3c5855d8bffc0f1dd41a69e4dde132e31844ed835d9be59ab68da6161d2
+  protovalidate (0.1.0.beta3-aarch64-linux-gnu) sha256=79da712ec3f2751e4026dcda87ab710b50f71064e219eb48a562b5dc2597d371
+  protovalidate (0.1.0.beta3-aarch64-linux-musl) sha256=9e5a4bf1d7d883a61adc17a9b343626a62a4c90545cc2b16edc337ebaa5618c2
+  protovalidate (0.1.0.beta3-arm-linux-gnu) sha256=a1c2824057020d66fac54c2bd94a1b8d5ce4835ed457ae92b937952b1f4ec17c
+  protovalidate (0.1.0.beta3-x86_64-linux-gnu) sha256=f573c83f47530bd301663fb379bda457a8178f6ccfa2923487873ad0268f9013
+  protovalidate (0.1.0.beta3-x86_64-linux-musl) sha256=355dd46cb83597162f9d693e7154378b9c62332ccc6e1a34b3d7434f26a0eb29
+  rake (13.4.2) sha256=cb825b2bd5f1f8e91ca37bddb4b9aaf345551b4731da62949be002fa89283701
+  rake-compiler-dock (1.12.0) sha256=f13205c2738f3d2053afcd03491a9e4541b22a59a0bfc53fc8bc883bd8188023
+  rb_sys (0.9.130) sha256=7d486d99c1da02635515deaf9860fc5aea90bb4ab2589b2deec7fdc7d3548615
+  rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142
+  sqlite3 (2.10.0) sha256=3fc6c4ac2249b1c54099e7b80e57afdd678e648c1f54de8ad3b4c775195c661a
+  sqlite3 (2.10.0-aarch64-linux-gnu) sha256=dafeea94182af2eb53a10797be359fa6ec4270532bd45255d1c2beb69f2eb743
+  sqlite3 (2.10.0-aarch64-linux-musl) sha256=ec4ffedded0bd8579629e14d0647cfee9092c0af0009c05d6404d90857b1cb8b
+  sqlite3 (2.10.0-arm-linux-gnu) sha256=bcf2e165f27fd28f46ba34eeba3503d557ea7f76f9dd40434ce719f2ba0d5cda
+  sqlite3 (2.10.0-x86_64-linux-gnu) sha256=295f48b240ba663efa2e3b6f38cbc0f19f5c8a2823a71fda3bf15531be5dd0e8
+  sqlite3 (2.10.0-x86_64-linux-musl) sha256=876dd86a15c7828075ff7612e3d0ab0eb2eba0d8485b13fd4000e8a335f86bc5
+  x25519 (1.0.11) sha256=24168680ded91fdd06a4b3c2b0800c71dc149c71265ba57d91df5832a7002b6d
+
+BUNDLED WITH
+  4.0.19
