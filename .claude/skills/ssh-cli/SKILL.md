@@ -6,17 +6,16 @@ allowed-tools: Bash(ruby misc/ssh_cli.rb:*)
 
 # Device CLI sessions with misc/ssh_cli.rb
 
-`misc/ssh_cli.rb` keeps an SSH session in a background daemon, so each Bash call runs one device command and prints only that command's output. All output passes through glazed's redactor for the session's dialect before it reaches you or the log. Masked values look like `[~REDACTED:dgst=…~]`. Within one session the same secret always gets the same digest, so you can compare them, but never try to recover the value.
+`misc/ssh_cli.rb` keeps an SSH session in a background daemon, so each Bash call runs one device command and prints only that command's output. Logging in costs an SSH handshake and an ssh-agent signature, which may need the user to touch a key, so keep sessions open and reuse them rather than reconnecting. All output passes through glazed's redactor for the session's dialect before it reaches you or the log. Masked values look like `[~REDACTED:dgst=…~]`. Within one session the same secret always gets the same digest, so you can compare them, but never try to recover the value.
 
 Setup, once: `(cd glazed && bundle install)`.
 
 ## Quick start
 
 ```bash
-ruby misc/ssh_cli.rb open --dialect junos -- br-01.nrt.rubykaigi.net
-ruby misc/ssh_cli.rb run 'show interfaces terse'
-ruby misc/ssh_cli.rb run 'show configuration protocols bgp'
-ruby misc/ssh_cli.rb close
+ruby misc/ssh_cli.rb -s br-01.nrt open --dialect junos -- br-01.nrt.rubykaigi.net
+ruby misc/ssh_cli.rb -s br-01.nrt run 'show interfaces terse'
+ruby misc/ssh_cli.rb -s br-01.nrt run 'show configuration protocols bgp'
 ```
 
 The dialect has to match the device, because it decides both prompt detection and secret masking. `glazed/glazed.jsonnet` has the mapping:
@@ -30,7 +29,7 @@ The dialect has to match the device, because it decides both prompt detection an
 ## Commands
 
 ```bash
-ruby misc/ssh_cli.rb [-s NAME] open --dialect DIALECT [--prompt RE] [--mask-env VAR]... [--timeout SEC] -- <ssh args...>
+ruby misc/ssh_cli.rb [-s NAME] open --dialect DIALECT [--prompt RE] [--mask-env VAR]... [--timeout SEC] [--idle-timeout SEC] -- <ssh args...>
 ruby misc/ssh_cli.rb [-s NAME] run [--timeout SEC] [--prompt RE] 'COMMAND'
 ruby misc/ssh_cli.rb [-s NAME] send [--no-newline] 'TEXT'          # answer y/n, yes/no confirmations
 ruby misc/ssh_cli.rb [-s NAME] send --ctrl c                       # interrupt
@@ -46,7 +45,12 @@ Exit status: 0 ok, 1 timed out (output may be partial), 2 no such session, or th
 
 ## Sessions
 
-`-s NAME` (default `default`) lets you keep several devices open at once, such as `-s nrt` and `-s hnd`. State lives in `tmp/ssh-cli/`, and `NAME.log` keeps the redacted transcript.
+- Name each session after its device with `-s`, such as `-s br-01.nrt` and `-s tun-01.hnd`, so sessions to several devices stay open side by side and are easy to find again.
+- Run `list` first to see which sessions are already open, with their dialect, idle time and target.
+- `open` on a live session to the same target and dialect reuses it without logging in again. It only prints output that arrived since the last command. A session under that name open to a different target is an error.
+- Don't `close` a session when a task ends. It shuts itself down after an hour without commands (`--idle-timeout SEC` changes it, `0` disables it). Close it only when the user asks.
+- Exit status 2 from `run` means the session is gone, because it idled out or the device dropped it. `open` it again.
+- State lives in `tmp/ssh-cli/`, and `NAME.log` keeps the redacted transcript.
 
 ## Passwords and prompts
 
@@ -64,4 +68,3 @@ Exit status: 0 ok, 1 timed out (output may be partial), 2 no such session, or th
 
 - Masking only covers what the dialect's patterns and the values you sent or passed to `--mask-env` match. A secret the dialect doesn't know about, such as one in a file printed from a shell, can still come through.
 - Read-only by default. Never enter `configure`, `commit`, `request`, `clear`, `restart`, or a command that changes device state unless the user explicitly asks for that change.
-- Always `close` the session when you're done.

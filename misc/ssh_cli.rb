@@ -27,14 +27,17 @@ module SshCli
   PAGER = /---\(more(?: \d+%)?\)---|<--- More --->|-- ?More ?--/
   ANSI = /\e\[[0-9;?]*[ -\/]*[@-~]|\e[()][0-9A-Za-z]|\e[=>78]/
   SETTLE = 0.3
+  IDLE_TIMEOUT = 3600
 
   USAGE = <<~EOS
     Usage: #{$0} [-s NAME] <command> [options]
 
     Commands:
-      open --dialect DIALECT [--prompt RE] [--mask-env VAR]... [--timeout SEC] -- <ssh args...>
+      open --dialect DIALECT [--prompt RE] [--mask-env VAR]... [--timeout SEC] [--idle-timeout SEC] -- <ssh args...>
           Start a session; prints the banner up to the first prompt.
           DIALECT is a glazed dialect (junos, nec_ix, wlc, ios, awplus) and picks the prompt and secret patterns.
+          If the session is already open to the same target, it is reused without logging in again.
+          The session ends after --idle-timeout seconds without commands (default 3600, 0 disables).
       run [--prompt RE] [--timeout SEC] COMMAND
           Run COMMAND and print its output, without the echo and the trailing prompt.
       send [--no-newline] [--ctrl KEY] [--secret-env VAR | --secret-ssm NAME] [--timeout SEC] [TEXT]
@@ -45,7 +48,7 @@ module SshCli
       read [--tail N]
           Print the last N lines (default 50) of the session.
       list
-          List sessions.
+          List sessions with their target and idle time.
       close [--all]
           End the session.
 
@@ -76,9 +79,13 @@ module SshCli
 
   # Background process owning the PTY. The raw buffer stays in its memory; only redacted text leaves it.
   class Daemon
-    def initialize(name:, ssh_args:, dialect:, prompt:, masks:)
+    def initialize(name:, ssh_args:, dialect_name:, prompt:, masks:, idle_timeout:)
+      dialect = dialect_name && Glazed::Dialects.find(dialect_name)
       @name = name
       @ssh_args = ssh_args
+      @dialect_name = dialect_name
+      @idle_timeout = idle_timeout
+      @last_request_at = Time.now
       @prompt = prompt || dialect&.prompt_pattern || GENERIC_PROMPT
       @patterns = (dialect&.sensitive_patterns || []) + masks.map { SshCli.literal_pattern(it, note: 'mask') }
       @hmac_key = SecureRandom.bytes(32)
@@ -98,7 +105,8 @@ module SshCli
       @log = File.open(SshCli.log_path(@name), 'a', 0o600)
       @log.sync = true
 
-      @pty_out, @pty_in, @ssh_pid = PTY.spawn({'TERM' => 'dumb'}, 'ssh', '-tt', *@ssh_args)
+      # Keepalives stop NAT and firewalls from dropping a session that sits idle between commands.
+      @pty_out, @pty_in, @ssh_pid = PTY.spawn({'TERM' => 'dumb'}, 'ssh', '-tt', '-o', 'ServerAliveInterval=30', *@ssh_args)
       @pty_out.winsize = [1000, 512]
       Thread.new { read_loop }
 
@@ -143,10 +151,12 @@ module SshCli
       loop do
         # Linger after ssh exits so the agent can still read the final output.
         break if @closed && !@server.wait_readable(30)
+        break if idle?
         next unless @closed || @server.wait_readable(1)
 
         client = @server.accept
         request = JSON.parse(client.gets || '{}')
+        @last_request_at = Time.now unless request['op'] == 'info'
         response = handle(request)
         client.puts(JSON.generate(response))
         client.close
@@ -154,8 +164,11 @@ module SshCli
       end
     end
 
+    private def idle? = @idle_timeout.positive? && Time.now - @last_request_at > @idle_timeout
+
     private def handle(request)
       case request.fetch('op')
+      when 'info' then op_info
       when 'run' then op_run(request)
       when 'send' then op_send(request)
       when 'wait' then op_wait(request)
@@ -163,6 +176,10 @@ module SshCli
       when 'close' then op_close
       else {error: "unknown op #{request['op'].inspect}"}
       end
+    end
+
+    private def op_info
+      {ssh_args: @ssh_args, dialect: @dialect_name, idle: (Time.now - @last_request_at).round, closed: @closed}
     end
 
     private def op_run(request)
@@ -303,22 +320,24 @@ module SshCli
     private def client = Client.new(@name)
 
     private def cmd_open
-      dialect = nil
+      dialect_name = nil
       prompt = nil
       masks = []
       timeout = 30
+      idle_timeout = IDLE_TIMEOUT
       OptionParser.new do |o|
-        o.on('--dialect NAME') { dialect = it == 'none' ? nil : Glazed::Dialects.find(it) }
+        o.on('--dialect NAME') { dialect_name = it == 'none' ? nil : Glazed::Dialects.find(it) && it }
         o.on('--prompt RE') { prompt = Regexp.new(it) }
         o.on('--mask-env VAR') { masks << ENV.fetch(it) }
         o.on('--timeout SEC', Float) { timeout = it }
+        o.on('--idle-timeout SEC', Float) { idle_timeout = it }
       end.parse!(@argv)
       abort(USAGE) if @argv.empty?
-      raise Error, "session #{@name.inspect} already exists" if alive?(@name)
+      return reuse(dialect_name:, timeout:) if alive?(@name)
 
       FileUtils.mkdir_p(STATE_DIR, mode: 0o700)
       FileUtils.rm_f(SshCli.socket_path(@name))
-      daemon = Daemon.new(name: @name, ssh_args: @argv, dialect:, prompt:, masks:)
+      daemon = Daemon.new(name: @name, ssh_args: @argv, dialect_name:, prompt:, masks:, idle_timeout:)
       pid = fork do
         Process.setsid
         exit!(0) if fork
@@ -334,6 +353,16 @@ module SshCli
       sleep 0.05 until File.socket?(SshCli.socket_path(@name)) || Time.now > deadline
       raise Error, "session #{@name.inspect} failed to start; see #{SshCli.log_path(@name)}" unless File.socket?(SshCli.socket_path(@name))
 
+      respond(client.request(op: 'wait', timeout:))
+    end
+
+    private def reuse(dialect_name:, timeout:)
+      info = client.request(op: 'info')
+      unless info.fetch(:ssh_args) == @argv && info.fetch(:dialect) == dialect_name
+        raise Error, "session #{@name.inspect} is open to `#{info.fetch(:ssh_args).join(' ')}` (#{info.fetch(:dialect)}); close it or pick another -s"
+      end
+
+      warn "[ssh_cli: reusing session #{@name}]"
       respond(client.request(op: 'wait', timeout:))
     end
 
@@ -387,7 +416,14 @@ module SshCli
     private def cmd_list
       Dir[File.join(STATE_DIR, '*.sock')].each do |path|
         name = File.basename(path, '.sock')
-        puts "#{name}\t#{alive?(name) ? 'alive' : 'stale'}"
+        unless alive?(name)
+          puts "#{name}\tstale"
+          next
+        end
+
+        info = Client.new(name).request(op: 'info')
+        state = info.fetch(:closed) ? 'closed' : "idle #{info.fetch(:idle)}s"
+        puts [name, info.fetch(:dialect), state, info.fetch(:ssh_args).join(' ')].join("\t")
       end
     end
 
