@@ -1,0 +1,7 @@
+# glazed-github function of tf/glazed, committing redacted device configurations to glazed/hosts/
+issuer = "https://a1db97f8-57fb-4929-8506-bc96cbf97811.tokens.sts.global.api.aws"
+subject = "arn:aws:iam::005216166247:role/LambdaGlazedGithub"
+audience = "https://sts-cat.rubykaigi.net"
+
+[permissions]
+contents = "write"
