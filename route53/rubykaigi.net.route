@@ -156,63 +156,39 @@ hosted_zone "rubykaigi.net.", "Z05547502KT77L0O53UWK" do
     ttl 300
     resource_records 'rk-srnp19a2.venue.rubykaigi.net.'
   end
+
   rrset 'es-tra-02.venue.rubykaigi.net.', 'CNAME' do
     ttl 300
     resource_records 'rk-srnp19a7.venue.rubykaigi.net.'
   end
 
-  rrset 'es-con-01.venue.rubykaigi.net.', 'CNAME' do
+  rrset 'es-fo0-01.venue.rubykaigi.net.', 'CNAME' do
     ttl 300
-    resource_records 'rk-srnp19a1.venue.rubykaigi.net.'
-  end
-
-  rrset 'es-fh1-01.venue.rubykaigi.net.', 'CNAME' do
-    ttl 300
-    resource_records 'rk-srhp25a4.venue.rubykaigi.net.'
-  end
-
-  rrset 'es-fh2-01.venue.rubykaigi.net.', 'CNAME' do
-    ttl 300
-    resource_records 'rk-srn19a1.venue.rubykaigi.net.'
-  end
-
-  rrset 'es-trc-01.venue.rubykaigi.net.', 'CNAME' do
-    ttl 300
-    resource_records 'rk-srnp19a6.venue.rubykaigi.net.'
-  end
-
-  rrset 'es-bug-01.venue.rubykaigi.net.', 'CNAME' do
-    ttl 300
-    resource_records 'rk-srhp25a2.venue.rubykaigi.net.'
-  end
-
-  rrset 'es-are-01.venue.rubykaigi.net.', 'CNAME' do
-    ttl 300
-    resource_records 'venue2-vlan1000.rk-srhp25a3.venue.rubykaigi.net.'
-  end
-
-  rrset 'es-are-02.venue.rubykaigi.net.', 'CNAME' do
-    ttl 300
-    resource_records 'venue2-vlan1000.rk-srnp19a8.venue.rubykaigi.net.'
-  end
-
-  rrset 'es-are-03.venue.rubykaigi.net.', 'CNAME' do
-    ttl 300
-    resource_records 'venue2-vlan1000.rk-srhp25a1.venue.rubykaigi.net.'
+    resource_records 'rk-srnp19a5.venue.rubykaigi.net.'
   end
 
   rrset 'es-trb-01.venue.rubykaigi.net.', 'CNAME' do
     ttl 300
-    resource_records 'venue2-vlan1000.rk-srnp19a3.venue.rubykaigi.net.'
+    resource_records 'rk-srnp19a8.venue.rubykaigi.net.'
+  end
+
+  rrset 'es-trb-02.venue.rubykaigi.net.', 'CNAME' do
+    ttl 300
+    resource_records 'rk-srnp19a3.venue.rubykaigi.net.'
+  end
+
+  rrset 'es-lb0-01.venue.rubykaigi.net.', 'CNAME' do
+    ttl 300
+    resource_records 'rk-srhp25a4.venue.rubykaigi.net.'
+  end
+
+  rrset 'es-lb0-02.venue.rubykaigi.net.', 'CNAME' do
+    ttl 300
+    resource_records 'rk-srnp19a1.venue.rubykaigi.net.'
   end
 
   rrset 'es-lb1-01.venue.rubykaigi.net.', 'CNAME' do
     ttl 300
-    resource_records 'venue2-vlan1000.rk-srnp19a4.venue.rubykaigi.net.'
-  end
-
-  rrset 'es-lb2-01.venue.rubykaigi.net.', 'CNAME' do
-    ttl 300
-    resource_records 'venue2-vlan1000.rk-srnp19a5.venue.rubykaigi.net.'
+    resource_records 'rk-srhp25a2.venue.rubykaigi.net.'
   end
 end
