@@ -37,7 +37,7 @@ SiteTun = Data.define(:num, :site, :nexthop, :interface)
 
 SITE_TUNS = [
   SiteTun.new(1, 'hnd', 'fe80::208:e3ff:feff:fd90%GigaEthernet0.1', 'GigaEthernet0.1'),
-  SiteTun.new(2, 'nrt', 'fe80::a%GigaEthernet0.0', 'GigaEthernet0.0'),
+  SiteTun.new(2, 'nrt', 'fe80::3102:a%GigaEthernet0.0', 'GigaEthernet0.0'),
   SiteTun.new(3, 'itm', 'fe80::a%GigaEthernet0.0', 'GigaEthernet0.0'),
 ]
 
