@@ -1,10 +1,5 @@
 source 'https://rubygems.org'
 
-git 'https://github.com/hanazuki/conntrack_exporter' do
+git 'https://github.com/hanazuki/conntrack_exporter', ref: 'fcef4297c592b38d1cacd9abd04ad02eb9f6f047' do
   gem 'conntrack_exporter'
-end
-
-git 'https://github.com/hanazuki/nl' do
-  gem 'ynl'
-  gem 'nl'
 end

@@ -1,21 +1,13 @@
 GIT
   remote: https://github.com/hanazuki/conntrack_exporter
-  revision: eee58236ac9d90d5591f85b34e936b17ffeb5158
+  revision: fcef4297c592b38d1cacd9abd04ad02eb9f6f047
+  ref: fcef4297c592b38d1cacd9abd04ad02eb9f6f047
   specs:
-    conntrack_exporter (0.1.0)
+    conntrack_exporter (0.0.0)
+      nl-linux (= 0.3.0)
       prometheus-client
       puma
       sinatra
-      ynl
-
-GIT
-  remote: https://github.com/hanazuki/nl
-  revision: 92119cb2f684a45bf9631cf2b963782d45891812
-  specs:
-    nl (0.1.0)
-    ynl (0.1.0)
-      nl (= 0.1.0)
-      yaml
 
 GEM
   remote: https://rubygems.org/
@@ -25,6 +17,9 @@ GEM
     mustermann (3.0.3)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.7.4)
+    nl (0.3.0)
+    nl-linux (0.3.0)
+      nl (= 0.3.0)
     prometheus-client (4.2.4)
       base64
     puma (6.6.0)
@@ -46,7 +41,6 @@ GEM
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     tilt (2.6.0)
-    yaml (0.4.0)
 
 PLATFORMS
   ruby
@@ -54,8 +48,6 @@ PLATFORMS
 
 DEPENDENCIES
   conntrack_exporter!
-  nl!
-  ynl!
 
 BUNDLED WITH
    2.6.2
