@@ -7,7 +7,7 @@ local node(dialect, name, site) = {
   dialect: dialect,
 };
 local ssm(name) = { ssm: { name: '/glazed/prd/%s' % name } };
-// NEC IX and AireOS log in with a password (AireOS inside the SSH session); Junos with a key.
+// NEC IX, IOS and AireOS log in with a password (AireOS inside the SSH session); Junos with a key.
 local password = { password: ssm('password') };
 // Regular expressions hidden from redacted configurations; tf/glazed holds the sensitive ones.
 local redactPattern(note) = { ref: ssm('redact-pattern/%s' % note), regexp: true, note: note };
@@ -18,7 +18,8 @@ local junos(name, site) = node('junos', name, site) + {
   transport_options: { ssh: { keys: [{ raw: ssm('ssh-key') }], keys_only: true } },
 };
 local ix(name, site) = node('nec_ix', name, site) + password;
-local wlc(name, site) = node('wlc', name, site) + password;
+local ios(name, site) = node('ios', name, site) + password;
+local wlc(name, site) = node('aireos', name, site) + password;
 
 {
   inventory: [{
@@ -27,11 +28,13 @@ local wlc(name, site) = node('wlc', name, site) + password;
       nodes: std.flattenArrays([
         [junos('br-01', site) for site in ['hnd', 'nrt', 'itm']],
         [ix('tun-01', site) for site in ['hnd', 'nrt', 'itm']],
+        [ix('recon-01', 'nrt')],
 
         // venue
-        // [junos(name, 'venue') for name in ['er-01', 'er-02', 'cs-01', 'as-01']],
-        // [ix(name, 'venue') for name in ['tun-01', 'tun-02', 'tun-03']],
-        // [wlc('wlc-01', 'venue')],
+        [junos(name, 'venue') for name in ['er-01', 'er-02', 'cs-01']],
+        [ix(name, 'venue') for name in ['tun-01', 'tun-02', 'nat-41', 'nat-42']],
+        [wlc('wlc-01', 'venue')],
+        [ios(name, 'venue') for name in ['es-tra-01', 'es-tra-02', 'es-fo0-01', 'es-trb-01', 'es-trb-02', 'es-lb0-01', 'es-lb0-02', 'es-lb1-01']],
 
         // lab
         // [junos(name, 'tkyk') for name in ['er-99', 'cs-99', 'es-99']],

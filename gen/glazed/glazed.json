@@ -101,6 +101,212 @@
                 "name": "/glazed/prd/password"
               }
             }
+          },
+          {
+            "dialect": "nec_ix",
+            "host": "recon-01.nrt.rubykaigi.net",
+            "name": "recon-01.nrt",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "junos",
+            "host": "er-01.venue.rubykaigi.net",
+            "name": "er-01.venue",
+            "params": {
+              "junos_license": "false"
+            },
+            "transport_options": {
+              "ssh": {
+                "keys": [
+                  {
+                    "raw": {
+                      "ssm": {
+                        "name": "/glazed/prd/ssh-key"
+                      }
+                    }
+                  }
+                ],
+                "keys_only": true
+              }
+            }
+          },
+          {
+            "dialect": "junos",
+            "host": "er-02.venue.rubykaigi.net",
+            "name": "er-02.venue",
+            "params": {
+              "junos_license": "false"
+            },
+            "transport_options": {
+              "ssh": {
+                "keys": [
+                  {
+                    "raw": {
+                      "ssm": {
+                        "name": "/glazed/prd/ssh-key"
+                      }
+                    }
+                  }
+                ],
+                "keys_only": true
+              }
+            }
+          },
+          {
+            "dialect": "junos",
+            "host": "cs-01.venue.rubykaigi.net",
+            "name": "cs-01.venue",
+            "params": {
+              "junos_license": "false"
+            },
+            "transport_options": {
+              "ssh": {
+                "keys": [
+                  {
+                    "raw": {
+                      "ssm": {
+                        "name": "/glazed/prd/ssh-key"
+                      }
+                    }
+                  }
+                ],
+                "keys_only": true
+              }
+            }
+          },
+          {
+            "dialect": "nec_ix",
+            "host": "tun-01.venue.rubykaigi.net",
+            "name": "tun-01.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "nec_ix",
+            "host": "tun-02.venue.rubykaigi.net",
+            "name": "tun-02.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "nec_ix",
+            "host": "nat-41.venue.rubykaigi.net",
+            "name": "nat-41.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "nec_ix",
+            "host": "nat-42.venue.rubykaigi.net",
+            "name": "nat-42.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "aireos",
+            "host": "wlc-01.venue.rubykaigi.net",
+            "name": "wlc-01.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "ios",
+            "host": "es-tra-01.venue.rubykaigi.net",
+            "name": "es-tra-01.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "ios",
+            "host": "es-tra-02.venue.rubykaigi.net",
+            "name": "es-tra-02.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "ios",
+            "host": "es-fo0-01.venue.rubykaigi.net",
+            "name": "es-fo0-01.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "ios",
+            "host": "es-trb-01.venue.rubykaigi.net",
+            "name": "es-trb-01.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "ios",
+            "host": "es-trb-02.venue.rubykaigi.net",
+            "name": "es-trb-02.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "ios",
+            "host": "es-lb0-01.venue.rubykaigi.net",
+            "name": "es-lb0-01.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "ios",
+            "host": "es-lb0-02.venue.rubykaigi.net",
+            "name": "es-lb0-02.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
+          },
+          {
+            "dialect": "ios",
+            "host": "es-lb1-01.venue.rubykaigi.net",
+            "name": "es-lb1-01.venue",
+            "password": {
+              "ssm": {
+                "name": "/glazed/prd/password"
+              }
+            }
           }
         ]
       }

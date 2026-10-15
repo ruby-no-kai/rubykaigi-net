@@ -1,6 +1,6 @@
 locals {
   # Pushed from a local build of github.com/sorah/glazed glazed-aws/lambda/Dockerfile
-  image_tag = "dev-202610141510"
+  image_tag = "dev-202610152147"
 }
 
 resource "aws_ecr_repository" "glazed-lambda" {

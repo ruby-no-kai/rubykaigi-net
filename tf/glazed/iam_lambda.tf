@@ -80,4 +80,15 @@ data "aws_iam_policy_document" "LambdaGlazed" {
       [for p in aws_ssm_parameter.redact-pattern : p.arn],
     )
   }
+
+  # Tells whether the execution holding the waiter record still runs
+  statement {
+    effect = "Allow"
+    actions = [
+      "states:DescribeExecution",
+    ]
+    resources = [
+      "arn:aws:states:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:execution:glazed:*",
+    ]
+  }
 }

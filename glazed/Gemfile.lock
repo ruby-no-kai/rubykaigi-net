@@ -1,16 +1,17 @@
 PATH
   remote: /home/sorah/git/github.com/sorah/glazed/glazed-aws
   specs:
-    glazed-aws (0.1.0)
+    glazed-aws (0.2.0)
       aws-sdk-s3
       aws-sdk-ssm
+      aws-sdk-states
       dry-cli
-      glazed
+      glazed (~> 0.2.0)
 
 PATH
   remote: /home/sorah/git/github.com/sorah/glazed/glazed
   specs:
-    glazed (0.1.0)
+    glazed (0.2.0)
       dry-cli
       google-protobuf
       httpx
@@ -42,6 +43,9 @@ GEM
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sdk-ssm (1.223.0)
+      aws-sdk-core (~> 3, >= 3.256.0)
+      aws-sigv4 (~> 1.5)
+    aws-sdk-states (1.113.0)
       aws-sdk-core (~> 3, >= 3.256.0)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
@@ -125,6 +129,7 @@ CHECKSUMS
   aws-sdk-kms (1.132.0) sha256=094b0097bb3be9d5c1ac87e971ca7f5aebb746801dfb5f0f576480bf98dca69c
   aws-sdk-s3 (1.233.2) sha256=b138737a0de8b02f163ae47a9fc184ac98fc9b90926237c7d7af716a14ea1221
   aws-sdk-ssm (1.223.0) sha256=6e6239f1844b0fb6447ea2d460ed59b00c257299b8f54f97bf712e73c11dda85
+  aws-sdk-states (1.113.0) sha256=f847919133c0ee5342865d0bf9d57205a485d7f13c110b94883df12b73a5f914
   aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcrypt_pbkdf (1.1.2) sha256=c2414c23ce66869b3eb9f643d6a3374d8322dfb5078125c82792304c10b94cf6
@@ -132,8 +137,8 @@ CHECKSUMS
   bundler (4.0.19) sha256=b48056e4c77fb3853cc47775b5447ede44aaa4f53c32f168014ab4fe86587d47
   dry-cli (1.4.1) sha256=b8015bb76c708aa8705a36faf694973e75eeeffca39b89c8e172dc6f66a7d874
   ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506
-  glazed (0.1.0)
-  glazed-aws (0.1.0)
+  glazed (0.2.0)
+  glazed-aws (0.2.0)
   google-protobuf (4.36.2) sha256=2f8daff50ae14aad36ab0ccdcf284065fa71d726c444efe114e6db82ffe62494
   google-protobuf (4.36.2-aarch64-linux-gnu) sha256=c3279ec6eaa59f6ed6276eda2a33cffb4306471183ab79a332e698b8564f5169
   google-protobuf (4.36.2-aarch64-linux-musl) sha256=0772c9dde1e6dce9a6b44d1d35c28c29adee99d9bd6aff5e21840daeb22161ce
