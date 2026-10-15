@@ -108,17 +108,12 @@
         "targets": [
           "es-tra-01.venue.rubykaigi.net",
           "es-tra-02.venue.rubykaigi.net",
+          "es-fo0-01.venue.rubykaigi.net",
           "es-trb-01.venue.rubykaigi.net",
-          "es-trc-01.venue.rubykaigi.net",
+          "es-trb-02.venue.rubykaigi.net",
+          "es-lb0-01.venue.rubykaigi.net",
+          "es-lb0-02.venue.rubykaigi.net",
           "es-lb1-01.venue.rubykaigi.net",
-          "es-lb2-01.venue.rubykaigi.net",
-          "es-fh1-01.venue.rubykaigi.net",
-          "es-fh2-01.venue.rubykaigi.net",
-          "es-are-01.venue.rubykaigi.net",
-          "es-are-02.venue.rubykaigi.net",
-          "es-are-03.venue.rubykaigi.net",
-          "es-bug-01.venue.rubykaigi.net",
-          "es-con-01.venue.rubykaigi.net",
           "cs-99.tkyk.rubykaigi.net"
         ]
       }
@@ -247,17 +242,12 @@
         "targets": [
           "es-tra-01.venue.rubykaigi.net",
           "es-tra-02.venue.rubykaigi.net",
+          "es-fo0-01.venue.rubykaigi.net",
           "es-trb-01.venue.rubykaigi.net",
-          "es-trc-01.venue.rubykaigi.net",
+          "es-trb-02.venue.rubykaigi.net",
+          "es-lb0-01.venue.rubykaigi.net",
+          "es-lb0-02.venue.rubykaigi.net",
           "es-lb1-01.venue.rubykaigi.net",
-          "es-lb2-01.venue.rubykaigi.net",
-          "es-fh1-01.venue.rubykaigi.net",
-          "es-fh2-01.venue.rubykaigi.net",
-          "es-are-01.venue.rubykaigi.net",
-          "es-are-02.venue.rubykaigi.net",
-          "es-are-03.venue.rubykaigi.net",
-          "es-bug-01.venue.rubykaigi.net",
-          "es-con-01.venue.rubykaigi.net",
           "cs-99.tkyk.rubykaigi.net"
         ]
       }
