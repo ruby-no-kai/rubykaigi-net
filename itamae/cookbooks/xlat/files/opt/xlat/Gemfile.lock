@@ -1,17 +1,17 @@
 GIT
   remote: https://github.com/sorah/xlat
-  revision: 1e94eed1593597be644f1d3ac6240a50f734a7a1
-  branch: main
+  revision: 4ed930e00d17bec505dcc97fd1f3b6e969ff19f9
+  ref: 4ed930e00d17bec505dcc97fd1f3b6e969ff19f9
   specs:
     xlat (0.1.0.alpha1)
       logger
-      rcx (~> 0.4.0)
+      rcx (~> 0.4.2)
 
 GEM
   remote: https://rubygems.org/
   specs:
     logger (1.7.0)
-    rcx (0.4.1)
+    rcx (0.4.2)
       shellwords (~> 0.2)
     shellwords (0.2.2)
 

@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
 
-gem 'xlat', git: 'https://github.com/sorah/xlat', branch: 'main'
+gem 'xlat', git: 'https://github.com/sorah/xlat', ref: '4ed930e00d17bec505dcc97fd1f3b6e969ff19f9'

@@ -35,6 +35,7 @@ bundle install
 (ruby -v && cat Gemfile.lock) | sha256sum >.bundle/hash
 EOF
   not_if '(ruby -v && cat Gemfile.lock) | sha256sum -c .bundle/hash'
+  notifies :restart, 'service[xlat-siit]'
 end
 
 remote_file '/etc/systemd/system/xlat-siit.service' do
