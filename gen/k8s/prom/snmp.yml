@@ -5,64 +5,6 @@
     "labels": {
       "release": "kube-prometheus-stack"
     },
-    "name": "snmp-hi-awplus"
-  },
-  "spec": {
-    "metricsPath": "/snmp",
-    "params": {
-      "auth": [
-        "public"
-      ],
-      "module": [
-        "if_mib"
-      ]
-    },
-    "relabelings": [
-      {
-        "sourceLabels": [
-          "__address__"
-        ],
-        "targetLabel": "__param_target"
-      },
-      {
-        "sourceLabels": [
-          "__param_target"
-        ],
-        "targetLabel": "instance"
-      },
-      {
-        "replacement": "snmp-exporter-prometheus-snmp-exporter.default.svc.cluster.local:9116",
-        "targetLabel": "__address__"
-      },
-      {
-        "regex": "^(.+)(\\.rubykaigi\\.net(:.*)?)$",
-        "replacement": "$1",
-        "sourceLabels": [
-          "instance"
-        ],
-        "targetLabel": "instance_short"
-      }
-    ],
-    "scrapeInterval": "20s",
-    "scrapeTimeout": "19s",
-    "staticConfigs": [
-      {
-        "targets": [
-          "xs-01.venue.rubykaigi.net",
-          "xs-02.venue.rubykaigi.net"
-        ]
-      }
-    ]
-  }
-}
----
-{
-  "apiVersion": "monitoring.coreos.com/v1alpha1",
-  "kind": "ScrapeConfig",
-  "metadata": {
-    "labels": {
-      "release": "kube-prometheus-stack"
-    },
     "name": "snmp-hi-cisco-esw"
   },
   "spec": {
@@ -427,8 +369,7 @@
     "staticConfigs": [
       {
         "targets": [
-          "cs-01.venue.rubykaigi.net",
-          "as-01.venue.rubykaigi.net"
+          "cs-01.venue.rubykaigi.net"
         ]
       }
     ]

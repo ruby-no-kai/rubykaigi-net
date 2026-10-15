@@ -32,14 +32,14 @@ local targets_hi = {
       'recon-01.nrt.rubykaigi.net',
     ],
   },
-  awplus: {
-    modules: ['if_mib'],
-    auth: 'public',
-    hosts: [
-      'xs-01.venue.rubykaigi.net',
-      'xs-02.venue.rubykaigi.net',
-    ],
-  },
+  //awplus: {
+  //  modules: ['if_mib'],
+  //  auth: 'public',
+  //  hosts: [
+  //    'xs-01.venue.rubykaigi.net',
+  //    'xs-02.venue.rubykaigi.net',
+  //  ],
+  //},
   cisco_esw: {
     modules: ['if_mib'],
     auth: 'public',
@@ -95,7 +95,7 @@ local targets_lo = {
     auth: 'public',
     hosts: [
       'cs-01.venue.rubykaigi.net',
-      'as-01.venue.rubykaigi.net',
+      //'as-01.venue.rubykaigi.net',
     ],
   },
   cisco_esw: {
