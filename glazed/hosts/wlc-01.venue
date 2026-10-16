@@ -688,6 +688,10 @@ rf-profile rx-sop threshold low Low-Client-Density-802.11bg
 rf-profile rx-sop threshold medium rk-24g-hi
 rf-profile rx-sop threshold medium rk-5g-hi
 rf-profile rx-sop threshold medium rk-stadium-med
+rf-profile load-balancing denial 1 rk-5g-hi
+rf-profile load-balancing denial 1 rk-5g-med
+rf-profile load-balancing window 20 rk-5g-hi
+rf-profile load-balancing window 20 rk-5g-med
 rf-profile coverage data -90 Low-Client-Density-802.11a
 rf-profile coverage data -90 Low-Client-Density-802.11bg
 rf-profile coverage voice -90 Low-Client-Density-802.11a
