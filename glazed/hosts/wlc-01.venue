@@ -570,6 +570,7 @@ rf-profile tx-power-min 7 High-Client-Density-802.11bg
 rf-profile tx-power-min 7 rk-24g-hi
 rf-profile tx-power-min 7 rk-5g-hi
 rf-profile tx-power-min 7 rk-stadium-med
+rf-profile tx-power-max 17 rk-5g-hi
 rf-profile tx-power-control-thresh-v1 -65 High-Client-Density-802.11a
 rf-profile tx-power-control-thresh-v1 -60 Low-Client-Density-802.11a
 rf-profile tx-power-control-thresh-v1 -65 Low-Client-Density-802.11bg
