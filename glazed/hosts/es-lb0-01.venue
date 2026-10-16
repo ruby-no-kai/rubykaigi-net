@@ -1,0 +1,302 @@
+! Cisco IOS Software, C3560CX Software (C3560CX-UNIVERSALK9-M), Version 15.2(7)E12, RELEASE SOFTWARE (fc5)
+!
+! Image: Software: C3560CX-UNIVERSALK9-M, 15.2(7)E12, RELEASE SOFTWARE (fc5)
+! Image: Compiled: Wed 02-Apr-25 10:47 by mcpre
+! Image: flash:/c3560cx-universalk9-mz.152-7.E12.bin
+! Chassis type: WS-C3560CX-8PC-S
+! Memory: main 524288K
+! Processor ID: FOC2030Z1UH
+! CPU: APM86XXX
+!
+! VTP: VTP Version capable             : 1 to 3
+! VTP: VTP version running             : 1
+! VTP: VTP Domain Name                 :
+! VTP: VTP Pruning Mode                : Disabled
+! VTP: VTP Traps Generation            : Disabled
+! VTP: Device ID                       : 0087.3132.9a80
+! VTP: Feature VLAN:
+! VTP: --------------
+! VTP: VTP Operating Mode                : Transparent
+! VTP: Maximum VLANs supported locally   : 1005
+! VTP: Number of existing VLANs          : 10
+! VTP: Configuration Revision            : 0
+! VTP: MD5 digest                        : 0xE1 0xAD 0x3B 0x2B 0x7E 0xDD 0xD5 0x3D
+! VTP:                                     0xF0 0x71 0xE2 0x3D 0xC5 0x74 0x05 0xCC
+!
+! NAME: "1", DESCR: "WS-C3560CX-8PC-S"
+! PID: WS-C3560CX-8PC-S  , VID: V02  , SN: FOC2030Z1UH
+!
+!
+!
+! Last configuration change at 13:19:05 UTC Thu Oct 15 2026 by glazed
+! NVRAM config last updated at 13:19:09 UTC Thu Oct 15 2026 by glazed
+!
+version 15.2
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec show-timezone
+service timestamps log datetime msec show-timezone
+service password-encryption
+!
+hostname es-lb0-01
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 128000 informational
+no logging console
+!
+username rkroot privilege 15 secret 5 [~REDACTED:dgst=shYXbEZNAwQ~]
+username rkaid privilege 15 secret 5 [~REDACTED:dgst=yjF5UJl6JcQ~]
+username rk privilege 15 secret 9 [~REDACTED:dgst=1xefXwKn8-k~]
+username glazed privilege 15 secret 9 [~REDACTED:dgst=C6RxJuy8u04~]
+no aaa new-model
+system mtu routing 1500
+!
+!
+!
+!
+ip routing
+!
+!
+no ip domain-lookup
+ip domain-name f.rubykaigi.org
+vtp mode transparent
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-825399936
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-825399936
+ revocation-check none
+ rsakeypair TP-self-signed-825399936
+!
+crypto pki trustpoint TP-self-signed-836703744
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-836703744
+ revocation-check none
+ rsakeypair TP-self-signed-836703744
+!
+!
+crypto pki certificate chain TP-self-signed-825399936
+ certificate self-signed 01
+  30820229 30820192 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 38323533 39393933 36301E17 0D303030 31303131 38333132 
+  375A170D 33303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3832 35333939 
+  39333630 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  A1E2EE71 8C9569C3 1F044A07 356276F1 7E6C58BF F0B4550F 2D2BCF2C 4A1A98E5 
+  4186C442 A45DE3B9 8B7B266C 6D093A4D AF95DF95 2CE75841 FDDCD209 39F20EBF 
+  EED8C81D 95F2A6E5 6A9B100A FF711F9D 038EA721 A44E6E90 78E8E400 56A7390E 
+  90992494 0E257FB8 104502E5 3D3C460A 2DECB013 D09EC1A6 A08AC34A 9464BEF1 
+  02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 0603551D 
+  23041830 168014DB B3EFA0DB CD5C71F0 54578C57 7E837B75 3C115330 1D060355 
+  1D0E0416 0414DBB3 EFA0DBCD 5C71F054 578C577E 837B753C 1153300D 06092A86 
+  4886F70D 01010505 00038181 0028C5FC F68350B5 00E824E6 C3227078 31E4EFC7 
+  F3212EEB BA8EF4F1 1FC3F11B 9889DA54 E0B30815 85C5600B 89124339 A9072D9D 
+  7964F6CF 33451152 CB3BD7A5 774FFDF8 EA07741B 93279600 FB30F1EC 8A817A67 
+  65F67B07 B001BAD0 EA8C0984 0B8D03BB A3785F1D 3590BC7A 7072A7EF E3000093 
+  D51D0D80 034D58FF 18FBA10B 90
+  	quit
+crypto pki certificate chain TP-self-signed-836703744
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 200
+ name air
+!
+vlan 300
+ name life
+!
+vlan 400
+ name usr
+!
+vlan 410
+ name cast
+!
+vlan 1000
+ name mgmt
+!
+vlan 2030
+ name link30
+!
+vlan 2044
+ name link44
+!
+vlan 2046
+ name link46
+!
+lldp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ switchport trunk allowed vlan 200,300,400,410,1000
+ switchport mode trunk
+ no port-channel standalone-disable
+!
+interface Port-channel2
+ switchport trunk allowed vlan 200,300,400,410,1000
+ switchport mode trunk
+ speed nonegotiate
+ no port-channel standalone-disable
+!
+interface Port-channel4
+ switchport access vlan 410
+ switchport trunk allowed vlan 200,300,400,410,1000
+ switchport mode trunk
+!
+interface Port-channel5
+ switchport trunk allowed vlan 200,300,400,410,1000
+ switchport mode trunk
+!
+interface Port-channel6
+ switchport access vlan 1000
+ switchport trunk allowed vlan 200,300,400,410,1000
+ switchport mode trunk
+!
+interface GigabitEthernet0/1
+ description air
+ switchport trunk allowed vlan 200,300,400
+ switchport trunk native vlan 200
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+ description air
+ switchport trunk allowed vlan 200,300,400
+ switchport trunk native vlan 200
+ switchport mode trunk
+!
+interface GigabitEthernet0/3
+ description air
+ switchport trunk allowed vlan 200,300,400
+ switchport trunk native vlan 200
+ switchport mode trunk
+!
+interface GigabitEthernet0/4
+ description air
+ switchport trunk allowed vlan 200,300,400
+ switchport trunk native vlan 200
+ switchport mode trunk
+!
+interface GigabitEthernet0/5
+ description air
+ switchport trunk allowed vlan 200,300,400
+ switchport trunk native vlan 200
+ switchport mode trunk
+!
+interface GigabitEthernet0/6
+ description air
+ switchport trunk allowed vlan 200,300,400
+ switchport trunk native vlan 200
+ switchport mode trunk
+!
+interface GigabitEthernet0/7
+ description air
+ switchport trunk allowed vlan 200,300,400
+ switchport trunk native vlan 200
+ switchport mode trunk
+!
+interface GigabitEthernet0/8
+ description air
+ switchport trunk allowed vlan 200,300,400
+ switchport trunk native vlan 200
+ switchport mode trunk
+!
+interface GigabitEthernet0/9
+ switchport trunk allowed vlan 200,300,400,410,1000
+ switchport mode trunk
+ lacp rate fast
+ channel-protocol lacp
+ channel-group 1 mode active
+!
+interface GigabitEthernet0/10
+ switchport trunk allowed vlan 200,300,400,410,1000
+ switchport mode trunk
+ lacp rate fast
+ channel-protocol lacp
+ channel-group 1 mode active
+!
+interface GigabitEthernet0/11
+ switchport trunk allowed vlan 200,300,400,410,1000
+ switchport mode trunk
+ lacp rate fast
+ channel-protocol lacp
+ channel-group 2 mode active
+!
+interface GigabitEthernet0/12
+ switchport trunk allowed vlan 200,300,400,410,1000
+ switchport mode trunk
+ lacp rate fast
+ channel-protocol lacp
+ channel-group 2 mode active
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan1000
+ ip dhcp client client-id ascii rk-srhp25a4
+ ip address dhcp
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 dhcp
+ip ssh authentication-retries 5
+ip ssh version 2
+!
+ip access-list extended r-mgmt
+ deny   ip any any
+!
+!
+ip prefix-list our4p seq 5 permit 10.33.0.0/16 le 32
+ip sla enable reaction-alerts
+logging host 10.33.136.14
+access-list 1 permit 10.33.100.0 0.0.0.255
+access-list 1 permit 10.33.1.0 0.0.0.255
+access-list 1 permit 10.33.0.0 0.0.0.255
+access-list 1 permit 10.33.128.0 0.0.127.255
+!
+!
+snmp-server community [~REDACTED:dgst=peVe40DhSUw~] RO
+!
+line con 0
+ login local
+ stopbits 1
+line vty 0 4
+ access-class 1 in
+ privilege level 15
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+ntp server 216.239.35.0
+ntp server 216.239.35.8
+ntp server 216.239.35.4
+ntp server 216.239.35.12
+!
+end
+

@@ -1,0 +1,1485 @@
+# Hostname: br-01-nrt
+# Model: srx300
+# Junos: 24.2R1-S2.5
+# JUNOS Software Release [24.2R1-S2.5]
+# Hardware inventory:
+# Item             Version  Part number  Serial number     Description
+# Chassis                                CV0417AF0111      SRX300
+# Routing Engine   REV 0x08 650-065039   CV0417AF0111      RE-SRX300
+# FPC 0                     BUILTIN      BUILTIN           FPC
+#   PIC 0                                                  6xGE,2xGE SFP Base PIC
+# Power Supply 0
+## Last commit: 2026-10-14 13:25:21 UTC by rk
+version 24.2R1-S2.5;
+groups {
+    /* https://scrapbox.io/rknet/2024_%E6%97%A5%E6%AC%A1%E3%82%BF%E3%82%B9%E3%82%AF */
+    disconnecting-ngn {
+        policy-options {
+            policy-statement groups-disconnecting-ngn-trigger {
+                term trigger {
+                    then {
+                        local-preference 0;
+                    }
+                }
+            }
+        }
+        protocols {
+            bgp {
+                group venue-private {
+                    graceful-shutdown {
+                        sender;
+                    }
+                }
+                group venue-public {
+                    graceful-shutdown {
+                        sender;
+                    }
+                }
+            }
+        }
+    }
+    policy-skip-when-local-pref-is-zero {
+        policy-options {
+            policy-statement <*> {
+                term skip-when-local-pref-is-zero {
+                    from local-preference 0;
+                    then next policy;
+                }
+            }
+        }
+    }
+}
+system {
+    host-name br-01-nrt;
+    root-authentication {
+        /* rk for rk26net - rkroot is rkroot user */
+        encrypted-password "[~REDACTED:dgst=k6UcN3ljJGk~]"; ## SECRET-DATA
+    }
+    login {
+        idle-timeout 30;
+        class glazed {
+            permissions [ secret view view-configuration ];
+        }
+        user glazed {
+            uid 3001;
+            class glazed;
+            authentication {
+                ssh-ed25519 "[~REDACTED:dgst=UVPdq5F9m98~]"; ## SECRET-DATA
+            }
+        }
+        user rk {
+            uid 2001;
+            class super-user;
+            authentication {
+                /* rk26net */
+                encrypted-password "[~REDACTED:dgst=k6UcN3ljJGk~]"; ## SECRET-DATA
+                /* https://github.com/hokkai7go.keys */
+                ssh-rsa "[~REDACTED:dgst=WPdj_m8o9Bk~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=7jAcKLBuixE~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=FMTx4iPlp6Q~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=TJhobdCEG1Y~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=0GheIqjQxfI~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ecdsa "[~REDACTED:dgst=Fc0Sz2grHrk~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ecdsa "[~REDACTED:dgst=PMg_IaYggmU~]"; ## SECRET-DATA
+                /* https://github.com/hanazuki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=GVC4LV_-bfo~]"; ## SECRET-DATA
+                /* https://github.com/nna774.keys */
+                ssh-ed25519 "[~REDACTED:dgst=o-MbaR3AzSk~]"; ## SECRET-DATA
+                /* https://github.com/unasuke.keys */
+                ssh-ed25519 "[~REDACTED:dgst=o28YArcLnRc~]"; ## SECRET-DATA
+                /* https://github.com/unasuke.keys */
+                ssh-ed25519 "[~REDACTED:dgst=bqBhXT5EV7w~]"; ## SECRET-DATA
+                /* https://github.com/unasuke.keys */
+                ssh-ed25519 "[~REDACTED:dgst=_ibsmgFFCNM~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=v_2aFh91u1o~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=kPNs-GJc7ls~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=mzcFbcBk3SI~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=fvKt3fyRj14~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=mDiJr-cD4bA~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=tf62vVypD-4~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=cmYzzmO_d8I~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=IFBvQDxtC58~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=VDzl-XwpelU~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=puKrDZ-wqZA~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=vNKJQM8u9oQ~]"; ## SECRET-DATA
+                /* https://github.com/terfno.keys */
+                ssh-ed25519 "[~REDACTED:dgst=iagc4nWFIRo~]"; ## SECRET-DATA
+                /* https://github.com/terfno.keys */
+                ssh-ed25519 "[~REDACTED:dgst=XzY1pgUCufU~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=iKrJaTqn0_o~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Rtww-yDnbOQ~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Bl4rR0StmLs~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Svt1qIDMoCA~]"; ## SECRET-DATA
+                /* https://github.com/gotti.keys */
+                ssh-ed25519 "[~REDACTED:dgst=BfKhzrpQvGo~]"; ## SECRET-DATA
+                /* https://github.com/gotti.keys */
+                ssh-ed25519 "[~REDACTED:dgst=uFzzhxlX8Kc~]"; ## SECRET-DATA
+                /* https://github.com/Little-Rubyist.keys */
+                ssh-ed25519 "[~REDACTED:dgst=OVvU-TRWTrk~]"; ## SECRET-DATA
+                /* https://github.com/pastak.keys */
+                ssh-ed25519 "[~REDACTED:dgst=qpOF3d-FrF8~]"; ## SECRET-DATA
+                /* https://github.com/pastak.keys */
+                ssh-ed25519 "[~REDACTED:dgst=148wX5MSwlA~]"; ## SECRET-DATA
+                /* https://github.com/ayatk.keys */
+                ssh-ed25519 "[~REDACTED:dgst=GOwXLOFeO3Y~]"; ## SECRET-DATA
+                /* https://github.com/walnuts1018.keys */
+                ssh-ed25519 "[~REDACTED:dgst=3UOnk-w8dYc~]"; ## SECRET-DATA
+                /* https://github.com/walnuts1018.keys */
+                ssh-ed25519 "[~REDACTED:dgst=hL5wqNV4Q2I~]"; ## SECRET-DATA
+                /* https://github.com/Retasusan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=e492lLkdM8A~]"; ## SECRET-DATA
+                /* https://github.com/Retasusan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=G_yNOERSBNk~]"; ## SECRET-DATA
+                /* https://github.com/kawaemon.keys */
+                ssh-ed25519 "[~REDACTED:dgst=H39UCOixnGI~]"; ## SECRET-DATA
+                /* https://github.com/kawaemon.keys */
+                ssh-ed25519 "[~REDACTED:dgst=1zdSpcZJyFU~]"; ## SECRET-DATA
+                /* https://github.com/rokuosan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=z3OKn2OIqyg~]"; ## SECRET-DATA
+                /* https://github.com/rokuosan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=cMA0cgEjXxU~]"; ## SECRET-DATA
+                /* https://github.com/itochan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=phrS_P5OtGk~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ed25519 "[~REDACTED:dgst=SPPOHZ8b4A4~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Bh2XMiVEMr4~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ed25519 "[~REDACTED:dgst=1-SjTK00SdQ~]"; ## SECRET-DATA
+            }
+        }
+        user rkroot {
+            uid 2002;
+            class super-user;
+            authentication {
+                encrypted-password "[~REDACTED:dgst=rN9ikPYrVRA~]"; ## SECRET-DATA
+            }
+        }
+    }
+    services {
+        netconf {
+            ssh;
+        }
+        ssh {
+            root-login deny;
+            protocol-version v2;
+            ciphers [ "aes256-gcm@openssh.com" "aes128-gcm@openssh.com" aes256-ctr aes192-ctr aes128-ctr ];
+            macs [ hmac-sha2-256 hmac-sha2-512 ];
+            key-exchange [ ecdh-sha2-nistp521 ecdh-sha2-nistp384 ecdh-sha2-nistp256 curve25519-sha256 group-exchange-sha2 ];
+            hostkey-algorithm-list {
+                ecdsa-sha2-nistp521;
+                ed25519;
+            }
+        }
+    }
+    domain-name f.rubykaigi.net;
+    time-zone UTC;
+    default-address-selection;
+    no-redirects;
+    internet-options {
+        tcp-drop-synfin-set;
+        no-tcp-reset drop-all-tcp;
+    }
+    name-server {
+        192.50.220.164;
+        192.50.220.165;
+    }
+    syslog {
+        archive {
+            size 100k;
+            files 3;
+        }
+        user * {
+            any emergency;
+        }
+        host syslog.rubykaigi.net {
+            any info;
+            allow-duplicates;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+    }
+    max-configurations-on-flash 10;
+    max-configuration-rollbacks 5;
+    ntp {
+        server 2001:4860:4806::;
+        server 2001:4860:4806:4::;
+        server 2001:4860:4806:8::;
+        server 2001:4860:4806:c::;
+    }
+}
+chassis {
+    aggregated-devices {
+        ethernet {
+            device-count 6;
+        }
+    }
+}
+security {
+    forwarding-options {
+        family {
+            inet {
+                mode packet-based;
+            }
+            inet6 {
+                mode packet-based;
+            }
+            mpls {
+                mode packet-based;
+            }
+        }
+    }
+}
+interfaces {
+    ge-0/0/0 {
+        description "Downstream: Gi1@tun-01";
+        vlan-tagging;
+        mtu 1390;
+        unit 10 {
+            description "Downstream: ge-0/0/5.20@er-01.venue via Gi0.10@tun-01 [etherip-ipsec]";
+            vlan-id 10;
+            family inet {
+                address 10.33.22.22/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:22::a/124;
+            }
+        }
+        unit 11 {
+            description "Downstream: ge-0/0/5.21@er-01.venue via Gi0.11@tun-01 [etherip]";
+            vlan-id 11;
+            family inet {
+                filter {
+                    input downstream-public-in4;
+                }
+                address 10.33.22.24/31;
+            }
+            family inet6 {
+                filter {
+                    input downstream-public-in6;
+                }
+                address 2001:df0:8500:ca22:24::a/124;
+            }
+        }
+        unit 20 {
+            description "Downstream: ge-0/0/5.20@er-02.venue via Gi0.20@tun-01 [etherip-ipsec]";
+            vlan-id 20;
+            family inet {
+                address 10.33.22.26/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:26::a/124;
+            }
+        }
+        unit 21 {
+            description "Downstream: ge-0/0/5.21@er-02.venue via Gi0.21@tun-01 [etherip]";
+            vlan-id 21;
+            family inet {
+                filter {
+                    input downstream-public-in4;
+                }
+                address 10.33.22.28/31;
+            }
+            family inet6 {
+                filter {
+                    input downstream-public-in6;
+                }
+                address 2001:df0:8500:ca22:28::a/124;
+            }
+        }
+        unit 30 {
+            disable;
+            description "Downstream: Gi0.30@tun-01 {VACANT}";
+            vlan-id 30;
+        }
+        unit 98 {
+            description "Downstream: ge-0/0/5.98@er-99.tkyk via Gi0.31@tun-01 [etherip-ipsec]";
+            vlan-id 98;
+            family inet {
+                address 10.33.22.200/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:200::a/124;
+            }
+        }
+        unit 99 {
+            description "Downstream: ge-0/0/5.99@er-99.tkyk via Gi0.32@tun-01 [etherip-ipsec]";
+            vlan-id 99;
+            family inet {
+                filter {
+                    input downstream-public-in4;
+                }
+                address 10.33.22.202/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:202::a/124;
+            }
+        }
+    }
+    ip-0/0/0 {
+        unit 661 {
+            description "tun-nrt@ip6gw-c001.apne1";
+            tunnel {
+                source 2001:0df0:8500:ca00::2;
+                destination 2406:da14:dfe:c0c1::66:1;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:6612::a/124;
+            }
+        }
+        unit 662 {
+            description "tun-nrt@ip6gw-d001.apne1";
+            tunnel {
+                source 2001:0df0:8500:ca00::2;
+                destination 2406:da14:dfe:c0d1::66:1;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:6622::a/124;
+            }
+        }
+    }
+    ge-0/0/1 {
+        description "Core: Gi1:1@tun-01";
+        vlan-tagging;
+        mtu 1390;
+        unit 1 {
+            description "Core: Gi1.1@tun-01";
+            vlan-id 1;
+            family inet {
+                filter {
+                    input aws-in4;
+                }
+                address 10.33.22.162/31;
+            }
+        }
+        inactive: unit 9 {
+            description "Core: Gi98.0@br-01.hnd.rk23 via Gi1.9@tun-01 tmp=migration";
+            vlan-id 9;
+            family inet {
+                address 10.33.22.59/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:58::b/124;
+            }
+        }
+        unit 11 {
+            description "Core: ge-0/0/1.12@br-01.hnd via Gi1.11@tun-01 [etherip-ipsec]";
+            vlan-id 11;
+            family inet {
+                address 10.33.22.9/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:8::b/124;
+            }
+        }
+        unit 13 {
+            description "Core: ge-0/0/1.12@br-01.itm via Gi1.13@tun-01 [etherip-ipsec]";
+            vlan-id 13;
+            family inet {
+                address 10.33.22.10/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:10::a/124;
+            }
+        }
+        unit 31 {
+            description "Function: Gi2.31@tun-01.nrt {vrf=awsnat}";
+            vlan-id 31;
+            family inet {
+                address 10.33.22.72/31;
+            }
+        }
+        unit 32 {
+            description "Function: Gi2.32@tun-01.nrt {vrf=awsnat}";
+            vlan-id 32;
+            family inet {
+                address 10.33.22.74/31;
+            }
+        }
+    }
+    ge-0/0/2 {
+        description "Downstream: Gi0@recon-01.nrt";
+        vlan-tagging;
+        unit 1 {
+            description "Downstream: Gi0.1@recon-01.nrt [v4private+v6all]";
+            vlan-id 1;
+            family inet {
+                address 10.33.22.76/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:76::a/127;
+            }
+        }
+        unit 2 {
+            description "Downstream: Gi0.2@recon-01.nrt [v4public]";
+            vlan-id 2;
+            family inet {
+                address 10.33.22.78/31;
+            }
+        }
+    }
+    ge-0/0/3 {
+        description "TMP: ge-0/0/47@test-cs-01.nrt";
+        unit 0 {
+            family inet {
+                address 10.33.22.158/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:158::a/127;
+            }
+        }
+    }
+    ge-0/0/4 {
+        disable;
+    }
+    ge-0/0/5 {
+        description "Transit: rola.kmc";
+        unit 0 {
+            family inet {
+                filter {
+                    input border-in4;
+                }
+                address 192.50.220.155/31;
+            }
+            family inet6 {
+                filter {
+                    input border-in6;
+                }
+                address 2001:0df0:8500:ca2b::b/64;
+            }
+        }
+    }
+    ge-0/0/6 {
+        disable;
+    }
+    ge-0/0/7 {
+        disable;
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                filter {
+                    input loopback-in4;
+                }
+                address 10.33.0.2/32;
+            }
+            family inet6 {
+                filter {
+                    input loopback-in6;
+                }
+                address 2001:0df0:8500:ca00::2/128;
+            }
+        }
+    }
+}
+snmp {
+    filter-interfaces {
+        interfaces {
+            "\.0$";
+        }
+        all-internal-interfaces;
+    }
+    stats-cache-lifetime 59;
+    community [~REDACTED:dgst=peVe40DhSUw~] {
+        authorization read-only;
+    }
+}
+policy-options {
+    prefix-list awsnat-nat-inside {
+        10.33.136.53/32;
+        10.33.152.53/32;
+        10.33.164.30/32;
+        10.33.164.62/32;
+    }
+    prefix-list awsnat-nat-outside {
+        192.50.220.158/32;
+        192.50.220.159/32;
+        192.50.220.164/32;
+        192.50.220.165/32;
+    }
+    prefix-list bogon4 {
+        10.0.0.0/8;
+        100.64.0.0/10;
+        127.0.0.0/8;
+        169.254.0.0/16;
+        172.16.0.0/12;
+        192.0.2.0/24;
+        192.168.0.0/16;
+        198.18.0.0/15;
+        198.51.100.0/24;
+        203.0.113.0/24;
+        224.0.0.0/3;
+    }
+    prefix-list bogon6 {
+        ::/96;
+        ::1/128;
+        ::ffff:0:0/96;
+        100::/64;
+        2001:2::/48;
+        2001:db8::/32;
+        fc00::/7;
+        fec0::/10;
+        ff00::/8;
+    }
+    prefix-list link4 {
+        10.33.22.0/24;
+        192.50.220.152/29;
+    }
+    prefix-list link6 {
+        2001:df0:8500:ca20::/60;
+        fe80::/64;
+    }
+    prefix-list mgmt4 {
+        10.33.0.0/24;
+        10.33.1.0/24;
+        10.33.128.0/17;
+        192.50.220.152/32;
+        192.50.220.154/32;
+        192.50.220.156/32;
+    }
+    prefix-list mgmt6 {
+        2001:0df0:8500:ca00::/64;
+        2001:0df0:8500:caa0::/64;
+        2001:0df0:8500:cab0::/64;
+        2406:da14:dfe:c000::/56;
+    }
+    prefix-list pa6 {
+        2001:df0:8500:ca00::/56;
+    }
+    prefix-list private4 {
+        10.33.0.0/16;
+        10.33.0.0/17;
+        10.33.128.0/18;
+    }
+    prefix-list private6 {
+        2001:df0:8500:ca00::/56;
+        2406:da14:dfe:c000::/56;
+    }
+    prefix-list public4 {
+        192.50.220.152/29;
+        192.50.220.160/29;
+        192.50.220.168/29;
+    }
+    prefix-list public6 {
+        2406:da14:dfe:c02f:ffff::/127;
+    }
+    policy-statement accept {
+        then accept;
+    }
+    policy-statement aws-local-pref-hi {
+        then {
+            community add AWS:LOCAL_PREF_HIGH;
+        }
+    }
+    policy-statement aws-local-pref-low {
+        then {
+            community add AWS:LOCAL_PREF_LOW;
+        }
+    }
+    policy-statement aws-local-pref-med {
+        then {
+            community add AWS:LOCAL_PREF_MEDIUM;
+        }
+    }
+    policy-statement awsnat-in_leak {
+        term awsvpc {
+            from {
+                instance master;
+                family inet;
+                as-path awsvpc;
+            }
+            then accept;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement awsnat-out_leak {
+        term default {
+            from {
+                instance master;
+                family inet;
+                route-filter 0.0.0.0/0 exact;
+            }
+            then accept;
+        }
+        term private4 {
+            from {
+                instance master;
+                family inet;
+                prefix-list-filter private4 orlonger;
+            }
+            then accept;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement awsnat_accept-nat-outside {
+        term accept-nat-outside {
+            from {
+                route-filter 192.50.220.0/24 prefix-length-range /32-/32;
+            }
+            then {
+                local-preference 100;
+                community add RK:AWSNAT_OUTSIDE;
+                accept;
+            }
+        }
+    }
+    policy-statement awsnat_accept-vpc {
+        term accept-vpc {
+            from as-path awsvpc;
+            then accept;
+        }
+    }
+    policy-statement bb-aggregate-filter {
+        term default4 {
+            from {
+                route-filter 0.0.0.0/0 exact;
+            }
+            then next policy;
+        }
+        term default6 {
+            from {
+                route-filter ::/0 exact;
+            }
+            then next policy;
+        }
+        term private4 {
+            from {
+                family inet;
+                prefix-list-filter private4 exact;
+            }
+            then next policy;
+        }
+        term private6 {
+            from {
+                family inet6;
+                prefix-list-filter private6 exact;
+            }
+            then next policy;
+        }
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term public6 {
+            from {
+                family inet6;
+                prefix-list-filter public6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement bb-filter {
+        term default4 {
+            from {
+                route-filter 0.0.0.0/0 exact;
+            }
+            then next policy;
+        }
+        term default6 {
+            from {
+                route-filter ::/0 exact;
+            }
+            then next policy;
+        }
+        term private4 {
+            from {
+                family inet;
+                prefix-list-filter private4 orlonger;
+            }
+            then next policy;
+        }
+        term private6 {
+            from {
+                family inet6;
+                prefix-list-filter private6 orlonger;
+            }
+            then next policy;
+        }
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term public6 {
+            from {
+                family inet6;
+                prefix-list-filter public6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement default-filter {
+        term default4 {
+            from {
+                family inet;
+                route-filter 0.0.0.0/0 exact;
+            }
+            then next policy;
+        }
+        term default6 {
+            from {
+                family inet6;
+                route-filter ::/0 exact;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement ecmp {
+        then {
+            load-balance per-packet;
+        }
+    }
+    policy-statement enable-multipath {
+        term multipath {
+            then {
+                load-balance consistent-hash;
+            }
+        }
+    }
+    policy-statement export-multipath {
+        term multipath {
+            then {
+                load-balance per-flow;
+            }
+        }
+    }
+    /* see groups disconnecting-ngn */
+    policy-statement groups-disconnecting-ngn-trigger {
+        then next policy;
+    }
+    policy-statement keepaway-1x {
+        term prepend {
+            then {
+                as-path-expand last-as count 1;
+            }
+        }
+    }
+    policy-statement leak {
+        term awsnat-nat-outside {
+            from {
+                instance awsnat-out;
+                family inet;
+                prefix-list awsnat-nat-outside;
+            }
+            then accept;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement local-pref-lo {
+        apply-groups policy-skip-when-local-pref-is-zero;
+        then {
+            local-preference 90;
+        }
+    }
+    policy-statement private-filter {
+        term private4 {
+            from {
+                family inet;
+                prefix-list-filter private4 orlonger;
+            }
+            then next policy;
+        }
+        term private6 {
+            from {
+                family inet6;
+                prefix-list-filter private6 orlonger;
+            }
+            then next policy;
+        }
+        term awsnat-outside4 {
+            from {
+                family inet;
+                community RK:AWSNAT_OUTSIDE;
+            }
+            then accept;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement public-filter {
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term public6 {
+            from {
+                family inet6;
+                prefix-list-filter public6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement reject {
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement transit-out-filter {
+        term resolver-lb {
+            from {
+                family inet;
+                route-filter 192.50.220.164/31 orlonger;
+            }
+            then reject;
+        }
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term pa6 {
+            from {
+                family inet6;
+                prefix-list-filter pa6 exact;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement venue-filter {
+        term no-venue {
+            from community RK:NO_VENUE;
+            then reject;
+        }
+        term next {
+            then next policy;
+        }
+    }
+    community AWS:LOCAL_PREF_HIGH members 7224:7300;
+    community AWS:LOCAL_PREF_LOW members 7224:7100;
+    community AWS:LOCAL_PREF_MEDIUM members 7224:7200;
+    community RK:AWSNAT_OUTSIDE members 65000:44;
+    community RK:NO_VENUE members 65000:6010;
+    as-path awsvpc ".* 64512";
+}
+firewall {
+    family inet {
+        filter aws-in4 {
+            term awsnat-vrf {
+                from {
+                    source-prefix-list {
+                        awsnat-nat-inside;
+                    }
+                }
+                then {
+                    routing-instance awsnat-in;
+                }
+            }
+            term accept {
+                then accept;
+            }
+        }
+        filter border-in4 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link4;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon {
+                from {
+                    source-prefix-list {
+                        bogon4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter downstream-public-in4 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link4;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon-src {
+                from {
+                    source-prefix-list {
+                        bogon4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term discard-bogon-dst {
+                from {
+                    destination-prefix-list {
+                        bogon4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term discard-private-src {
+                from {
+                    source-prefix-list {
+                        private4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term discard-private-dst {
+                from {
+                    destination-prefix-list {
+                        private4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter loopback-in4 {
+            term icmp {
+                from {
+                    protocol icmp;
+                }
+                then accept;
+            }
+            term return-tcp {
+                from {
+                    protocol tcp;
+                    tcp-established;
+                }
+                then accept;
+            }
+            term management {
+                from {
+                    source-prefix-list {
+                        mgmt4;
+                    }
+                    destination-port [ snmp ssh ];
+                }
+                then accept;
+            }
+            term udp-apps {
+                from {
+                    protocol udp;
+                    source-port [ domain ntp ];
+                }
+                then accept;
+            }
+            term bgp {
+                from {
+                    source-prefix-list {
+                        link4;
+                    }
+                    protocol tcp;
+                    destination-port bgp;
+                }
+                then accept;
+            }
+            /* KB11436: https://supportportal.juniper.net/s/article/Junos-Why-does-the-Network-Time-Protocol-NTP-stop-working-if-a-loopback-firewall-filter-is-applied?language=en_US */
+            term ntp-management {
+                from {
+                    source-address {
+                        10.33.0.2/32;
+                    }
+                    destination-port ntp;
+                }
+                then accept;
+            }
+            term discard-all {
+                then {
+                    discard;
+                }
+            }
+        }
+    }
+    family inet6 {
+        filter border-in6 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link6;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon {
+                from {
+                    source-prefix-list {
+                        bogon6;
+                    }
+                }
+                then discard;
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter downstream-public-in6 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link6;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon-src {
+                from {
+                    source-prefix-list {
+                        bogon6;
+                    }
+                }
+                then discard;
+            }
+            term discard-bogon-dst {
+                from {
+                    destination-prefix-list {
+                        bogon6;
+                    }
+                }
+                then discard;
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter loopback-in6 {
+            term icmp {
+                from {
+                    next-header icmp6;
+                }
+                then accept;
+            }
+            term return-tcp {
+                from {
+                    next-header tcp;
+                    tcp-established;
+                }
+                then accept;
+            }
+            term management {
+                from {
+                    source-prefix-list {
+                        mgmt6;
+                    }
+                    destination-port [ snmp ssh ];
+                }
+                then accept;
+            }
+            term udp-apps {
+                from {
+                    next-header udp;
+                    source-port [ domain ntp ];
+                }
+                then accept;
+            }
+            term bgp {
+                from {
+                    source-prefix-list {
+                        link6;
+                    }
+                    next-header tcp;
+                    destination-port bgp;
+                }
+                then accept;
+            }
+            term discard-all {
+                then discard;
+            }
+            term ntp-management {
+                from {
+                    destination-port ntp;
+                }
+            }
+        }
+    }
+}
+routing-instances {
+    awsnat-in {
+        protocols {
+            bgp {
+                group in {
+                    import [ default-filter accept ];
+                    family inet {
+                        unicast;
+                    }
+                    export [ awsnat_accept-vpc reject ];
+                    neighbor 10.33.22.73 {
+                        peer-as 65152;
+                    }
+                }
+                metric-out 100;
+                preference 100;
+                hold-time 30;
+            }
+        }
+        interface ge-0/0/1.31;
+        instance-type virtual-router;
+        routing-options {
+            autonomous-system {
+                65401;
+                independent-domain {
+                    no-attrset;
+                }
+            }
+            instance-import awsnat-in_leak;
+        }
+    }
+    awsnat-out {
+        protocols {
+            bgp {
+                group out {
+                    import [ keepaway-1x awsnat_accept-nat-outside reject ];
+                    family inet {
+                        unicast;
+                    }
+                    export [ default-filter accept ];
+                    neighbor 10.33.22.75 {
+                        peer-as 65152;
+                    }
+                }
+                metric-out 100;
+                preference 100;
+                hold-time 30;
+            }
+        }
+        interface ge-0/0/1.32;
+        instance-type virtual-router;
+        routing-options {
+            autonomous-system {
+                65402;
+                independent-domain {
+                    no-attrset;
+                }
+            }
+            instance-import awsnat-out_leak;
+        }
+    }
+}
+protocols {
+    bgp {
+        group transit {
+            import [ default-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ transit-out-filter accept ];
+            neighbor 2001:0df0:8500:ca2b::a {
+                description "Transit: AS59128 KMC, rola.srh";
+                family inet {
+                    unicast {
+                        local-ipv4-address 192.50.220.155;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 59128;
+                local-as 4264600033 loops 2;
+            }
+        }
+        group bb {
+            import [ bb-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ bb-filter accept ];
+            neighbor 2001:df0:8500:ca22:8::a {
+                description "Core: ge-0/0/1.12@br-01.hnd";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.9;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65001;
+            }
+            neighbor 2001:df0:8500:ca22:10::b {
+                description "Core: ge-0/0/1.12@br-01.itm";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.10;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65003;
+            }
+        }
+        group tun {
+            import [ bb-filter local-pref-lo accept ];
+            family inet {
+                unicast;
+            }
+            export [ bb-filter aws-local-pref-low accept ];
+            neighbor 10.33.22.163 {
+                description "Core: GigaEthernet2.1@tun-01.nrt";
+                peer-as 65152;
+            }
+        }
+        group venue-private {
+            import [ private-filter enable-multipath groups-disconnecting-ngn-trigger accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ private-filter venue-filter accept ];
+            neighbor 2001:df0:8500:ca22:22::b {
+                description "Downstream: ge-0/0/5.20@er-01.venue [etherip-ipsec]";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.22;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65010;
+            }
+            neighbor 2001:df0:8500:ca22:26::b {
+                description "Downstream: ge-0/0/5.20@er-02.venue [etherip-ipsec]";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.26;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65010;
+            }
+            neighbor 2001:df0:8500:ca22:200::b {
+                description "Downstream: ge-0/0/5.98@er-99.tkyk";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.200;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65090;
+            }
+        }
+        group venue-public {
+            import [ public-filter enable-multipath groups-disconnecting-ngn-trigger accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ default-filter venue-filter accept ];
+            /* this is required for ECMP from downstream / `private` is mandatory to avoid AS path loop on BRs for re-advertised routes from other BRs */
+            local-as 65000 private no-prepend-global-as;
+            neighbor 2001:df0:8500:ca22:24::b {
+                description "Downstream: ge-0/0/5.21@er-01.venue [etherip]";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.24;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65010;
+            }
+            neighbor 2001:df0:8500:ca22:28::b {
+                description "Downstream: ge-0/0/5.21@er-02.venue [etherip]";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.28;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65010;
+            }
+            neighbor 2001:df0:8500:ca22:202::b {
+                description "Downstream: ge-0/0/5.99@er-99.tkyk";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.202;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65090;
+                local-as 65002;
+            }
+        }
+        inactive: group venue-backup {
+            import [ bb-filter local-pref-lo accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ bb-filter accept ];
+            local-as 65000 private no-prepend-global-as;
+        }
+        inactive: group vpc-v6gw {
+            import [ private-filter accept ];
+            family inet6 {
+                unicast;
+            }
+            export [ default-filter accept ];
+            peer-as 64566;
+            neighbor 2001:df0:8500:ca22:6612::b;
+            neighbor 2001:df0:8500:ca22:6622::b;
+        }
+        group recon {
+            description "Downstream: recon-01.nrt {scout}";
+            family inet {
+                unicast;
+            }
+            peer-as 65172;
+            neighbor 10.33.22.77 {
+                description "Downstream: ge-0/0/2.1, Gi0.1@recon-01.nrt  [v4private+v6all]";
+                import [ private-filter accept ];
+                export [ private-filter venue-filter accept ];
+            }
+            neighbor 10.33.22.79 {
+                description "Downstream: ge-0/0/2.2, Gi0.2@recon-01.nrt  [v4public]";
+                import [ public-filter accept ];
+                export [ default-filter accept ];
+            }
+        }
+        group test-cs {
+            import [ bb-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ private-filter venue-filter accept ];
+            peer-as 65038;
+            neighbor 2001:df0:8500:ca22:158::b {
+                description "TMP: ge-0/0/47@test-cs-01.nrt";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.158;
+                    }
+                }
+                family inet6 {
+                    unicast {
+                        export [ bb-filter accept ];
+                    }
+                }
+            }
+        }
+        metric-out 100;
+        preference 100;
+        hold-time 30;
+        multipath;
+    }
+    lldp {
+        port-id-subtype interface-name;
+        neighbour-port-info-display port-id;
+        interface all;
+    }
+}
+routing-options {
+    rib inet6.0 {
+        static {
+            route 2001:0df0:8500:ca00::/56 discard;
+            route 2001:df0:8500:ca37::/64 next-hop 2001:df0:8500:ca22:76::b;
+            route 2001:df0:8500:ca38::/64 next-hop 2001:df0:8500:ca22:76::b;
+        }
+    }
+    router-id 10.33.0.2;
+    autonomous-system 65002;
+    static {
+        route 10.33.0.0/16 discard;
+        route 10.33.0.0/17 discard;
+        route 192.50.220.152/29 discard;
+        route 192.50.220.160/29 discard;
+        route 192.50.220.168/29 discard;
+    }
+    instance-import leak;
+    forwarding-table {
+        export export-multipath;
+    }
+}

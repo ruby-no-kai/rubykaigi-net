@@ -1,0 +1,495 @@
+! NEC Portable Internetwork Core Operating System Software
+! IX Series IX2105 (magellan-sec) Software, Version 10.2.42, RELEASE SOFTWARE
+! Compiled Sep 09-Fri-2022 13:40:53 JST #2
+!
+service password-encryption
+service ssl-protocol tls1.2-and-later
+!
+hostname recon-01-nrt
+timezone +00 00
+terminal suppress-emanon
+!
+logging buffered 131072
+logging subsystem aaa notice
+logging subsystem acl notice
+logging subsystem arp notice
+logging subsystem bgp notice
+logging subsystem brs notice
+logging subsystem circ notice
+logging subsystem cmda notice
+logging subsystem cnfg notice
+logging subsystem d1x notice
+logging subsystem ddns notice
+logging subsystem dh6 notice
+logging subsystem dhc notice
+logging subsystem dhr notice
+logging subsystem dhs notice
+logging subsystem dns notice
+logging subsystem dqos notice
+logging subsystem eap notice
+logging subsystem env notice
+logging subsystem eth notice
+logging subsystem flt notice
+logging subsystem gptl notice
+logging subsystem gw notice
+logging subsystem hrdf notice
+logging subsystem http notice
+logging subsystem icmp notice
+logging subsystem icp6 notice
+logging subsystem ids notice
+logging subsystem igmp notice
+logging subsystem ike notice
+logging subsystem ike2 notice
+logging subsystem ip notice
+logging subsystem ip6 notice
+logging subsystem ipwc notice
+logging subsystem irb notice
+logging subsystem key notice
+logging subsystem ktsa notice
+logging subsystem l2tp notice
+logging subsystem lnkm notice
+logging subsystem maca notice
+logging subsystem macl notice
+logging subsystem mape notice
+logging subsystem mflt notice
+logging subsystem nat notice
+logging subsystem ngna notice
+logging subsystem ngns notice
+logging subsystem ngnt notice
+logging subsystem nhrp notice
+logging subsystem nmc notice
+logging subsystem ntp notice
+logging subsystem opfc notice
+logging subsystem opft notice
+logging subsystem ospf notice
+logging subsystem pdn6 debug
+logging subsystem pdns debug
+logging subsystem pim notice
+logging subsystem ppoe notice
+logging subsystem ppp notice
+logging subsystem prte notice
+logging subsystem rad notice
+logging subsystem rip notice
+logging subsystem rip6 notice
+logging subsystem rmap notice
+logging subsystem sec notice
+logging subsystem snmp notice
+logging subsystem spf6 notice
+logging subsystem ssh notice
+logging subsystem tcp notice
+logging subsystem tels notice
+logging subsystem tftp notice
+logging subsystem udp notice
+logging subsystem udp6 notice
+logging subsystem urlf notice
+logging subsystem urll notice
+logging subsystem urlo notice
+logging subsystem vrrp notice
+logging subsystem weba notice
+logging subsystem webc notice
+logging subsystem wol notice
+logging timestamp datetime
+!
+syslog ip host 10.33.136.14
+syslog ip host 10.33.153.190
+syslog ip source 10.33.0.72
+syslog timestamp datetime
+!
+username rkroot password hash [~REDACTED:dgst=7UiznCYy6ww~] administrator
+username root password hash [~REDACTED:dgst=pZvhyDj6894~] administrator
+username rk password hash [~REDACTED:dgst=-whmVs3ksM4~] administrator
+username glazed password hash [~REDACTED:dgst=PqRrkcodmHo~] administrator
+!
+ntp server 2001:4860:4806::
+ntp server 2001:4860:4806:4::
+ntp server 2001:4860:4806:8::
+ntp server 2001:4860:4806:c::
+ntp interval 2000
+!
+!
+ip ufs-cache enable
+ip multipath per-flow
+ip route 192.50.220.164/32 10.33.22.76
+ip route 192.50.220.165/32 10.33.22.76
+ip route 192.50.220.172/32 Null0.0
+ip dhcp enable
+ip prefix-list pl-default 1 permit 0.0.0.0/0 max 0
+ip prefix-list pl-private 1 permit 10.33.0.0/16 max 32
+ip prefix-list pl-private-aggregate 1 permit 10.33.0.0/16 max 16
+ip prefix-list pl-private-aggregate 2 permit 10.33.0.0/17 max 17
+ip prefix-list pl-private-aggregate 3 permit 10.33.128.0/18 max 18
+ip prefix-list pl-public 1 permit 192.50.220.0/24 max 32
+ip access-list d-all deny ip src any dest any
+ip access-list d-bogon-dst deny ip src any dest 10.0.0.0/8
+ip access-list d-bogon-dst deny ip src any dest 172.16.0.0/12
+ip access-list d-bogon-dst deny ip src any dest 192.168.0.0/16
+ip access-list d-bogon-dst deny ip src any dest 100.64.0.0/10
+ip access-list d-bogon-dst deny ip src any dest 127.0.0.0/8
+ip access-list d-bogon-dst deny ip src any dest 169.254.0.0/16
+ip access-list d-bogon-dst deny ip src any dest 192.0.2.0/24
+ip access-list d-bogon-dst deny ip src any dest 198.18.0.0/15
+ip access-list d-bogon-dst deny ip src any dest 198.51.100.0/24
+ip access-list d-bogon-dst deny ip src any dest 203.0.113.0/24
+ip access-list d-bogon-dst deny ip src any dest 224.0.0.0/3
+ip access-list d-bogon-src deny ip src 10.0.0.0/8 dest any
+ip access-list d-bogon-src deny ip src 172.16.0.0/12 dest any
+ip access-list d-bogon-src deny ip src 192.168.0.0/16 dest any
+ip access-list d-bogon-src deny ip src 100.64.0.0/10 dest any
+ip access-list d-bogon-src deny ip src 127.0.0.0/8 dest any
+ip access-list d-bogon-src deny ip src 169.254.0.0/16 dest any
+ip access-list d-bogon-src deny ip src 192.0.2.0/24 dest any
+ip access-list d-bogon-src deny ip src 198.18.0.0/15 dest any
+ip access-list d-bogon-src deny ip src 198.51.100.0/24 dest any
+ip access-list d-bogon-src deny ip src 203.0.113.0/24 dest any
+ip access-list d-bogon-src deny ip src 224.0.0.0/3 dest any
+ip access-list d-op25b deny tcp src any sport any dest any dport eq 25
+ip access-list nat-inside sequence-mode 100
+ip access-list nat-inside 1 permit ip src 10.33.37.0/24 dest any
+ip access-list nat-inside 2 permit ip src 10.33.38.0/24 dest any
+ip access-list nat-inside 3 permit ip src 10.33.22.79/32 dest any
+ip access-list p-all permit ip src any dest any
+ip access-list p-dhcp permit udp src any sport range 67 68 dest any dport range 67 68
+ip access-list p-icmp permit icmp src any dest any
+ip access-list p-ipsec permit udp src any sport any dest any dport eq 500
+ip access-list p-ipsec permit udp src any sport any dest any dport eq 4500
+ip access-list p-ipsec permit udp src any sport any dest any dport eq 1701
+ip access-list p-ipsec permit 50 src any dest any
+ip access-list p-link permit ip src any dest 10.33.22.0/24
+ip access-list p-link permit ip src 10.33.22.0/24 dest any
+ip access-list p-ospf permit 89 src any dest any
+ip access-list p-tcpest permit tcp established src any sport any dest any dport any
+ip access-list p-to-gi2-1-1 permit ip src any dest 117.102.186.171/32
+ip access-list p-udpany permit udp src any sport any dest any dport any
+ip access-list r-mgmt permit ip src 192.50.220.153/32 dest any
+ip access-list r-mgmt permit ip src 192.50.220.152/32 dest any
+ip access-list r-mgmt permit ip src 10.33.128.0/17 dest any
+ip access-list r-mgmt permit ip src 10.33.100.0/24 dest any
+ip access-list r-mgmt permit ip src 10.33.1.0/24 dest any
+ip access-list r-mgmt permit ip src 10.33.0.0/24 dest any
+!
+!
+ipv6 ufs-cache enable
+ipv6 multipath per-flow
+ipv6 route default 2001:df0:8500:ca22:76::a
+ipv6 access-list d-all deny ip src any dest any
+ipv6 access-list d-bogon-dst deny ip src any dest ::/96
+ipv6 access-list d-bogon-dst deny ip src any dest ::1/128
+ipv6 access-list d-bogon-dst deny ip src any dest ::ffff:0:0/96
+ipv6 access-list d-bogon-dst deny ip src any dest 100::/64
+ipv6 access-list d-bogon-dst deny ip src any dest 2001:2::/48
+ipv6 access-list d-bogon-dst deny ip src any dest 2001:db8::/32
+ipv6 access-list d-bogon-dst deny ip src any dest fc00::/7
+ipv6 access-list d-bogon-dst deny ip src any dest fec0::/10
+ipv6 access-list d-bogon-dst deny ip src any dest ff00::/8
+ipv6 access-list d-bogon-src deny ip src ::/96 dest any
+ipv6 access-list d-bogon-src deny ip src ::1/128 dest any
+ipv6 access-list d-bogon-src deny ip src ::ffff:0:0/96 dest any
+ipv6 access-list d-bogon-src deny ip src 100::/64 dest any
+ipv6 access-list d-bogon-src deny ip src 2001:2::/48 dest any
+ipv6 access-list d-bogon-src deny ip src 2001:db8::/32 dest any
+ipv6 access-list d-bogon-src deny ip src fc00::/7 dest any
+ipv6 access-list d-bogon-src deny ip src fec0::/10 dest any
+ipv6 access-list d-bogon-src deny ip src ff00::/8 dest any
+ipv6 access-list d-op25b deny tcp src any sport any dest any dport eq 25
+ipv6 access-list inside permit ip src 2001:df0:8500:ca00::/56 dest any
+ipv6 access-list p-all permit ip src any dest any
+ipv6 access-list p-dns permit udp src any sport eq 53 dest any dport any
+ipv6 access-list p-dns permit tcp src any sport eq 53 dest any dport any
+ipv6 access-list p-etherip permit 97 src any dest any
+ipv6 access-list p-etherip permit 4 src any dest any
+ipv6 access-list p-etherip permit 41 src any dest any
+ipv6 access-list p-icmp permit icmp src any dest any
+ipv6 access-list p-ipsec permit udp src any sport any dest any dport eq 500
+ipv6 access-list p-ipsec permit udp src any sport any dest any dport eq 4500
+ipv6 access-list p-ipsec permit udp src any sport any dest any dport eq 1701
+ipv6 access-list p-ipsec permit 50 src any dest any
+ipv6 access-list p-ntp permit udp src any sport eq 123 dest any dport any
+ipv6 access-list p-tcpest permit tcp established src any sport any dest any dport any
+ipv6 access-list p-udpany permit udp src any sport any dest any dport any
+!
+!
+snmp-agent ip enable
+snmp-agent ip community [~REDACTED:dgst=peVe40DhSUw~]
+!
+bridge irb enable
+!
+!
+!
+!
+proxy-dns ip enable
+proxy-dns ip max-sessions 500
+proxy-dns ip query-response 20
+proxy-dns ip query-retries 2
+proxy-dns ip access-list nat-inside
+proxy-dns server 192.50.220.165 url-list rknet priority 101
+proxy-dns server 192.50.220.164 url-list rknet
+proxy-dns server 1.0.0.1 priority 51
+proxy-dns server 1.1.1.1 priority 50
+proxy-dns ipv6 enable
+proxy-dns ipv6 max-sessions 500
+proxy-dns ipv6 query-response 20
+proxy-dns ipv6 query-retries 2
+proxy-dns ipv6 access-list inside
+proxy-dns server 2606:4700:4700::1111 priority 11
+proxy-dns server 2606:4700:4700::1001 priority 10
+!
+!
+ssh-server ip access-list r-mgmt
+ssh-server ip enable
+!
+!
+ikev2 authentication psk id fqdn scout.tun-01.venue.rubykaigi.net key secret [~REDACTED:dgst=JeBqlZjQYjY~]
+ikev2 authentication psk id fqdn scout.tun-02.venue.rubykaigi.net key secret [~REDACTED:dgst=X34KTZdzUu8~]
+!
+!
+url-list rknet permit domain *.rubykaigi.net
+!
+route-map bb-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 100
+!
+route-map bb-in permit 2
+  match ip address prefix-list pl-public
+  set local-preference 100
+!
+route-map bb-in permit 3
+  match ip address prefix-list pl-default
+  set local-preference 100
+!
+route-map bb-out permit 1
+  match ip address prefix-list pl-private
+!
+route-map bb-out permit 2
+  match ip address prefix-list pl-public
+!
+route-map bb-out permit 3
+  match ip address prefix-list pl-default
+!
+route-map default-in permit 1
+  match ip address prefix-list pl-default
+!
+route-map default-out permit 1
+  match ip address prefix-list pl-default
+!
+route-map private-hi-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 120
+!
+route-map private-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 100
+!
+route-map private-lo-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 90
+!
+route-map private-out permit 1
+  match ip address prefix-list pl-private
+!
+route-map public-in permit 1
+  match ip address prefix-list pl-public
+  set local-preference 100
+!
+route-map public-out permit 1
+  match ip address prefix-list pl-public
+!
+ip dhcp profile scout-a
+  assignable-range 10.33.37.50 10.33.37.250
+  dns-server 10.33.0.72
+  domain-name scout-a.on.rubykaigi.net
+  lease-time 1800
+!
+ip dhcp profile scout-b
+  assignable-range 10.33.38.50 10.33.38.250
+  dns-server 10.33.0.72
+  domain-name scout-b.on.rubykaigi.net
+  lease-time 1800
+!
+router bgp 65172
+  router-id 10.33.0.72
+  default-local-preference 99
+  default-metric 100
+  neighbor 10.33.22.76 remote-as 65002
+  neighbor 10.33.22.76 connect-interval 10
+  neighbor 10.33.22.76 timers 6 30
+  neighbor 10.33.22.76 description GigaEthernet0.1 br-01.nrt
+  neighbor 10.33.22.76 advertisement-interval 6
+  neighbor 10.33.22.78 remote-as 65002
+  neighbor 10.33.22.78 connect-interval 10
+  neighbor 10.33.22.78 timers 6 30
+  neighbor 10.33.22.78 description GigaEthernet0.2 br-01.nrt
+  neighbor 10.33.22.78 advertisement-interval 6
+  address-family ipv4 unicast
+    neighbor 10.33.22.76 route-map private-in in
+    neighbor 10.33.22.76 route-map private-out out
+    neighbor 10.33.22.78 route-map default-in in
+    neighbor 10.33.22.78 route-map public-out out
+    network 10.33.0.72/32
+    network 10.33.37.0/24
+    network 10.33.38.0/24
+    network 192.50.220.172/32
+!
+policy-map qos0
+  class class-local
+    set ipv6 dscp 0
+    set ip dscp 0
+  class class-default
+    set ipv6 dscp 0
+    set ip dscp 0
+!
+ikev2 default-profile
+  child-lifetime 3600
+  child-pfs 2048-bit
+  child-proposal enc aes-cbc-256
+  child-proposal integrity sha2-256
+  dpd interval 10
+  local-authentication id fqdn recon-01.nrt.rubykaigi.net
+  sa-lifetime 21600
+  sa-proposal enc aes-cbc-256
+  sa-proposal integrity sha2-512
+  sa-proposal dh 2048-bit
+  sa-proposal prf sha2-512
+  ipsec-mode tunnel
+!
+device GigaEthernet0
+!
+device GigaEthernet1
+  port 3 shutdown
+  port 4 shutdown
+  vlan-group 1 port 1
+  vlan-group 2 port 2
+!
+interface GigaEthernet0.0
+  description Upstream: ge-0/0/2@br-01.nrt
+  no ip address
+  shutdown
+!
+interface GigaEthernet1.0
+  no ip address
+  shutdown
+!
+interface GigaEthernet0.1
+  description Upstream: ge-0/0/2.1@br-01.nrt [v4private+v6all]
+  encapsulation dot1q 1 tpid 8100
+  auto-connect
+  ip address 10.33.22.77/31
+  ipv6 enable
+  ipv6 address 2001:df0:8500:ca22:76::b/127
+  ipv6 filter p-icmp 10 in
+  ipv6 filter p-tcpest 8000 in
+  ipv6 filter p-udpany 8010 in
+  ipv6 filter p-all 9000 out
+  no shutdown
+!
+interface GigaEthernet0.2
+  description Upstream: ge-0/0/2.2@br-01.nrt [v4public]
+  encapsulation dot1q 2 tpid 8100
+  auto-connect
+  ip address 10.33.22.79/31
+  ip napt enable
+  ip napt address 192.50.220.172
+  ip napt inside list nat-inside
+  ip napt translation max-entries per-address 350
+  ip napt translation tcp-timeout 120
+  ip napt translation udp-timeout 120
+  ip napt translation icmp-timeout 10
+  ip napt translation dns-timeout 10
+  ip napt translation gre-timeout 600
+  ip napt translation syn-timeout 300
+  ip napt translation finrst-timeout 15
+  ip napt translation other-timeout 600
+  ip napt translation port-range 1025-65535
+  ip napt service ping 10.33.0.72 none icmp any
+  ip filter p-icmp 100 in
+  ip filter p-link 101 in
+  ip filter d-bogon-src 200 in
+  ip filter p-tcpest 8000 in
+  ip filter p-udpany 8010 in
+  ip filter d-all 9000 in
+  ip filter p-link 100 out
+  ip filter d-op25b 1000 out
+  ip filter d-bogon-dst 1100 out
+  ip filter p-all 9000 out
+  no shutdown
+!
+interface GigaEthernet1:1.0
+  description Circuit: ngn6ix.sorah [ngn]
+  no ip address
+  ipv6 enable
+  ipv6 interface-identifier 00:78:00:00:00:00:7c:02
+  ipv6 address autoconfig
+  ipv6 filter p-icmp 10 in
+  ipv6 filter p-ipsec 100 in
+  ipv6 filter p-etherip 101 in
+  ipv6 filter p-ntp 110 in
+  ipv6 filter p-dns 111 in
+  ipv6 filter p-all 9000 out
+  service-policy output qos0
+  no shutdown
+!
+interface GigaEthernet1:2.0
+  no ip address
+  bridge-group 1
+  no shutdown
+!
+interface BVI1
+  description Access: {scout-a} Tun1.0
+  ip address 10.33.37.254/24
+  ip tcp adjust-mss 1300
+  ip dhcp binding scout-a
+  ipv6 enable
+  ipv6 address 2001:df0:8500:ca37::a/64
+  ipv6 address fe80::380a/64
+  ipv6 tcp adjust-mss 1300
+  ipv6 nd ra enable
+  ipv6 nd ra dns-server 2001:df0:8500:ca00::72 1800
+  ipv6 nd ra domain-name scout-a.on.rubykaigi.net 1800
+  bridge-group 1
+  no shutdown
+!
+interface BVI2
+  description Access: {scout-b} Tun1.0
+  ip address 10.33.38.254/24
+  ip tcp adjust-mss 1330
+  ip dhcp binding scout-b
+  ipv6 enable
+  ipv6 address 2001:df0:8500:ca38::a/64
+  ipv6 tcp adjust-mss 1330
+  ipv6 nd ra enable
+  ipv6 nd ra dns-server 2001:df0:8500:ca00::72 1800
+  ipv6 nd ra domain-name scout-a.on.rubykaigi.net 1800
+  bridge-group 2
+  no shutdown
+!
+interface Loopback0.0
+  ip address 10.33.0.72/32
+  ipv6 address 2001:df0:8500:ca00::72/128
+!
+interface Null0.0
+  no ip address
+!
+interface Tunnel1.0
+  description Downstream: Tun7.0@tun-01.venue, Gi1:1.0 {scout-a} [etherip-ipsec]
+  tunnel mode ether-ip ipsec-ikev2
+  no ip address
+  bridge-group 1
+  ikev2 connect-type auto
+  ikev2 ipsec pre-fragment
+  ikev2 outgoing-interface GigaEthernet1:1.0 fe80::a
+  ikev2 source-address GigaEthernet1:1.0
+  ikev2 ipsec-mode transport
+  ikev2 peer any authentication psk id fqdn scout.tun-01.venue.rubykaigi.net
+  no shutdown
+!
+interface Tunnel2.0
+  description Downstream: Tun7.0@tun-02.venue, Gi1:1.0 {scout-b} [etherip-ipsec]
+  tunnel mode ether-ip ipsec-ikev2
+  no ip address
+  bridge-group 2
+  ikev2 connect-type auto
+  ikev2 ipsec pre-fragment
+  ikev2 outgoing-interface GigaEthernet1:1.0 fe80::a
+  ikev2 source-address GigaEthernet1:1.0
+  ikev2 ipsec-mode transport
+  ikev2 peer any authentication psk id fqdn scout.tun-02.venue.rubykaigi.net
+  no shutdown

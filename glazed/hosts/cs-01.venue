@@ -1,0 +1,1833 @@
+# fpc0:
+# --------------------------------------------------------------------------
+# Hostname: cs-01-venue
+# Model: ex3400-24p
+# Junos: 24.2R1-S2.5
+# JUNOS OS Kernel 32-bit  [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS libs [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS runtime [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS time zone information [20241016.cc47132_builder_stable_12_242]
+# JUNOS py extensions [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS py base [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS OS package [20241118.190647_builder_main]
+# JUNOS network stack and utilities [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS OS network modules [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS crypto [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS boot-ve files [20241016.cc47132_builder_stable_12_242]
+# JUNOS libs [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS runtime [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS na telemetry [24.2R1-S2.5]
+# JUNOS Web Management Platform Package [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS lite sysmond [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS support scripts [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex runtime [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS python routing scripts for consistency check in RIB/FIB/PFE [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Routing aggregated [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS probe utility [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex platform support [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Openconfig [24.2R1-S2.5]
+# JUNOS dcp network modules [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS modules [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex modules [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex libs [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex Data Plane Crypto Support [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS daemons [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS SDN Software Suite [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Extension Toolkit [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Phone-home [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Packet Forwarding Engine Support (EX34XX) [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS jdocs ex [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS jail runtime [20241016.cc47132_builder_stable_12_242]
+# JUNOS FIPS mode utilities [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS dsa [20241219.163442_builder_junos_242_r1_s2]
+#
+# fpc1:
+# --------------------------------------------------------------------------
+# Hostname: cs-01-venue
+# Model: ex3400-24p
+# Junos: 24.2R1-S2.5
+# JUNOS OS Kernel 32-bit  [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS libs [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS runtime [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS time zone information [20241016.cc47132_builder_stable_12_242]
+# JUNOS py extensions [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS py base [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS OS package [20241118.190647_builder_main]
+# JUNOS network stack and utilities [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS OS network modules [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS crypto [20241016.cc47132_builder_stable_12_242]
+# JUNOS OS boot-ve files [20241016.cc47132_builder_stable_12_242]
+# JUNOS libs [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS runtime [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS na telemetry [24.2R1-S2.5]
+# JUNOS Web Management Platform Package [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS lite sysmond [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS support scripts [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex runtime [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS python routing scripts for consistency check in RIB/FIB/PFE [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Routing aggregated [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS probe utility [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex platform support [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Openconfig [24.2R1-S2.5]
+# JUNOS dcp network modules [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS modules [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex modules [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex libs [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS ex Data Plane Crypto Support [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS daemons [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS SDN Software Suite [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Extension Toolkit [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Phone-home [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS Packet Forwarding Engine Support (EX34XX) [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS jdocs ex [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS jail runtime [20241016.cc47132_builder_stable_12_242]
+# JUNOS FIPS mode utilities [20241219.163442_builder_junos_242_r1_s2]
+# JUNOS dsa [20241219.163442_builder_junos_242_r1_s2]
+# Hardware inventory:
+# Item             Version  Part number  Serial number     Description
+# Chassis                                NW0217010288      Virtual Chassis
+# Routing Engine 0          BUILTIN      BUILTIN           RE-EX3400-24P
+# Routing Engine 1          BUILTIN      BUILTIN           RE-EX3400-24P
+# FPC 0            REV 13   650-059877   NW0217010288      EX3400-24P
+#   CPU                     BUILTIN      BUILTIN           FPC CPU
+#   PIC 0          REV 13   BUILTIN      BUILTIN           24x10/100/1000 Base-T
+#   PIC 1          REV 13   650-059877   NW0217010288      2x40G QSFP
+#     Xcvr 0       REV 01   740-044512   C2403851921-2     QSFP+-40G-CU50CM
+#     Xcvr 1       REV 01   740-044512   C2403851920-1     QSFP+-40G-CU50CM
+#   PIC 2          REV 13   650-059877   NW0217010288      4x10G SFP/SFP+
+#   Power Supply 0 REV 04   640-060602   1EDX6430325       JPSU-600W-AC-AFO
+#   Power Supply 1 REV 03   640-060602   1EDX61800LM       JPSU-600W-AC-AFO
+#   Fan Tray 0                                             Fan Module, Airflow Out (AFO)
+#   Fan Tray 1                                             Fan Module, Airflow Out (AFO)
+# FPC 1            REV 13   650-059877   NW0217010373      EX3400-24P
+#   CPU                     BUILTIN      BUILTIN           FPC CPU
+#   PIC 0          REV 13   BUILTIN      BUILTIN           24x10/100/1000 Base-T
+#   PIC 1          REV 13   650-059877   NW0217010373      2x40G QSFP
+#     Xcvr 0       REV 01   740-044512   C2403851920-2     QSFP+-40G-CU50CM
+#     Xcvr 1       REV 01   740-044512   C2403851921-1     QSFP+-40G-CU50CM
+#   PIC 2          REV 13   650-059877   NW0217010373      4x10G SFP/SFP+
+#   Power Supply 0 REV 03   640-060602   1EDX61800D7       JPSU-600W-AC-AFO
+#   Power Supply 1 REV 04   640-060602   1EDX643035J       JPSU-600W-AC-AFO
+#   Fan Tray 0                                             Fan Module, Airflow Out (AFO)
+#   Fan Tray 1                                             Fan Module, Airflow Out (AFO)
+## Last commit: 2026-10-15 11:46:59 UTC by rk
+version 24.2R1-S2.5;
+groups {
+    iface-switchport-trunk {
+        interfaces {
+            <*> {
+                description "Backbone: trunk";
+                unit 0 {
+                    family ethernet-switching {
+                        interface-mode trunk;
+                        vlan {
+                            members [ air life usr cast mgmt ];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    iface-switchport-usr {
+        interfaces {
+            <*> {
+                description "Access: usr";
+                unit 0 {
+                    family ethernet-switching {
+                        interface-mode access;
+                        vlan {
+                            members usr;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    iface-switchport-cast {
+        interfaces {
+            <*> {
+                description "Access: cast";
+                unit 0 {
+                    family ethernet-switching {
+                        interface-mode access;
+                        vlan {
+                            members cast;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    iface-switchport-life {
+        interfaces {
+            <*> {
+                description "Access: life";
+                unit 0 {
+                    family ethernet-switching {
+                        interface-mode access;
+                        vlan {
+                            members life;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    iface-switchport-air {
+        interfaces {
+            <*> {
+                description "Access: air";
+                native-vlan-id 200;
+                unit 0 {
+                    family ethernet-switching {
+                        interface-mode trunk;
+                        vlan {
+                            members [ life usr air ];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    iface-switchport-platmgmt {
+        interfaces {
+            <*> {
+                description "Upstream: platmgmt";
+                native-vlan-id 1000;
+                unit 0 {
+                    family ethernet-switching {
+                        interface-mode trunk;
+                        vlan {
+                            members [ usr mgmt ];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    iface-lacp {
+        interfaces {
+            <*> {
+                aggregated-ether-options {
+                    lacp {
+                        active;
+                        periodic fast;
+                    }
+                }
+            }
+        }
+    }
+    policy-skip-when-local-pref-is-zero {
+        policy-options {
+            policy-statement <*> {
+                term skip-when-local-pref-is-zero {
+                    from local-preference 0;
+                    then next policy;
+                }
+            }
+        }
+    }
+    optics-no-autoneg {
+        interfaces {
+            <ae*> {
+                aggregated-ether-options {
+                    link-speed 1g;
+                }
+            }
+            <ge-*> {
+                speed 1g;
+                ether-options {
+                    no-auto-negotiation;
+                }
+            }
+        }
+    }
+    iface-switchport-mgmt {
+        interfaces {
+            <*> {
+                description "Access: mgmt";
+                unit 0 {
+                    family ethernet-switching {
+                        interface-mode access;
+                        vlan {
+                            members mgmt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ipv6ra-common {
+        protocols {
+            router-advertisement {
+                interface <*> {
+                    dns-server-address 2001:df0:8500:ca6d:53::c {
+                        lifetime 1800;
+                    }
+                    dns-server-address 2001:df0:8500:ca6d:53::d {
+                        lifetime 1800;
+                    }
+                    dns-search-list venue.rubykaigi.net {
+                        lifetime 3600;
+                    }
+                }
+            }
+        }
+    }
+    ipv6ra-pref64n {
+        protocols {
+            router-advertisement {
+                interface <*> {
+                    nat-prefix 2001:df0:8500:ca64:a9:8200::/96 {
+                        lifetime 1800;
+                    }
+                }
+            }
+        }
+    }
+}
+system {
+    host-name cs-01-venue;
+    root-authentication {
+        /* rk for rk26net - rkroot is rkroot user */
+        encrypted-password "[~REDACTED:dgst=k6UcN3ljJGk~]"; ## SECRET-DATA
+    }
+    login {
+        idle-timeout 30;
+        class glazed {
+            permissions [ secret view view-configuration ];
+        }
+        user glazed {
+            uid 3001;
+            class glazed;
+            authentication {
+                ssh-ed25519 "[~REDACTED:dgst=UVPdq5F9m98~]"; ## SECRET-DATA
+            }
+        }
+        user rk {
+            uid 2001;
+            class super-user;
+            authentication {
+                /* rk26net */
+                encrypted-password "[~REDACTED:dgst=k6UcN3ljJGk~]"; ## SECRET-DATA
+                /* https://github.com/hokkai7go.keys */
+                ssh-rsa "[~REDACTED:dgst=WPdj_m8o9Bk~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=7jAcKLBuixE~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=FMTx4iPlp6Q~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=TJhobdCEG1Y~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=0GheIqjQxfI~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ecdsa "[~REDACTED:dgst=Fc0Sz2grHrk~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ecdsa "[~REDACTED:dgst=PMg_IaYggmU~]"; ## SECRET-DATA
+                /* https://github.com/hanazuki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=GVC4LV_-bfo~]"; ## SECRET-DATA
+                /* https://github.com/nna774.keys */
+                ssh-ed25519 "[~REDACTED:dgst=o-MbaR3AzSk~]"; ## SECRET-DATA
+                /* https://github.com/unasuke.keys */
+                ssh-ed25519 "[~REDACTED:dgst=o28YArcLnRc~]"; ## SECRET-DATA
+                /* https://github.com/unasuke.keys */
+                ssh-ed25519 "[~REDACTED:dgst=bqBhXT5EV7w~]"; ## SECRET-DATA
+                /* https://github.com/unasuke.keys */
+                ssh-ed25519 "[~REDACTED:dgst=_ibsmgFFCNM~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=v_2aFh91u1o~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=kPNs-GJc7ls~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=mzcFbcBk3SI~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=fvKt3fyRj14~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=mDiJr-cD4bA~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=tf62vVypD-4~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=cmYzzmO_d8I~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=IFBvQDxtC58~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=VDzl-XwpelU~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=puKrDZ-wqZA~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=vNKJQM8u9oQ~]"; ## SECRET-DATA
+                /* https://github.com/terfno.keys */
+                ssh-ed25519 "[~REDACTED:dgst=iagc4nWFIRo~]"; ## SECRET-DATA
+                /* https://github.com/terfno.keys */
+                ssh-ed25519 "[~REDACTED:dgst=XzY1pgUCufU~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=iKrJaTqn0_o~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Rtww-yDnbOQ~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Bl4rR0StmLs~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Svt1qIDMoCA~]"; ## SECRET-DATA
+                /* https://github.com/gotti.keys */
+                ssh-ed25519 "[~REDACTED:dgst=BfKhzrpQvGo~]"; ## SECRET-DATA
+                /* https://github.com/gotti.keys */
+                ssh-ed25519 "[~REDACTED:dgst=uFzzhxlX8Kc~]"; ## SECRET-DATA
+                /* https://github.com/Little-Rubyist.keys */
+                ssh-ed25519 "[~REDACTED:dgst=OVvU-TRWTrk~]"; ## SECRET-DATA
+                /* https://github.com/pastak.keys */
+                ssh-ed25519 "[~REDACTED:dgst=qpOF3d-FrF8~]"; ## SECRET-DATA
+                /* https://github.com/pastak.keys */
+                ssh-ed25519 "[~REDACTED:dgst=148wX5MSwlA~]"; ## SECRET-DATA
+                /* https://github.com/ayatk.keys */
+                ssh-ed25519 "[~REDACTED:dgst=GOwXLOFeO3Y~]"; ## SECRET-DATA
+                /* https://github.com/walnuts1018.keys */
+                ssh-ed25519 "[~REDACTED:dgst=3UOnk-w8dYc~]"; ## SECRET-DATA
+                /* https://github.com/walnuts1018.keys */
+                ssh-ed25519 "[~REDACTED:dgst=hL5wqNV4Q2I~]"; ## SECRET-DATA
+                /* https://github.com/Retasusan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=e492lLkdM8A~]"; ## SECRET-DATA
+                /* https://github.com/Retasusan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=G_yNOERSBNk~]"; ## SECRET-DATA
+                /* https://github.com/kawaemon.keys */
+                ssh-ed25519 "[~REDACTED:dgst=H39UCOixnGI~]"; ## SECRET-DATA
+                /* https://github.com/kawaemon.keys */
+                ssh-ed25519 "[~REDACTED:dgst=1zdSpcZJyFU~]"; ## SECRET-DATA
+                /* https://github.com/rokuosan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=z3OKn2OIqyg~]"; ## SECRET-DATA
+                /* https://github.com/rokuosan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=cMA0cgEjXxU~]"; ## SECRET-DATA
+                /* https://github.com/itochan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=phrS_P5OtGk~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ed25519 "[~REDACTED:dgst=SPPOHZ8b4A4~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Bh2XMiVEMr4~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ed25519 "[~REDACTED:dgst=1-SjTK00SdQ~]"; ## SECRET-DATA
+            }
+        }
+        user rkroot {
+            uid 2002;
+            class super-user;
+            authentication {
+                encrypted-password "[~REDACTED:dgst=hRiRpIrR400~]"; ## SECRET-DATA
+            }
+        }
+    }
+    services {
+        netconf {
+            ssh;
+        }
+        ssh {
+            root-login deny;
+            protocol-version v2;
+            ciphers [ "aes256-gcm@openssh.com" "aes128-gcm@openssh.com" aes256-ctr aes192-ctr aes128-ctr ];
+            macs [ hmac-sha2-256 hmac-sha2-512 ];
+            key-exchange [ ecdh-sha2-nistp521 ecdh-sha2-nistp384 ecdh-sha2-nistp256 curve25519-sha256 group-exchange-sha2 ];
+            hostkey-algorithm-list {
+                ecdsa-sha2-nistp521;
+                ed25519;
+            }
+        }
+    }
+    domain-name f.rubykaigi.net;
+    time-zone UTC;
+    default-address-selection;
+    no-redirects;
+    internet-options {
+        tcp-drop-synfin-set;
+        no-tcp-reset drop-all-tcp;
+    }
+    name-server {
+        192.50.220.164;
+        192.50.220.165;
+    }
+    syslog {
+        archive {
+            size 100k;
+            files 3;
+        }
+        user * {
+            any emergency;
+        }
+        host syslog.rubykaigi.net {
+            any info;
+            allow-duplicates;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+    }
+    max-configurations-on-flash 10;
+    ##
+    ## Warning: statement ignored: unsupported platform (ex3400-24p)
+    ##
+    max-configuration-rollbacks 5;
+    ntp {
+        server 2001:4860:4806::;
+        server 2001:4860:4806:4::;
+        server 2001:4860:4806:8::;
+        server 2001:4860:4806:c::;
+    }
+}
+chassis {
+    redundancy {
+        graceful-switchover;
+    }
+    aggregated-devices {
+        ethernet {
+            device-count 12;
+        }
+    }
+}
+interfaces {
+    ge-0/0/0 {
+        apply-groups iface-switchport-air;
+    }
+    ge-0/0/1 {
+        apply-groups iface-switchport-air;
+    }
+    ge-0/0/2 {
+        apply-groups iface-switchport-air;
+    }
+    ge-0/0/3 {
+        apply-groups iface-switchport-air;
+    }
+    ge-0/0/4 {
+        apply-groups iface-switchport-air;
+    }
+    ge-0/0/5 {
+        apply-groups iface-switchport-life;
+        disable;
+    }
+    ge-0/0/6 {
+        apply-groups iface-switchport-mgmt;
+        description "Management: enp1s0@cloudprober-01.venue;;";
+    }
+    ge-0/0/7 {
+        description "Backbone: Gi14@es-lb0-01 {ae2} #kor26;";
+        ether-options {
+            802.3ad ae2;
+        }
+    }
+    ge-0/0/8 {
+        description "Backbone: Gi14@es-tra-01 {ae0} #kor26;";
+        ether-options {
+            802.3ad ae0;
+        }
+    }
+    ge-0/0/9 {
+        description "Backbone: Gi14@es-lb1-01 {ae4} #kor26;";
+        ether-options {
+            802.3ad ae4;
+        }
+    }
+    ge-0/0/10 {
+        description "Core: WLC {ae10}";
+        ether-options {
+            802.3ad ae10;
+        }
+    }
+    ge-0/0/11 {
+        description "Core: WLC {ae10}";
+        ether-options {
+            802.3ad ae10;
+        }
+    }
+    ge-0/0/12 {
+        apply-groups iface-switchport-mgmt;
+        description "Access: me0@wire-01";
+    }
+    ge-0/0/13 {
+        description "Core: enp2s0@wire-01";
+        unit 0 {
+            family inet {
+                address 10.33.22.44/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:44::a/124;
+            }
+        }
+    }
+    ge-0/0/14 {
+        disable;
+    }
+    ge-0/0/15 {
+        disable;
+    }
+    ge-0/0/16 {
+        apply-groups iface-switchport-air;
+    }
+    ge-0/0/17 {
+        apply-groups iface-switchport-air;
+    }
+    ge-0/0/18 {
+        apply-groups iface-switchport-mgmt;
+        description "Access: port1.0.7@xs-01";
+    }
+    ge-0/0/19 {
+        disable;
+    }
+    ge-0/0/20 {
+        apply-groups iface-switchport-platmgmt;
+        description "Upstream: me0@nat-61.venue";
+    }
+    ge-0/0/21 {
+        description "Upstream: enp2s0@nat-61.venue";
+        unit 0 {
+            description "Upstream: enp2s0@nat-61.venue";
+            family inet {
+                address 10.33.22.65/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:64::b/124;
+            }
+        }
+    }
+    ge-0/0/22 {
+        description "Upstream: Gi1.0@nat-41.venue";
+        unit 0 {
+            description "Upstream: Gi1.0@nat-41.venue";
+            family inet {
+                address 10.33.22.61/31;
+            }
+        }
+    }
+    ge-0/0/23 {
+        description "Upstream: ge-0/0/0@er-01.venue";
+        unit 0 {
+            description "Upstream: ge-0/0/0@er-01.venue";
+            family inet {
+                address 10.33.22.41/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:40::b/124;
+            }
+        }
+    }
+    ge-0/2/0 {
+        apply-groups optics-no-autoneg;
+        description "Backbone: Gi16@es-fh1-01 {ae2} #rk26";
+        disable;
+        ether-options {
+            802.3ad ae2;
+        }
+    }
+    ge-0/2/1 {
+        apply-groups optics-no-autoneg;
+        description "Backbone: Gi16@es-bug-01 {ae4} #rk26";
+        disable;
+        ether-options {
+            802.3ad ae4;
+        }
+    }
+    ge-0/2/2 {
+        apply-groups optics-no-autoneg;
+        description "Backbone: Gi16@es-trc-01 {ae6} #rk26";
+        disable;
+        ether-options {
+            802.3ad ae6;
+        }
+    }
+    ge-0/2/3 {
+        apply-groups optics-no-autoneg;
+        description "Backbone: VACANT #rk25kor";
+        disable;
+    }
+    ge-1/0/0 {
+        apply-groups iface-switchport-air;
+    }
+    ge-1/0/1 {
+        apply-groups iface-switchport-air;
+    }
+    ge-1/0/2 {
+        apply-groups iface-switchport-air;
+    }
+    ge-1/0/3 {
+        apply-groups iface-switchport-air;
+    }
+    ge-1/0/4 {
+        apply-groups iface-switchport-air;
+    }
+    ge-1/0/5 {
+        apply-groups iface-switchport-life;
+        disable;
+    }
+    ge-1/0/6 {
+        apply-groups iface-switchport-mgmt;
+    }
+    ge-1/0/7 {
+        description "Backbone: Gi14@es-lb0-02 {ae3} #kor26;";
+        ether-options {
+            802.3ad ae3;
+        }
+    }
+    ge-1/0/8 {
+        description "Backbone: Gi14@es-trb-01 {ae1} #kor26;";
+        ether-options {
+            802.3ad ae1;
+        }
+    }
+    ge-1/0/9 {
+        description "Backbone: Gi14@es-fo0-01 {ae5} #kor26;";
+        ether-options {
+            802.3ad ae5;
+        }
+    }
+    ge-1/0/10 {
+        description "Core: WLC {ae10}";
+        ether-options {
+            802.3ad ae10;
+        }
+    }
+    ge-1/0/11 {
+        description "Core: WLC {ae10}";
+        ether-options {
+            802.3ad ae10;
+        }
+    }
+    ge-1/0/12 {
+        apply-groups iface-switchport-mgmt;
+        description "Access: me0@wire-02";
+    }
+    ge-1/0/13 {
+        description "Core: enp2s0@wire-02";
+        unit 0 {
+            family inet {
+                address 10.33.22.46/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:46::a/124;
+            }
+        }
+    }
+    ge-1/0/14 {
+        disable;
+    }
+    ge-1/0/15 {
+        description "Access: TBD_port5@show-01";
+        unit 0 {
+            family inet {
+                address 10.33.22.84/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:84::a/124;
+            }
+        }
+    }
+    ge-1/0/16 {
+        disable;
+    }
+    ge-1/0/17 {
+        apply-groups iface-switchport-air;
+    }
+    ge-1/0/18 {
+        apply-groups iface-switchport-mgmt;
+        description "Access: port1.0.7@xs-02";
+    }
+    ge-1/0/19 {
+        disable;
+    }
+    ge-1/0/20 {
+        apply-groups iface-switchport-platmgmt;
+        description "Upstream: me0@nat-62.venue";
+    }
+    ge-1/0/21 {
+        description "Upstream: enp2s0@nat-62.venue";
+        unit 0 {
+            description "Upstream: enp2s0@nat-62.venue";
+            family inet {
+                address 10.33.22.67/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:66::b/124;
+            }
+        }
+    }
+    ge-1/0/22 {
+        description "Upstream: Gi1.0@nat-42.venue";
+        unit 0 {
+            description "Upstream: Gi1.0@nat-42.venue";
+            family inet {
+                address 10.33.22.63/31;
+            }
+        }
+    }
+    ge-1/0/23 {
+        description "Upstream: ge-0/0/0@er-02.venue";
+        unit 0 {
+            description "Upstream: ge-0/0/0@er-02.venue";
+            family inet {
+                address 10.33.22.43/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:42::b/124;
+            }
+        }
+    }
+    ge-1/2/0 {
+        apply-groups optics-no-autoneg;
+        description "Backbone: Gi16@es-fh2-01 {ae3} #rk26";
+        disable;
+        ether-options {
+            802.3ad ae3;
+        }
+    }
+    ge-1/2/1 {
+        apply-groups optics-no-autoneg;
+        description "Backbone: Gi16@es-con-01 {ae5} #rk26";
+        disable;
+        ether-options {
+            802.3ad ae5;
+        }
+    }
+    ge-1/2/2 {
+        apply-groups optics-no-autoneg;
+        description "Backbone: VACANT #rk25kor";
+        disable;
+    }
+    ge-1/2/3 {
+        apply-groups optics-no-autoneg;
+        description "Backbone: VACANT #rk25kor";
+        disable;
+    }
+    xe-1/2/3 {
+        disable;
+    }
+    ae0 {
+        apply-groups [ iface-lacp iface-switchport-trunk ];
+        description "Backbone: Po1@es-tra-01 #kor26;";
+    }
+    ae1 {
+        apply-groups [ iface-lacp iface-switchport-trunk optics-no-autoneg ];
+        description "Backbone: Po1@es-trb-01 #kor26;";
+    }
+    ae2 {
+        apply-groups [ iface-lacp iface-switchport-trunk optics-no-autoneg ];
+        description "Backbone: Po1@es-lb0-01 #kor26;";
+    }
+    ae3 {
+        apply-groups [ iface-lacp iface-switchport-trunk optics-no-autoneg ];
+        description "Backbone: Po1@es-lb0-02 #kor26;";
+    }
+    ae4 {
+        apply-groups [ iface-lacp iface-switchport-trunk optics-no-autoneg ];
+        description "Backbone: Po1@es-lb1-01 #kor26;";
+    }
+    ae5 {
+        apply-groups [ iface-lacp iface-switchport-trunk optics-no-autoneg ];
+        description "Backbone: Po1@es-fo0-01 #kor26;";
+    }
+    ae6 {
+        apply-groups [ iface-lacp iface-switchport-trunk optics-no-autoneg ];
+        description "Backbone: Po2@es-trc-01 #rk26";
+    }
+    ae7 {
+        apply-groups [ iface-lacp iface-switchport-trunk optics-no-autoneg ];
+        description "Backbone: VACANT #rk25kor";
+        disable;
+    }
+    ae10 {
+        apply-groups iface-switchport-air;
+        description "Backbone: WLC";
+    }
+    irb {
+        unit 200 {
+            description "Downstream: air";
+            family inet {
+                address 10.33.2.254/24;
+            }
+            family inet6 {
+                address 2001:df0:8500:cab1::a/64;
+                address fe80::1/64;
+            }
+        }
+        unit 300 {
+            description "Downstream: life";
+            family inet {
+                address 10.33.1.254/24;
+            }
+            family inet6 {
+                address 2001:df0:8500:caa0::a/64;
+                address fe80::1/64;
+            }
+        }
+        unit 400 {
+            description "Downstream: usr";
+            family inet {
+                filter {
+                    input usr-in4;
+                }
+                address 10.33.79.254/20;
+            }
+            family inet6 {
+                filter {
+                    input usr-in6;
+                }
+                address 2001:df0:8500:caaa::a/64;
+                address fe80::1/64;
+            }
+        }
+        unit 410 {
+            description "Downstream: cast";
+            family inet {
+                filter {
+                    input usr-in4;
+                }
+                address 10.33.21.254/24;
+            }
+            family inet6 {
+                filter {
+                    input usr-in6;
+                }
+                address 2001:df0:8500:caa1::a/64;
+                address fe80::1/64;
+            }
+        }
+        unit 1000 {
+            description "Downstream: mgmt";
+            family inet {
+                address 10.33.100.254/24;
+            }
+            family inet6 {
+                address 2001:df0:8500:cab0::1/64;
+                address fe80::1/64;
+            }
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                filter {
+                    input loopback-in4;
+                }
+                address 10.33.0.30/32;
+            }
+            family inet6 {
+                filter {
+                    input loopback-in6;
+                }
+                address 2001:0df0:8500:ca00::30/128;
+            }
+        }
+    }
+}
+snmp {
+    filter-interfaces {
+        interfaces {
+            "\.0$";
+        }
+        all-internal-interfaces;
+    }
+    stats-cache-lifetime 59;
+    community [~REDACTED:dgst=peVe40DhSUw~] {
+        authorization read-only;
+    }
+}
+forwarding-options {
+    storm-control-profiles default {
+        all;
+    }
+    analyzer {
+        inactive: sorah-tmp-0319 {
+            input {
+                ingress {
+                    interface ge-0/0/0.0;
+                }
+                egress {
+                    interface ge-0/0/0.0;
+                }
+            }
+            output {
+                vlan {
+                    sorah-tmp-0319;
+                }
+            }
+        }
+    }
+    enhanced-hash-key {
+        inet {
+            no-incoming-port;
+            no-incoming-device;
+            no-l4-source-port;
+            no-l4-destination-port;
+            no-protocol;
+            no-ipv4-destination-address;
+        }
+        inet6 {
+            no-incoming-port;
+            no-incoming-device;
+            no-l4-source-port;
+            no-l4-destination-port;
+            no-next-header;
+            no-ipv6-destination-address;
+        }
+    }
+    dhcp-relay {
+        overrides {
+            trust-option-82;
+        }
+        relay-option-82 {
+            circuit-id {
+                prefix {
+                    host-name;
+                }
+            }
+        }
+        forward-only;
+        server-group {
+            kea4 {
+                10.33.136.67;
+                10.33.152.67;
+            }
+        }
+        group kea4 {
+            active-server-group kea4;
+            interface irb.200;
+            interface irb.300;
+            interface irb.400;
+            interface irb.410;
+            interface irb.1000;
+        }
+    }
+}
+policy-options {
+    prefix-list bogon4 {
+        10.0.0.0/8;
+        100.64.0.0/10;
+        127.0.0.0/8;
+        169.254.0.0/16;
+        172.16.0.0/12;
+        192.0.2.0/24;
+        192.168.0.0/16;
+        198.18.0.0/15;
+        198.51.100.0/24;
+        203.0.113.0/24;
+        224.0.0.0/3;
+    }
+    prefix-list bogon6 {
+        ::/96;
+        ::1/128;
+        ::ffff:0:0/96;
+        100::/64;
+        2001:2::/48;
+        2001:db8::/32;
+        fc00::/7;
+        fec0::/10;
+        ff00::/8;
+    }
+    prefix-list link4 {
+        10.33.22.0/24;
+        192.50.220.152/29;
+    }
+    prefix-list link6 {
+        2001:df0:8500:ca20::/60;
+        fe80::/64;
+    }
+    prefix-list mgmt4 {
+        10.33.0.0/24;
+        10.33.1.0/24;
+        10.33.128.0/17;
+        192.50.220.152/32;
+        192.50.220.154/32;
+        192.50.220.156/32;
+    }
+    prefix-list mgmt6 {
+        2001:0df0:8500:ca00::/64;
+        2001:0df0:8500:caa0::/64;
+        2001:0df0:8500:cab0::/64;
+        2406:da14:dfe:c000::/56;
+    }
+    prefix-list onpremises4 {
+        10.33.0.0/17;
+    }
+    prefix-list pa6 {
+        2001:df0:8500:ca00::/56;
+    }
+    prefix-list pref64n {
+        2001:0df0:8500:ca60::/60;
+    }
+    prefix-list private4 {
+        10.33.0.0/16;
+        10.33.0.0/17;
+        10.33.128.0/18;
+    }
+    prefix-list private6 {
+        2001:df0:8500:ca00::/56;
+        2406:da14:dfe:c000::/56;
+    }
+    prefix-list public4 {
+        192.50.220.152/29;
+        192.50.220.160/29;
+        192.50.220.168/29;
+    }
+    prefix-list public6 {
+        2406:da14:dfe:c02f:ffff::/127;
+    }
+    policy-statement accept {
+        then accept;
+    }
+    policy-statement aws-local-pref-hi {
+        then {
+            community add AWS:LOCAL_PREF_HIGH;
+        }
+    }
+    policy-statement aws-local-pref-low {
+        then {
+            community add AWS:LOCAL_PREF_LOW;
+        }
+    }
+    policy-statement aws-local-pref-med {
+        then {
+            community add AWS:LOCAL_PREF_MEDIUM;
+        }
+    }
+    policy-statement bb-filter {
+        term default4 {
+            from {
+                route-filter 0.0.0.0/0 exact;
+            }
+            then next policy;
+        }
+        term default6 {
+            from {
+                route-filter ::/0 exact;
+            }
+            then next policy;
+        }
+        term private4 {
+            from {
+                family inet;
+                prefix-list-filter private4 orlonger;
+            }
+            then next policy;
+        }
+        term private6 {
+            from {
+                family inet6;
+                prefix-list-filter private6 orlonger;
+            }
+            then next policy;
+        }
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term public6 {
+            from {
+                family inet6;
+                prefix-list-filter public6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement default-filter {
+        term default4 {
+            from {
+                family inet;
+                route-filter 0.0.0.0/0 exact;
+            }
+            then next policy;
+        }
+        term default6 {
+            from {
+                family inet6;
+                route-filter ::/0 exact;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement default4-reject {
+        term default4 {
+            from {
+                family inet;
+                route-filter 0.0.0.0/0 exact;
+            }
+            then reject;
+        }
+    }
+    policy-statement default6-reject {
+        term default6 {
+            from {
+                family inet6;
+                route-filter ::/0 exact;
+            }
+            then reject;
+        }
+    }
+    policy-statement ecmp {
+        then {
+            load-balance per-packet;
+        }
+    }
+    policy-statement export-multipath {
+        term multipath {
+            then {
+                load-balance per-flow;
+            }
+        }
+    }
+    policy-statement local-pref-lo {
+        apply-groups policy-skip-when-local-pref-is-zero;
+        then {
+            local-preference 90;
+        }
+    }
+    policy-statement private-filter {
+        term private4 {
+            from {
+                family inet;
+                prefix-list-filter private4 orlonger;
+            }
+            then next policy;
+        }
+        term private6 {
+            from {
+                family inet6;
+                prefix-list-filter private6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement public-filter {
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term public6 {
+            from {
+                family inet6;
+                prefix-list-filter public6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement reject {
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement transit-out-filter {
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term pa6 {
+            from {
+                family inet6;
+                prefix-list-filter pa6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement wire-filter {
+        term wire {
+            from {
+                protocol bgp;
+                as-path wire;
+            }
+            then next policy;
+        }
+        term rk26arena {
+            from {
+                protocol bgp;
+                as-path rk26arena;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    community AWS:LOCAL_PREF_HIGH members 7224:7300;
+    community AWS:LOCAL_PREF_LOW members 7224:7100;
+    community AWS:LOCAL_PREF_MEDIUM members 7224:7200;
+    community RK:AWSNAT_OUTSIDE members 65000:44;
+    as-path wire ".* (65080|65081|65082|65088|65089)+";
+    as-path rk26arena ".* 65031+";
+}
+firewall {
+    family inet {
+        filter border-in4 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link4;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon {
+                from {
+                    source-prefix-list {
+                        bogon4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter etherip-public-in4 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link4;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon-src {
+                from {
+                    source-prefix-list {
+                        bogon4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term discard-bogon-dst {
+                from {
+                    destination-prefix-list {
+                        bogon4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term discard-private-src {
+                from {
+                    source-prefix-list {
+                        private4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term discard-private-dst {
+                from {
+                    destination-prefix-list {
+                        private4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter loopback-in4 {
+            term icmp {
+                from {
+                    protocol icmp;
+                }
+                then accept;
+            }
+            term permit-dhcp {
+                from {
+                    destination-port [ dhcp 67 68 ];
+                }
+                then accept;
+            }
+            term return-tcp {
+                from {
+                    protocol tcp;
+                    tcp-established;
+                }
+                then accept;
+            }
+            term management {
+                from {
+                    source-prefix-list {
+                        mgmt4;
+                    }
+                    destination-port [ snmp ssh ];
+                }
+                then accept;
+            }
+            term udp-apps {
+                from {
+                    protocol udp;
+                    source-port [ domain ntp ];
+                }
+                then accept;
+            }
+            term bgp {
+                from {
+                    source-prefix-list {
+                        link4;
+                    }
+                    protocol tcp;
+                    destination-port bgp;
+                }
+                then accept;
+            }
+            /* KB11436: https://supportportal.juniper.net/s/article/Junos-Why-does-the-Network-Time-Protocol-NTP-stop-working-if-a-loopback-firewall-filter-is-applied?language=en_US */
+            term ntp-management {
+                from {
+                    source-address {
+                        10.33.0.30/32;
+                    }
+                    destination-port ntp;
+                }
+                then accept;
+            }
+            term discard-all {
+                then {
+                    discard;
+                }
+            }
+        }
+        filter usr-in4 {
+            term permit-icmp {
+                from {
+                    protocol icmp;
+                }
+                then accept;
+            }
+            term deny-op25b {
+                from {
+                    destination-port 25;
+                }
+                then {
+                    discard;
+                }
+            }
+            term deny-onpremises {
+                from {
+                    destination-prefix-list {
+                        onpremises4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term permit-all {
+                then accept;
+            }
+        }
+    }
+    family inet6 {
+        filter border-in6 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link6;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon {
+                from {
+                    source-prefix-list {
+                        bogon6;
+                    }
+                }
+                then discard;
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter etherip-public-in6 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link6;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon-src {
+                from {
+                    source-prefix-list {
+                        bogon6;
+                    }
+                }
+                then discard;
+            }
+            term discard-bogon-dst {
+                from {
+                    destination-prefix-list {
+                        bogon6;
+                    }
+                }
+                then discard;
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter loopback-in6 {
+            term icmp {
+                from {
+                    next-header icmpv6;
+                }
+                then accept;
+            }
+            term return-tcp {
+                from {
+                    next-header tcp;
+                    tcp-established;
+                }
+                then accept;
+            }
+            term management {
+                from {
+                    source-prefix-list {
+                        mgmt6;
+                    }
+                    destination-port [ snmp ssh ];
+                }
+                then accept;
+            }
+            term udp-apps {
+                from {
+                    next-header udp;
+                    source-port [ domain ntp ];
+                }
+                then accept;
+            }
+            term bgp {
+                from {
+                    source-prefix-list {
+                        link6;
+                    }
+                    next-header tcp;
+                    destination-port bgp;
+                }
+                then accept;
+            }
+            term discard-all {
+                then discard;
+            }
+            term ntp-management {
+                from {
+                    destination-port ntp;
+                }
+            }
+        }
+        filter usr-in6 {
+            term permit-icmp {
+                from {
+                    next-header icmp6;
+                }
+                then accept;
+            }
+            term deny-op25b {
+                from {
+                    destination-port 25;
+                }
+                then discard;
+            }
+            term permit-nat64 {
+                from {
+                    destination-prefix-list {
+                        pref64n;
+                    }
+                }
+                then accept;
+            }
+            term iperf {
+                from {
+                    destination-port 5201;
+                }
+                then accept;
+            }
+            term deny-onpremises {
+                from {
+                    destination-prefix-list {
+                        pa6;
+                    }
+                }
+                then discard;
+            }
+            term permit-all {
+                then accept;
+            }
+        }
+    }
+}
+routing-options {
+    router-id 10.33.0.30;
+    autonomous-system 65030;
+    forwarding-table {
+        export export-multipath;
+    }
+}
+protocols {
+    router-advertisement {
+        interface irb.200 {
+            apply-groups ipv6ra-common;
+            prefix 2001:df0:8500:cab1::/64 {
+                valid-lifetime 3600;
+                preferred-lifetime 1800;
+                autonomous;
+            }
+        }
+        interface irb.300 {
+            apply-groups ipv6ra-common;
+            prefix 2001:df0:8500:caa0::/64 {
+                valid-lifetime 3600;
+                preferred-lifetime 1800;
+                autonomous;
+            }
+        }
+        interface irb.400 {
+            apply-groups [ ipv6ra-common ipv6ra-pref64n ];
+            prefix 2001:df0:8500:caaa::/64 {
+                valid-lifetime 3600;
+                preferred-lifetime 1800;
+                autonomous;
+            }
+        }
+        interface irb.410 {
+            apply-groups ipv6ra-common;
+            prefix 2001:df0:8500:caa1::/64 {
+                valid-lifetime 3600;
+                preferred-lifetime 1800;
+                autonomous;
+            }
+        }
+        interface irb.1000 {
+            apply-groups ipv6ra-common;
+            prefix 2001:df0:8500:cab0::/64 {
+                valid-lifetime 3600;
+                preferred-lifetime 1800;
+                autonomous;
+            }
+        }
+    }
+    bgp {
+        group er {
+            import [ default4-reject bb-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ default4-reject bb-filter accept ];
+            neighbor 2001:df0:8500:ca22:40::a {
+                description "Downstream: ge-0/0/0@er-01.venue";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.41;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65010;
+            }
+            neighbor 2001:df0:8500:ca22:42::a {
+                description "Downstream: ge-0/0/0@er-02.venue";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.43;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65010;
+            }
+        }
+        group nat4 {
+            import [ bb-filter accept ];
+            family inet {
+                unicast;
+            }
+            export [ bb-filter accept ];
+            neighbor 10.33.22.60 {
+                description "Upstream: Gi1.0@nat-41.venue";
+                peer-as 65024;
+            }
+            neighbor 10.33.22.62 {
+                description "Upstream: Gi1.0@nat-42.venue";
+                peer-as 65024;
+            }
+        }
+        group nat6 {
+            import [ default4-reject bb-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ default4-reject bb-filter accept ];
+            neighbor 2001:df0:8500:ca22:64::a {
+                description "Upstream: enp2s0@nat-61.venue";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.65;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65026;
+            }
+            neighbor 2001:df0:8500:ca22:66::a {
+                description "Upstream: enp2s0@nat-62.venue";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.67;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65026;
+            }
+        }
+        group tu {
+            local-preference 90;
+        }
+        inactive: group show {
+            import [ bb-filter accept ];
+            family inet {
+                unicast {
+                    extended-nexthop;
+                }
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ bb-filter accept ];
+            neighbor 2001:df0:8500:ca22:84::b {
+                description "Access: TBD_port5@show-01";
+                peer-as 65075;
+            }
+        }
+        group wire {
+            import [ default4-reject default6-reject bb-filter wire-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ bb-filter accept ];
+            neighbor 2001:df0:8500:ca22:44::b {
+                description "Core: ge-0/0/13, enp2s0@wire-01";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.44;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65081;
+            }
+            neighbor 2001:df0:8500:ca22:46::b {
+                description "Core: ge-1/0/13, enp2s0@wire-02";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.46;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65081;
+            }
+        }
+        metric-out 100;
+        preference 100;
+        hold-time 30;
+        multipath;
+    }
+    lldp {
+        port-id-subtype interface-name;
+        neighbour-port-info-display port-id;
+        interface all;
+    }
+    vstp {
+        vlan all {
+            bridge-priority 4k;
+        }
+    }
+}
+poe {
+    interface all;
+}
+virtual-chassis {
+    no-split-detection;
+    vcp-snmp-statistics;
+}
+vlans {
+    air {
+        vlan-id 200;
+        l3-interface irb.200;
+    }
+    cast {
+        vlan-id 410;
+        l3-interface irb.410;
+    }
+    life {
+        vlan-id 300;
+        l3-interface irb.300;
+    }
+    mgmt {
+        vlan-id 1000;
+        l3-interface irb.1000;
+    }
+    sorah-tmp-0319 {
+        vlan-id 3319;
+    }
+    usr {
+        vlan-id 400;
+        l3-interface irb.400;
+    }
+}
+#
+# Virtual Chassis ID: bed6.5a72.8612
+# Virtual Chassis Mode: Enabled
+#                                                 Mstr           Mixed Route Neighbor List
+# Member ID  Status   Serial No    Model          prio  Role      Mode  Mode ID  Interface
+# 0 (FPC 0)  Prsnt    NW0217010288 ex3400-24p     128   Master*      N  VC   1  vcp-255/1/0
+#                                                                            1  vcp-255/1/1
+# 1 (FPC 1)  Prsnt    NW0217010373 ex3400-24p     128   Backup       N  VC   0  vcp-255/1/0
+#                                                                            0  vcp-255/1/1
+#
+# Member ID for next new member: 2 (FPC 2)
