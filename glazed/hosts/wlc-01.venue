@@ -907,7 +907,6 @@ wlan security pmf saquery-retrytimeout 200 14
 wlan exclusionlist 1 disabled
 wlan exclusionlist 1 0
 wlan dhcp_server 3 0.0.0.0 required
-wlan dhcp_server 10 0.0.0.0 required
 wlan peer-blocking drop 3
 wlan peer-blocking drop 10
 wlan peer-blocking drop 14
