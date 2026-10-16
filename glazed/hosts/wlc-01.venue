@@ -411,7 +411,7 @@ ipv6 capwap udplite enable all
 ipv6 multicast mode unicast
 lag enable
 load-balancing aggressive enable
-load-balancing window 5
+load-balancing window 20
 wlan apgroup add default-group
 wlan apgroup add rk-hi
 wlan apgroup add rk-med
