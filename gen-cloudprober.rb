@@ -99,7 +99,7 @@ TARGETS.each do |h|
       rrsets.each do |rrset|
         name = rrset.name.sub(/.\z/, '')
         next unless t === name
-        next if /recon|as-01|tun-03/ =~ name  # rk25
+        next if /recon|tun-03|as-01|test-cs-01/ =~ name  # kor26
 
         if rrset.resource_records.empty?
           warn "#{name} has no static #{rrtype} records"
@@ -122,7 +122,7 @@ end
 [4, 6].each do |v4v6|
   path = Pathname(__dir__) + "gen/cloudprober/targets#{v4v6}.json"
   path.parent.mkpath
-  File.write(path, JSON.pretty_unparse({resource: @targets[v4v6]}))
+  File.write(path, JSON.generate({resource: @targets[v4v6]}))
 
   if ARGV.include?('--apply')
     system(*%W[aws s3 cp #{path} s3://rubykaigi-public/rknet/cloudprober/], exception: true)
