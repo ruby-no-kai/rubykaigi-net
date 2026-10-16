@@ -48,6 +48,15 @@ local wlc(name, site) = node('aireos', name, site) + password;
     raw: { s3: { bucket: 'rk-infra', prefix: 'glazed/raw/' } },
     redacted: { s3: { bucket: 'rk-infra', prefix: 'glazed/redacted/' } },
     state: { s3: { bucket: 'rk-infra', prefix: 'glazed/state/' } },
+    github: {
+      github: {
+        repository: 'ruby-no-kai/rubykaigi-net',
+        branch: 'config-staging',
+        subdirectory: 'glazed/hosts',
+        // Exchanged at tf/sts-cat; see github-token.rb
+        token: { command: { exec: ['ruby', '-e', importstr 'github-token.rb'] } },
+      },
+    },
   },
 
   workflows: {
@@ -73,6 +82,8 @@ local wlc(name, site) = node('aireos', name, site) + password;
             },
           },
         },
+        // tf/glazed runs this step on the glazed-github function, outside the VPC.
+        { name: 'github', publish: { input: 'redacted', storage: 'github' } },
       ],
     },
   },

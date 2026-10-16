@@ -31,6 +31,7 @@ data "aws_iam_policy_document" "StatesGlazed" {
     ]
     resources = [
       "${aws_lambda_function.glazed.arn}:*",
+      "${aws_lambda_function.glazed-github.arn}:*",
     ]
   }
 }

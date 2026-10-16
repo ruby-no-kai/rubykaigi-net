@@ -70,6 +70,7 @@ data "aws_iam_policy_document" "NocAdminBase" {
       "ecr:*",
       "ecr-public:GetAuthorizationToken",
       "sts:GetServiceBearerToken",
+      "sts:GetWebIdentityToken",
       "ecs:*",
       "eks:*",
       "elasticloadbalancing:*",

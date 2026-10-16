@@ -334,6 +334,22 @@
     }
   },
   "storages": {
+    "github": {
+      "github": {
+        "branch": "config-staging",
+        "repository": "ruby-no-kai/rubykaigi-net",
+        "subdirectory": "glazed/hosts",
+        "token": {
+          "command": {
+            "exec": [
+              "ruby",
+              "-e",
+              "#!/usr/bin/env ruby\n# Prints a GitHub App installation token for ruby-no-kai/rubykaigi-net, from tf/sts-cat with the AWS web identity token of the caller.\n# glazed.jsonnet embeds it as the token command of the github storage. .github/sts-cat/glazed.sts.toml trusts the role of the glazed-github function.\nrequire 'bundler/setup'\nrequire 'aws-sdk-sts'\nrequire 'httpx'\nrequire 'json'\n\nAUDIENCE = 'https://sts-cat.rubykaigi.net'\nENDPOINT = 'https://yrlrly5nve2l23wqbwumadvi4i0wchbp.lambda-url.ap-northeast-1.on.aws/token'\n\njwt = Aws::STS::Client.new.get_web_identity_token(audience: [AUDIENCE], signing_algorithm: 'RS256').web_identity_token\nresponse = HTTPX.post(\n  ENDPOINT,\n  headers: { 'authorization' => \"Bearer #{jwt}\" },\n  json: { scope: 'ruby-no-kai/rubykaigi-net', identity: 'glazed' },\n)\nresponse.raise_for_status\nputs JSON.parse(response.body.to_s).fetch('token')\n"
+            ]
+          }
+        }
+      }
+    },
     "raw": {
       "s3": {
         "bucket": "rk-infra",
@@ -440,6 +456,13 @@
               ]
             },
             "storage": "redacted"
+          }
+        },
+        {
+          "name": "github",
+          "publish": {
+            "input": "redacted",
+            "storage": "github"
           }
         }
       ]

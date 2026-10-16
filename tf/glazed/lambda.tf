@@ -41,3 +41,32 @@ resource "aws_lambda_invocation" "glazed-state-machine" {
   qualifier     = aws_lambda_function.glazed.version
   input         = jsonencode({ state_machine = {} })
 }
+
+# Runs the github step outside the VPC, to reach GitHub while NAT is off
+resource "aws_lambda_function" "glazed-github" {
+  function_name = "glazed-github"
+
+  package_type  = "Image"
+  image_uri     = "${aws_ecr_repository.glazed-lambda.repository_url}:${local.image_tag}"
+  architectures = ["x86_64"]
+  publish       = true
+
+  role = aws_iam_role.LambdaGlazedGithub.arn
+
+  memory_size = 1024
+  timeout     = 300
+
+  environment {
+    variables = {
+      GLAZED_CONFIG_S3_BUCKET = aws_s3_object.config.bucket
+      GLAZED_CONFIG_S3_KEY    = aws_s3_object.config.key
+      GLAZED_CONFIG_S3_DIGEST = filebase64sha256(local.config_path)
+    }
+  }
+
+  depends_on = [
+    aws_ecr_repository_policy.glazed-lambda,
+    aws_iam_role_policy.LambdaGlazedGithub,
+    aws_iam_role_policy_attachment.LambdaGlazedGithub-AWSLambdaBasicExecutionRole,
+  ]
+}
