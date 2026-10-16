@@ -1,0 +1,1109 @@
+# NAME: "Chassis"    , DESCR: "Cisco 3500 Series Wireless LAN Controller"
+# PID: AIR-CT3504-K9,  VID: V02,  SN: FCW2249M1PM
+#
+# Primary Boot Image............................... 8.10.196.0
+# Backup Boot Image................................ 8.10.196.0 (default) (active)
+#
+802.11a 11nSupport a-mpdu tx scheduler enable
+802.11a 11nSupport a-mpdu tx scheduler timeout rt 10
+802.11a 11nSupport a-mpdu tx scheduler timeout nrt 200
+802.11a 11nSupport a-msdu max-subframes 3
+802.11b 11nSupport a-msdu max-subframes 3
+802.11a 11nSupport a-msdu max-length 8k
+802.11b 11nSupport a-msdu max-length 8k
+802.11a 11axSupport bss-color disable
+802.11a beacon range 0
+802.11a rx-sop threshold default default
+802.11a cca threshold 0 default
+802.11a multicast buffer 0
+802.11a multicast data-rate 0 default
+802.11a cac video cac-method static
+802.11a max-clients 200
+advanced fra sensor-coverage client-priority
+advanced fra service-priority coverage
+802.11a cleanair enable network
+802.11a dfs-peakdetect enable
+802.11a 11axSupport target-waketime enable
+802.11b 11axSupport target-waketime enable
+802.11a 11axSupport twt-bcast-support enable
+802.11b 11axSupport twt-bcast-support enable
+802.11b 11nSupport a-mpdu tx scheduler enable
+802.11b 11nSupport a-mpdu tx scheduler timeout rt 10
+802.11b 11nSupport a-mpdu tx scheduler timeout nrt 200
+802.11b 11axSupport bss-color disable
+802.11b beacon range 0
+802.11b rx-sop threshold default default
+802.11b cca threshold 0 default
+802.11b multicast buffer 0
+802.11b multicast data-rate 0 default
+802.11b cac video cac-method static
+802.11b max-clients 200
+802.11b cleanair enable network
+802.11h channelswitch enable loud 0
+aaa auth mgmt  local radius
+acl url-acl external-server-ip  0.0.0.0
+flexconnect fallback-radio-shut disable
+flexconnect arp-caching enable
+acl create op25b
+acl apply op25b
+acl rule add op25b 1
+acl rule add op25b 2
+acl rule action op25b 1 deny
+acl rule action op25b 2 permit
+acl rule destination address op25b 1 0.0.0.0 0.0.0.0
+acl rule destination address op25b 2 0.0.0.0 0.0.0.0
+acl rule destination port range op25b 1 25 25
+acl rule destination port range op25b 2 0 65535
+acl rule source address op25b 1 0.0.0.0 0.0.0.0
+acl rule source address op25b 2 0.0.0.0 0.0.0.0
+acl rule source port range op25b 1 0 65535
+acl rule source port range op25b 2 0 65535
+acl rule direction op25b 1 Any
+acl rule direction op25b 2 Any
+acl rule dscp op25b 1  Any
+acl rule dscp op25b 2  Any
+acl rule protocol op25b 1    6
+acl rule protocol op25b 2  Any
+acl apply op25b
+cts inline-tag disable
+advanced 802.11a tpc-version 2
+advanced 802.11a tpcv2-thresh -67
+advanced 802.11a channel dca interval 0
+advanced 802.11a channel dca startup-interval 0
+advanced 802.11a channel dca anchor-time 0
+advanced 802.11a channel dca chan-width 20
+advanced 802.11a channel dca best-width-max 80
+advanced 802.11a channel dca sensitivity 15
+advanced 802.11a channel dca min-metric -95
+advanced 802.11a channel delete 144
+advanced 802.11a packet silver max-retry 0
+advanced 802.11a packet silver max-packet-count 0
+advanced 802.11a packet silver max-client-count 0
+advanced 802.11a packet silver timeout 0
+advanced 802.11a packet gold max-retry 0
+advanced 802.11a packet gold max-packet-count 0
+advanced 802.11a packet gold max-client-count 0
+advanced 802.11a packet gold timeout 0
+advanced 802.11a packet platinum max-retry 0
+advanced 802.11a packet platinum max-packet-count 0
+advanced 802.11a packet platinum max-client-count 0
+advanced 802.11a packet platinum timeout 0
+advanced 802.11a packet bronze max-retry 0
+advanced 802.11a packet bronze max-packet-count 0
+advanced 802.11a packet bronze max-client-count 0
+advanced 802.11a packet bronze timeout 0
+advanced 802.11b channel dca interval 0
+advanced 802.11b channel dca startup-interval 0
+advanced 802.11b channel dca anchor-time 0
+advanced 802.11b channel dca sensitivity 10
+advanced 802.11b channel dca min-metric -95
+advanced 802.11b tpc-version 1
+advanced 802.11b packet silver max-retry 0
+advanced 802.11b packet silver max-packet-count 0
+advanced 802.11b packet silver max-client-count 0
+advanced 802.11b packet silver timeout 0
+advanced 802.11b packet gold max-retry 0
+advanced 802.11b packet gold max-packet-count 0
+advanced 802.11b packet gold max-client-count 0
+advanced 802.11b packet gold timeout 0
+advanced 802.11b packet platinum max-retry 0
+advanced 802.11b packet platinum max-packet-count 0
+advanced 802.11b packet platinum max-client-count 0
+advanced 802.11b packet platinum timeout 0
+advanced 802.11b packet bronze max-retry 0
+advanced 802.11b packet bronze max-packet-count 0
+advanced 802.11b packet bronze max-client-count 0
+advanced 802.11b packet bronze timeout 0
+location info rogue extended
+location rssi-half-life tags 0
+location rssi-half-life client 0
+location rssi-half-life rogue-aps 0
+location expiry tags 5
+location expiry client 5
+location expiry calibrating-client 5
+location expiry rogue-aps 5
+advanced 802.11b client-network-preference default
+advanced 802.11a client-network-preference default
+advanced backup-controller primary
+advanced backup-controller secondary
+advanced backup-controller
+advanced backup-controller
+advanced sip-snooping-ports 0 0
+advanced eap bcast-key-interval 3600
+advanced 802.11-abgn pak-rssi-location threshold -100
+advanced 802.11-abgn pak-rssi-location trigger-threshold 10
+advanced 802.11-abgn pak-rssi-location reset-threshold 8
+advanced 802.11-abgn pak-rssi-location timeout 3
+advanced sae anti-clog-threshold 80
+advanced sae max-retry 2
+advanced sae retry-timeout 400
+wlan flexconnect sae anti-clog-threshold 50 1
+wlan flexconnect sae max-retry 10 1
+wlan flexconnect sae retry-timeout 40 1
+wlan flexconnect sae anti-clog-threshold 50 2
+wlan flexconnect sae max-retry 10 2
+wlan flexconnect sae retry-timeout 40 2
+wlan flexconnect sae anti-clog-threshold 50 3
+wlan flexconnect sae max-retry 10 3
+wlan flexconnect sae retry-timeout 40 3
+wlan flexconnect sae anti-clog-threshold 50 10
+wlan flexconnect sae max-retry 10 10
+wlan flexconnect sae retry-timeout 40 10
+wlan flexconnect sae anti-clog-threshold 50 14
+wlan flexconnect sae max-retry 10 14
+wlan flexconnect sae retry-timeout 40 14
+advanced hotspot cmbk-delay 1
+Cisco Public Safety is not allowed to set in this domain
+ap syslog host global ::
+ap syslog secure disable
+ap dtls-cipher-suite RSA-AES128-SHA
+ap dtls-wlc-mic sha2
+ap nsi-ports enable all
+ap mgmtuser add username rk password [~REDACTED:dgst=Wdv8_yBJwrw~] all
+boot backup
+cdp advertise-v2 enable
+country J2
+countries-list add J4
+cts sxp disable
+cts sxp connection default password ****
+cts sxp retry period 120
+cts sxp sxpversion 2
+cts device-id  password ****
+cts disable
+radius auth pac 1 disable
+radius auth pac 2 disable
+custom-web weblogo disable
+custom-web webmessage "We're NOT liable for any transmissions, malwares, loss of data, file corruption, hacking or damage to your devices that result from the transmission through the internet ser
+custom-web qrscan-bypass-opt 0 0
+database size 12000
+dhcp timeout 20
+dhcp opt-82 remote-id apname:ssid
+qos qosmap disable
+qos qosmap upstream trust-dscp disable
+flexconnect acl create rk-nodisco
+flexconnect acl apply rk-nodisco
+flexconnect acl rule add rk-nodisco 1
+flexconnect acl rule add rk-nodisco 2
+flexconnect acl rule add rk-nodisco 3
+flexconnect acl rule add rk-nodisco 4
+flexconnect acl rule add rk-nodisco 5
+flexconnect acl rule add rk-nodisco 6
+flexconnect acl rule action rk-nodisco 1 deny
+flexconnect acl rule action rk-nodisco 2 deny
+flexconnect acl rule action rk-nodisco 3 deny
+flexconnect acl rule action rk-nodisco 4 deny
+flexconnect acl rule action rk-nodisco 5 deny
+flexconnect acl rule action rk-nodisco 6 permit
+flexconnect acl rule destination address rk-nodisco 1 0.0.0.0 0.0.0.0
+flexconnect acl rule destination address rk-nodisco 2 0.0.0.0 0.0.0.0
+flexconnect acl rule destination address rk-nodisco 3 0.0.0.0 0.0.0.0
+flexconnect acl rule destination address rk-nodisco 4 0.0.0.0 0.0.0.0
+flexconnect acl rule destination address rk-nodisco 5 0.0.0.0 0.0.0.0
+flexconnect acl rule destination address rk-nodisco 6 0.0.0.0 0.0.0.0
+flexconnect acl rule destination port range rk-nodisco 1 5353 5353
+flexconnect acl rule destination port range rk-nodisco 2 5355 5355
+flexconnect acl rule destination port range rk-nodisco 3 1900 1900
+flexconnect acl rule destination port range rk-nodisco 4 3702 3702
+flexconnect acl rule destination port range rk-nodisco 5 137 138
+flexconnect acl rule destination port range rk-nodisco 6 0 65535
+flexconnect acl rule source address rk-nodisco 1 0.0.0.0 0.0.0.0
+flexconnect acl rule source address rk-nodisco 2 0.0.0.0 0.0.0.0
+flexconnect acl rule source address rk-nodisco 3 0.0.0.0 0.0.0.0
+flexconnect acl rule source address rk-nodisco 4 0.0.0.0 0.0.0.0
+flexconnect acl rule source address rk-nodisco 5 0.0.0.0 0.0.0.0
+flexconnect acl rule source address rk-nodisco 6 0.0.0.0 0.0.0.0
+flexconnect acl rule source port range rk-nodisco 1 0 65535
+flexconnect acl rule source port range rk-nodisco 2 0 65535
+flexconnect acl rule source port range rk-nodisco 3 0 65535
+flexconnect acl rule source port range rk-nodisco 4 0 65535
+flexconnect acl rule source port range rk-nodisco 5 0 65535
+flexconnect acl rule source port range rk-nodisco 6 0 65535
+flexconnect acl rule dscp rk-nodisco 1  Any
+flexconnect acl rule dscp rk-nodisco 2  Any
+flexconnect acl rule dscp rk-nodisco 3  Any
+flexconnect acl rule dscp rk-nodisco 4  Any
+flexconnect acl rule dscp rk-nodisco 5  Any
+flexconnect acl rule dscp rk-nodisco 6  Any
+flexconnect acl rule protocol rk-nodisco 1   17
+flexconnect acl rule protocol rk-nodisco 2   17
+flexconnect acl rule protocol rk-nodisco 3   17
+flexconnect acl rule protocol rk-nodisco 4   17
+flexconnect acl rule protocol rk-nodisco 5   17
+flexconnect acl rule protocol rk-nodisco 6  Any
+flexconnect ipv6 acl create rk-nodisco6
+flexconnect ipv6 acl rule add rk-nodisco6 1
+flexconnect ipv6 acl rule add rk-nodisco6 2
+flexconnect ipv6 acl rule add rk-nodisco6 3
+flexconnect ipv6 acl rule add rk-nodisco6 4
+flexconnect ipv6 acl rule add rk-nodisco6 5
+flexconnect ipv6 acl rule action rk-nodisco6 1 deny
+flexconnect ipv6 acl rule action rk-nodisco6 2 deny
+flexconnect ipv6 acl rule action rk-nodisco6 3 deny
+flexconnect ipv6 acl rule action rk-nodisco6 4 deny
+flexconnect ipv6 acl rule action rk-nodisco6 5 permit
+flexconnect ipv6 acl rule destination address rk-nodisco6 1 :: 0
+flexconnect ipv6 acl rule destination address rk-nodisco6 2 :: 0
+flexconnect ipv6 acl rule destination address rk-nodisco6 3 :: 0
+flexconnect ipv6 acl rule destination address rk-nodisco6 4 :: 0
+flexconnect ipv6 acl rule destination address rk-nodisco6 5 :: 0
+flexconnect ipv6 acl rule destination port range rk-nodisco6 1 5353 5353
+flexconnect ipv6 acl rule destination port range rk-nodisco6 2 5355 5355
+flexconnect ipv6 acl rule destination port range rk-nodisco6 3 1900 1900
+flexconnect ipv6 acl rule destination port range rk-nodisco6 4 3702 3702
+flexconnect ipv6 acl rule destination port range rk-nodisco6 5 0 65535
+flexconnect ipv6 acl rule source address rk-nodisco6 1 :: 0
+flexconnect ipv6 acl rule source address rk-nodisco6 2 :: 0
+flexconnect ipv6 acl rule source address rk-nodisco6 3 :: 0
+flexconnect ipv6 acl rule source address rk-nodisco6 4 :: 0
+flexconnect ipv6 acl rule source address rk-nodisco6 5 :: 0
+flexconnect ipv6 acl rule source port range rk-nodisco6 1 0 65535
+flexconnect ipv6 acl rule source port range rk-nodisco6 2 0 65535
+flexconnect ipv6 acl rule source port range rk-nodisco6 3 0 65535
+flexconnect ipv6 acl rule source port range rk-nodisco6 4 0 65535
+flexconnect ipv6 acl rule source port range rk-nodisco6 5 0 65535
+flexconnect ipv6 acl rule dscp rk-nodisco6 1  Any
+flexconnect ipv6 acl rule dscp rk-nodisco6 2  Any
+flexconnect ipv6 acl rule dscp rk-nodisco6 3  Any
+flexconnect ipv6 acl rule dscp rk-nodisco6 4  Any
+flexconnect ipv6 acl rule dscp rk-nodisco6 5  Any
+flexconnect ipv6 acl rule protocol rk-nodisco6 1   17
+flexconnect ipv6 acl rule protocol rk-nodisco6 2   17
+flexconnect ipv6 acl rule protocol rk-nodisco6 3   17
+flexconnect ipv6 acl rule protocol rk-nodisco6 4   17
+flexconnect ipv6 acl rule protocol rk-nodisco6 5  Any
+flexconnect group default-flex-group add
+flexconnect group default-flex-group radius ap server-key <hidden>
+flexconnect group default-flex-group radius ap authority id 436973636f0000000000000000000000
+flexconnect group default-flex-group radius ap authority info Cisco A_ID
+flexconnect group default-flex-group http-proxy ip-address 0.0.0.0 http-proxy port 0
+flexconnect group default-flex-group template-vlan-map add none
+flexconnect group rk-venue add
+flexconnect group rk-venue ap add 00:29:c2:dc:57:b8
+flexconnect group rk-venue ap add 00:29:c2:e0:44:58
+flexconnect group rk-venue ap add 00:fc:ba:29:c6:cc
+flexconnect group rk-venue ap add 08:4f:a9:a2:9e:60
+flexconnect group rk-venue ap add 28:ac:9e:57:85:fa
+flexconnect group rk-venue ap add 34:f8:e7:c0:48:a0
+flexconnect group rk-venue ap add 34:f8:e7:c2:09:18
+flexconnect group rk-venue ap add 34:f8:e7:c2:16:60
+flexconnect group rk-venue ap add 34:f8:e7:c2:21:20
+flexconnect group rk-venue ap add 34:f8:e7:c2:21:78
+flexconnect group rk-venue ap add 34:f8:e7:c2:22:10
+flexconnect group rk-venue ap add 34:f8:e7:c2:23:30
+flexconnect group rk-venue ap add 34:f8:e7:c2:23:c0
+flexconnect group rk-venue ap add 34:f8:e7:c2:23:f8
+flexconnect group rk-venue ap add 34:f8:e7:c2:24:10
+flexconnect group rk-venue ap add 34:f8:e7:c2:24:48
+flexconnect group rk-venue ap add 34:f8:e7:c2:31:18
+flexconnect group rk-venue ap add 38:0e:4d:93:ac:e8
+flexconnect group rk-venue ap add 70:69:5a:aa:35:e8
+flexconnect group rk-venue ap add 70:b3:17:52:a9:ec
+flexconnect group rk-venue ap add 70:b3:17:52:b5:98
+flexconnect group rk-venue ap add 70:b3:17:52:c9:62
+flexconnect group rk-venue ap add 70:b3:17:a2:8f:1e
+flexconnect group rk-venue ap add 70:b3:17:a2:a9:92
+flexconnect group rk-venue ap add 70:b3:17:a2:ab:0a
+flexconnect group rk-venue ap add 70:b3:17:c5:ad:2a
+flexconnect group rk-venue ap add 70:b3:17:c5:ae:4e
+flexconnect group rk-venue ap add 70:b3:17:c5:ae:50
+flexconnect group rk-venue ap add 70:b3:17:c5:af:64
+flexconnect group rk-venue ap add 70:b3:17:c5:b2:ca
+flexconnect group rk-venue ap add 70:b3:17:c5:b3:48
+flexconnect group rk-venue ap add 70:b3:17:c5:b3:94
+flexconnect group rk-venue ap add 70:b3:17:c5:b3:b0
+flexconnect group rk-venue ap add 70:b3:17:c5:b4:22
+flexconnect group rk-venue ap add 70:b3:17:c5:b4:2c
+flexconnect group rk-venue ap add 70:b3:17:c5:b4:36
+flexconnect group rk-venue ap add 70:b3:17:c5:b4:38
+flexconnect group rk-venue ap add 70:b3:17:d3:e9:1a
+flexconnect group rk-venue ap add 70:b3:17:d3:eb:80
+flexconnect group rk-venue ap add 70:b3:17:d3:ec:3e
+flexconnect group rk-venue ap add 70:b3:17:d3:ec:60
+flexconnect group rk-venue ap add 70:b3:17:d3:f1:24
+flexconnect group rk-venue ap add 70:b3:17:d3:f1:3a
+flexconnect group rk-venue ap add 70:b3:17:d3:f1:6c
+flexconnect group rk-venue ap add 70:b3:17:d3:f1:c8
+flexconnect group rk-venue ap add 70:b3:17:d3:f1:e2
+flexconnect group rk-venue ap add 70:c9:c6:56:18:c0
+flexconnect group rk-venue ap add 70:df:2f:6d:50:40
+flexconnect group rk-venue ap add a4:88:73:5e:cc:24
+flexconnect group rk-venue ap add f4:db:e6:e3:bc:3c
+flexconnect group rk-venue ap add f4:db:e6:e3:d4:9a
+flexconnect group rk-venue radius ap server-key <hidden>
+flexconnect group rk-venue radius ap authority id 436973636f0000000000000000000000
+flexconnect group rk-venue radius ap authority info Cisco A_ID
+flexconnect group rk-venue http-proxy ip-address  http-proxy port 0
+flexconnect group rk-venue vlan enable
+flexconnect group rk-venue vlan native 200
+flexconnect group rk-venue vlan override-ap enable
+flexconnect group rk-venue template-vlan-map add none
+flexconnect group rk-venue central-dhcp 1 enable override dns disable nat-pat disable
+flexconnect group rk-venue central-dhcp 2 enable override dns disable nat-pat disable
+flexconnect group rk-venue central-dhcp 3 enable override dns disable nat-pat disable
+flexconnect group rk-venue central-dhcp 10 enable override dns disable nat-pat disable
+flexconnect group rk-venue central-dhcp 14 enable override dns disable nat-pat disable
+local-auth low-cipher enable
+local-auth method fast server-key ****
+interface create life 300
+interface create usr 400
+interface address dynamic-interface life 10.33.1.2 255.255.255.0 10.33.1.254
+interface address management 10.33.2.2 255.255.255.0 10.33.2.254
+interface address service-port 10.33.100.10 255.255.255.0
+interface address dynamic-interface usr 10.33.64.2 255.255.240.0 10.33.79.254
+interface address virtual 100.127.100.127
+interface dhcp dynamic-interface life primary 10.33.136.67 secondary 10.33.152.67
+interface dhcp dynamic-interface life option-82 enable
+interface dhcp dynamic-interface life option-6-opendns disable
+interface dhcp  management primary 10.33.2.1
+interface dhcp dynamic-interface management option-6-opendns disable
+interface dhcp dynamic-interface usr primary 10.33.136.67 secondary 10.33.152.67
+interface dhcp dynamic-interface usr option-82 enable
+interface dhcp dynamic-interface usr option-6-opendns disable
+interface vlan life 300
+interface vlan usr 400
+interface nasid none life
+interface nasid none usr
+nasid apgroup  default-group
+nasid apgroup  rk-hi
+nasid apgroup  rk-med
+wlan nasid none 1
+wlan nasid none 2
+wlan nasid none 3
+wlan nasid none 10
+wlan nasid none 14
+interface port life 8
+interface port management 8
+interface port usr 8
+mdns snooping disable
+mdns policy service-group create "default-mdns-policy" "Default Access Policy created by WLC"
+mdns policy service-group user-role add default-mdns-policy admin
+mdns profile create "default-mdns-profile"
+mdns service create "AirTunes" _raop._tcp.local. origin All LSS disable query disable
+mdns service create "Airplay" _airplay._tcp.local. origin All LSS disable query disable
+mdns service create "Googlecast" _googlecast._tcp.local. origin All LSS disable query disable
+mdns service create "HP_Photosmart_Printer_1" _universal._sub._ipp._tcp.local. origin All LSS disable query enable
+mdns service create "HP_Photosmart_Printer_2" _cups._sub._ipp._tcp.local. origin All LSS disable query enable
+mdns service create "HomeSharing" _home-sharing._tcp.local. origin All LSS disable query enable
+mdns service create "Printer-IPP" _ipp._tcp.local. origin All LSS disable query disable
+mdns service create "Printer-IPPS" _ipps._tcp.local. origin All LSS disable query disable
+mdns service create "Printer-LPD" _printer._tcp.local. origin All LSS disable query disable
+mdns service create "Printer-SOCKET" _pdl-datastream._tcp.local. origin All LSS disable query disable
+mdns service create "iTuneWirelessDeviceSharing 2" _apple-mobdev2._tcp.local. origin All LSS disable query disable
+mdns profile service add "default-mdns-profile" "AirTunes"
+mdns profile service add "default-mdns-profile" "Airplay"
+mdns profile service add "default-mdns-profile" "Googlecast"
+mdns profile service add "default-mdns-profile" "HP_Photosmart_Printer_1"
+mdns profile service add "default-mdns-profile" "HP_Photosmart_Printer_2"
+mdns profile service add "default-mdns-profile" "HomeSharing"
+mdns profile service add "default-mdns-profile" "Printer-IPP"
+mdns profile service add "default-mdns-profile" "Printer-IPPS"
+mdns profile service add "default-mdns-profile" "Printer-LPD"
+mdns profile service add "default-mdns-profile" "Printer-SOCKET"
+mdns profile service add "default-mdns-profile" "iTuneWirelessDeviceSharing 2"
+mdns query interval 15
+wlan mdns disable 1
+wlan mdns disable 2
+wlan mdns disable 3
+wlan mdns disable 10
+wlan mdns disable 14
+ipv6 ra-guard ap enable
+ipv6 capwap udplite enable all
+ipv6 multicast mode unicast
+lag enable
+load-balancing aggressive enable
+load-balancing window 5
+wlan apgroup add default-group
+wlan apgroup add rk-hi
+wlan apgroup add rk-med
+wlan apgroup qinq tagging eap-sim-aka default-group enable
+wlan apgroup qinq tagging eap-sim-aka rk-hi enable
+wlan apgroup qinq tagging eap-sim-aka rk-med enable
+nmsp service enable
+nmsp cipher-option high enable
+wlan apgroup interface-mapping add default-group 1 life
+wlan apgroup interface-mapping add default-group 2 life
+wlan apgroup interface-mapping add default-group 3 usr
+wlan apgroup interface-mapping add default-group 10 usr
+wlan apgroup interface-mapping add default-group 14 usr
+wlan apgroup interface-mapping add rk-hi 1 life
+wlan apgroup interface-mapping add rk-hi 2 life
+wlan apgroup interface-mapping add rk-hi 10 usr
+wlan apgroup interface-mapping add rk-hi 3 usr
+wlan apgroup interface-mapping add rk-med 1 life
+wlan apgroup interface-mapping add rk-med 2 life
+wlan apgroup interface-mapping add rk-med 10 usr
+wlan apgroup interface-mapping add rk-med 3 usr
+wlan apgroup nac-snmp disable default-group 1
+wlan apgroup nac-snmp disable default-group 2
+wlan apgroup nac-snmp disable default-group 3
+wlan apgroup nac-snmp disable default-group 10
+wlan apgroup nac-snmp disable default-group 14
+wlan apgroup nac-snmp disable rk-hi 1
+wlan apgroup nac-snmp disable rk-hi 2
+wlan apgroup nac-snmp disable rk-hi 10
+wlan apgroup nac-snmp disable rk-hi 3
+wlan apgroup nac-snmp disable rk-med 1
+wlan apgroup nac-snmp disable rk-med 2
+wlan apgroup nac-snmp disable rk-med 10
+wlan apgroup nac-snmp disable rk-med 3
+wlan apgroup custom-web global default-group enable
+wlan apgroup custom-web global rk-hi enable
+wlan apgroup custom-web global rk-med enable
+logging buffered 6
+logging syslog host 10.33.136.14
+logging syslog level 6
+msglog level informational
+memory monitor errors enable
+memory monitor leak thresholds 10000 30000
+Outdoor Mesh Ext.UNII B Domain channels: Disable
+mesh security rad-mac-filter disable
+mesh security rad-mac-filter disable
+mesh security eap
+mesh background-scanning disable
+mesh backhaul rrm disable
+mesh backhaul rrm auto-rf global
+mesh lsc advanced ap-provision open-window enable
+mgmtuser add glazed [~REDACTED:dgst=XX0DSwpc1EU~] read-only
+mgmtuser add rk [~REDACTED:dgst=XX0DSwpc1EU~] read-write rk26
+mgmtuser add rkroot [~REDACTED:dgst=XX0DSwpc1EU~] read-write
+mgmtuser termination-interval 0
+mobility group domain rkdefault
+mobility dscp 0
+network dns serverip 10.33.136.53
+network http-proxy ip 0.0.0.0
+network http-proxy Port 80
+network webmode enable
+network secureweb csrfcheck enable
+network profiling http-port 80
+network ap-priority disabled
+network ap-easyadmin disable
+global ap virtual IP 10.1.0.6
+network fast-ssid-change enable
+network rf-network-name rkdefault
+network client-ip-conflict-detection disable
+pmipv6 mag binding maximum AP 250
+port maxspeed 5
+qos protocol-type bronze dot1p
+qos protocol-type silver dot1p
+qos protocol-type gold dot1p
+qos protocol-type platinum dot1p
+qos priority bronze background background background
+qos priority gold video video video
+qos priority platinum voice voice voice
+qos priority silver besteffort besteffort besteffort
+qos dot1p-tag silver 0
+qos dot1p-tag gold 4
+qos dot1p-tag platinum 5
+qos max-dscp bronze 10
+qos max-dscp silver 0
+qos max-dscp gold 34
+qos max-dscp platinum 46
+radius auth add 1 10.33.152.200 1812 ascii [~REDACTED:dgst=XX0DSwpc1EU~]
+radius auth add 2 10.33.142.63 1812 ascii [~REDACTED:dgst=XX0DSwpc1EU~]
+radius callStationIdType macaddr
+radius auth callStationIdType ap-macaddr-ssid
+radius auth retransmit-timeout 1 5
+radius auth retransmit-timeout 2 5
+radius auth mgmt-retransmit-timeout 1 5
+radius auth mgmt-retransmit-timeout 2 5
+radius auth management 1 disable
+radius auth management 2 disable
+radius fallback-test mode active
+radius fallback-test username cisco-probe
+radius fallback-test interval 300
+radius dns serverip 10.33.136.53
+radius dns disable
+radius dns auth network enable
+radius dns auth management enable
+radius dns acct network enable
+radius dns auth rfc3576 disable
+radius calea disable
+radius calea timer 8
+tacacs dns serverip 10.33.136.53
+tacacs dns disable
+radius auth framed-mtu 1100
+rogue detection report-interval 10
+rogue detection min-rssi -90
+rogue detection transient-rogue-interval 0
+rogue detection client-threshold 0
+rogue detection security-level custom
+rogue ap aaa-auth disable
+rogue ap aaa-auth polling-interval 0
+rogue ap ssid alarm
+rogue ap valid-client alarm
+rogue adhoc enable
+rogue adhoc alert
+rogue ap rldp disable
+rogue ap rldp schedule disable
+rogue auto-contain level 1
+rogue containment flex-connect disable
+rogue containment auto-rate disable
+rogue client aaa disable
+rogue client mse disable
+snmp version v2c enable
+snmp community accessmode ro [~REDACTED:dgst=rKI0Sy2vKNM~]
+snmp snmpEngineId 0000376300006b600202210a
+switchconfig restore-password enable
+sysname rubykaigi-wlc
+stats-timer realtime 5
+stats-timer normal 180
+This command has been deprecated! Please use 'config tacacs auth add' instead.
+This command has been deprecated! Please use 'config tacacs auth enable' instead.
+This command has been deprecated! Please use 'config tacacs auth server-timeout' instead.
+This command has been deprecated! Please use 'config tacacs auth mgmt-server-timeout' instead.
+tacacs fallback-test interval 0
+time ntp interval 3600
+time ntp server 1 216.239.35.0
+rf-profile create 802.11a High-Client-Density-802.11a
+rf-profile create 802.11b High-Client-Density-802.11bg
+rf-profile create 802.11a Low-Client-Density-802.11a
+rf-profile create 802.11b Low-Client-Density-802.11bg
+rf-profile create 802.11a Typical-Client-Density-802.11a
+rf-profile create 802.11b Typical-Client-Density-802.11bg
+rf-profile create 802.11b rk-24g-hi
+rf-profile create 802.11b rk-24g-med
+rf-profile create 802.11a rk-5g-hi
+rf-profile create 802.11a rk-5g-med
+rf-profile create 802.11a rk-stadium-med
+rf-profile tx-power-min 7 High-Client-Density-802.11a
+rf-profile tx-power-min 7 High-Client-Density-802.11bg
+rf-profile tx-power-min 7 rk-24g-hi
+rf-profile tx-power-min 7 rk-5g-hi
+rf-profile tx-power-min 7 rk-stadium-med
+rf-profile tx-power-control-thresh-v1 -65 High-Client-Density-802.11a
+rf-profile tx-power-control-thresh-v1 -60 Low-Client-Density-802.11a
+rf-profile tx-power-control-thresh-v1 -65 Low-Client-Density-802.11bg
+rf-profile tx-power-control-thresh-v1 -65 rk-5g-hi
+rf-profile tx-power-control-thresh-v1 -65 rk-stadium-med
+rf-profile data-rates 802.11a disabled 6 High-Client-Density-802.11a
+rf-profile data-rates 802.11a disabled 9 High-Client-Density-802.11a
+rf-profile data-rates 802.11a mandatory 12 High-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 18 High-Client-Density-802.11a
+rf-profile data-rates 802.11a mandatory 24 High-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 36 High-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 48 High-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 54 High-Client-Density-802.11a
+rf-profile data-rates 802.11b disabled 1 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b disabled 2 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b disabled 5.5 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b disabled 11 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b disabled 6 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 9 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b mandatory 12 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 18 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 24 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 36 High-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 48 High-Client-Density-802.11bg
+rf-profile data-rates 802.11a mandatory 6 Low-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 9 Low-Client-Density-802.11a
+rf-profile data-rates 802.11a mandatory 12 Low-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 18 Low-Client-Density-802.11a
+rf-profile data-rates 802.11a mandatory 24 Low-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 36 Low-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 48 Low-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 54 Low-Client-Density-802.11a
+rf-profile data-rates 802.11b mandatory 1 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b mandatory 2 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b mandatory 5.5 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b mandatory 11 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 6 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 9 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 12 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 18 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 24 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 36 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 48 Low-Client-Density-802.11bg
+rf-profile data-rates 802.11a mandatory 6 Typical-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 9 Typical-Client-Density-802.11a
+rf-profile data-rates 802.11a mandatory 12 Typical-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 18 Typical-Client-Density-802.11a
+rf-profile data-rates 802.11a mandatory 24 Typical-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 36 Typical-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 48 Typical-Client-Density-802.11a
+rf-profile data-rates 802.11a supported 54 Typical-Client-Density-802.11a
+rf-profile data-rates 802.11b disabled 1 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b disabled 2 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b disabled 5.5 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b disabled 11 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b disabled 6 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 9 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b mandatory 12 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 18 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 24 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 36 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b supported 48 Typical-Client-Density-802.11bg
+rf-profile data-rates 802.11b disabled 1 rk-24g-hi
+rf-profile data-rates 802.11b disabled 2 rk-24g-hi
+rf-profile data-rates 802.11b disabled 5.5 rk-24g-hi
+rf-profile data-rates 802.11b disabled 11 rk-24g-hi
+rf-profile data-rates 802.11b disabled 6 rk-24g-hi
+rf-profile data-rates 802.11b disabled 9 rk-24g-hi
+rf-profile data-rates 802.11b disabled 12 rk-24g-hi
+rf-profile data-rates 802.11b disabled 18 rk-24g-hi
+rf-profile data-rates 802.11b disabled 24 rk-24g-hi
+rf-profile data-rates 802.11b mandatory 36 rk-24g-hi
+rf-profile data-rates 802.11b supported 48 rk-24g-hi
+rf-profile data-rates 802.11b disabled 1 rk-24g-med
+rf-profile data-rates 802.11b disabled 2 rk-24g-med
+rf-profile data-rates 802.11b disabled 5.5 rk-24g-med
+rf-profile data-rates 802.11b disabled 11 rk-24g-med
+rf-profile data-rates 802.11b disabled 6 rk-24g-med
+rf-profile data-rates 802.11b disabled 9 rk-24g-med
+rf-profile data-rates 802.11b disabled 12 rk-24g-med
+rf-profile data-rates 802.11b disabled 18 rk-24g-med
+rf-profile data-rates 802.11b mandatory 24 rk-24g-med
+rf-profile data-rates 802.11b mandatory 36 rk-24g-med
+rf-profile data-rates 802.11b supported 48 rk-24g-med
+rf-profile data-rates 802.11a disabled 6 rk-5g-hi
+rf-profile data-rates 802.11a disabled 9 rk-5g-hi
+rf-profile data-rates 802.11a disabled 12 rk-5g-hi
+rf-profile data-rates 802.11a disabled 18 rk-5g-hi
+rf-profile data-rates 802.11a disabled 24 rk-5g-hi
+rf-profile data-rates 802.11a mandatory 36 rk-5g-hi
+rf-profile data-rates 802.11a supported 48 rk-5g-hi
+rf-profile data-rates 802.11a supported 54 rk-5g-hi
+rf-profile data-rates 802.11a disabled 6 rk-5g-med
+rf-profile data-rates 802.11a disabled 9 rk-5g-med
+rf-profile data-rates 802.11a disabled 12 rk-5g-med
+rf-profile data-rates 802.11a disabled 18 rk-5g-med
+rf-profile data-rates 802.11a mandatory 24 rk-5g-med
+rf-profile data-rates 802.11a mandatory 36 rk-5g-med
+rf-profile data-rates 802.11a supported 48 rk-5g-med
+rf-profile data-rates 802.11a supported 54 rk-5g-med
+rf-profile data-rates 802.11a disabled 6 rk-stadium-med
+rf-profile data-rates 802.11a disabled 9 rk-stadium-med
+rf-profile data-rates 802.11a mandatory 12 rk-stadium-med
+rf-profile data-rates 802.11a supported 18 rk-stadium-med
+rf-profile data-rates 802.11a mandatory 24 rk-stadium-med
+rf-profile data-rates 802.11a supported 36 rk-stadium-med
+rf-profile data-rates 802.11a supported 48 rk-stadium-med
+rf-profile data-rates 802.11a supported 54 rk-stadium-med
+rf-profile max-clients 100 rk-24g-hi
+rf-profile max-clients 100 rk-5g-hi
+rf-profile rx-sop threshold medium High-Client-Density-802.11a
+rf-profile rx-sop threshold medium High-Client-Density-802.11bg
+rf-profile rx-sop threshold low Low-Client-Density-802.11a
+rf-profile rx-sop threshold low Low-Client-Density-802.11bg
+rf-profile rx-sop threshold medium rk-24g-hi
+rf-profile rx-sop threshold medium rk-5g-hi
+rf-profile rx-sop threshold medium rk-stadium-med
+rf-profile coverage data -90 Low-Client-Density-802.11a
+rf-profile coverage data -90 Low-Client-Density-802.11bg
+rf-profile coverage voice -90 Low-Client-Density-802.11a
+rf-profile coverage voice -90 Low-Client-Density-802.11bg
+rf-profile coverage exception 2 Low-Client-Density-802.11a
+rf-profile coverage exception 2 Low-Client-Density-802.11bg
+rf-profile channel delete 144 High-Client-Density-802.11a
+rf-profile channel delete 144 Low-Client-Density-802.11a
+rf-profile channel delete 144 Typical-Client-Density-802.11a
+rf-profile channel delete 144 rk-5g-hi
+rf-profile channel delete 144 rk-5g-med
+rf-profile channel delete 144 rk-stadium-med
+rf-profile client-network-preference default High-Client-Density-802.11a
+rf-profile client-network-preference default High-Client-Density-802.11bg
+rf-profile client-network-preference default Low-Client-Density-802.11a
+rf-profile client-network-preference default Low-Client-Density-802.11bg
+rf-profile client-network-preference default Typical-Client-Density-802.11a
+rf-profile client-network-preference default Typical-Client-Density-802.11bg
+rf-profile client-network-preference default rk-24g-hi
+rf-profile client-network-preference default rk-24g-med
+rf-profile client-network-preference default rk-5g-hi
+rf-profile client-network-preference default rk-5g-med
+rf-profile client-network-preference default rk-stadium-med
+trapflags client nac-alert enable
+trapflags client webAuthUserLogin enable
+trapflags client webAuthUserLogout enable
+trapflags ap ssidKeyConflict disable
+trapflags mfp disable
+trapflags mesh excessive hop count disable
+trapflags mesh sec backhaul change disable
+trapflags mesh psk auth failure disable
+wlan create 1 rkm rkm
+wlan create 2 life2 empurple
+wlan create 3 usrlegacy "Kaigi on Rails 2026 Legacy"
+wlan create 10 usr "Kaigi on Rails 2026"
+wlan create 14 usr24 24rk
+wlan nac snmp disable 1
+wlan nac snmp disable 2
+wlan nac snmp disable 3
+wlan nac snmp disable 10
+wlan nac snmp disable 14
+wlan nac radius disable 1
+wlan nac radius disable 2
+wlan nac radius disable 3
+wlan nac radius disable 10
+wlan nac radius disable 14
+wlan interface 1 life
+wlan interface 2 life
+wlan interface 3 usr
+wlan interface 10 usr
+wlan interface 14 usr
+wlan multicast interface 1 disable
+wlan multicast interface 2 disable
+wlan multicast interface 3 disable
+wlan multicast interface 10 disable
+wlan multicast interface 14 disable
+wlan band-select allow enable 1
+wlan band-select allow disable 2
+wlan band-select allow enable 3
+wlan band-select allow disable 10
+wlan band-select allow disable 14
+wlan exclusionlist 1 disabled
+wlan exclusionlist 1 0
+wlan load-balance allow enable 1
+wlan load-balance allow disable 2
+wlan load-balance allow enable 3
+wlan load-balance allow disable 10
+wlan load-balance allow enable 14
+wlan assisted-roaming prediction disable 1
+wlan assisted-roaming prediction disable 2
+wlan assisted-roaming prediction disable 3
+wlan assisted-roaming prediction disable 10
+wlan assisted-roaming prediction disable 14
+wlan assisted-roaming neighbor-list enable 1
+wlan assisted-roaming neighbor-list enable 2
+wlan assisted-roaming neighbor-list enable 3
+wlan assisted-roaming neighbor-list enable 10
+wlan assisted-roaming neighbor-list enable 14
+wlan assisted-roaming dual-list disable 1
+wlan assisted-roaming dual-list disable 2
+wlan assisted-roaming dual-list disable 3
+wlan assisted-roaming dual-list disable 10
+wlan assisted-roaming dual-list disable 14
+wlan dms enable 1
+wlan dms enable 2
+wlan dms enable 3
+wlan dms enable 10
+wlan dms enable 14
+wlan bssmaxidle enable 1
+wlan bssmaxidle enable 2
+wlan bssmaxidle enable 3
+wlan bssmaxidle enable 10
+wlan bssmaxidle enable 14
+wlan bss-transition enable 1
+wlan bss-transition enable 2
+wlan bss-transition enable 3
+wlan bss-transition enable 10
+wlan bss-transition enable 14
+wlan bss-transition disassociation-imminent timer 200 1
+wlan bss-transition disassociation-imminent timer 200 2
+wlan bss-transition disassociation-imminent timer 200 3
+wlan bss-transition disassociation-imminent timer 200 10
+wlan bss-transition disassociation-imminent timer 200 14
+wlan bss-transition disassociation-imminent oproam-timer 40 1
+wlan bss-transition disassociation-imminent oproam-timer 40 2
+wlan bss-transition disassociation-imminent oproam-timer 40 3
+wlan bss-transition disassociation-imminent oproam-timer 40 10
+wlan bss-transition disassociation-imminent oproam-timer 40 14
+wlan multicast buffer disable 0 1
+wlan multicast buffer disable 0 2
+wlan multicast buffer disable 0 3
+wlan multicast buffer disable 0 10
+wlan multicast buffer disable 0 14
+wlan radio 3 802.11a-only
+wlan radio 10 802.11a-only
+wlan session-timeout 1 disable
+wlan session-timeout 2 disable
+wlan session-timeout 3 disable
+wlan session-timeout 10 disable
+wlan session-timeout 14 1800
+wlan flexconnect local-switching 1 enable
+wlan flexconnect local-switching 2 enable
+wlan flexconnect local-switching 3 enable
+wlan flexconnect local-switching 10 enable
+wlan flexconnect local-switching 14 enable
+wlan flexconnect learn-ipaddr 1 enable
+wlan flexconnect learn-ipaddr 2 enable
+wlan flexconnect learn-ipaddr 3 enable
+wlan flexconnect learn-ipaddr 10 enable
+wlan flexconnect learn-ipaddr 14 enable
+wlan flexconnect post-auth ipv6 acl rk-nodisco6 3
+wlan flexconnect post-auth ipv6 acl rk-nodisco6 10
+wlan flexconnect post-auth ipv6 acl rk-nodisco6 10
+wlan wgb broadcast-tagging disable 1
+wlan wgb broadcast-tagging disable 2
+wlan wgb broadcast-tagging disable 3
+wlan wgb broadcast-tagging disable 10
+wlan wgb broadcast-tagging disable 14
+wlan wgb prp disable 1
+wlan wgb prp disable 2
+wlan wgb prp disable 3
+wlan wgb prp disable 10
+wlan wgb prp disable 14
+wlan wgb fast-receive disable 1
+wlan wgb fast-receive disable 2
+wlan wgb fast-receive disable 3
+wlan wgb fast-receive disable 10
+wlan wgb fast-receive disable 14
+wlan radius_server auth add 10 1
+wlan radius_server auth add 10 2
+wlan radius_server acct disable 10
+wlan security splash-page-web-redir disable 1
+wlan security splash-page-web-redir disable 2
+wlan security splash-page-web-redir disable 3
+wlan security splash-page-web-redir disable 10
+wlan security splash-page-web-redir disable 14
+wlan security wpa akm psk enable 1
+wlan security wpa akm psk enable 2
+wlan security wpa akm sae enable 2
+wlan security wpa akm psk enable 3
+wlan security wpa akm pmf psk enable 3
+wlan security wpa akm sae enable 3
+wlan security wpa akm psk enable 10
+wlan security wpa akm pmf psk enable 10
+wlan security wpa akm sae enable 10
+wlan security wpa akm psk enable 14
+wlan security wpa akm cckm timestamp-tolerance  1000 1
+wlan security wpa akm cckm timestamp-tolerance  1000 2
+wlan security wpa akm cckm timestamp-tolerance  1000 3
+wlan security wpa akm cckm timestamp-tolerance  1000 10
+wlan security wpa akm cckm timestamp-tolerance  1000 14
+wlan security ft adaptive enable 1
+wlan security ft over-the-ds disable 1
+wlan security ft adaptive enable 2
+wlan security ft over-the-ds disable 2
+wlan security ft adaptive enable 3
+wlan security ft over-the-ds disable 3
+wlan security ft adaptive enable 10
+wlan security ft over-the-ds disable 10
+wlan security ft adaptive enable 14
+wlan security ft over-the-ds disable 14
+wlan security wpa gtk-random disable 1
+wlan security wpa gtk-random disable 2
+wlan security wpa gtk-random disable 3
+wlan security wpa gtk-random disable 10
+wlan security wpa gtk-random disable 14
+wlan security wpa wpa3 enable 2
+wlan security wpa wpa3 enable 3
+wlan security wpa wpa3 enable 10
+wlan security pmf optional 2
+wlan security pmf optional 3
+wlan security pmf optional 10
+wlan security pmf association-comeback 1 1
+wlan security pmf association-comeback 1 2
+wlan security pmf association-comeback 1 3
+wlan security pmf association-comeback 1 10
+wlan security pmf association-comeback 1 14
+wlan security pmf saquery-retrytimeout 200 1
+wlan security pmf saquery-retrytimeout 200 2
+wlan security pmf saquery-retrytimeout 200 3
+wlan security pmf saquery-retrytimeout 200 10
+wlan security pmf saquery-retrytimeout 200 14
+wlan exclusionlist 1 disabled
+wlan exclusionlist 1 0
+wlan dhcp_server 3 0.0.0.0 required
+wlan dhcp_server 10 0.0.0.0 required
+wlan dhcp_server 14 0.0.0.0 required
+wlan peer-blocking drop 3
+wlan peer-blocking drop 10
+wlan peer-blocking drop 14
+wlan profiling radius dhcp disable 1
+wlan profiling radius http disable 1
+wlan profiling radius dhcp disable 2
+wlan profiling radius http disable 2
+wlan profiling radius dhcp disable 3
+wlan profiling radius http disable 3
+wlan profiling radius dhcp disable 10
+wlan profiling radius http disable 10
+wlan profiling radius dhcp disable 14
+wlan profiling radius http disable 14
+ap hotspot venue type 0 0 ap-fo0-13
+ap hotspot venue type 0 0 ap-fo0-12
+ap hotspot venue type 0 0 ap-trb-11
+ap hotspot venue type 0 0 ap-trb-02
+ap hotspot venue type 0 0 ap-tra-21
+ap hotspot venue type 0 0 ap-lb0-11
+ap hotspot venue type 0 0 ap-off-01
+ap hotspot venue type 0 0 ap-fo0-21
+ap hotspot venue type 0 0 ap-fo0-11
+ap hotspot venue type 0 0 ap-fo0-14
+ap hotspot venue type 0 0 ap-lb0-02
+ap hotspot venue type 0 0 ap-lb0-03
+ap hotspot venue type 0 0 ap-noc-01
+ap hotspot venue type 0 0 ap-lb0-12
+ap hotspot venue type 0 0 ap-lb0-01
+ap hotspot venue type 0 0 ap-int-02
+ap hotspot venue type 0 0 ap-int-01
+ap hotspot venue type 0 0 ap-tra-14
+ap hotspot venue type 0 0 ap-tra-06
+ap hotspot venue type 0 0 ap-tra-13
+ap hotspot venue type 0 0 ap-lb1-02
+ap hotspot venue type 0 0 ap-tra-03
+ap hotspot venue type 0 0 ap-tra-12
+ap hotspot venue type 0 0 ap-tra-11
+ap hotspot venue type 0 0 ap-trb-12
+ap hotspot venue type 0 0 ap-fo0-01
+ap hotspot venue type 0 0 ap-lb1-34
+ap hotspot venue type 0 0 ap-lb1-21
+ap hotspot venue type 0 0 ap-tra-23
+ap hotspot venue type 0 0 ap-tra-24
+ap hotspot venue type 0 0 ap-tra-05
+ap hotspot venue type 0 0 ap-tra-22
+ap hotspot venue type 0 0 ap-trb-01
+ap hotspot venue type 0 0 ap-lb1-01
+ap hotspot venue type 0 0 ap-tra-15
+ap hotspot venue type 0 0 ap-lb1-32
+ap hotspot venue type 0 0 ap-tra-01
+ap hotspot venue type 0 0 ap-trb-04
+ap hotspot venue type 0 0 ap-tra-25
+ap hotspot venue type 0 0 ap-trb-21
+ap hotspot venue type 0 0 ap-lb1-03
+ap hotspot venue type 0 0 ap-trb-03
+ap hotspot venue type 0 0 ap-trb-13
+ap hotspot venue type 0 0 ap-tra-04
+ap hotspot venue type 0 0 ap-lb1-31
+ap hotspot venue type 0 0 ap-lb1-22
+ap hotspot venue type 0 0 ap-lb1-33
+ap hotspot venue type 0 0 ap-lb0-21
+ap hotspot venue type 0 0 ap-tra-02
+ap hotspot venue type 0 0 ap-trb-22
+wlan fabric disable 1
+wlan fabric disable 2
+wlan fabric disable 3
+wlan fabric disable 10
+wlan fabric disable 14
+wlan fabric encap 0 1
+wlan fabric encap 0 2
+wlan fabric encap 0 3
+wlan fabric encap 0 10
+wlan fabric encap 0 14
+wlan fabric name-vnid-mapping  1
+wlan fabric name-vnid-mapping  2
+wlan fabric name-vnid-mapping  3
+wlan fabric name-vnid-mapping  10
+wlan fabric name-vnid-mapping  14
+wlan fabric vnid 0 1
+wlan fabric vnid 0 2
+wlan fabric vnid 0 3
+wlan fabric vnid 0 10
+wlan fabric vnid 0 14
+wlan fabric tag 0 1
+wlan fabric tag 0 2
+wlan fabric tag 0 3
+wlan fabric tag 0 10
+wlan fabric tag 0 14
+wlan fabric peer ip 0.0.0.0 1
+wlan fabric peer ip 0.0.0.0 2
+wlan fabric peer ip 0.0.0.0 3
+wlan fabric peer ip 0.0.0.0 10
+wlan fabric peer ip 0.0.0.0 14
+wlan fabric peer ip 0.0.0.0 14
+wlan fabric peer ip 0.0.0.0 14
+wlan fabric peer ip 0.0.0.0 14
+wlan fabric peer ip 0.0.0.0 14
+wlan fabric peer ip 0.0.0.0 14
+wlan fabric acl  1
+wlan fabric acl  2
+wlan fabric acl  3
+wlan fabric acl  10
+wlan fabric acl  14
+wlan fabric ipv6 acl  1
+wlan fabric ipv6 acl  2
+wlan fabric ipv6 acl  3
+wlan fabric ipv6 acl  10
+wlan fabric ipv6 acl  14
+wlan fabric avc-policy  1
+wlan fabric avc-policy  2
+wlan fabric avc-policy  3
+wlan fabric avc-policy  10
+wlan fabric avc-policy  14
+fabric control-plane tcp timeout 10
+fabric control-plane tcp retry-count 3
+fabric control-plane tcp keep-alive 10
+wlan target_waketime enable 1
+wlan target_waketime enable 2
+wlan target_waketime enable 3
+wlan target_waketime enable 10
+wlan target_waketime enable 14
+wlan apgroup hotspot venue type rk-hi 0 0
+wlan apgroup hotspot venue type rk-med 0 0
+wps client-exclusion web-auth disable
+wps client-exclusion ip-theft disable
+802.11b disable network
+wlan enable 2
+wlan enable 3
+wlan enable 10
+WMM-AC disabled
+HS2 QOS disabled
+coredump disable
+media-stream multicast-direct disable
+media-stream message url
+media-stream message email
+media-stream message phone
+media-stream message note denial
+media-stream message state disable
+802.11a media-stream multicast-direct enable
+802.11b media-stream multicast-direct enable
+802.11a media-stream multicast-direct radio-maximum 0
+802.11b media-stream multicast-direct radio-maximum 0
+802.11a media-stream multicast-direct client-maximum 0
+802.11b media-stream multicast-direct client-maximum 0
+802.11a media-stream multicast-direct admission-besteffort disable
+802.11b media-stream multicast-direct admission-besteffort disable
+802.11a media-stream video-redirect enable
+802.11b media-stream video-redirect enable
+ipv6 neighbor-binding timers reachable-lifetime 64800
+ipv6 neighbor-binding timers stale-lifetime 86400
+ipv6 neighbor-binding timers down-lifetime 30
+ipv6 neighbor-binding ra-throttle disable
+ipv6 neighbor-binding ra-throttle allow at-least 1 at-most 1
+ipv6 neighbor-binding ra-throttle max-through 10
+ipv6 neighbor-binding ra-throttle throttle-period 600
+ipv6 neighbor-binding ra-throttle interval-option passthrough
+ipv6 ns-mcast-fwd disable
+ipv6 na-mcast-fwd enable
+ipv6 enable
+nmheartbeat disable
+ipv6 slaac service-port disable
+sys-nas
+tunnel eogre heart-beat interval 60
+tunnel eogre heart-beat primary-fallback-timeout 30
+tunnel eogre heart-beat max-skip-count 3
+wlan mobility selective-reanchoring disable  1
+wlan mobility selective-reanchoring disable  2
+wlan mobility selective-reanchoring disable  3
+wlan mobility selective-reanchoring disable 10
+wlan mobility selective-reanchoring disable 14
+wlan u3-interface 1 disable
+wlan u3-interface 1 reporting-interval 30
+wlan u3-interface 2 disable
+wlan u3-interface 2 reporting-interval 30
+wlan u3-interface 3 disable
+wlan u3-interface 3 reporting-interval 30
+wlan u3-interface 10 disable
+wlan u3-interface 10 reporting-interval 30
+wlan u3-interface 14 disable
+wlan u3-interface 14 reporting-interval 30
+network assurance Disable
+network assurance url
+Sensor Provisioning Interface Name None
+Sensor Provisioning Disable
+WSA Backhaul SSID
+WSA Backhaul Username
+WSA Backhaul Authentication Type psk
+Eap Type ........................................ <none>
+cloud-services server url
+cloud-services cmx disabled
+telemetry webhook mode Disable
+telemetry webhook url
+usb enable
+WLAN Express Setup - False
+Flex Avc Profile Configuration
+opendns global status is disabled
+wlan 1 opendns vap mode is ignore
+wlan 2 opendns vap mode is ignore
+wlan 3 opendns vap mode is ignore
+wlan 10 opendns vap mode is ignore
+wlan 14 opendns vap mode is ignore
+wlan 1 opendns vap dhcp option 6 status is enabled
+wlan 2 opendns vap dhcp option 6 status is enabled
+wlan 3 opendns vap dhcp option 6 status is enabled
+wlan 10 opendns vap dhcp option 6 status is enabled
+wlan 14 opendns vap dhcp option 6 status is enabled
+Fabric Configuration
+fabric disable
+LI syslog host global
+Hyperlocation Configuration
+advanced 802.11-abgn hyperlocation disable
+Client stats config mode........................ Enabled
+Client stats interval........................... 90

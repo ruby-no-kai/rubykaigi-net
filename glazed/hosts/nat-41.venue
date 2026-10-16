@@ -1,0 +1,331 @@
+! NEC Portable Internetwork Core Operating System Software
+! IX Series IX2106 (magellan-sec) Software, Version 10.7.18, RELEASE SOFTWARE
+! Compiled Oct 25-Tue-2022 12:54:43 JST #2
+!
+service password-encryption
+service ssl-protocol tls1.2-and-later
+!
+hostname nat-41-venue
+timezone +00 00
+!
+logging buffered 131072
+logging subsystem all notice
+logging timestamp datetime
+!
+syslog ip source 10.33.0.21
+syslog timestamp datetime
+!
+username rkroot password hash [~REDACTED:dgst=7UiznCYy6ww~] administrator
+username root password hash [~REDACTED:dgst=pZvhyDj6894~] administrator
+username rk password hash [~REDACTED:dgst=Nq72jE8gFws~] administrator
+username glazed password hash [~REDACTED:dgst=PqRrkcodmHo~] administrator
+!
+ntp server 216.239.35.0
+ntp server 216.239.35.8
+ntp server 216.239.35.4
+ntp server 216.239.35.12
+ntp source Loopback0.0
+ntp interval 2000
+!
+!
+ip ufs-cache enable
+ip multipath per-flow
+ip route 192.50.220.160/32 Null0.0
+ip prefix-list default 1 permit 0.0.0.0/0 max 0
+ip prefix-list pl-default 1 permit 0.0.0.0/0 max 0
+ip prefix-list pl-private 1 permit 10.33.0.0/16 max 32
+ip prefix-list pl-public 1 permit 192.50.220.0/24 min 32 max 32
+ip access-list d-all deny ip src any dest any
+ip access-list d-bogon-dst deny ip src any dest 10.0.0.0/8
+ip access-list d-bogon-dst deny ip src any dest 172.16.0.0/12
+ip access-list d-bogon-dst deny ip src any dest 192.168.0.0/16
+ip access-list d-bogon-dst deny ip src any dest 100.64.0.0/10
+ip access-list d-bogon-dst deny ip src any dest 127.0.0.0/8
+ip access-list d-bogon-dst deny ip src any dest 169.254.0.0/16
+ip access-list d-bogon-dst deny ip src any dest 192.0.2.0/24
+ip access-list d-bogon-dst deny ip src any dest 198.18.0.0/15
+ip access-list d-bogon-dst deny ip src any dest 198.51.100.0/24
+ip access-list d-bogon-dst deny ip src any dest 203.0.113.0/24
+ip access-list d-bogon-dst deny ip src any dest 224.0.0.0/3
+ip access-list d-bogon-src deny ip src 10.0.0.0/8 dest any
+ip access-list d-bogon-src deny ip src 172.16.0.0/12 dest any
+ip access-list d-bogon-src deny ip src 192.168.0.0/16 dest any
+ip access-list d-bogon-src deny ip src 100.64.0.0/10 dest any
+ip access-list d-bogon-src deny ip src 127.0.0.0/8 dest any
+ip access-list d-bogon-src deny ip src 169.254.0.0/16 dest any
+ip access-list d-bogon-src deny ip src 192.0.2.0/24 dest any
+ip access-list d-bogon-src deny ip src 198.18.0.0/15 dest any
+ip access-list d-bogon-src deny ip src 198.51.100.0/24 dest any
+ip access-list d-bogon-src deny ip src 203.0.113.0/24 dest any
+ip access-list d-bogon-src deny ip src 224.0.0.0/3 dest any
+ip access-list d-op25b deny tcp src any sport any dest any dport eq 25
+ip access-list napt-inside-1 sequence-mode 100
+ip access-list napt-inside-1 100 deny ip src any dest 10.33.0.0/16
+ip access-list napt-inside-1 210 permit ip src 10.33.1.0/24 dest any
+ip access-list napt-inside-1 220 permit ip src 10.33.21.0/24 dest any
+ip access-list napt-inside-1 230 permit ip src 10.33.100.0/24 dest any
+ip access-list napt-inside-1 240 permit ip src 10.33.64.0/21 dest any
+ip access-list napt-inside-1 250 permit ip src 10.33.120.0/21 dest any
+ip access-list napt-inside-1 310 permit ip src 10.33.0.0/24 dest any
+ip access-list napt-inside-1 320 permit ip src 10.33.2.0/24 dest any
+ip access-list napt-inside-1 330 permit ip src 10.33.22.0/24 dest any
+ip access-list napt-inside-1 340 permit ip src 10.33.72.0/21 dest any
+ip access-list napt-inside-1 350 permit ip src 10.33.39.0/24 dest any
+ip access-list nat-inside-vpc sequence-mode 100
+ip access-list nat-inside-vpc 1 permit ip src 10.33.128.0/18 dest any
+ip access-list p-all permit ip src any dest any
+ip access-list p-dhcp permit udp src any sport range 67 68 dest any dport range 67 68
+ip access-list p-icmp permit icmp src any dest any
+ip access-list p-ipsec permit udp src any sport any dest any dport eq 500
+ip access-list p-ipsec permit udp src any sport any dest any dport eq 4500
+ip access-list p-ipsec permit udp src any sport any dest any dport eq 1701
+ip access-list p-ipsec permit 50 src any dest any
+ip access-list p-link permit ip src any dest 10.33.22.0/24
+ip access-list p-link permit ip src 10.33.22.0/24 dest any
+ip access-list p-ospf permit 89 src any dest any
+ip access-list p-tcpest permit tcp established src any sport any dest any dport any
+ip access-list p-to-gi2-1-1 permit ip src any dest 117.102.186.171/32
+ip access-list p-udpany permit udp src any sport any dest any dport any
+ip access-list r-mgmt permit ip src 192.50.220.153/32 dest any
+ip access-list r-mgmt permit ip src 192.50.220.161/32 dest any
+ip access-list r-mgmt permit ip src 10.33.128.0/17 dest any
+ip access-list r-mgmt permit ip src 10.33.100.0/24 dest any
+ip access-list r-mgmt permit ip src 10.33.1.0/24 dest any
+ip access-list r-mgmt permit ip src 10.33.0.0/24 dest any
+!
+!
+ipv6 ufs-cache enable
+ipv6 multipath per-flow
+ipv6 access-list d-all deny ip src any dest any
+ipv6 access-list d-bogon-dst deny ip src any dest ::/96
+ipv6 access-list d-bogon-dst deny ip src any dest ::1/128
+ipv6 access-list d-bogon-dst deny ip src any dest ::ffff:0:0/96
+ipv6 access-list d-bogon-dst deny ip src any dest 100::/64
+ipv6 access-list d-bogon-dst deny ip src any dest 2001:2::/48
+ipv6 access-list d-bogon-dst deny ip src any dest 2001:db8::/32
+ipv6 access-list d-bogon-dst deny ip src any dest fc00::/7
+ipv6 access-list d-bogon-dst deny ip src any dest fec0::/10
+ipv6 access-list d-bogon-dst deny ip src any dest ff00::/8
+ipv6 access-list d-bogon-src deny ip src ::/96 dest any
+ipv6 access-list d-bogon-src deny ip src ::1/128 dest any
+ipv6 access-list d-bogon-src deny ip src ::ffff:0:0/96 dest any
+ipv6 access-list d-bogon-src deny ip src 100::/64 dest any
+ipv6 access-list d-bogon-src deny ip src 2001:2::/48 dest any
+ipv6 access-list d-bogon-src deny ip src 2001:db8::/32 dest any
+ipv6 access-list d-bogon-src deny ip src fc00::/7 dest any
+ipv6 access-list d-bogon-src deny ip src fec0::/10 dest any
+ipv6 access-list d-bogon-src deny ip src ff00::/8 dest any
+ipv6 access-list p-all permit ip src any dest any
+ipv6 access-list p-dns permit udp src any sport eq 53 dest any dport any
+ipv6 access-list p-dns permit tcp src any sport eq 53 dest any dport any
+ipv6 access-list p-etherip permit 97 src any dest any
+ipv6 access-list p-etherip permit 4 src any dest any
+ipv6 access-list p-etherip permit 41 src any dest any
+ipv6 access-list p-icmp permit icmp src any dest any
+ipv6 access-list p-ipsec permit udp src any sport any dest any dport eq 500
+ipv6 access-list p-ipsec permit udp src any sport any dest any dport eq 4500
+ipv6 access-list p-ipsec permit udp src any sport any dest any dport eq 1701
+ipv6 access-list p-ipsec permit 50 src any dest any
+ipv6 access-list p-ntp permit udp src any sport eq 123 dest any dport any
+ipv6 access-list p-tcpest permit tcp established src any sport any dest any dport any
+ipv6 access-list p-udpany permit udp src any sport any dest any dport any
+!
+!
+snmp-agent ip enable
+snmp-agent ip community [~REDACTED:dgst=peVe40DhSUw~]
+!
+!
+bridge irb enable
+!
+!
+!
+!
+!
+!
+ssh-server ip access-list r-mgmt
+ssh-server ip enable
+!
+!
+!
+route-map aws-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 100
+!
+route-map aws-lo-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 90
+!
+route-map aws-lo-out permit 1
+  match ip address prefix-list pl-private
+  set community 7224:7100 additive
+!
+route-map aws-lo-out permit 2
+  match ip address prefix-list default
+  set community 7224:7100 additive
+!
+route-map aws-out permit 1
+  match ip address prefix-list pl-private
+  set community 7224:7200 additive
+!
+route-map aws-out permit 2
+  match ip address prefix-list pl-default
+  set community 7224:7200 additive
+!
+route-map bb-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 100
+!
+route-map bb-in permit 2
+  match ip address prefix-list pl-public
+  set local-preference 100
+!
+route-map bb-in permit 3
+  match ip address prefix-list default
+  set local-preference 100
+!
+route-map bb-out permit 1
+  match ip address prefix-list pl-private
+!
+route-map bb-out permit 2
+  match ip address prefix-list pl-public
+!
+route-map bb-out permit 3
+  match ip address prefix-list default
+!
+route-map private-hi-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 120
+!
+route-map private-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 100
+!
+route-map private-lo-in permit 1
+  match ip address prefix-list pl-private
+  set local-preference 90
+!
+route-map private-out permit 1
+  match ip address prefix-list pl-private
+!
+route-map public-in permit 1
+  match ip address prefix-list pl-public
+  set local-preference 100
+!
+route-map public-in permit 2
+  match ip address prefix-list default
+  set local-preference 100
+!
+route-map public-lo-in permit 1
+  match ip address prefix-list pl-public
+  set local-preference 90
+!
+route-map public-lo-in permit 2
+  match ip address prefix-list default
+  set local-preference 90
+!
+route-map public-out permit 1
+  match ip address prefix-list pl-public
+!
+route-map public-out permit 2
+  match ip address prefix-list default
+!
+router bgp 65024
+  router-id 10.33.0.21
+  default-local-preference 99
+  default-metric 100
+  neighbor 10.33.22.52 remote-as 65010
+  neighbor 10.33.22.52 connect-interval 10
+  neighbor 10.33.22.52 timers 6 30
+  neighbor 10.33.22.52 description ge-0/0/1.1@er-01.venue
+  neighbor 10.33.22.52 advertisement-interval 6
+  neighbor 10.33.22.54 remote-as 65010
+  neighbor 10.33.22.54 connect-interval 10
+  neighbor 10.33.22.54 timers 6 30
+  neighbor 10.33.22.54 description ge-0/0/1.2@er-01.venue
+  neighbor 10.33.22.54 advertisement-interval 6
+  neighbor 10.33.22.61 remote-as 65030
+  neighbor 10.33.22.61 connect-interval 10
+  neighbor 10.33.22.61 timers 6 30
+  neighbor 10.33.22.61 description ge-0/0/22@cs-01.venue
+  neighbor 10.33.22.61 advertisement-interval 6
+  address-family ipv4 unicast
+    originate-default
+    no neighbor 10.33.22.52 send-default
+    neighbor 10.33.22.52 route-map private-in in
+    neighbor 10.33.22.52 route-map private-out out
+    no neighbor 10.33.22.54 send-default
+    neighbor 10.33.22.54 route-map public-in in
+    neighbor 10.33.22.54 route-map public-out out
+    neighbor 10.33.22.61 route-map bb-in in
+    neighbor 10.33.22.61 route-map public-out out
+    network 10.33.0.21/32
+    network 192.50.220.160/32
+!
+policy-map qos0
+  class class-local
+    set ipv6 dscp 0
+    set ip dscp 0
+  class class-default
+    set ipv6 dscp 0
+    set ip dscp 0
+!
+device GigaEthernet0
+!
+device GigaEthernet1
+  port 2 shutdown
+  port 3 shutdown
+  port 4 shutdown
+!
+interface GigaEthernet0.0
+  description Upstream: ge-0/0/1@er-01.venue
+  no ip address
+  shutdown
+!
+interface GigaEthernet1.0
+  description Downstream: ge-0/0/22@cs-01.venue
+  ip address 10.33.22.60/31
+  no shutdown
+!
+interface GigaEthernet0.1
+  description Upstream: ge-0/0/1.1@er-01.venue {private}
+  encapsulation dot1q 1 tpid 8100
+  auto-connect
+  ip address 10.33.22.53/31
+  no shutdown
+!
+interface GigaEthernet0.2
+  description Upstream: ge-0/0/1.1@er-01.venue {public}
+  encapsulation dot1q 2 tpid 8100
+  auto-connect
+  ip address 10.33.22.55/31
+  ip napt enable
+  ip napt address 192.50.220.160
+  ip napt inside list napt-inside-1
+  ip napt translation max-entries 129020
+  ip napt translation max-entries per-address 350
+  ip napt translation tcp-timeout 120
+  ip napt translation udp-timeout 120
+  ip napt translation icmp-timeout 10
+  ip napt translation dns-timeout 10
+  ip napt translation gre-timeout 600
+  ip napt translation syn-timeout 300
+  ip napt translation finrst-timeout 15
+  ip napt translation other-timeout 600
+  ip napt translation port-range 1025-65535
+  ip napt service ping 10.33.0.21 none icmp any
+  ip filter p-icmp 100 in
+  ip filter p-link 101 in
+  ip filter p-ospf 102 in
+  ip filter p-tcpest 8000 in
+  ip filter p-udpany 8010 in
+  ip filter d-all 9000 in
+  ip filter d-op25b 1000 out
+  ip filter p-all 9000 out
+  no shutdown
+!
+interface Loopback0.0
+  ip address 10.33.0.21/32
+!
+interface Null0.0
+  no ip address
+!

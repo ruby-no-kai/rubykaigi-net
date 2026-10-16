@@ -1,0 +1,1160 @@
+# Hostname: er-01-venue
+# Model: srx300
+# Junos: 24.2R1-S2.5
+# JUNOS Software Release [24.2R1-S2.5]
+# Hardware inventory:
+# Item             Version  Part number  Serial number     Description
+# Chassis                                CV0717AF0226      SRX300
+# Routing Engine   REV 0x08 650-065039   CV0717AF0226      RE-SRX300
+# FPC 0                     BUILTIN      BUILTIN           FPC
+#   PIC 0                                                  6xGE,2xGE SFP Base PIC
+# Power Supply 0
+## Last commit: 2026-10-15 07:21:31 UTC by rk
+version 24.2R1-S2.5;
+groups {
+    policy-skip-when-local-pref-is-zero {
+        policy-options {
+            policy-statement <*> {
+                term skip-when-local-pref-is-zero {
+                    from local-preference 0;
+                    then next policy;
+                }
+            }
+        }
+    }
+}
+system {
+    host-name er-01-venue;
+    root-authentication {
+        /* rk for rk26net - rkroot is rkroot user */
+        encrypted-password "[~REDACTED:dgst=k6UcN3ljJGk~]"; ## SECRET-DATA
+    }
+    login {
+        idle-timeout 30;
+        class glazed {
+            permissions [ secret view view-configuration ];
+        }
+        user glazed {
+            uid 3001;
+            class glazed;
+            authentication {
+                ssh-ed25519 "[~REDACTED:dgst=UVPdq5F9m98~]"; ## SECRET-DATA
+            }
+        }
+        user rk {
+            uid 2001;
+            class super-user;
+            authentication {
+                /* rk26net */
+                encrypted-password "[~REDACTED:dgst=k6UcN3ljJGk~]"; ## SECRET-DATA
+                /* https://github.com/hokkai7go.keys */
+                ssh-rsa "[~REDACTED:dgst=WPdj_m8o9Bk~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=7jAcKLBuixE~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=FMTx4iPlp6Q~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=TJhobdCEG1Y~]"; ## SECRET-DATA
+                /* https://github.com/utgwkk.keys */
+                ssh-ecdsa "[~REDACTED:dgst=0GheIqjQxfI~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ecdsa "[~REDACTED:dgst=Fc0Sz2grHrk~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ecdsa "[~REDACTED:dgst=PMg_IaYggmU~]"; ## SECRET-DATA
+                /* https://github.com/hanazuki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=GVC4LV_-bfo~]"; ## SECRET-DATA
+                /* https://github.com/nna774.keys */
+                ssh-ed25519 "[~REDACTED:dgst=o-MbaR3AzSk~]"; ## SECRET-DATA
+                /* https://github.com/unasuke.keys */
+                ssh-ed25519 "[~REDACTED:dgst=o28YArcLnRc~]"; ## SECRET-DATA
+                /* https://github.com/unasuke.keys */
+                ssh-ed25519 "[~REDACTED:dgst=bqBhXT5EV7w~]"; ## SECRET-DATA
+                /* https://github.com/unasuke.keys */
+                ssh-ed25519 "[~REDACTED:dgst=_ibsmgFFCNM~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=v_2aFh91u1o~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=kPNs-GJc7ls~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=mzcFbcBk3SI~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=fvKt3fyRj14~]"; ## SECRET-DATA
+                /* https://github.com/takuan517.keys */
+                ssh-ed25519 "[~REDACTED:dgst=mDiJr-cD4bA~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=tf62vVypD-4~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=cmYzzmO_d8I~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=IFBvQDxtC58~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=VDzl-XwpelU~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=puKrDZ-wqZA~]"; ## SECRET-DATA
+                /* https://github.com/osyoyu.keys */
+                ssh-ed25519 "[~REDACTED:dgst=vNKJQM8u9oQ~]"; ## SECRET-DATA
+                /* https://github.com/terfno.keys */
+                ssh-ed25519 "[~REDACTED:dgst=iagc4nWFIRo~]"; ## SECRET-DATA
+                /* https://github.com/terfno.keys */
+                ssh-ed25519 "[~REDACTED:dgst=XzY1pgUCufU~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=iKrJaTqn0_o~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Rtww-yDnbOQ~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Bl4rR0StmLs~]"; ## SECRET-DATA
+                /* https://github.com/marokiki.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Svt1qIDMoCA~]"; ## SECRET-DATA
+                /* https://github.com/gotti.keys */
+                ssh-ed25519 "[~REDACTED:dgst=BfKhzrpQvGo~]"; ## SECRET-DATA
+                /* https://github.com/gotti.keys */
+                ssh-ed25519 "[~REDACTED:dgst=uFzzhxlX8Kc~]"; ## SECRET-DATA
+                /* https://github.com/Little-Rubyist.keys */
+                ssh-ed25519 "[~REDACTED:dgst=OVvU-TRWTrk~]"; ## SECRET-DATA
+                /* https://github.com/pastak.keys */
+                ssh-ed25519 "[~REDACTED:dgst=qpOF3d-FrF8~]"; ## SECRET-DATA
+                /* https://github.com/pastak.keys */
+                ssh-ed25519 "[~REDACTED:dgst=148wX5MSwlA~]"; ## SECRET-DATA
+                /* https://github.com/ayatk.keys */
+                ssh-ed25519 "[~REDACTED:dgst=GOwXLOFeO3Y~]"; ## SECRET-DATA
+                /* https://github.com/walnuts1018.keys */
+                ssh-ed25519 "[~REDACTED:dgst=3UOnk-w8dYc~]"; ## SECRET-DATA
+                /* https://github.com/walnuts1018.keys */
+                ssh-ed25519 "[~REDACTED:dgst=hL5wqNV4Q2I~]"; ## SECRET-DATA
+                /* https://github.com/Retasusan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=e492lLkdM8A~]"; ## SECRET-DATA
+                /* https://github.com/Retasusan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=G_yNOERSBNk~]"; ## SECRET-DATA
+                /* https://github.com/kawaemon.keys */
+                ssh-ed25519 "[~REDACTED:dgst=H39UCOixnGI~]"; ## SECRET-DATA
+                /* https://github.com/kawaemon.keys */
+                ssh-ed25519 "[~REDACTED:dgst=1zdSpcZJyFU~]"; ## SECRET-DATA
+                /* https://github.com/rokuosan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=z3OKn2OIqyg~]"; ## SECRET-DATA
+                /* https://github.com/rokuosan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=cMA0cgEjXxU~]"; ## SECRET-DATA
+                /* https://github.com/itochan.keys */
+                ssh-ed25519 "[~REDACTED:dgst=phrS_P5OtGk~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ed25519 "[~REDACTED:dgst=SPPOHZ8b4A4~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ed25519 "[~REDACTED:dgst=Bh2XMiVEMr4~]"; ## SECRET-DATA
+                /* https://github.com/sorah.keys */
+                ssh-ed25519 "[~REDACTED:dgst=1-SjTK00SdQ~]"; ## SECRET-DATA
+            }
+        }
+        user rkroot {
+            uid 2002;
+            class super-user;
+            authentication {
+                encrypted-password "[~REDACTED:dgst=rN9ikPYrVRA~]"; ## SECRET-DATA
+            }
+        }
+    }
+    services {
+        netconf {
+            ssh;
+        }
+        ssh {
+            root-login deny;
+            protocol-version v2;
+            ciphers [ "aes256-gcm@openssh.com" "aes128-gcm@openssh.com" aes256-ctr aes192-ctr aes128-ctr ];
+            macs [ hmac-sha2-256 hmac-sha2-512 ];
+            key-exchange [ ecdh-sha2-nistp521 ecdh-sha2-nistp384 ecdh-sha2-nistp256 curve25519-sha256 group-exchange-sha2 ];
+            hostkey-algorithm-list {
+                ecdsa-sha2-nistp521;
+                ed25519;
+            }
+        }
+    }
+    domain-name f.rubykaigi.net;
+    time-zone UTC;
+    default-address-selection;
+    no-redirects;
+    internet-options {
+        tcp-drop-synfin-set;
+        no-tcp-reset drop-all-tcp;
+    }
+    name-server {
+        192.50.220.164;
+        192.50.220.165;
+    }
+    syslog {
+        archive {
+            size 100k;
+            files 3;
+        }
+        user * {
+            any emergency;
+        }
+        host syslog.rubykaigi.net {
+            any info;
+            allow-duplicates;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+    }
+    max-configurations-on-flash 10;
+    max-configuration-rollbacks 5;
+    ntp {
+        server 2001:4860:4806::;
+        server 2001:4860:4806:4::;
+        server 2001:4860:4806:8::;
+        server 2001:4860:4806:c::;
+    }
+}
+chassis {
+    aggregated-devices {
+        ethernet {
+            device-count 6;
+        }
+    }
+}
+security {
+    forwarding-options {
+        family {
+            inet {
+                mode packet-based;
+            }
+            inet6 {
+                mode packet-based;
+            }
+            mpls {
+                mode packet-based;
+            }
+        }
+    }
+}
+interfaces {
+    ge-0/0/0 {
+        description "Downstream: ge-0/0/23@cs-01.venue";
+        unit 0 {
+            family inet {
+                address 10.33.22.40/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:40::a/124;
+            }
+        }
+    }
+    ge-0/0/1 {
+        description "Downstream: Gi0@nat-41.venue";
+        vlan-tagging;
+        unit 1 {
+            description "Downstream: Gi0.1@nat-41.venue {private}";
+            vlan-id 1;
+            family inet {
+                address 10.33.22.52/31;
+            }
+        }
+        unit 2 {
+            description "Downstream: Gi0.2@nat-41.venue {public}";
+            vlan-id 2;
+            family inet {
+                address 10.33.22.54/31;
+            }
+        }
+    }
+    ge-0/0/2 {
+        description "Downstream: enp1s0nat-61.venue";
+        unit 0 {
+            family inet {
+                address 10.33.22.48/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:48::a/124;
+            }
+        }
+    }
+    ge-0/0/3 {
+        description "Access: TBD_port4@show-01";
+        unit 0 {
+            family inet {
+                address 10.33.22.80/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:80::a/124;
+            }
+        }
+    }
+    ge-0/0/4 {
+        description "Core: ge-0/0/4@er-02.venue";
+        unit 0 {
+            family inet {
+                address 10.33.22.38/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:38::a/124;
+            }
+        }
+    }
+    ge-0/0/5 {
+        description "Upstream: Gi1@tun-01.venue";
+        vlan-tagging;
+        mtu 1390;
+        unit 1 {
+            description "Access: Gi1.1@tun-01.venue";
+            vlan-id 1;
+            family inet {
+                address 10.33.22.166/31;
+            }
+        }
+        unit 10 {
+            description "Upstream: ge-0/0/0.10@br-01.hnd via Gi1.10@tun-01.venue [etherip-ipsec]";
+            vlan-id 10;
+            family inet {
+                address 10.33.22.15/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:14::b/124;
+            }
+        }
+        unit 11 {
+            description "Upstream: ge-0/0/0.11@br-01.hnd via Gi1.11@tun-01.venue [etherip]";
+            vlan-id 11;
+            family inet {
+                filter {
+                    input etherip-public-in4;
+                }
+                address 10.33.22.17/31;
+            }
+            family inet6 {
+                filter {
+                    input etherip-public-in6;
+                }
+                address 2001:df0:8500:ca22:16::b/124;
+            }
+        }
+        unit 20 {
+            description "Upstream: ge-0/0/0.10@br-01.nrt via Gi1.20@tun-01.venue [etherip-ipsec]";
+            vlan-id 20;
+            family inet {
+                address 10.33.22.23/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:22::b/124;
+            }
+        }
+        unit 21 {
+            description "Upstream: ge-0/0/0.11@br-01.nrt via Gi1.21@tun-01.venue [etherip]";
+            vlan-id 21;
+            family inet {
+                filter {
+                    input etherip-public-in4;
+                }
+                address 10.33.22.25/31;
+            }
+            family inet6 {
+                filter {
+                    input etherip-public-in6;
+                }
+                address 2001:df0:8500:ca22:24::b/124;
+            }
+        }
+        unit 30 {
+            description "Upstream: ge-0/0/0.10@br-01.itm via Gi1.30@tun-01.venue [etherip-ipsec]";
+            vlan-id 30;
+            family inet {
+                address 10.33.22.31/31;
+            }
+            family inet6 {
+                address 2001:df0:8500:ca22:30::b/124;
+            }
+        }
+        unit 31 {
+            description "Upstream: ge-0/0/0.11@br-01.itm via Gi1.31@tun-01.venue [etherip]";
+            vlan-id 31;
+            family inet {
+                filter {
+                    input etherip-public-in4;
+                }
+                address 10.33.22.33/31;
+            }
+            family inet6 {
+                filter {
+                    input etherip-public-in6;
+                }
+                address 2001:df0:8500:ca22:32::b/124;
+            }
+        }
+    }
+    ge-0/0/6 {
+        disable;
+    }
+    ge-0/0/7 {
+        disable;
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                filter {
+                    input loopback-in4;
+                }
+                address 10.33.0.11/32;
+            }
+            family inet6 {
+                filter {
+                    input loopback-in6;
+                }
+                address 2001:0df0:8500:ca00::11/128;
+            }
+        }
+    }
+}
+snmp {
+    filter-interfaces {
+        interfaces {
+            "\.0$";
+        }
+        all-internal-interfaces;
+    }
+    stats-cache-lifetime 70;
+    community [~REDACTED:dgst=peVe40DhSUw~] {
+        authorization read-only;
+    }
+}
+policy-options {
+    prefix-list bogon4 {
+        10.0.0.0/8;
+        100.64.0.0/10;
+        127.0.0.0/8;
+        169.254.0.0/16;
+        172.16.0.0/12;
+        192.0.2.0/24;
+        192.168.0.0/16;
+        198.18.0.0/15;
+        198.51.100.0/24;
+        203.0.113.0/24;
+        224.0.0.0/3;
+    }
+    prefix-list bogon6 {
+        ::/96;
+        ::1/128;
+        ::ffff:0:0/96;
+        100::/64;
+        2001:2::/48;
+        2001:db8::/32;
+        fc00::/7;
+        fec0::/10;
+        ff00::/8;
+    }
+    prefix-list link4 {
+        10.33.22.0/24;
+        192.50.220.152/29;
+    }
+    prefix-list link6 {
+        2001:df0:8500:ca20::/60;
+        fe80::/64;
+    }
+    prefix-list mgmt4 {
+        10.33.0.0/24;
+        10.33.1.0/24;
+        10.33.128.0/17;
+        192.50.220.152/32;
+        192.50.220.154/32;
+        192.50.220.156/32;
+    }
+    prefix-list mgmt6 {
+        2001:0df0:8500:ca00::/64;
+        2001:0df0:8500:caa0::/64;
+        2001:0df0:8500:cab0::/64;
+        2406:da14:dfe:c000::/56;
+    }
+    prefix-list pa6 {
+        2001:df0:8500:ca00::/56;
+    }
+    prefix-list private4 {
+        10.33.0.0/16;
+        10.33.0.0/17;
+        10.33.128.0/18;
+    }
+    prefix-list private6 {
+        2001:df0:8500:ca00::/56;
+        2406:da14:dfe:c000::/56;
+    }
+    prefix-list public4 {
+        192.50.220.152/29;
+        192.50.220.160/29;
+        192.50.220.168/29;
+    }
+    prefix-list public6 {
+        2406:da14:dfe:c02f:ffff::/127;
+    }
+    policy-statement accept {
+        then accept;
+    }
+    policy-statement aws-local-pref-hi {
+        then {
+            community add AWS:LOCAL_PREF_HIGH;
+        }
+    }
+    policy-statement aws-local-pref-low {
+        then {
+            community add AWS:LOCAL_PREF_LOW;
+        }
+    }
+    policy-statement aws-local-pref-med {
+        then {
+            community add AWS:LOCAL_PREF_MEDIUM;
+        }
+    }
+    policy-statement bb-filter {
+        term default4 {
+            from {
+                route-filter 0.0.0.0/0 exact;
+            }
+            then next policy;
+        }
+        term default6 {
+            from {
+                route-filter ::/0 exact;
+            }
+            then next policy;
+        }
+        term private4 {
+            from {
+                family inet;
+                prefix-list-filter private4 orlonger;
+            }
+            then next policy;
+        }
+        term private6 {
+            from {
+                family inet6;
+                prefix-list-filter private6 orlonger;
+            }
+            then next policy;
+        }
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term public6 {
+            from {
+                family inet6;
+                prefix-list-filter public6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement default-filter {
+        term default4 {
+            from {
+                family inet;
+                route-filter 0.0.0.0/0 exact;
+            }
+            then next policy;
+        }
+        term default6 {
+            from {
+                family inet6;
+                route-filter ::/0 exact;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement default4-reject {
+        term default4 {
+            from {
+                family inet;
+                route-filter 0.0.0.0/0 exact;
+            }
+            then reject;
+        }
+    }
+    policy-statement ecmp {
+        then {
+            load-balance per-packet;
+        }
+    }
+    policy-statement enable-multipath {
+        term multipath {
+            then {
+                load-balance consistent-hash;
+            }
+        }
+    }
+    policy-statement export-multipath {
+        term multipath {
+            then {
+                load-balance per-flow;
+            }
+        }
+    }
+    policy-statement local-pref-lo {
+        apply-groups policy-skip-when-local-pref-is-zero;
+        then {
+            local-preference 90;
+        }
+    }
+    policy-statement private-filter {
+        term private4 {
+            from {
+                family inet;
+                prefix-list-filter private4 orlonger;
+            }
+            then next policy;
+        }
+        term private6 {
+            from {
+                family inet6;
+                prefix-list-filter private6 orlonger;
+            }
+            then next policy;
+        }
+        term awsnat-outside4 {
+            from {
+                family inet;
+                community RK:AWSNAT_OUTSIDE;
+            }
+            then accept;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement public-filter {
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term public6 {
+            from {
+                family inet6;
+                prefix-list-filter public6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement reject {
+        term reject {
+            then reject;
+        }
+    }
+    policy-statement rk-nocs-reject {
+        term nocs-reject {
+            from community RK:NO_CS;
+            then reject;
+        }
+        term next {
+            then next policy;
+        }
+    }
+    policy-statement transit-out-filter {
+        term public4 {
+            from {
+                family inet;
+                prefix-list-filter public4 orlonger;
+            }
+            then next policy;
+        }
+        term pa6 {
+            from {
+                family inet6;
+                prefix-list-filter pa6 orlonger;
+            }
+            then next policy;
+        }
+        term reject {
+            then reject;
+        }
+    }
+    community AWS:LOCAL_PREF_HIGH members 7224:7300;
+    community AWS:LOCAL_PREF_LOW members 7224:7100;
+    community AWS:LOCAL_PREF_MEDIUM members 7224:7200;
+    community RK:AWSNAT_OUTSIDE members 65000:44;
+    community RK:NO_CS members 65000:6030;
+}
+firewall {
+    family inet {
+        filter border-in4 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link4;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon {
+                from {
+                    source-prefix-list {
+                        bogon4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter etherip-public-in4 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link4;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon-src {
+                from {
+                    source-prefix-list {
+                        bogon4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term discard-bogon-dst {
+                from {
+                    destination-prefix-list {
+                        bogon4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term discard-private-src {
+                from {
+                    source-prefix-list {
+                        private4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term discard-private-dst {
+                from {
+                    destination-prefix-list {
+                        private4;
+                    }
+                }
+                then {
+                    discard;
+                }
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter loopback-in4 {
+            term icmp {
+                from {
+                    protocol icmp;
+                }
+                then accept;
+            }
+            term return-tcp {
+                from {
+                    protocol tcp;
+                    tcp-established;
+                }
+                then accept;
+            }
+            term management {
+                from {
+                    source-prefix-list {
+                        mgmt4;
+                    }
+                    destination-port [ snmp ssh ];
+                }
+                then accept;
+            }
+            term udp-apps {
+                from {
+                    protocol udp;
+                    source-port [ domain ntp ];
+                }
+                then accept;
+            }
+            term bgp {
+                from {
+                    source-prefix-list {
+                        link4;
+                    }
+                    protocol tcp;
+                    destination-port bgp;
+                }
+                then accept;
+            }
+            /* KB11436: https://supportportal.juniper.net/s/article/Junos-Why-does-the-Network-Time-Protocol-NTP-stop-working-if-a-loopback-firewall-filter-is-applied?language=en_US */
+            term ntp-management {
+                from {
+                    source-address {
+                        10.33.0.11/32;
+                    }
+                    destination-port ntp;
+                }
+                then accept;
+            }
+            term discard-all {
+                then {
+                    discard;
+                }
+            }
+        }
+    }
+    family inet6 {
+        filter border-in6 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link6;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon {
+                from {
+                    source-prefix-list {
+                        bogon6;
+                    }
+                }
+                then discard;
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter etherip-public-in6 {
+            term link {
+                from {
+                    source-prefix-list {
+                        link6;
+                    }
+                }
+                then accept;
+            }
+            term discard-bogon-src {
+                from {
+                    source-prefix-list {
+                        bogon6;
+                    }
+                }
+                then discard;
+            }
+            term discard-bogon-dst {
+                from {
+                    destination-prefix-list {
+                        bogon6;
+                    }
+                }
+                then discard;
+            }
+            term accept-all {
+                then accept;
+            }
+        }
+        filter loopback-in6 {
+            term icmp {
+                from {
+                    next-header icmp6;
+                }
+                then accept;
+            }
+            term return-tcp {
+                from {
+                    next-header tcp;
+                    tcp-established;
+                }
+                then accept;
+            }
+            term management {
+                from {
+                    source-prefix-list {
+                        mgmt6;
+                    }
+                    destination-port [ snmp ssh ];
+                }
+                then accept;
+            }
+            term udp-apps {
+                from {
+                    next-header udp;
+                    source-port [ domain ntp ];
+                }
+                then accept;
+            }
+            term bgp {
+                from {
+                    source-prefix-list {
+                        link6;
+                    }
+                    next-header tcp;
+                    destination-port bgp;
+                }
+                then accept;
+            }
+            term discard-all {
+                then discard;
+            }
+            term ntp-management {
+                from {
+                    destination-port ntp;
+                }
+            }
+        }
+    }
+}
+protocols {
+    bgp {
+        group upstream-private {
+            import [ private-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ private-filter accept ];
+            neighbor 2001:df0:8500:ca22:14::a {
+                description "Core: ge-0/0/0.10@br-01.hnd";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.15;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65001;
+            }
+            neighbor 2001:df0:8500:ca22:22::a {
+                description "Core: ge-0/0/0.10@br-01.nrt";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.23;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65002;
+            }
+            neighbor 2001:df0:8500:ca22:30::a {
+                description "Core: ge-0/0/0.10@br-01.itm";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.31;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65003;
+            }
+        }
+        group upstream-public {
+            import [ enable-multipath default-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ public-filter accept ];
+            peer-as 65000;
+            neighbor 2001:df0:8500:ca22:16::a {
+                description "Core: ge-0/0/0.11@br-01.hnd";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.17;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+            }
+            neighbor 2001:df0:8500:ca22:24::a {
+                description "Core: ge-0/0/0.11@br-01.nrt";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.25;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+            }
+            neighbor 2001:df0:8500:ca22:32::a {
+                description "Core: ge-0/0/0.11@br-01.itm";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.33;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+            }
+        }
+        group bb {
+            import [ bb-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ bb-filter accept ];
+            neighbor 2001:df0:8500:ca22:38::b {
+                description "Downstream: ge-0/0/4@er-02.venue";
+                local-address 2001:df0:8500:ca22:38::a;
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.38;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65010;
+            }
+        }
+        group nat4-private {
+            import [ private-filter accept ];
+            family inet {
+                unicast;
+            }
+            export [ private-filter accept ];
+            neighbor 10.33.22.53 {
+                description "Downstream: Gi0.1@nat-41.venue {private}";
+                peer-as 65024;
+            }
+        }
+        group nat4-public {
+            import [ public-filter accept ];
+            family inet {
+                unicast;
+            }
+            export [ default-filter accept ];
+            neighbor 10.33.22.55 {
+                description "Downstream: Gi0.2@nat-41.venue {public}";
+                peer-as 65024;
+            }
+        }
+        group nat6 {
+            import [ bb-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ bb-filter accept ];
+            neighbor 2001:df0:8500:ca22:48::b {
+                description "Downstream: enp1s0nat-61.venue";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.48;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65026;
+            }
+        }
+        group tun {
+            import [ bb-filter local-pref-lo accept ];
+            family inet {
+                unicast;
+            }
+            export [ bb-filter accept ];
+            neighbor 10.33.22.167 {
+                description "Access: Gi1.1@tun-01.venue";
+                peer-as 65161;
+            }
+            inactive: neighbor 10.33.22.171 {
+                description "Access: Gi1.1@tun-03.venue";
+                peer-as 65163;
+            }
+        }
+        group downstream {
+            import [ bb-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ default4-reject rk-nocs-reject bb-filter accept ];
+            neighbor 2001:df0:8500:ca22:40::b {
+                description "Downstream: ge-0/0/23@cs-01.venue";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.40;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65030;
+            }
+        }
+        inactive: group show {
+            import [ bb-filter accept ];
+            family inet {
+                unicast;
+            }
+            family inet6 {
+                unicast;
+            }
+            export [ bb-filter accept ];
+            neighbor 2001:df0:8500:ca22:80::b {
+                description "Access: TBD_port4@show-01";
+                family inet {
+                    unicast {
+                        local-ipv4-address 10.33.22.80;
+                    }
+                }
+                family inet6 {
+                    unicast;
+                }
+                peer-as 65075;
+            }
+        }
+        metric-out 100;
+        preference 100;
+        hold-time 30;
+        multipath;
+    }
+    lldp {
+        port-id-subtype interface-name;
+        neighbour-port-info-display port-id;
+        interface all;
+    }
+}
+routing-options {
+    router-id 10.33.0.11;
+    autonomous-system 65010;
+    forwarding-table {
+        export export-multipath;
+    }
+}
