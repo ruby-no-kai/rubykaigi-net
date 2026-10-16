@@ -251,7 +251,7 @@ route-map public-out permit 1
 !
 ppp profile zootnext
   authentication myname zb286920@rb.il24.net
-  authentication secret-password 1 [~REDACTED:dgst=1V4c0_CycLg~] n03eMRDY544fhcy2Gf1INlvv
+  authentication secret-password 1 [~REDACTED:dgst=EIqEVzrUUBA~]
 !
 router bgp 65152
   router-id 10.33.0.152
