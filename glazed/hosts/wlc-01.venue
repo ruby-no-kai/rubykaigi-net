@@ -752,9 +752,9 @@ wlan band-select allow disable 14
 wlan exclusionlist 1 disabled
 wlan exclusionlist 1 0
 wlan load-balance allow enable 1
-wlan load-balance allow disable 2
+wlan load-balance allow enable 2
 wlan load-balance allow enable 3
-wlan load-balance allow disable 10
+wlan load-balance allow enable 10
 wlan load-balance allow enable 14
 wlan assisted-roaming prediction disable 1
 wlan assisted-roaming prediction disable 2
