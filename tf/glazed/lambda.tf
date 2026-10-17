@@ -30,6 +30,7 @@ resource "aws_lambda_function" "glazed" {
 
   depends_on = [
     aws_ecr_repository_policy.glazed-lambda,
+    aws_lambda_invocation.skopeo-copy-glazed-lambda,
     aws_iam_role_policy.LambdaGlazed,
     aws_iam_role_policy_attachment.LambdaGlazed-AWSLambdaVPCAccessExecutionRole,
   ]
@@ -66,6 +67,7 @@ resource "aws_lambda_function" "glazed-github" {
 
   depends_on = [
     aws_ecr_repository_policy.glazed-lambda,
+    aws_lambda_invocation.skopeo-copy-glazed-lambda,
     aws_iam_role_policy.LambdaGlazedGithub,
     aws_iam_role_policy_attachment.LambdaGlazedGithub-AWSLambdaBasicExecutionRole,
   ]

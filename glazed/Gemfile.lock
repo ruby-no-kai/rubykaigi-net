@@ -1,17 +1,17 @@
 PATH
   remote: /home/sorah/git/github.com/sorah/glazed/glazed-aws
   specs:
-    glazed-aws (0.2.0)
+    glazed-aws (0.3.0)
       aws-sdk-s3
       aws-sdk-ssm
       aws-sdk-states
       dry-cli
-      glazed (~> 0.2.0)
+      glazed (~> 0.3.0)
 
 PATH
   remote: /home/sorah/git/github.com/sorah/glazed/glazed
   specs:
-    glazed (0.2.0)
+    glazed (0.3.0)
       dry-cli
       google-protobuf
       httpx
@@ -137,8 +137,8 @@ CHECKSUMS
   bundler (4.0.19) sha256=b48056e4c77fb3853cc47775b5447ede44aaa4f53c32f168014ab4fe86587d47
   dry-cli (1.4.1) sha256=b8015bb76c708aa8705a36faf694973e75eeeffca39b89c8e172dc6f66a7d874
   ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506
-  glazed (0.2.0)
-  glazed-aws (0.2.0)
+  glazed (0.3.0)
+  glazed-aws (0.3.0)
   google-protobuf (4.36.2) sha256=2f8daff50ae14aad36ab0ccdcf284065fa71d726c444efe114e6db82ffe62494
   google-protobuf (4.36.2-aarch64-linux-gnu) sha256=c3279ec6eaa59f6ed6276eda2a33cffb4306471183ab79a332e698b8564f5169
   google-protobuf (4.36.2-aarch64-linux-musl) sha256=0772c9dde1e6dce9a6b44d1d35c28c29adee99d9bd6aff5e21840daeb22161ce

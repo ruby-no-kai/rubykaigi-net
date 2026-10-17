@@ -1,6 +1,6 @@
 locals {
-  # Pushed from a local build of github.com/sorah/glazed glazed-aws/lambda/Dockerfile
-  image_tag = "dev-202610160216"
+  # Tag of ghcr.io/sorah/glazed-lambda, copied to ECR with skopeo-copy
+  image_tag = "2026.10.17.01"
 }
 
 resource "aws_ecr_repository" "glazed-lambda" {
@@ -48,4 +48,25 @@ data "aws_iam_policy_document" "glazed-lambda-ecr" {
 resource "aws_ecr_repository_policy" "glazed-lambda" {
   repository = aws_ecr_repository.glazed-lambda.name
   policy     = data.aws_iam_policy_document.glazed-lambda-ecr.json
+}
+
+data "aws_lambda_function" "skopeo-copy" {
+  function_name = "skopeo-copy"
+}
+
+resource "aws_lambda_invocation" "skopeo-copy-glazed-lambda" {
+  function_name = data.aws_lambda_function.skopeo-copy.function_name
+
+  input = jsonencode({
+    skopeo_copy = {
+      src  = "docker://ghcr.io/sorah/glazed-lambda:${local.image_tag}"
+      dst  = "docker://${aws_ecr_repository.glazed-lambda.repository_url}:${local.image_tag}"
+      arch = "amd64"
+    }
+  })
+
+  triggers = {
+    src = "docker://ghcr.io/sorah/glazed-lambda:${local.image_tag}"
+    dst = "docker://${aws_ecr_repository.glazed-lambda.repository_url}:${local.image_tag}"
+  }
 }
