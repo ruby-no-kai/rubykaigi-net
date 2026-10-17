@@ -23,21 +23,31 @@ mkdir "$lock" 2>/dev/null || die "another apply_plan is running ($lock)"
 trap 'rmdir "$lock"' EXIT
 
 summary=$(cli run 'show ap summary') || die "no session $sess; open it with the ssh-cli skill"
-while read -r _ _ _ new old; do
-  grep -q "^$old " <<<"$summary" || die "$old not on WLC (already renamed or unplugged?)"
+# APs already carrying the new name are skipped, so a slot that stopped midway can be run again.
+pending=()
+while read -r line; do
+  read -r _ _ _ new old <<<"$line"
+  if grep -q "^$old " <<<"$summary"; then
+    pending+=("$line")
+  elif grep -q "^$new " <<<"$summary"; then
+    echo "skip $old -> $new (already renamed)"
+  else
+    die "neither $old nor $new is on WLC (unplugged?)"
+  fi
 done < "$plan"
 
 if [[ $dry == --dry-run ]]; then
-  echo "dry-run ok: $(wc -l < "$plan" | tr -d ' ') APs present"
+  echo "dry-run ok: ${#pending[@]} to rename, $(( $(wc -l < "$plan") - ${#pending[@]} )) already renamed"
   exit 0
 fi
 
-while read -r line; do
+# Saving runs even when nothing is pending, for a slot that stopped before save config.
+for line in ${pending[@]+"${pending[@]}"}; do
   echo ">> $line"
   out=$(cli run --timeout 30 "$line") || die "timed out or session lost on: $line / output: $out"
   [[ -n $out ]] && echo "$out"
   grep -qiE 'error|incorrect|invalid|not found|fail|denied' <<<"$out" && die "device reported an error on: $line"
-done < "$plan"
+done
 
 # ssh_cli does not recognise AireOS's (y/n), so the first send times out at the question.
 echo ">> save config"
