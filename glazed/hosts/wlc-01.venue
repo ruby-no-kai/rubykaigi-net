@@ -935,8 +935,8 @@ ap hotspot venue type 0 0 ap-lb0-03
 ap hotspot venue type 0 0 ap-noc-01
 ap hotspot venue type 0 0 ap-lb0-12
 ap hotspot venue type 0 0 ap-lb0-01
-ap hotspot venue type 0 0 ap-int-02
-ap hotspot venue type 0 0 ap-int-01
+ap hotspot venue type 0 0 rk-apm19a5
+ap hotspot venue type 0 0 rk-apm19a24
 ap hotspot venue type 0 0 ap-tra-14
 ap hotspot venue type 0 0 ap-tra-06
 ap hotspot venue type 0 0 ap-tra-13
