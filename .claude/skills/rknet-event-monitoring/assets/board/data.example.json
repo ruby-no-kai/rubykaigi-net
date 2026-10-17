@@ -1,0 +1,30 @@
+{
+  "event": "Kaigi on Rails 2026 · Day 1 · 2026-10-16",
+  "title": "KoR26 Day 1 NOC Issues",
+  "status": {
+    "verdict": "Wi-Fi stable",
+    "level": "ok",
+    "checked_at": "17:50",
+    "clients": 834,
+    "aps": "51/51 up",
+    "next_check": "~18:10",
+    "note": "One short paragraph: client count by area, busiest radio, transit and tunnel health, the one thing to watch."
+  },
+  "issues": [
+    {
+      "num": 1,
+      "title": "Short noun phrase naming the symptom, not the cause",
+      "severity": "medium",
+      "status": "open",
+      "first_seen": "09:05",
+      "updated": "09:30",
+      "latest": "What is true now, rewritten on every update.",
+      "next": "The next step and who owns it, rewritten on every update.",
+      "detection": "How it was found. Written once, never edited.",
+      "facts": ["09:20 timestamped fact with the query or command that produced it"],
+      "action": "The proposed or rejected action, including who must approve it.",
+      "evidence": "Commands and metrics a reader can rerun.",
+      "history": [{"at": "09:05", "note": "First seen."}]
+    }
+  ]
+}

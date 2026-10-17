@@ -1,0 +1,31 @@
+# KoR26 Day 1 20:30 change set, approved in advance by the user: WLAN 10 DHCP-required off, then tra/fo0 APs to local mode.
+# Run: wlc_batch.sh this-file 2>&1 | tee tmp/batch-$(date +%m%d-%H%M).log
+== WLAN 10
+config wlan disable 10
+config wlan dhcp_server 10 0.0.0.0
+config wlan enable 10
+? show wlan 10 | Status|DHCP Address Assignment Required
+== local mode
+! config ap mode local ap-tra-01
+! config ap mode local ap-tra-02
+! config ap mode local ap-tra-03
+! config ap mode local ap-tra-04
+! config ap mode local ap-tra-05
+! config ap mode local ap-tra-06
+! config ap mode local ap-tra-11
+! config ap mode local ap-tra-12
+! config ap mode local ap-tra-13
+! config ap mode local ap-tra-14
+! config ap mode local ap-tra-15
+! config ap mode local ap-tra-21
+! config ap mode local ap-tra-22
+! config ap mode local ap-tra-23
+! config ap mode local ap-tra-24
+! config ap mode local ap-tra-25
+! config ap mode local ap-fo0-01
+! config ap mode local ap-fo0-02
+! config ap mode local ap-fo0-11
+! config ap mode local ap-fo0-12
+! config ap mode local ap-fo0-13
+! config ap mode local ap-fo0-14
+! config ap mode local ap-fo0-21
