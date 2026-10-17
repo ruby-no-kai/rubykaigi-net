@@ -1035,7 +1035,6 @@ wps client-exclusion ip-theft disable
 wlan enable 2
 wlan enable 3
 wlan enable 10
-wlan enable 14
 WMM-AC disabled
 HS2 QOS disabled
 coredump disable
