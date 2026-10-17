@@ -920,7 +920,6 @@ wlan profiling radius dhcp disable 10
 wlan profiling radius http disable 10
 wlan profiling radius dhcp disable 14
 wlan profiling radius http disable 14
-ap hotspot venue type 0 0 rk-aph26a8
 ap hotspot venue type 0 0 ap-tra-21
 ap hotspot venue type 0 0 ap-lb0-11
 ap hotspot venue type 0 0 ap-off-01
@@ -938,18 +937,12 @@ ap hotspot venue type 0 0 ap-tra-23
 ap hotspot venue type 0 0 ap-tra-24
 ap hotspot venue type 0 0 ap-tra-05
 ap hotspot venue type 0 0 ap-tra-22
-ap hotspot venue type 0 0 rk-aph19a5
 ap hotspot venue type 0 0 ap-tra-15
 ap hotspot venue type 0 0 ap-tra-01
-ap hotspot venue type 0 0 rk-aph19a10
 ap hotspot venue type 0 0 ap-tra-25
-ap hotspot venue type 0 0 rk-aph19a3
-ap hotspot venue type 0 0 rk-aph19a6
-ap hotspot venue type 0 0 rk-aph19a18
 ap hotspot venue type 0 0 ap-tra-04
 ap hotspot venue type 0 0 ap-lb0-21
 ap hotspot venue type 0 0 ap-tra-02
-ap hotspot venue type 0 0 rk-aph26a13
 wlan fabric disable 1
 wlan fabric disable 2
 wlan fabric disable 3
