@@ -110,7 +110,7 @@
 #   Power Supply 1 REV 04   640-060602   1EDX643035J       JPSU-600W-AC-AFO
 #   Fan Tray 0                                             Fan Module, Airflow Out (AFO)
 #   Fan Tray 1                                             Fan Module, Airflow Out (AFO)
-## Last commit: 2026-10-15 11:46:59 UTC by rk
+## Last commit: 2026-10-16 00:58:21 UTC by rk
 version 24.2R1-S2.5;
 groups {
     iface-switchport-trunk {
@@ -853,7 +853,7 @@ interfaces {
             }
             family inet6 {
                 address 2001:df0:8500:caa0::a/64;
-                address fe80::1/64;
+                address fe80::300:1/64;
             }
         }
         unit 400 {
