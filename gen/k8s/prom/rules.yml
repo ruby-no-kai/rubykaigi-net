@@ -288,7 +288,7 @@
             "annotations": {
               "summary": "{{$labels.instance}} {{$labels.ifName}} ({{$labels.ifAlias}}): Link state changed"
             },
-            "expr": "changes(ifOperStatus[3m]) > 0",
+            "expr": "changes(ifOperStatus{ifName!~\"^USB.*$\"}[3m]) > 0",
             "labels": {
               "send_resolved": "false",
               "severity": "warning"

@@ -49,7 +49,8 @@
         },
         {
           alert: 'LinkStateChanged',
-          expr: 'changes(ifOperStatus[3m]) > 0',
+          // NEC IX briefly reports USB0 as testing(3) even while it is shut down.
+          expr: 'changes(ifOperStatus{ifName!~"^USB.*$"}[3m]) > 0',
           labels: {
             severity: 'warning',
             send_resolved: 'false',
