@@ -10,8 +10,13 @@ node.reverse_merge!(
       },
     },
   },
+  wifi_workbench: {
+    interface: 'wlp2s0',
+    namespace: 'wifi-workbench',
+  },
 )
 
 include_role 'cloudprober'
 
 include_cookbook 'bluetooth-getty'
+include_role 'wifi-workbench'

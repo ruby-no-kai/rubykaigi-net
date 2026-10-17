@@ -1,0 +1,18 @@
+#!/bin/bash
+# Usage: sudo rk-wifi-netns INTERFACE NAMESPACE
+set -euo pipefail
+
+iface=$1
+namespace=$2
+phy_path=$(readlink "/sys/class/net/$iface/phy80211")
+phy=${phy_path##*/}
+
+ip netns add "$namespace"
+ip link set dev "$iface" down
+# Wireless interfaces move with their PHY through nl80211.
+if ! iw phy "$phy" set netns name "$namespace"; then
+  ip netns delete "$namespace"
+  exit 1
+fi
+ip -n "$namespace" link set lo up
+ip -n "$namespace" link set dev "$iface" up

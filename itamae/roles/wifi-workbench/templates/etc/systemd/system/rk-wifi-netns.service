@@ -1,0 +1,16 @@
+<%-
+  config = node.fetch(:wifi_workbench)
+  device = "sys-subsystem-net-devices-#{config.fetch(:interface).gsub('-', '\\x2d')}.device"
+-%>
+[Unit]
+Description=Isolate the Wi-Fi radio for connectivity testing
+Requires=<%= device %>
+After=<%= device %>
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=<%= ['/usr/local/sbin/rk-wifi-netns', config.fetch(:interface), config.fetch(:namespace)].shelljoin %>
+
+[Install]
+WantedBy=multi-user.target
