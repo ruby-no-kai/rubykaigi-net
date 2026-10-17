@@ -23,6 +23,8 @@ Not done: the rollback at a break. The venue emptied after 18:30 and the static 
 
 ## State at Day 2 12:04 (`show advanced 802.11a txpower`)
 
+Read at 13:37 from `show advanced 802.11a summary` (slot 1): trb-11 4/6 8 dBm ch44, lb1-01 5/8 11 dBm ch132, lb1-03 2/6 14 dBm ch36, lb1-31 4/8 14 dBm ch140, off-01 3/8 16 dBm ch124. A grep of the txpower table by AP name had mixed the two radios of XOR APs.
+
 | AP | Level | dBm | Channel | Note |
 |---|---|---|---|---|
 | tra-04 | 2/6 | 14 | 56 | |
@@ -36,7 +38,7 @@ Not done: the rollback at a break. The venue emptied after 18:30 and the static 
 | lb1-01 | 5/8 | 11 | 132 | |
 | lb1-03 | 2/6 | 14 | 36 | |
 | lb1-31 | 4/8 | 14 | 140 | |
-| off-01 | 3/6 | 10 | 40 | configurator's; drifted from 16 dBm on ch132 |
+| off-01 | 3/6 | 10 | 40 | configurator's; drifted from 16 dBm on ch132, back to 16 dBm (3/8, ch124) at 13:37 |
 
 rk-5g-hi `tx-power-max` is still 17.
 
