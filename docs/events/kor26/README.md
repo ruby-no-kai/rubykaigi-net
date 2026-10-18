@@ -39,7 +39,6 @@ Configuration still on the WLC and routers after the event (2026-10-17 18:24 JST
 - tra, fo0 and ap-off-01 in local mode; the other APs FlexConnect.
 - WLAN 14 (`24rk`) disabled, still mapped into AP group rk-med.
 - br-01.itm transit export `[ transit-out-filter keepaway-1x accept ]`.
-- APs reset during teardown report default names (`rk-aph…`, `rk-apm…`); rename them from the inventory.
 
 Rollback commands for each are in [`changes.md`](changes.md).
 

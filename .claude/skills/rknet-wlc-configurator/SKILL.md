@@ -1,6 +1,6 @@
 ---
 name: rknet-wlc-configurator
-description: How to act as the configurator session during a RubyKaigi / Kaigi on Rails event, the one Claude session that applies configuration changes to the venue network (wlc-01.venue Cisco AireOS WLAN, AP mode, RF profile and requested power changes; occasionally Junos BGP policy) on findings from a monitor session, with the user's approval. Covers the approval rules (standing approvals, relayed approvals, auto-mode refusals), how to propose a change, the announce sequence (Slack note, monitor apply times, optimizer notice), handing work to an optimizer session, scheduled pre-approved change sets, debug client captures, waiting for APs to rejoin, test-WLAN design, AireOS prompts and CLI session limits, plus pre-event readiness, start-of-day and teardown checklists. Bundles scripts for batches, debug capture, rejoin wait and WLAN diff. Use when the user says "your job is to receive findings and configuration change suggestions from the monitoring agent", asks to apply or plan a WLC change during an event, check WLC readiness before an event day, schedule a change at a set time, debug one client on the WLC, set up a test SSID, hand off to an optimizer, or tear down event changes, even if they only say "go ahead" or "make tra APs local at 20:30".
+description: How to act as the configurator session during a RubyKaigi / Kaigi on Rails event, the one Claude session that applies configuration changes to the venue network (wlc-01.venue Cisco AireOS WLAN, AP mode, RF profile and requested power changes; occasionally Junos BGP policy) on findings from a monitor session, with the user's approval. Covers the approval rules (standing approvals, relayed approvals, auto-mode refusals), how to propose a change, the announce sequence (Slack note, monitor apply times, optimizer notice), handing work to an optimizer session, scheduled pre-approved change sets, debug client captures, waiting for APs to rejoin, test-WLAN design, AireOS prompts and CLI session limits, plus pre-event readiness, start-of-day and teardown checklists. Bundles scripts for batches, AP name/group/mode batch generation, debug capture, rejoin wait and WLAN diff. Use when the user says "your job is to receive findings and configuration change suggestions from the monitoring agent", asks to apply or plan a WLC change during an event, check WLC readiness before an event day, schedule a change at a set time, debug one client on the WLC, set up a test SSID, hand off to an optimizer, name APs from a deployment map, reset AP names to asset tags at teardown, assign AP groups (rk-hi/rk-med), convert APs to local or FlexConnect mode, or tear down event changes, even if they only say "go ahead" or "make tra APs local at 20:30".
 ---
 
 # Configurator session for the rknet event network
@@ -64,6 +64,23 @@ For a set the user pre-approved for a time:
 3. On its notification: `.claude/skills/rknet-wlc-configurator/scripts/wlc_batch.sh FILE 2>&1 | tee tmp/batch-$(date +%m%d-%H%M).log` in the background, and a `Monitor` on `tail -F` of the log filtered to `rror|nvalid|denied|done` only (a broader filter got events suppressed).
 4. After AP reboots: `scripts/ap_rejoin_wait.sh '^ap-(tra|fo0)-' 23` (23 APs converted in 35 s and were all back about 3 minutes later). Then check `show ap config general <ap>` for a sample, static power on CUSTOMIZED radios, and Alertmanager `LinkStateChanged` on the `air` ports (they resolve within minutes).
 
+## AP SOPs: naming, groups, mode
+
+Follow the SOP doc step by step. Each generates a `wlc_batch.sh` file with `scripts/ap_batch.rb` from a fresh `show ap summary` saved in `tmp/`:
+
+| Task | SOP | Generator |
+|---|---|---|
+| Name APs from the human-made deployment map and asset list | `docs/sops/ap-naming.md` | `ap_batch.rb name SUMMARY MAP ASSETS` |
+| Reset an area's names to asset tags before its pull | `docs/sops/ap-naming.md` | `ap_batch.rb reset SUMMARY MAP ASSETS --only '^ap-<area>-'` |
+| Assign rk-hi / rk-med by area | `docs/sops/ap-groups.md` | `ap_batch.rb group SUMMARY GROUP=REGEX... --apgroups FILE` |
+| Local or FlexConnect | `docs/sops/ap-mode.md` | `ap_batch.rb mode SUMMARY local\|flexconnect REGEX` |
+
+- Save the pasted map and asset list under `tmp/` as given; never commit them.
+- Show the generated file and every stderr line to the user before applying. Unmatched rows, unmapped APs and name clashes are the user's to resolve.
+- Naming and resets are non-disruptive. Group and mode changes restart APs and need approval per area plus a Slack note with the rollback.
+- Teardown: the user gives the schedule (area, time), and that schedule approves those resets only. Schedule one `CronCreate` one-shot per slot whose prompt carries the area regex, file paths and Slack line; tell the monitor before each reset (renamed APs drop out of its area queries); record leftovers in `docs/events/<event>/`.
+- Pilot `config ap group-name` on one AP first; whether it prompts or restarts the AP has not been observed. Record the result in `docs/sops/ap-groups.md`.
+
 ## Debugging one client
 
 `scripts/wlc_debug_client.sh MAC 300 TAG` in the background. It opens its own `wlc-dbg` session, captures 5 minutes (one 180 s cycle), runs `debug disable-all`, closes, and greps the key lines (`MN_`, `reasonCode`, `Deauth`, state changes, DHCP). A second `debug client` replaces the first, and enabling any WLAN ends the capture. Ask the reporter whether they reconnected by hand before decoding a drop. `docs/wifi/client-tests.md` has the macOS commands to hand a user.
@@ -82,4 +99,5 @@ The WLC refuses logins past a small limit, and hangs before that (one debug capt
 - `docs/event-operations.md`: roles, readiness check, start-of-day check, teardown.
 - `docs/wifi/troubleshooting.md`: known problems and their fixes.
 - `docs/wifi/client-tests.md`: commands to give a user testing from a Mac.
+- `docs/sops/`: AP naming, AP group and AP mode SOPs; `docs/asset-tags.md` for the asset tag format.
 - `docs/events/<event>/changes.md`: the change log for the current event; `docs/events/kor26/` is the previous one.

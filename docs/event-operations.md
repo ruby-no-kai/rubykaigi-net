@@ -18,7 +18,7 @@ How the NOC ran the venue network at Kaigi on Rails 2026 with Claude Code sessio
 
 ## During the event
 
-- Planned pulls during teardown are confirmed by the NOC team area by area; they are not incidents. Reset APs then show default asset-style names (`rk-aph…`, `rk-apm…`) on the WLC before they drop off.
+- Planned pulls during teardown are confirmed by the NOC team area by area; they are not incidents. Each area's APs are renamed to their asset tags (`rk-aph…`, `rk-apm…`) just before the pull, so they vanish from per-area queries while still serving clients.
 - The venue empties within 30 minutes of the last session (782 → 97 clients in 20 minutes); that is not an outage.
 - Prometheus lags the WLC by a minute or two around radio cycles and AP reboots; the WLC CLI decides.
 
@@ -57,4 +57,4 @@ Check specifically; the Kaigi on Rails 2026 readiness check missed each of these
 
 ## End of event teardown
 
-Two separate jobs: the physical pull, which the NOC team does area by area, and rolling back configuration, which nobody owned at Kaigi on Rails 2026. Before the last day ends, ask who rolls back and when, then list every change still in place with its rollback: RF profile power limits, LB settings, WLAN switches, AP modes, static power levels, test WLANs and their AP-group mappings, BGP policy changes. Apply one item at a time with approval and a Slack note each. Whatever stays goes into the event's "Left in place" list for the next readiness check, along with APs that were reset and need renaming from the inventory.
+Two separate jobs: the physical pull, which the NOC team does area by area after the AP names in that area are reset to asset tags ([`sops/ap-naming.md`](sops/ap-naming.md#resetting-names-at-teardown)), and rolling back configuration, which nobody owned at Kaigi on Rails 2026. Before the last day ends, ask who rolls back and when, then list every change still in place with its rollback: RF profile power limits, LB settings, WLAN switches, AP modes, static power levels, test WLANs and their AP-group mappings, BGP policy changes. Apply one item at a time with approval and a Slack note each. Whatever stays goes into the event's "Left in place" list for the next readiness check, along with APs that were reset and need renaming from the inventory.

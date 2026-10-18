@@ -139,7 +139,7 @@ Schedule a one-shot cron at the end of the window with the stop list: stop the `
 - Time zones: syslog bodies carry UTC, the scripts print JST (+9).
 - Prometheus lags the WLC after radio resets and mode changes. Trust the WLC CLI for the minutes around a change.
 - At the end of a day the venue empties within 30 minutes (782 clients to 97 in 20 minutes). That is not an outage. Check AP count and alerts before reacting.
-- Teardown pulls are confirmed by the NOC team area by area. Do not warn about them or ask for AP names before each pull; reset APs show default `rk-aph…`/`rk-apm…` names before they drop off. Record the pulls in the day's record.
+- Teardown pulls are confirmed by the NOC team area by area. Do not warn about them or ask for AP names before each pull; each area's APs are renamed to asset tags (`rk-aph…`/`rk-apm…`, `docs/sops/ap-naming.md`) right before the pull, which drops them out of area regexes while they still serve clients. Record the pulls in the day's record.
 
 ## References
 

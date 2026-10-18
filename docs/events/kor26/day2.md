@@ -50,7 +50,7 @@ No power or other WLC changes through 12:55.
 
 | Time | What |
 |---|---|
-| 15:53 | lb1 (9 APs) and ap-noc-01 pulled early; AP count 49 → 39. Rejects peaked at 79 in the minute 15:54. APs showed default `rk-…` names while being unplugged (a teardown-prep sign, not a fault) |
+| 15:53 | lb1 (9 APs) and ap-noc-01 pulled early; AP count 49 → 39. Rejects peaked at 79 in the minute 15:54. APs were renamed to asset tags (`rk-aph…`, `rk-apm…`) just before the pull, per the naming SOP |
 | 16:00 | es-lb1-01 uplink down |
 | 16:08 | fo0 (7 APs) pulled; es-fo0-01 off 16:12 |
 | 16:46–16:49 | trb (9 APs) pulled; es-trb-02 off 16:49, es-trb-01 off 16:49 |
@@ -62,7 +62,7 @@ Final state at 18:24: 1 AP registered, 49 clients, only the expected `SnmpTarget
 ## Left in place for the next event
 
 - Static (CUSTOMIZED) slot-1 power on tra-04/05/13/14/15/23, trb-01/02/04/11/12/13, lb1-01/03/31 and off-01, and AP modes (tra, fo0, off local), WLAN 10 DHCP-required off, WLAN 14 disabled with its rk-med mapping, br-01.itm `keepaway-1x`. Rollbacks are in [`changes.md`](changes.md) and [`power-steering.md`](power-steering.md).
-- AP names: the pulled APs that were reset report default names (`rk-aph…`, `rk-apm…`); re-name from the inventory before the next event.
+- AP names: the NOC reset each area's APs to their asset-tag names before pulling them (`docs/sops/ap-naming.md`); at 18:16 the last 8 APs on the controller already had asset-tag names.
 
 ## What went wrong in the monitor's own work (so the next one avoids it)
 

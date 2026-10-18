@@ -10,6 +10,10 @@ Notes on how the RubyKaigi / Kaigi on Rails network is built and run, written fo
 | [`wifi/power-steering.md`](wifi/power-steering.md) | Spreading clients off radios at the client cap by Tx power: what worked, RF profiles, both levers, power-level tables |
 | [`wifi/aireos.md`](wifi/aireos.md) | AireOS command behaviour (confirm prompts, WLAN restarts, load balancing, test WLANs) and a Junos `commit confirmed` change |
 | [`wifi/client-tests.md`](wifi/client-tests.md) | Commands to give a Mac user and how to read the output |
+| [`sops/ap-naming.md`](sops/ap-naming.md) | SOP: naming APs from the deployment map at setup, resetting them to asset tags area by area at teardown |
+| [`sops/ap-groups.md`](sops/ap-groups.md) | SOP: assigning APs to rk-hi / rk-med (RF profile) by area |
+| [`sops/ap-mode.md`](sops/ap-mode.md) | SOP: converting APs between local and FlexConnect mode, including the one-time FlexConnect setup |
+| [`asset-tags.md`](asset-tags.md) | Asset tag format and equipment kinds |
 | [`events/`](events/) | One directory per event: daily records, change logs, wiring, and what was left in place |
 
 Keep general lessons in the topic docs and the event's own timeline in `events/<event>/`. Values in the topic docs are snapshots; each says when it was last checked.
