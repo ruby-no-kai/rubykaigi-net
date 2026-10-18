@@ -67,7 +67,7 @@ Dashboards: `overview`, `location`, `dhcp`, `dns`, `ping`, plus BIRD RS, Circuit
 
 ## Syslog and pod logs in CloudWatch Logs
 
-fluentd (`k8s/syslog`) receives device syslog on UDP 514 (an NLB `fluentd` service) and pod logs from fluent-bit, and writes both to S3 `s3://rk-syslog/{syslog,k8s}/year=/month=/day=/` and to CloudWatch Logs:
+fluentd (`k8s/syslog`) receives device syslog on UDP 514 (the NLB in `tf/syslog`, bound to the `fluentd` service) and pod logs from fluent-bit, and writes both to S3 `s3://rk-syslog/{syslog,k8s}/year=/month=/day=/` and to CloudWatch Logs:
 
 | Log group | Content | Stream |
 |---|---|---|
