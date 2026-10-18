@@ -38,7 +38,7 @@
                         "value": "ap-northeast-1"
                      }
                   ],
-                  "image": "ghcr.io/sorah/trapbridge:24e33c312499705e5fabb93cfae840ebc7eccc30",
+                  "image": "ghcr.io/sorah/trapbridge:135bc9385eeacb279648517ae4c0b3324bf3344a",
                   "livenessProbe": {
                      "failureThreshold": 2,
                      "httpGet": {
