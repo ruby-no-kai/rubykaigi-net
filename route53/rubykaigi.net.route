@@ -102,14 +102,7 @@ template 'rubykaigi.net-common' do
   ignore 'signage-dev-cf.rubykaigi.net'
   ignore 'signage-prd-cf.rubykaigi.net'
 
-  rrset 'syslog.rubykaigi.net', 'A' do
-    ttl 60
-    # //k8s/syslog/service.jsonnet
-    resource_records %w(
-      10.33.136.14
-      10.33.152.14
-    )
-  end
+  ignore 'syslog.rubykaigi.net' # tf/syslog/route53.tf
 
   ignore 'dhcp.rubykaigi.net'
   ignore 'tftp.rubykaigi.net'
