@@ -1,3 +1,4 @@
+// Exceeds the 256 KiB last-applied annotation limit, so apply with `kubectl apply --server-side`.
 {
   apiVersion: 'v1',
   kind: 'ConfigMap',
