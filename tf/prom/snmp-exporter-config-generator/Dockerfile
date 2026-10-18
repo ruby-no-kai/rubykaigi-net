@@ -13,7 +13,8 @@ RUN git init && \
 
 WORKDIR /build/generator
 
-RUN make mibs
+# Some vendor download URLs in the pinned Makefile are gone (e.g. APC), so keep whatever downloads.
+RUN make -k mibs; test -e mibs/PICO-SMI-MIB.txt
 RUN ln -s /usr/lib/go-1.20/bin/go /bin/go
 RUN make generator
 RUN download-mibs
