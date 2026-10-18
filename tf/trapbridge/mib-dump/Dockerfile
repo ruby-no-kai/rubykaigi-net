@@ -7,7 +7,7 @@ FROM public.ecr.aws/docker/library/rust:1-slim-trixie AS build
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends libsnmp-dev git ca-certificates
 
-ARG TRAPBRIDGE_REV=a60c2437e8e8c7bd8c872d2365d26a1a6b6e959d
+ARG TRAPBRIDGE_REV=24e33c312499705e5fabb93cfae840ebc7eccc30
 RUN cargo install --locked --root /opt/trapbridge --features mibs --git https://github.com/sorah/trapbridge --rev $TRAPBRIDGE_REV trapbridge
 
 FROM public.ecr.aws/docker/library/debian:trixie-slim

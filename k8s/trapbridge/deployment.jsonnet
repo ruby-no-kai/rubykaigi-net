@@ -40,7 +40,7 @@
                 memory: '32M',
               },
             },
-            image: 'ghcr.io/sorah/trapbridge:f023fe3d7478b18460664183768d6892bc1f7d31',
+            image: 'ghcr.io/sorah/trapbridge:24e33c312499705e5fabb93cfae840ebc7eccc30',
             args: [
               'server',
               '--listen=0.0.0.0:162',
