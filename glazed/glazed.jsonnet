@@ -1,7 +1,7 @@
 // glazed configuration for backing up device configurations, on AWS Step Functions (tf/glazed) and by hand.
 // ./gen-glazed.rb renders it to gen/glazed/glazed.json, which tf/glazed uploads for the Lambda function.
 
-// Set true in-between conferences, when venue hosts are shut down.
+// Set true in-between conferences, when venue hosts are shut down and left out of backups.
 local hiatus = true;
 
 local node(dialect, name, site) = {
@@ -34,10 +34,10 @@ local wlc(name, site) = node('aireos', name, site) + password;
         [ix('recon-01', 'nrt')],
 
         // venue
-        [junos(name, 'venue') for name in ['er-01', 'er-02', 'cs-01']],
-        [ix(name, 'venue') for name in ['tun-01', 'tun-02', 'nat-41', 'nat-42']],
-        [wlc('wlc-01', 'venue')],
-        [ios(name, 'venue') for name in ['es-tra-01', 'es-tra-02', 'es-fo0-01', 'es-trb-01', 'es-trb-02', 'es-lb0-01', 'es-lb0-02', 'es-lb1-01']],
+        if hiatus then [] else [junos(name, 'venue') for name in ['er-01', 'er-02', 'cs-01']],
+        if hiatus then [] else [ix(name, 'venue') for name in ['tun-01', 'tun-02', 'nat-41', 'nat-42']],
+        if hiatus then [] else [wlc('wlc-01', 'venue')],
+        if hiatus then [] else [ios(name, 'venue') for name in ['es-tra-01', 'es-tra-02', 'es-fo0-01', 'es-trb-01', 'es-trb-02', 'es-lb0-01', 'es-lb0-02', 'es-lb1-01']],
 
         // lab
         // [junos(name, 'tkyk') for name in ['er-99', 'cs-99', 'es-99']],
@@ -96,9 +96,6 @@ local wlc(name, site) = node('aireos', name, site) + password;
     workflows: {
       backup: {
         schedule: if hiatus then { interval: '86400s' } else { interval: '900s', retry_interval: '60s' },
-        schedule_rules: if hiatus then [
-          { match: { name_regexp: '.*\\.venue' }, schedule: { interval: '604800s' } },
-        ] else [],
         debounce: { delay: '60s', max_wait: '600s' },
         lease: '1800s',
       },
