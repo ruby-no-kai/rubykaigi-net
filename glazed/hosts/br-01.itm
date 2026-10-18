@@ -9,7 +9,7 @@
 # FPC 0                     BUILTIN      BUILTIN           FPC
 #   PIC 0                                                  6xGE,2xGE SFP Base PIC
 # Power Supply 0
-## Last commit: 2026-10-16 03:31:17 UTC by rk
+## Last commit: 2026-10-18 06:36:14 UTC by rk
 version 24.2R1-S2.5;
 groups {
     /* https://scrapbox.io/rknet/2024_%E6%97%A5%E6%AC%A1%E3%82%BF%E3%82%B9%E3%82%AF */
@@ -405,6 +405,21 @@ snmp {
     stats-cache-lifetime 59;
     community [~REDACTED:dgst=peVe40DhSUw~] {
         authorization read-only;
+    }
+    trap-options {
+        source-address 10.33.0.3;
+    }
+    trap-group public {
+        version v2;
+        categories {
+            chassis;
+            link;
+            routing;
+            configuration;
+        }
+        targets {
+            10.33.136.14;
+        }
     }
 }
 policy-options {
