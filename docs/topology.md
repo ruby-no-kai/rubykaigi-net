@@ -161,6 +161,7 @@ The IPv6 prefixes are all under `2001:df0:8500::/48`. tkyk uses `10.33.30–32.0
 | DNS for attendees | `192.50.220.164/165` (`resolver.rubykaigi.net`, DoH/DoT via `unbound-envoy`) | Unbound on EKS `onpremises` nodes. Their subnet's default route goes to the on-premises backbone (AS59128) rather than AWS, so DNS answers match where conference traffic actually leaves. |
 | DNS for infrastructure | `10.33.136.53`, `10.33.152.53` | AWS |
 | Syslog | `10.33.136.14` (fluentd NLB) | AWS |
+| SNMP traps | `10.33.136.14:162` (syslog NLB, trapbridge to EventBridge) | AWS |
 | TFTP | `10.33.136.67` | AWS |
 | NTP | `time.google.com` (`216.239.35.0/4/8/12`) | external |
 

@@ -103,6 +103,7 @@ template 'rubykaigi.net-common' do
   ignore 'signage-prd-cf.rubykaigi.net'
 
   ignore 'syslog.rubykaigi.net' # tf/syslog/route53.tf
+  ignore 'snmptrap.rubykaigi.net' # tf/trapbridge/route53.tf
 
   ignore 'dhcp.rubykaigi.net'
   ignore 'tftp.rubykaigi.net'
