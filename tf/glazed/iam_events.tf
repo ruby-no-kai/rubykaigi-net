@@ -32,6 +32,7 @@ data "aws_iam_policy_document" "EventsGlazed" {
     ]
     resources = [
       aws_sfn_state_machine.glazed.arn,
+      aws_sfn_state_machine.glazed-trap.arn,
     ]
   }
 }

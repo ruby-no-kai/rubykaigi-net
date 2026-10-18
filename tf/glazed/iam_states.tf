@@ -35,3 +35,27 @@ data "aws_iam_policy_document" "StatesGlazed" {
     ]
   }
 }
+
+resource "aws_iam_role" "StatesGlazedTrap" {
+  name                 = "StatesGlazedTrap"
+  description          = "rubykaigi-net//tf/glazed"
+  assume_role_policy   = data.aws_iam_policy_document.StatesGlazed-trust.json
+  permissions_boundary = data.aws_iam_policy.NocAdminBase.arn
+}
+
+resource "aws_iam_role_policy" "StatesGlazedTrap" {
+  role   = aws_iam_role.StatesGlazedTrap.name
+  policy = data.aws_iam_policy_document.StatesGlazedTrap.json
+}
+
+data "aws_iam_policy_document" "StatesGlazedTrap" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "states:StartExecution",
+    ]
+    resources = [
+      aws_sfn_state_machine.glazed.arn,
+    ]
+  }
+}
