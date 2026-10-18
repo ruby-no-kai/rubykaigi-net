@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'glazed', path: File.expand_path('~/git/github.com/sorah/glazed/glazed')
-# ssm secrets and s3 storages
-gem 'glazed-aws', path: File.expand_path('~/git/github.com/sorah/glazed/glazed-aws')
+git 'https://github.com/sorah/glazed.git' do
+  gem 'glazed'
+  # ssm secrets and s3 storages
+  gem 'glazed-aws'
+end
 # net-ssh: ed25519 keys and curve25519 key exchange
 gem 'bcrypt_pbkdf'
 gem 'ed25519'

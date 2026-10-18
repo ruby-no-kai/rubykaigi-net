@@ -1,6 +1,9 @@
 // glazed configuration for backing up device configurations, on AWS Step Functions (tf/glazed) and by hand.
 // ./gen-glazed.rb renders it to gen/glazed/glazed.json, which tf/glazed uploads for the Lambda function.
 
+// Set true in-between conferences, when venue hosts are shut down.
+local hiatus = false;
+
 local node(dialect, name, site) = {
   name: '%s.%s' % [name, site],
   host: '%s.%s.rubykaigi.net' % [name, site],
@@ -92,9 +95,12 @@ local wlc(name, site) = node('aireos', name, site) + password;
     state: { sqlite: { storage: 'state', key: 'state.sqlite3' } },
     workflows: {
       backup: {
-        schedule: { interval_seconds: 900, retry_interval_seconds: 60 },
-        debounce: { delay_seconds: 60, max_wait_seconds: 600 },
-        lease_seconds: 1800,
+        schedule: if hiatus then { interval: '86400s' } else { interval: '900s', retry_interval: '60s' },
+        schedule_rules: if hiatus then [
+          { match: { name_regexp: '.*\\.venue' }, schedule: { interval: '604800s' } },
+        ] else [],
+        debounce: { delay: '60s', max_wait: '600s' },
+        lease: '1800s',
       },
     },
   },

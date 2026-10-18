@@ -322,14 +322,15 @@
     "workflows": {
       "backup": {
         "debounce": {
-          "delay_seconds": 60,
-          "max_wait_seconds": 600
+          "delay": "60s",
+          "max_wait": "600s"
         },
-        "lease_seconds": 1800,
+        "lease": "1800s",
         "schedule": {
-          "interval_seconds": 900,
-          "retry_interval_seconds": 60
-        }
+          "interval": "900s",
+          "retry_interval": "60s"
+        },
+        "schedule_rules": []
       }
     }
   },

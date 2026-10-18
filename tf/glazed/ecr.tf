@@ -1,6 +1,6 @@
 locals {
   # Tag of ghcr.io/sorah/glazed-lambda, copied to ECR with skopeo-copy
-  image_tag = "2026.10.17.01"
+  image_tag = "b8854298b22c14a47ed52b78eea1d0b57814e6cd"
 }
 
 resource "aws_ecr_repository" "glazed-lambda" {
