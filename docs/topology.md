@@ -173,6 +173,7 @@ Before calling one of these an outage, check whether the current event uses it:
 - Devices the event does not deploy (Kaigi on Rails 2026: `wire-01..04`, `as-01`, `show-01`, `tun-03`), and cs-01 ports tagged for another event.
 - `cloudprober-01/02.venue` before they are connected.
 - `tkyk` lab devices (silenced).
+- All venue devices during [hiatus](hiatus.md), the time between conferences.
 - During the off-season, and up to the start of an event, a catch-all Alertmanager silence (`alertname=~.+`) mutes everything. It is lifted on day 1. Before then, `am-alerts` shows everything as suppressed, which is normal.
 
 At an East venue the nrt paths (`.20/.21`) should be up. If they are down, that is a real loss of redundancy.

@@ -13,6 +13,7 @@ Notes on how the RubyKaigi / Kaigi on Rails network is built and run, written fo
 | [`sops/ap-naming.md`](sops/ap-naming.md) | SOP: naming APs from the deployment map at setup, resetting them to asset tags area by area at teardown |
 | [`sops/ap-groups.md`](sops/ap-groups.md) | SOP: assigning APs to rk-hi / rk-med (RF profile) by area |
 | [`sops/ap-mode.md`](sops/ap-mode.md) | SOP: converting APs between local and FlexConnect mode, including the one-time FlexConnect setup |
+| [`hiatus.md`](hiatus.md) | What is down between conferences, what is not an incident, the glazed `hiatus` switch, entering and leaving |
 | [`asset-tags.md`](asset-tags.md) | Asset tag format and equipment kinds |
 | [`events/`](events/) | One directory per event: daily records, change logs, wiring, and what was left in place |
 
