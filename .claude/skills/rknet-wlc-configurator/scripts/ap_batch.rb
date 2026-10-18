@@ -9,6 +9,7 @@
 # MAP and ASSETS are pasted spreadsheet rows (tab, comma or space separated, any column order, header rows ignored).
 # MAP rows hold an ap-* name and an asset tag; ASSETS rows hold an asset tag with an Ethernet MAC and/or serial.
 # APs are matched by Ethernet MAC, falling back to the current name. Problems go to stderr; exit 1 if any.
+# Output ends with `! save config`: the aireos dialect answers "n" to the save question at logout.
 require 'optparse'
 
 TAG = /\A(?:rk|kor)-[a-z]+\d{2}[a-z]\d+\z/
@@ -90,6 +91,7 @@ def rename(aps, entries, only, to:, problems:, matched:)
       next
     end
     matched << ap
+    problems << "#{e.tag}: WLC has #{ap.name}, map says #{e.ap_name}" unless [e.ap_name, e.tag].include?(ap.name)
     next "# #{target} already named" if ap.name == target
     if (clash = aps.find { _1.name == target && _1.mac != ap.mac })
       problems << "#{target}: already used by #{clash.mac}, rename that AP first"
@@ -147,6 +149,7 @@ else
   abort File.read(__FILE__).lines[1..6].map { _1.sub(/\A# ?/, '') }.join
 end
 
+lines << '! save config' if lines.any? { !_1.start_with?('#') }
 puts lines
 problems.each { warn "ap_batch: #{_1}" }
 exit(problems.empty? ? 0 : 1)

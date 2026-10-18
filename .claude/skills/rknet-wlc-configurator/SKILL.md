@@ -77,8 +77,9 @@ Follow the SOP doc step by step. Each generates a `wlc_batch.sh` file with `scri
 
 - Save the pasted map and asset list under `tmp/` as given; never commit them.
 - Show the generated file and every stderr line to the user before applying. Unmatched rows, unmapped APs and name clashes are the user's to resolve.
+- Generated batches end with `! save config`; the aireos dialect answers "n" to the save question at logout, so without it nothing survives a controller reload. Ask the user before saving other changes too (`docs/wifi/aireos.md`, "Saving").
 - Naming and resets are non-disruptive. Group and mode changes restart APs and need approval per area plus a Slack note with the rollback.
-- Teardown: the user gives the schedule (area, time), and that schedule approves those resets only. Schedule one `CronCreate` one-shot per slot whose prompt carries the area regex, file paths and Slack line; tell the monitor before each reset (renamed APs drop out of its area queries); record leftovers in `docs/events/<event>/`.
+- Teardown: the user gives the timetable and the room for each location code; the agreed schedule approves those resets only. Per slot: a `CronCreate` one-shot 10 minutes before the pull to check the session and announce on Slack, and one 5 minutes before to regenerate and apply. Keep `scripts/wlc_keepalive.sh` running in the background and the Mac awake (`caffeinate -i`); a lost session needs the user's Touch ID to reopen. On a failed slot, report and wait instead of retrying. Tell the monitor before each reset (renamed APs drop out of its area queries).
 - Pilot `config ap group-name` on one AP first; whether it prompts or restarts the AP has not been observed. Record the result in `docs/sops/ap-groups.md`.
 
 ## Debugging one client

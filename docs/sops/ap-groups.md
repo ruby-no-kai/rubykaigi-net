@@ -21,7 +21,7 @@ The default is rk-hi for session rooms and rk-med elsewhere, but decide per venu
    ```
 
 4. Pilot one AP: apply its line alone, note whether the controller asks for confirmation and whether the AP rejoins (watch `show ap summary`). Group changes were not observed at Kaigi on Rails 2026; assume the AP restarts and drops its clients until the pilot shows otherwise.
-5. Apply the rest with `.claude/skills/rknet-wlc-configurator/scripts/wlc_batch.sh` (`!` lines answer a y/n prompt) area by area, before doors or at a break.
+5. Apply the rest (the generated file ends with `! save config`) with `.claude/skills/rknet-wlc-configurator/scripts/wlc_batch.sh` (`!` lines answer a y/n prompt) area by area, before doors or at a break.
 6. Verify with `show wlan apgroups` (members per group) and `show ap config general <ap>` (`Cisco AP Group Name`).
 
 Changing an AP's group is a disruptive change during an event. It needs the user's approval and a Slack note with the rollback (the previous group from step 2).

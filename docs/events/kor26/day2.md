@@ -62,7 +62,7 @@ Final state at 18:24: 1 AP registered, 49 clients, only the expected `SnmpTarget
 ## Left in place for the next event
 
 - Static (CUSTOMIZED) slot-1 power on tra-04/05/13/14/15/23, trb-01/02/04/11/12/13, lb1-01/03/31 and off-01, and AP modes (tra, fo0, off local), WLAN 10 DHCP-required off, WLAN 14 disabled with its rk-med mapping, br-01.itm `keepaway-1x`. Rollbacks are in [`changes.md`](changes.md) and [`power-steering.md`](power-steering.md).
-- AP names: the NOC reset each area's APs to their asset-tag names before pulling them (`docs/sops/ap-naming.md`); at 18:16 the last 8 APs on the controller already had asset-tag names.
+- AP names: a NOC member's Claude Code session reset all 51 APs to their asset-tag names area by area before each pull (`docs/sops/ap-naming.md`); at 18:16 the last 8 APs on the controller already had asset-tag names. ap-noc-01 was missing from the asset sheet.
 
 ## What went wrong in the monitor's own work (so the next one avoids it)
 

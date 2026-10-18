@@ -79,7 +79,7 @@ User device reports: ask for MAC, SSID, OS and time, then `$S/mac_cadence.rb MAC
 
 ## Slack
 
-`misc/noc_slack.rb` posts stdin to the NOC webhook (`--dry-run` prints the payload). The URL lives only in the gitignored `tmp/noc_slack_webhook` (or `NOC_SLACK_WEBHOOK`). If the file is missing, ask the user to create it (`umask 077; cat > tmp/noc_slack_webhook`) and never print, paste or commit the URL.
+`misc/noc_slack.rb` posts stdin to the NOC webhook (`--dry-run` prints the payload). The URL lives only in the gitignored `tmp/noc_slack_webhook` (or `NOC_SLACK_WEBHOOK`). The NOC channel is shared over Slack Connect, where the Slack MCP cannot post, so use the script. If the file is missing, ask the user to create it (`umask 077; cat > tmp/noc_slack_webhook`) and never print, paste or commit the URL.
 
 Post every round in which something is new or changed: start of day, the board's creation, every new issue, every verdict or status change, major updates, and the wrap-up. A quiet round needs no post. Too few posts is the usual failure: the user had to ask "did you remember the rule of slack callout?". Every post links the board:
 

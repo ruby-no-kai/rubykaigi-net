@@ -32,7 +32,7 @@ Needed once per controller configuration before any AP goes FlexConnect; check `
 
    For `flexconnect` it adds `config flexconnect group rk-venue ap add <Ethernet MAC>` after each mode change. Adding before the mode change is refused (`Ap is not in flexconnect mode`), and an AP converted without it lands in `default-flex-group`.
 3. Pilot one AP when the controller or the target mode is new for this event.
-4. Apply with `.claude/skills/rknet-wlc-configurator/scripts/wlc_batch.sh tmp/ap-mode.txt`. Every mode change asks `Changing the AP's mode will cause the AP to reboot. Are you sure you want to continue? (y/n)`; `!` lines answer it. An unanswered prompt swallows the next command (only 8 of 51 converted on a first loop), so never loop plain `run` calls.
+4. Apply with `.claude/skills/rknet-wlc-configurator/scripts/wlc_batch.sh tmp/ap-mode.txt`. Every mode change asks `Changing the AP's mode will cause the AP to reboot. Are you sure you want to continue? (y/n)`; `!` lines answer it. An unanswered prompt swallows the next command (only 8 of 51 converted on a first loop), so never loop plain `run` calls. The generated file ends with `! save config`.
 5. Wait for rejoin: `.claude/skills/rknet-wlc-configurator/scripts/ap_rejoin_wait.sh '^ap-(tra|fo0)-' 23`.
 6. Verify: `show ap config general <ap>` AP Mode for every AP; for FlexConnect also `show flexconnect group summary` (count in rk-venue) and a client's `show client detail` (`FlexConnect Data Switching Local`, `FlexConnect Dhcp Status Central`, VLAN 400).
 

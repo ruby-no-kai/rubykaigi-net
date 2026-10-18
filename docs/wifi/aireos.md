@@ -9,6 +9,13 @@ Command behaviour on wlc-01 (AireOS 8.10) and the Junos routers learned while ch
 - `config wlan dhcp_server 10 0.0.0.0` prints `Note: DHCP server override is applicable only to the default AP group.` It still turned DHCP Address Assignment Required off for the WLAN (verified with `show wlan 10`). Re-enable with `config wlan dhcp_server 10 0.0.0.0 required`.
 - `Client Dhcp Required: True` still shows on clients of a WLAN with DHCP-required disabled. Its source was not found (an exploration of `show flexconnect group detail rk-venue`, `show interface detailed usr`, `show dhcp opt-82` hung on the session limit).
 
+## Saving
+
+- Changes apply immediately but are lost on a controller reload until `save config` (`Are you sure you want to save? (y/n)`, then `Configuration Saved!`). ssh_cli's AireOS dialect answers "n" to the save question at logout, so a session never saves by leaving. At Kaigi on Rails 2026 the only save was on Day 2 at 18:26.
+- ssh_cli does not recognise `(y/n)` as a prompt: `send` the command, let it time out at the question, then `send y` (`wlc_batch.sh` `!` lines).
+- Enter `config ...` on one line from the exec prompt; ssh_cli's prompt pattern does not match the `config>` sub-prompt.
+- The CLI login timeout (5 minutes in 2026, `show sessions`) closes idle sessions.
+
 ## Load balancing
 
 - Per-WLAN switch: `config wlan load-balance allow enable|disable 10` (needs the WLAN disabled). Toggling it restarts the WLAN (about 280 clients dropped at Kaigi on Rails 2026).
