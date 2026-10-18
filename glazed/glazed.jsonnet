@@ -2,7 +2,7 @@
 // ./gen-glazed.rb renders it to gen/glazed/glazed.json, which tf/glazed uploads for the Lambda function.
 
 // Set true in-between conferences, when venue hosts are shut down.
-local hiatus = false;
+local hiatus = true;
 
 local node(dialect, name, site) = {
   name: '%s.%s' % [name, site],

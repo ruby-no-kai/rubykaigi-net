@@ -327,10 +327,18 @@
         },
         "lease": "1800s",
         "schedule": {
-          "interval": "900s",
-          "retry_interval": "60s"
+          "interval": "86400s"
         },
-        "schedule_rules": []
+        "schedule_rules": [
+          {
+            "match": {
+              "name_regexp": ".*\\.venue"
+            },
+            "schedule": {
+              "interval": "604800s"
+            }
+          }
+        ]
       }
     }
   },
