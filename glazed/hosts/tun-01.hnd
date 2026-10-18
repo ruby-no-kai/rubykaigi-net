@@ -140,6 +140,8 @@ ipv6 access-list p-udpany permit udp src any sport any dest any dport any
 !
 snmp-agent ip enable
 snmp-agent ip community [~REDACTED:dgst=peVe40DhSUw~]
+snmp-agent ip host 10.33.136.14 public version 2 
+snmp-agent ip trap-source 10.33.0.151
 !
 !
 bridge irb enable
