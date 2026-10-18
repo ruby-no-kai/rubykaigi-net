@@ -35,4 +35,14 @@ data "aws_iam_policy_document" "EventsGlazed" {
       aws_sfn_state_machine.glazed-trap.arn,
     ]
   }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "lambda:InvokeFunction",
+    ]
+    resources = [
+      aws_lambda_function.glazed-status.arn,
+    ]
+  }
 }
