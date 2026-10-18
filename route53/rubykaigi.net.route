@@ -12,6 +12,10 @@ template 'rubykaigi.net-common' do
     dns_name("d3tsts1uyuh9og.cloudfront.net.", evaluate_target_health: true)
   end
 
+  rrset "rubykaigi.net.", "HTTPS" do
+    dns_name("d3tsts1uyuh9og.cloudfront.net.", evaluate_target_health: true)
+  end
+
   rrset "rubykaigi.net.", "CAA" do
     ttl 60
     resource_records(
