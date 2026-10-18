@@ -20,7 +20,7 @@
 
 ## Still in place at Day 2 12:34
 
-Everything above except WLAN 14 (disabled), plus the optimizer's static radios (see `rknet-wlc-power-steering/references/kor26.md`). Load-balancing settings were never re-evaluated after the 180 s cause was fixed.
+Everything above except WLAN 14 (disabled), plus the optimizer's static radios (see [`power-steering.md`](power-steering.md)). Load-balancing settings were never re-evaluated after the 180 s cause was fixed.
 
 ## Open items
 

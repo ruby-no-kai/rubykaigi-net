@@ -1,4 +1,6 @@
-# AireOS and Junos facts from the configurator session (KoR26)
+# AireOS and Junos notes
+
+Command behaviour on wlc-01 (AireOS 8.10) and the Junos routers learned while changing them during Kaigi on Rails 2026.
 
 ## Prompts and states
 
@@ -9,7 +11,7 @@
 
 ## Load balancing
 
-- Per-WLAN switch: `config wlan load-balance allow enable|disable 10` (needs the WLAN disabled). At KoR26 the user enabled it on WLAN 10 at 12:09:24 Day 1.
+- Per-WLAN switch: `config wlan load-balance allow enable|disable 10` (needs the WLAN disabled). Toggling it restarts the WLAN (about 280 clients dropped at Kaigi on Rails 2026).
 - Parameters: global `config load-balancing window|denial ...` has no effect on APs in RF-profile groups. Per profile: `config rf-profile load-balancing window <0-20> <profile>` and `... denial <1-10> <profile>`. Window 20 is the most lenient (a smaller window denies more).
 - Load balancing only denies at association and never moves associated clients. Only disabling it on the WLAN stops the denials.
 
@@ -37,16 +39,16 @@ config wlan enable 14
 - Adding a WLAN to an AP group's interface mapping reset no AP and dropped no client.
 - Rollback: `config wlan disable 14`, then `config wlan apgroup interface-mapping delete rk-med 14`.
 
-## RA-related WLC state (Day 1 18:00)
+## RA-related WLC state (Kaigi on Rails 2026)
 
 RA throttling disabled, RA Guard on AP enabled, global multicast disabled, AP multicast mode unicast. Commands: `show ipv6 summary`, `show ipv6 ra-guard ap summary`, `show network multicast mgid summary`.
 
-## Junos change with a confirm window (br-01.itm, Day 1 12:24–12:31)
+## Junos change with a confirm window (br-01.itm transit export)
 
-1. Compare the policy across br-01.{itm,hnd,nrt} from `s3://rk-infra/glazed/redacted/` (see `rknet-observability`).
+1. Compare the policy across br-01.{itm,hnd,nrt} from `s3://rk-infra/glazed/redacted/`.
 2. `configure`, then `delete protocols bgp group transit export` before `set protocols bgp group transit export [ transit-out-filter keepaway-1x accept ]`. A plain `set` appends to the existing list.
 3. `show | compare`, `commit check`.
-4. `commit confirmed 5`. Auto mode refused it, so the user ran it with `!` in the configurator session.
+4. `commit confirmed 5`. Claude Code's auto mode refused it, so a human ran it.
 5. Verify within the window: `run show route advertising-protocol bgp <peer>` and transit Mbps (`sum(irate(ifHCInOctets{instance=~"br-.+",ifAlias=~"^Transit:.+"}[2m]) * 8)`), then `commit` and `exit`.
 
 - `keepaway-1x` uses `as-path-expand last-as`, which does nothing on locally originated routes. Only the /31 and /32 got prepended; the /29 aggregates and `2001:df0:8500:ca00::/56` did not. itm transit input still fell from 20–99 to 2–3 Mbps.

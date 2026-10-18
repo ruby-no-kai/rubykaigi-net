@@ -1,6 +1,6 @@
 # Client-side tests to hand a user (macOS)
 
-Users paste output back (ifconfig, tcpdump, scutil). Give each command with what each outcome means. Addresses are KoR26's; take current ones from `rknet-topology`.
+Users paste output back (ifconfig, tcpdump, scutil). Give each command with what each outcome means. Addresses are Kaigi on Rails 2026's; take current ones from [`../topology.md`](../topology.md).
 
 ```bash
 scutil --dns | grep -m4 nameserver          # is a resolver still configured (RDNSS from the RA)?
@@ -18,4 +18,4 @@ curl -6 -sS -m5 -o /dev/null -w '%{http_code}\n' https://rubykaigi.org/
 
 - ca6d:53::c/d fail but the NAT64 and CLAT paths answer: the SIIT path (nat-61/62) or the route to `ca6d::/64` is at fault, not unbound.
 - Only some source addresses fail: suspect ECMP to one bad nat box, or neighbour state for that address on cs-01 (`show ipv6 neighbors | match <mac>`).
-- No RA in the capture for several minutes while RS go out: RA delivery to the client (see `rknet-wifi-remediation`, FlexConnect versus local mode).
+- No RA in the capture for several minutes while RS go out: RA delivery to the client (see [`troubleshooting.md`](troubleshooting.md#3-flexconnect-versus-local-mode)).

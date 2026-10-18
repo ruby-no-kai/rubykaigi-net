@@ -45,3 +45,5 @@ rk-5g-hi `tx-power-max` is still 17.
 ## Day 2 (2026-10-17) through 12:54
 
 No optimizer change. 976 clients at 11:55. trb-01 88 (auto) and trb-12 86–87 held and fell back. Prometheus showed lb0-21 at 200/200 while the WLC listed 172–173 (cap 200, 22 dBm); a one-level 22 → 19 dBm step was offered only if it approached 190 or rejects appeared. Lobby lb1-33/01/31 showed 25–56% failed frames at lunch and was left alone.
+
+Afternoon steps (trb-04, trb-12 to 11 dBm, trb-01, trb-02, tra-15) are in [`day2.md`](day2.md#afternoon-from-1255).

@@ -12,6 +12,10 @@ Scrapbox invitation is available at bookmarks in the Slack channel.
 
 https://scrapbox.io/rknet/AWS
 
+## Docs
+
+- [docs/](docs/): topology, event operations and Wi-Fi troubleshooting notes
+
 ## Write-ups
 
 Want to know RubyKaigi Wi-Fi behind the scenes? You may love the following articles.

@@ -13,7 +13,7 @@ options = {
   context: 'arn:aws:eks:ap-northeast-1:005216166247:cluster/rknet',
   interval: 60,
   cap: 100,
-  # rk-5g-med (AP group rk-med) allowed 200 clients per radio at KoR26; check `show rf-profile details` per event.
+  # rk-5g-med (AP group rk-med) allows 200 clients per radio; check `show rf-profile details` per event.
   caps: { /\Aap-(lb0|int|off)-/ => 200 },
   hot: 0.9,
   clear: 0.8,

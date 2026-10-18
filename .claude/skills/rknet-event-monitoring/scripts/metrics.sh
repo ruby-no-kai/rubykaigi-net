@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Periodic Prometheus snapshot for an event monitoring loop. Run from anywhere in the repo.
-# The grep -v filters in "bgp down" and "loss" hide peers and targets that were expected down at KoR26; edit them per event.
+# The grep -v filters in "bgp down" and "loss" hide peers and targets expected down at the last event; edit them per event.
 cd "$(git rev-parse --show-toplevel)"
 S=.claude/skills/rknet-observability/scripts/prom.rb
 q() { ruby $S query "$1"; }

@@ -40,11 +40,11 @@ Source: the monitor session and the issue board. Times are JST. Use this as a wo
 
 ## Open items for Day 2
 
-Items 1, 2 and 4 were answered on Day 2 morning; see `kor26-day2.md`.
+Items 1, 2 and 4 were answered on Day 2 morning; see [`day2.md`](day2.md).
 
 1. With a real crowd, confirm that no client is removed at 180 s on FlexConnect (lb0, lb1, trb, int, noc) and on the local-mode tra, fo0 and off APs. Use `event_snapshot.rb` and look at Connected For.
 2. RA/IPv6 and DNS on the local-mode tra and fo0 APs (the original reason for FlexConnect was that the WLC stopped forwarding Router Advertisements in central switching). Only ap-off-01 had a crowd while in local mode (up to 30 clients) and looked fine.
-3. DNS to `2001:df0:8500:ca6d:53::c/d` for IPv6-only clients: capture on nat-61 and nat-62 (`tun-siit`) while a client stalls. See `rknet-wifi-remediation`.
+3. DNS to `2001:df0:8500:ca6d:53::c/d` for IPv6-only clients: capture on nat-61 and nat-62 (`tun-siit`) while a client stalls. See [`wifi/troubleshooting.md`](../../wifi/troubleshooting.md#6-dns-for-ipv6-only-clients-unresolved).
 4. Legacy SSID: 4 stale entries (Association Id 0) on ap-lb1-01/31 survived two hours; clear or leave, the user decides.
 5. Check that the 20:30 channel reshuffle (36–140 including DFS) did not leave neighbours on one channel; ap-off-01 showed 71% utilization and 21% retries with 20 clients on channel 40 at 10 dBm.
-6. Keep the Tx power steps recorded in `rknet-wlc-power-steering`; static 14 dBm remains on tra-04/05/13/14/23, trb-11/12/13, lb1-03, lb1-31, lb1-01 at 11 dBm, ap-off-01 level 3.
+6. Keep the Tx power steps recorded in [`power-steering.md`](power-steering.md); static 14 dBm remains on tra-04/05/13/14/23, trb-11/12/13, lb1-03, lb1-31, lb1-01 at 11 dBm, ap-off-01 level 3.

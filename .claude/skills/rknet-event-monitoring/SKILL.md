@@ -1,13 +1,13 @@
 ---
 name: rknet-event-monitoring
-description: How to run the periodic conference-network monitoring loop for RubyKaigi / Kaigi on Rails (every 20 minutes, until a stated end time), work alongside a configurator and an optimizer session, keep a numbered NOC issue board published as a shared Artifact, post to the NOC Slack channel, take before/after samples around a change, and wrap up the day. Bundles the check scripts (Prometheus summary, syslog digest and cap-reject counter, Alertmanager watcher, 180 s re-association histogram, per-MAC cadence, per-radio ratios, area client sampler, change and event snapshots, per-AP watcher) and the issue-board template with an update helper. Use when the user says "monitor the event/Day N environment", "check syslog and WLC show commands and report how stable the wi-fi is", asks for a status board or issue list, wants a before/after snapshot of a WLC change, asks how the monitor/configurator/optimizer sessions divide work, says "resume" on a later event day, or wants to repeat the Kaigi on Rails 2026 workflow at another conference, even if they only say "start the monitoring loop".
+description: How to run the periodic conference-network monitoring loop for RubyKaigi / Kaigi on Rails (every 20 minutes, until a stated end time), work alongside a configurator and an optimizer session, keep a numbered NOC issue board published as a shared Artifact, post to the NOC Slack channel, take before/after samples around a change, and wrap up the day. Bundles the check scripts (Prometheus summary, syslog digest and cap-reject counter, Alertmanager watcher, 180 s re-association histogram, per-MAC cadence, per-radio ratios, area client sampler, change and event snapshots, per-AP watcher) and the issue-board template with an update helper. Use when the user says "monitor the event/Day N environment", "check syslog and WLC show commands and report how stable the wi-fi is", asks for a status board or issue list, wants a before/after snapshot of a WLC change, asks how the monitor/configurator/optimizer sessions divide work, says "resume" on a later event day, or wants to repeat this workflow at another conference, even if they only say "start the monitoring loop".
 ---
 
 # Event monitoring loop for the rknet network
 
-This is the workflow used at Kaigi on Rails 2026 (2026-10-16/17, about 800–990 Wi-Fi clients, 51 APs, one AireOS WLC). One session (the monitor) only reads and reports. Other sessions own changes. A shared issue board is the common record and Slack is how the NOC hears about it.
+One session (the monitor) only reads and reports. Other sessions own changes (`docs/event-operations.md` has the overview for humans). A shared issue board is the common record and Slack is how the NOC hears about it. First used at Kaigi on Rails 2026 (about 1,000 Wi-Fi clients, 51 APs, one AireOS WLC).
 
-Pair with `rknet-observability` (Prometheus, Alertmanager, syslog, Grafana access), `rknet-topology` (devices, SSIDs, VLANs), `ssh-cli` (device CLI), `rknet-wifi-remediation` (what was found and fixed), `rknet-wlc-power-steering` (the optimizer's work) and `rknet-wlc-configurator` (the configurator's work).
+Pair with `rknet-observability` (Prometheus, Alertmanager, syslog, Grafana access), `rknet-topology` (devices, SSIDs, VLANs), `ssh-cli` (device CLI), `rknet-wifi-remediation` (known problems, `docs/wifi/troubleshooting.md`), `rknet-wlc-power-steering` (the optimizer's work) and `rknet-wlc-configurator` (the configurator's work).
 
 Scripts are in `.claude/skills/rknet-event-monitoring/scripts/` (`$S` below). Run them from the repo root.
 
@@ -15,13 +15,13 @@ Scripts are in `.claude/skills/rknet-event-monitoring/scripts/` (`$S` below). Ru
 
 Do not start or restart the loop until the user gives the window in this session (a wakeup with no prompt is not one).
 
-1. `aws sts get-caller-identity` shows `assumed-role/NocAdmin`. mairu credentials sometimes fail for a minute; on Day 2 the user had to log in again. Retry; it is not a network event. When credentials come back after a failure, tell the peers.
+1. `aws sts get-caller-identity` shows `assumed-role/NocAdmin`. mairu credentials sometimes fail for a minute, and the user may have to log in again on a later day. Retry; it is not a network event. When credentials come back after a failure, tell the peers.
 2. Open both ssh-cli sessions (`event_snapshot.rb` needs both):
    `ruby misc/ssh_cli.rb -s wlc-01.venue open --dialect aireos --idle-timeout 0 wlc-01.venue.rubykaigi.net` and `ruby misc/ssh_cli.rb -s cs-01.venue open --dialect junos cs-01.venue.rubykaigi.net`. The WLC session drops between rounds; on exit status 2, `close` then `open`.
 3. `CronCreate` `*/20 H1-H2 D M *` with the loop prompt (`references/operations.md` has the template). Recurring jobs fire only while the REPL is idle. Re-create the job when the user extends the window.
 4. `Monitor` running `cd <repo> && ruby .claude/skills/rknet-event-monitoring/scripts/am_watch.rb` (30-minute expiry; re-arm on each expiry notice, keep exactly one running, and re-arm after a `WATCH-ERROR` from failed credentials). It prints `BASELINE`, `NEW`, `RESOLVED` and `WATCH-ERROR` lines. `RESOLVED` is not a recovery: it also fires when an alert is silenced or a `LinkStateChanged` alert times out with the link still down. Re-check the source.
 5. Peers: `ListAgents`, then `SendMessage` the configurator and optimizer to load all rknet skills, and ask each to confirm by name which skills it loaded (one claimed five and had loaded three). You cannot start a peer; a message to an idle one waits unread, so ask the user to nudge it.
-6. Ask about teardown and anything expected down today (on the last day ap-int-01/02 and two cs-01 ports were shut early). Update the expected AP count and the `grep -v` filters in `$S/metrics.sh` (see `rknet-topology`, "Expected-down targets").
+6. Ask about teardown and anything expected down today (areas can be shut early on the last day). Read the previous day's record in `docs/events/<event>/` for open items; on Day 1, read the previous event's "Left in place" list. Update the expected AP count and the `grep -v` filters in `$S/metrics.sh` (see `rknet-topology`, "Expected-down targets").
 7. First round deliverables: the day's board published and a Slack status post with its link.
 
 ## One round of checks (about 5 minutes)
@@ -45,8 +45,8 @@ Copy PromQL from `metrics.sh` or `rknet-observability/references/promql.md`. Gue
 |---|---|---|
 | Clients on one 5 GHz radio | 95 or more of 100 (rk-5g-hi); 190 of 200 (rk-5g-med) | the optimizer's case; tell it if its watcher has not |
 | Cap rejects (`caprej.sh`) | any after a steer | the steer did not take; check the radio list |
-| Failed-frame ratio | high with many clients | record it; power steering did not lower it at KoR26 (`rknet-wlc-power-steering`). It follows traffic volume and re-association churn |
-| Channel utilization | 60% or more with a normal client count | look at co-channel neighbours; at KoR26 this followed a mass AP reboot that reshuffled channels |
+| Failed-frame ratio | high with many clients | record it; power steering does not lower it (`docs/wifi/power-steering.md`). It follows traffic volume and re-association churn |
+| Channel utilization | 60% or more with a normal client count | look at co-channel neighbours; a mass AP reboot reshuffles channels |
 | tun-01.hnd or tun-01.nrt CPU | 80% or more for 10 minutes | open or update an issue; hnd (IX3100) runs about twice the CPU per Mbps of nrt (IX2215) |
 | Re-association gaps at 170–200 s | well above 3% | the 180 s DHCP removal is back |
 | WLC client count vs radio sum | gap over 20 | ghost entries, Association Id 0 |
@@ -59,7 +59,7 @@ Link-state alerts on the video crew's `cast` VLAN ports (VLAN 410, for example e
 
 Open with a verdict (stable or unstable) and the reason in numbers: clients, busiest radio, transit Mbps, alerts. Then new findings with the actual log lines quoted, then action items split into "needs a human" and "being investigated". For any "check X" that can be checked remotely, check it with a read-only command or a subagent and say "investigation underway"; only physical actions and approvals go to people. State the source and time range of every conclusion. Write plainly; the user asked what "optimizer ack" meant.
 
-User device reports: ask for MAC, SSID, OS and time, then `$S/mac_cadence.rb MAC` (WLC detail plus association times and gaps). An A/B of the same machine on the main and Legacy SSIDs settled the IPv4 question on Day 1.
+User device reports: ask for MAC, SSID, OS and time, then `$S/mac_cadence.rb MAC` (WLC detail plus association times and gaps). An A/B of the same machine on the main and Legacy SSIDs separates IPv6-mostly problems from the rest.
 
 ## Roles and approval boundaries
 
@@ -81,10 +81,10 @@ User device reports: ask for MAC, SSID, OS and time, then `$S/mac_cadence.rb MAC
 
 `misc/noc_slack.rb` posts stdin to the NOC webhook (`--dry-run` prints the payload). The URL lives only in the gitignored `tmp/noc_slack_webhook` (or `NOC_SLACK_WEBHOOK`). If the file is missing, ask the user to create it (`umask 077; cat > tmp/noc_slack_webhook`) and never print, paste or commit the URL.
 
-Post every round in which something is new or changed: start of day, the board's creation, every new issue, every verdict or status change, major updates, and the wrap-up. A quiet round needs no post. On Day 2 the user asked "did you remember the rule of slack callout?" after too few posts. Every post links the board:
+Post every round in which something is new or changed: start of day, the board's creation, every new issue, every verdict or status change, major updates, and the wrap-up. A quiet round needs no post. Too few posts is the usual failure: the user had to ask "did you remember the rule of slack callout?". Every post links the board:
 
 ```
-*KoR26 network check (HH:MM JST)*: Wi-Fi stable, 934 clients, 51/51 APs.
+*<EVENT> network check (HH:MM JST)*: Wi-Fi stable, 934 clients, 51/51 APs.
 Issue board: <board URL>
 New:
 • *#26 (medium, open)* Lobby radios fail 50–80% of frames at lunch
@@ -103,7 +103,7 @@ The configurator and optimizer post their own change notes (`*Config change (HH:
 2. `ruby .claude/skills/rknet-event-monitoring/assets/board/build.rb tmp/board-<event>-day<N>` writes `issue-board.html` next to `data.json`. Publish it with the Artifact tool; republishing the same file path keeps the URL and its sharing.
 3. Updates: pipe a JSON patch into `ruby .claude/skills/rknet-event-monitoring/assets/board/update.rb DIR` (format in the script header), then republish. It appends facts and history, stamps `updated`, refuses edits to `detection`, and checks numbering.
 4. The board is shared by link with people who are not signed in, so the data is embedded in the page. Do not use the Artifact `db` capability; signed-out viewers cannot read it (publish with `capabilities: {}`). The user sets sharing from the Share menu. Say once that the board exposes internal hostnames and addresses.
-5. One board per day. Carry open issues over with their original numbers and mark them "carried from Day N". Numbers never restart within an event; set `last_num` on the new board (Day 2 of KoR26 started at #26).
+5. One board per day. Carry open issues over with their original numbers and mark them "carried from Day N". Numbers never restart within an event; set `last_num` on the new board.
 
 Fields: `num, title, severity (info|low|medium|high), status (open|watching|mitigated|expected|closed), first_seen, updated, latest, next, detection, facts[], action, evidence, history[{at,note}]`, and `status` at the top: `verdict, level (ok|warn|bad), checked_at, clients, aps, next_check, note`.
 
@@ -130,7 +130,7 @@ Fields: `num, title, severity (info|low|medium|high), status (open|watching|miti
 
 ## Wrap-up
 
-Schedule a one-shot cron at the end of the window with the stop list: stop the `Monitor`, `CronDelete` the loop, kill watcher PIDs, final board update, a Slack wrap-up post, and a report with the final verdict, issue statuses, the change timeline (time, what, who, effect) and open items for the next day. Send a `PushNotification`. Say that nothing was committed.
+Schedule a one-shot cron at the end of the window with the stop list: stop the `Monitor`, `CronDelete` the loop, kill watcher PIDs, final board update, a Slack wrap-up post, and a report with the final verdict, issue statuses, the change timeline (time, what, who, effect) and open items for the next day. Write the day's record to `docs/events/<event>/day<N>.md` (shape: `docs/events/kor26/day1.md`); on the last day also fill the event README's "Left in place" list. Put lessons that apply to any event into the topic docs (`docs/wifi/`, `docs/event-operations.md`) or this skill, not only into the day record. Send a `PushNotification`. Say that nothing was committed.
 
 ## Pitfalls
 
@@ -138,9 +138,10 @@ Schedule a one-shot cron at the end of the window with the stop list: stop the `
 - Foreground `sleep` longer than a minute can be blocked; use `ruby -e 'sleep 55'` in a loop or background jobs.
 - Time zones: syslog bodies carry UTC, the scripts print JST (+9).
 - Prometheus lags the WLC after radio resets and mode changes. Trust the WLC CLI for the minutes around a change.
-- At the end of a day the venue empties within 30 minutes (782 clients at 18:31, 97 at 18:51). That is not an outage. Check AP count and alerts before reacting.
+- At the end of a day the venue empties within 30 minutes (782 clients to 97 in 20 minutes). That is not an outage. Check AP count and alerts before reacting.
+- Teardown pulls are confirmed by the NOC team area by area. Do not warn about them or ask for AP names before each pull; reset APs show default `rk-aph…`/`rk-apm…` names before they drop off. Record the pulls in the day's record.
 
 ## References
 
 - `references/operations.md`: loop prompt templates, follow-up and wrap-up cron prompts, fork prompt template.
-- `references/kor26-day1.md` and `references/kor26-day2.md`: issue lists, change timelines and open items from Kaigi on Rails 2026.
+- `docs/events/<event>/`: per-event records. `docs/events/kor26/` is a complete example (two days, teardown, left in place).

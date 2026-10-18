@@ -1,4 +1,6 @@
-# Prompts used by the monitor (KoR26)
+# Prompts for the monitor
+
+As used at Kaigi on Rails 2026.
 
 Replace the event, day, dates, issue numbers and focus items. Scripts are under `.claude/skills/rknet-event-monitoring/scripts/`; never point a prompt at the session scratchpad, which the next session cannot see.
 
@@ -19,7 +21,7 @@ Later days, `*/20 11-20 17 10 *`:
 ```
 Monitor Kaigi on Rails 2026 Day 2 environment using the rknet-event-monitoring skill (and /rknet-observability, rknet-wifi-remediation).
 Check syslog and WLC `show` commands for potential issues; report how stable the Wi-Fi is and action items. Day 2 focus: <open items from
-the previous day's reference file>. Board: <today's board dir in tmp/>, continue issue numbering from #<last+1>. Until 21:00 JST today (2026-10-17).
+docs/events/<event>/day<N-1>.md>. Board: <today's board dir in tmp/>, continue issue numbering from #<last+1>. Until 21:00 JST today (2026-10-17).
 ```
 
 ## Follow-up sample after a peer's change
@@ -45,7 +47,7 @@ One-shot at the end of the window plus a few minutes (`3 22 16 10 *`):
 It is after 22:00 JST on Kaigi on Rails 2026 Day 1: stop monitoring (TaskStop the Alertmanager Monitor, CronDelete the recurring monitor
 job <id>, kill watcher PIDs <pids>). Then wrap up the day: final stability summary, issues #1-#N with status, remediation timeline (what
 changed, when, by whom, effect), open action items for tomorrow; update and republish the board <url>; post the wrap-up to Slack;
-write or update references/kor26-dayN.md in this skill. Do not commit.
+write or update docs/events/<event>/dayN.md. Do not commit.
 ```
 
 ## Read-only investigation fork

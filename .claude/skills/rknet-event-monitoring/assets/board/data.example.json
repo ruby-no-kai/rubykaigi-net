@@ -1,6 +1,6 @@
 {
-  "event": "Kaigi on Rails 2026 · Day 1 · 2026-10-16",
-  "title": "KoR26 Day 1 NOC Issues",
+  "event": "<Event name> · Day 1 · YYYY-MM-DD",
+  "title": "<EVENT> Day 1 NOC Issues",
   "status": {
     "verdict": "Wi-Fi stable",
     "level": "ok",
