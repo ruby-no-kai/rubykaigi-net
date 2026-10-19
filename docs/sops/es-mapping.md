@@ -18,12 +18,26 @@ Which switch goes where is not planned in advance: whoever mounts a switch recor
 3. Dry-run and apply with roadworker from `route53/` (`bundle exec roadwork -a --dry-run`, then `-a` without it; the exact flags follow the other `.route` changes).
 4. Update the same name list in `k8s/prom/snmp.jsonnet` and `glazed/glazed.jsonnet` (`ios(name, 'venue')`), then run `./gen-k8s.rb` and `./gen-glazed.rb` and commit the `gen/` output with them. A name left out of these is not monitored or backed up.
 5. Verify from inside the venue network: `dig +short es-<area>-NN.venue.rubykaigi.net` resolves through the asset tag to the management address for every switch, and `show lldp neighbors` on cs-01 agrees with the uplink table in the event README.
-6. Record the area to asset tag mapping in `docs/events/<event>/` so the next event can see what was where.
+6. Set each switch's own hostname to its location name, so the prompt and `show` output identify the chassis and parallel sessions are not confused:
 
-A switch moved after setup needs only step 2 (the CNAME), 3 and 5; the monitoring name list does not change.
+   ```
+   configure terminal
+   hostname es-<area>-NN
+   end
+   write memory
+   ```
+
+   Do it over the DNS name from step 5 and confirm the new prompt matches the name you connected to. The hostname is stored on the switch, so a switch moved to another area needs it changed again.
+7. Record the area to asset tag mapping in `docs/events/<event>/` so the next event can see what was where.
+
+A switch moved after setup needs only steps 2, 3, 5 and 6; the monitoring name list does not change.
+
+## Teardown
+
+Set each hostname back to its asset tag (`hostname <asset-tag>`, `write memory`) before the switch is pulled, as APs go back to their asset tags ([`ap-naming.md`](ap-naming.md)). A switch that leaves under a location name shows the wrong area next year if mounted elsewhere.
 
 ## When it goes wrong
 
 - `es-*` does not resolve: the CNAME has not applied, or points at a tag with no `hosts.txt` entry.
 - It resolves but the switch does not answer: the asset tag in the map is wrong (someone mounted another unit). Compare the label on the switch with the map; `show lldp neighbors` on the uplink shows the hostname the switch reports.
-- Hostname on the switch itself (`show run | i hostname`) is not part of this: SNMP, glazed and SSH go by the DNS name, so the device hostname can stay at its asset tag.
+- The prompt shows a different name from the one you connected to: the hostname was not updated (step 6) or the CNAME points at another unit. Stop and compare before changing anything.
