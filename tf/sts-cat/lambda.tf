@@ -11,8 +11,8 @@ module "sts-cat" {
   architecture    = "arm64"
 
   # Keep in sync with the module ref above
-  source_url    = "https://github.com/sorah/sts-cat/releases/download/v0.4.0/sts-cat-lambda.arm64.zip"
-  source_sha512 = "0c5c525c47083ea4ede27a9fcd8b54300ed7d8f21c87cdda2e1fddec2ba7de92db2cecde84b526196caeeafd3d6300e650b357978b367d4a58e08c4749dca6c3"
+  source_url    = "https://github.com/sorah/sts-cat/releases/download/v0.4.1/sts-cat-lambda.arm64.zip"
+  source_sha512 = "db2c9397f58131cf622a4e1d927d69def35b8722ddcc0ddeb4391bca92dd72730bf3e7bb004067ab49622d9037267d0ebcc9e927eb8e823237db3ca9ef255da8"
 
   allowed_orgs = ["ruby-no-kai"]
   allowed_issuer_urls = [
