@@ -6,6 +6,7 @@ Notes on how the RubyKaigi / Kaigi on Rails network is built and run, written fo
 |---|---|
 | [`topology.md`](topology.md) | Sites, backbone and venue paths, interface description format, VLANs and subnets, Wi-Fi SSIDs and AP naming, dependent services, expected-down targets |
 | [`cloudprober.md`](cloudprober.md) | Cloudprober instances, target updates, metrics and configuration |
+| [`resolver.md`](resolver.md) | DNS resolver for attendees and infrastructure, Internet egress, DNS transports and client discovery |
 | [`event-operations.md`](event-operations.md) | Who does what during an event (humans and the monitor, configurator and optimizer sessions), readiness, start-of-day and teardown checklists |
 | [`wifi/troubleshooting.md`](wifi/troubleshooting.md) | Wi-Fi problems found on the WLC with evidence: the 180 s DHCP removal, option 82/108, FlexConnect versus local mode, load balancing, ghost entries, DNS for IPv6-only clients, "no IPv4" reports |
 | [`wifi/power-steering.md`](wifi/power-steering.md) | Spreading clients off radios at the client cap by Tx power: what worked, RF profiles, both levers, power-level tables |
