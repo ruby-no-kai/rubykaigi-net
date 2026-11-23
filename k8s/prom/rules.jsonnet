@@ -20,6 +20,7 @@
         import './rules/cloudwatch.libsonnet',
         import './rules/dns.libsonnet',
         import './rules/kube.libsonnet',
+        import './rules/nat_6x.libsonnet',
         import './rules/snmp.libsonnet',
       ],
       {},

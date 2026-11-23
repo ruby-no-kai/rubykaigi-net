@@ -237,6 +237,76 @@
         ]
       },
       {
+        "name": "nat_6x",
+        "rules": [
+          {
+            "alert": "Nat6xTargetDown",
+            "annotations": {
+              "summary": "{{$labels.job}}: scrape target down"
+            },
+            "expr": "up{job=~\"^scrapeConfig/default/nat-6x(-.+)?$\"} == 0",
+            "for": "3m",
+            "labels": {
+              "severity": "critical"
+            }
+          },
+          {
+            "alert": "Nat6xSiitTxDrop",
+            "annotations": {
+              "summary": "tun-siit tx drop continues 10m+ ({{$value | humanize}} pkt/s)"
+            },
+            "expr": "rate(node_network_transmit_drop_total{job=\"scrapeConfig/default/nat-6x\",device=\"tun-siit\"}[5m]) > 0",
+            "for": "10m",
+            "labels": {
+              "severity": "warning"
+            }
+          },
+          {
+            "alert": "Nat6xConntrackDrop",
+            "annotations": {
+              "summary": "conntrack drop > 5/s for 5m ({{$value | humanize}}/s)"
+            },
+            "expr": "sum by (instance, instance_short) (rate(conntrack_drop_total{job=\"scrapeConfig/default/nat-6x-conntrack\"}[5m])) > 5",
+            "for": "5m",
+            "labels": {
+              "severity": "warning"
+            }
+          },
+          {
+            "alert": "Nat6xConntrackEarlyDrop",
+            "annotations": {
+              "summary": "conntrack early_drop (table full?) ({{$value | humanize}}/s)"
+            },
+            "expr": "sum by (instance, instance_short) (rate(conntrack_early_drop_total{job=\"scrapeConfig/default/nat-6x-conntrack\"}[5m])) > 0",
+            "labels": {
+              "severity": "critical"
+            }
+          },
+          {
+            "alert": "Nat6xConntrackTableUsage",
+            "annotations": {
+              "summary": "conntrack table usage > 70% ({{$value | humanizePercentage}})"
+            },
+            "expr": "node_nf_conntrack_entries{job=\"scrapeConfig/default/nat-6x\"} / node_nf_conntrack_entries_limit > 0.7",
+            "for": "5m",
+            "labels": {
+              "severity": "warning"
+            }
+          },
+          {
+            "alert": "Nat6xConntrackTableUsage",
+            "annotations": {
+              "summary": "conntrack table usage > 90% ({{$value | humanizePercentage}})"
+            },
+            "expr": "node_nf_conntrack_entries{job=\"scrapeConfig/default/nat-6x\"} / node_nf_conntrack_entries_limit > 0.9",
+            "for": "1m",
+            "labels": {
+              "severity": "critical"
+            }
+          }
+        ]
+      },
+      {
         "name": "snmp",
         "rules": [
           {
